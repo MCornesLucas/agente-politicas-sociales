@@ -1,0 +1,385 @@
+metrica,anio,categoria,valor,unidad,n_muestral,fuente
+pobreza_0a17,2019,total,16.15,porcentaje,24389,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,tramo=0 a 5,17.02,porcentaje,6935,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,tramo=13 a 17,14.98,porcentaje,7854,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,tramo=6 a 12,16.48,porcentaje,9600,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=ARTIGAS,18.1,porcentaje,735,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=CANELONES,9.99,porcentaje,3834,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=CERRO LARGO,15.66,porcentaje,780,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=COLONIA,7.63,porcentaje,985,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=DURAZNO,16.87,porcentaje,549,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=FLORES,7.63,porcentaje,257,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=FLORIDA,8.81,porcentaje,534,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=LAVALLEJA,13.33,porcentaje,445,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=MALDONADO,4.82,porcentaje,1159,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=MONTEVIDEO,24.07,porcentaje,7744,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=PAYSANDU,15.74,porcentaje,1064,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=RIO NEGRO,11.9,porcentaje,483,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=RIVERA,18.97,porcentaje,998,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=ROCHA,13.14,porcentaje,743,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=SALTO,13.71,porcentaje,1238,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=SAN JOSE,4.77,porcentaje,966,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=SORIANO,11.74,porcentaje,663,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=TACUAREMBO,14.04,porcentaje,807,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2019,departamento=TREINTA Y TRES,26.86,porcentaje,405,"ECH 2019 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+hacinamiento_hogares_nna,2019,total,4.38,porcentaje,14550,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=ARTIGAS,2.12,porcentaje,442,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=CANELONES,5.68,porcentaje,2303,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=CERRO LARGO,5.6,porcentaje,472,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=COLONIA,2.29,porcentaje,605,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=DURAZNO,3.51,porcentaje,310,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=FLORES,1.36,porcentaje,159,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=FLORIDA,1.62,porcentaje,321,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=LAVALLEJA,4.16,porcentaje,256,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=MALDONADO,2.77,porcentaje,709,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=MONTEVIDEO,4.6,porcentaje,4693,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=PAYSANDU,7.59,porcentaje,588,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=RIO NEGRO,3.05,porcentaje,283,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=RIVERA,3.31,porcentaje,593,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=ROCHA,1.92,porcentaje,463,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=SALTO,4.81,porcentaje,691,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=SAN JOSE,3.66,porcentaje,572,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=SORIANO,3.52,porcentaje,363,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=TACUAREMBO,2.61,porcentaje,480,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2019,departamento=TREINTA Y TRES,8.02,porcentaje,247,ECH 2019 (INE); umbral INE/CEPAL >2 personas por cuarto
+vivienda_hogares_nna,2019,carencia=humedad_techos,17.26,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=goteras,23.9,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=muros_agrietados,13.52,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=puertas_ventanas_deterioradas,15.92,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=grietas_pisos,7.05,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=caida_revoque,17.11,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=cielorraso_desprendido,3.15,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=poca_luz_solar,9.28,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=escasa_ventilacion,4.92,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=se_inunda,5.93,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=peligro_derrumbe,0.87,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2019,carencia=humedad_cimientos,32.08,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet,70.95,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=1.0,59.36,porcentaje,904,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=2.0,72.25,porcentaje,1084,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=3.0,83.68,porcentaje,1249,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=4.0,94.29,porcentaje,901,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=5.0,98.76,porcentaje,555,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=6.0,66.58,porcentaje,1750,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=7.0,59.02,porcentaje,1754,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=8.0,72.78,porcentaje,1923,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=9.0,59.03,porcentaje,1562,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=10.0,75.05,porcentaje,1342,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=11.0,50.62,porcentaje,790,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet;estrato=12.0,76.7,porcentaje,736,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc,79.93,porcentaje,14550,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=1.0,72.05,porcentaje,904,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=2.0,75.04,porcentaje,1084,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=3.0,83.53,porcentaje,1249,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=4.0,91.78,porcentaje,901,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=5.0,95.57,porcentaje,555,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=6.0,76.78,porcentaje,1750,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=7.0,75.39,porcentaje,1754,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=8.0,81.07,porcentaje,1923,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=9.0,79.61,porcentaje,1562,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=10.0,79.07,porcentaje,1342,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=11.0,81.45,porcentaje,790,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=pc;estrato=12.0,81.25,porcentaje,736,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija,88.79,porcentaje,10231,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=1.0,81.8,porcentaje,540,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=2.0,89.39,porcentaje,779,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=3.0,94.11,porcentaje,1047,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=4.0,97.32,porcentaje,850,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=5.0,97.28,porcentaje,548,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=6.0,94.38,porcentaje,1168,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=7.0,84.13,porcentaje,1039,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=8.0,89.53,porcentaje,1385,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=9.0,86.35,porcentaje,918,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=10.0,76.63,porcentaje,1003,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=11.0,91.27,porcentaje,395,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2019,recurso=internet_fija;estrato=12.0,76.49,porcentaje,559,"ECH 2019 (INE); 1=Sí/2=No, 99 excluido"
+pobreza_0a17,2023,total,18.62,porcentaje,11424,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,tramo=0 a 5,20.1,porcentaje,2884,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,tramo=13 a 17,17.86,porcentaje,3732,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,tramo=6 a 12,18.29,porcentaje,4808,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=ARTIGAS,27.53,porcentaje,290,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=CANELONES,13.32,porcentaje,1684,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=CERRO LARGO,28.63,porcentaje,402,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=COLONIA,3.8,porcentaje,379,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=DURAZNO,14.7,porcentaje,274,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=FLORES,6.36,porcentaje,133,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=FLORIDA,15.17,porcentaje,256,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=LAVALLEJA,10.21,porcentaje,223,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=MALDONADO,8.28,porcentaje,702,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=MONTEVIDEO,24.47,porcentaje,3980,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=PAYSANDÚ,16.98,porcentaje,450,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=RIVERA,33.51,porcentaje,376,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=ROCHA,18.39,porcentaje,312,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=RÍO NEGRO,15.84,porcentaje,325,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=SALTO,22.48,porcentaje,492,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=SAN JOSÉ,4.44,porcentaje,347,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=SORIANO,11.7,porcentaje,288,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=TACUAREMBÓ,15.31,porcentaje,300,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+pobreza_0a17,2023,departamento=TREINTA Y TRES,22.51,porcentaje,211,"ECH 2023 (INE), microdatos ponderados; pobreza oficial INE, canasta 2006"
+hacinamiento_hogares_nna,2023,total,4.47,porcentaje,7100,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=ARTIGAS,10.13,porcentaje,162,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=CANELONES,5.19,porcentaje,1064,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=CERRO LARGO,10.59,porcentaje,246,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=COLONIA,0.42,porcentaje,240,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=DURAZNO,5.46,porcentaje,181,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=FLORES,0.74,porcentaje,79,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=FLORIDA,1.92,porcentaje,152,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=LAVALLEJA,3.87,porcentaje,132,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=MALDONADO,2.45,porcentaje,454,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=MONTEVIDEO,4.03,porcentaje,2488,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=PAYSANDÚ,9.83,porcentaje,267,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=RIVERA,4.1,porcentaje,226,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=ROCHA,3.08,porcentaje,192,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=RÍO NEGRO,4.12,porcentaje,201,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=SALTO,4.72,porcentaje,279,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=SAN JOSÉ,2.05,porcentaje,231,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=SORIANO,1.19,porcentaje,183,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=TACUAREMBÓ,4.35,porcentaje,195,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2023,departamento=TREINTA Y TRES,11.47,porcentaje,128,ECH 2023 (INE); umbral INE/CEPAL >2 personas por cuarto
+brecha_digital_hogares_nna,2023,recurso=internet,81.82,porcentaje,7100,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=1,77.22,porcentaje,563,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=2,87.8,porcentaje,544,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=3,94.34,porcentaje,607,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=4,95.9,porcentaje,516,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=5,99.13,porcentaje,258,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=6,82.67,porcentaje,827,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=7,68.31,porcentaje,762,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=8,76.29,porcentaje,955,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=9,69.23,porcentaje,747,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=10,88.73,porcentaje,582,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=11,72.77,porcentaje,376,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet;estrato=12,86.17,porcentaje,363,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc,79.75,porcentaje,7100,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=1,68.2,porcentaje,563,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=2,74.06,porcentaje,544,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=3,83.17,porcentaje,607,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=4,93.19,porcentaje,516,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=5,97.02,porcentaje,258,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=6,77.89,porcentaje,827,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=7,76.62,porcentaje,762,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=8,79.51,porcentaje,955,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=9,79.99,porcentaje,747,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=10,83.47,porcentaje,582,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=11,77.73,porcentaje,376,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=pc;estrato=12,79.32,porcentaje,363,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija,84.44,porcentaje,5762,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=1,75.24,porcentaje,434,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=2,88.74,porcentaje,477,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=3,92.0,porcentaje,573,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=4,95.28,porcentaje,495,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=5,97.61,porcentaje,256,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=6,87.56,porcentaje,684,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=7,77.63,porcentaje,501,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=8,90.2,porcentaje,728,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=9,79.54,porcentaje,518,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=10,72.86,porcentaje,510,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=11,71.23,porcentaje,273,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2023,recurso=internet_fija;estrato=12,75.37,porcentaje,313,"ECH 2023 (INE); 1=Sí/2=No, 99 excluido"
+fies_hogares_menores,2023,nivel=moderada_o_severa,18.28,porcentaje,2245,"ECH 2023, módulo FIES (INE); umbral FAO 0,5"
+fies_hogares_menores,2023,nivel=moderada_o_severa;hogares_con_menores_de_6,18.63,porcentaje,742,"ECH 2023, módulo FIES (INE); umbral FAO 0,5"
+fies_hogares_menores,2023,nivel=severa,3.43,porcentaje,2245,"ECH 2023, módulo FIES (INE); umbral FAO 0,5"
+fies_hogares_menores,2023,nivel=severa;hogares_con_menores_de_6,2.77,porcentaje,742,"ECH 2023, módulo FIES (INE); umbral FAO 0,5"
+trabajo_adolescente_14a17,2023,ocupacion=total,3.02,porcentaje,15131,"ECH 2023, panel mensual de empleo (INE); promedio de 12 meses"
+trabajo_adolescente_14a17,2023,ocupacion=sexo:Varones,4.15,porcentaje,7489,"ECH 2023, panel mensual de empleo (INE); promedio de 12 meses"
+trabajo_adolescente_14a17,2023,ocupacion=sexo:Mujeres,1.85,porcentaje,7642,"ECH 2023, panel mensual de empleo (INE); promedio de 12 meses"
+trabajo_adolescente_14a17,2023,informalidad_entre_ocupados,92.95,porcentaje,422,"ECH 2023, panel mensual de empleo (INE); promedio de 12 meses; f82==2 (no aporta)"
+pobreza_0a17,2024,total,28.92,porcentaje,11482,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,tramo=0 a 5,32.19,porcentaje,2811,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,tramo=13 a 17,27.52,porcentaje,3871,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,tramo=6 a 12,28.07,porcentaje,4800,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=ARTIGAS,51.84,porcentaje,288,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=CANELONES,22.27,porcentaje,1565,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=CERRO LARGO,47.4,porcentaje,397,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=COLONIA,21.93,porcentaje,360,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=DURAZNO,17.5,porcentaje,251,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=FLORES,18.08,porcentaje,137,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=FLORIDA,29.32,porcentaje,229,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=LAVALLEJA,24.02,porcentaje,271,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=MALDONADO,19.49,porcentaje,800,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=MONTEVIDEO,30.87,porcentaje,3918,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=PAYSANDÚ,31.61,porcentaje,502,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=RIVERA,46.59,porcentaje,411,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=ROCHA,30.73,porcentaje,351,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=RÍO NEGRO,29.31,porcentaje,304,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=SALTO,30.52,porcentaje,488,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=SAN JOSÉ,20.73,porcentaje,382,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=SORIANO,25.47,porcentaje,304,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=TACUAREMBÓ,36.63,porcentaje,317,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2024,departamento=TREINTA Y TRES,42.06,porcentaje,207,"ECH 2024 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+hacinamiento_hogares_nna,2024,total,4.85,porcentaje,7157,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=ARTIGAS,9.64,porcentaje,167,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=CANELONES,5.02,porcentaje,1009,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=CERRO LARGO,9.62,porcentaje,232,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=COLONIA,1.01,porcentaje,226,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=DURAZNO,1.09,porcentaje,172,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=FLORES,1.06,porcentaje,82,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=FLORIDA,4.49,porcentaje,150,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=LAVALLEJA,2.63,porcentaje,163,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=MALDONADO,1.94,porcentaje,526,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=MONTEVIDEO,4.34,porcentaje,2487,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=PAYSANDÚ,11.46,porcentaje,305,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=RIVERA,2.41,porcentaje,244,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=ROCHA,1.57,porcentaje,213,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=RÍO NEGRO,10.45,porcentaje,179,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=SALTO,8.39,porcentaje,277,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=SAN JOSÉ,2.72,porcentaje,226,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=SORIANO,2.15,porcentaje,174,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=TACUAREMBÓ,3.65,porcentaje,202,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2024,departamento=TREINTA Y TRES,11.73,porcentaje,123,ECH 2024 (INE); umbral INE/CEPAL >2 personas por cuarto
+vivienda_hogares_nna,2024,carencia=goteras,26.39,porcentaje,7157,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2024,carencia=se_inunda,7.55,porcentaje,7157,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2024,carencia=peligro_derrumbe,1.43,porcentaje,7157,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2024,carencia=humedad_cimientos,36.63,porcentaje,7157,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet,83.43,porcentaje,7157,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=1,76.62,porcentaje,518,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=2,89.4,porcentaje,562,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=3,93.96,porcentaje,645,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=4,97.86,porcentaje,482,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=5,98.92,porcentaje,280,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=6,84.56,porcentaje,756,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=7,71.21,porcentaje,766,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=8,80.45,porcentaje,1066,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=9,73.78,porcentaje,761,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=10,87.92,porcentaje,552,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=11,67.89,porcentaje,374,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet;estrato=12,84.92,porcentaje,395,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc,81.28,porcentaje,7157,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=1,68.82,porcentaje,518,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=2,76.63,porcentaje,562,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=3,83.82,porcentaje,645,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=4,92.76,porcentaje,482,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=5,97.43,porcentaje,280,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=6,80.22,porcentaje,756,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=7,74.1,porcentaje,766,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=8,83.49,porcentaje,1066,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=9,82.14,porcentaje,761,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=10,85.68,porcentaje,552,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=11,76.13,porcentaje,374,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=pc;estrato=12,81.48,porcentaje,395,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija,82.55,porcentaje,5937,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=1,73.75,porcentaje,397,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=2,84.15,porcentaje,502,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=3,89.64,porcentaje,606,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=4,95.48,porcentaje,471,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=5,96.76,porcentaje,277,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=6,87.89,porcentaje,636,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=7,69.19,porcentaje,552,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=8,87.53,porcentaje,871,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=9,76.09,porcentaje,554,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=10,69.41,porcentaje,478,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=11,76.47,porcentaje,254,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2024,recurso=internet_fija;estrato=12,74.38,porcentaje,339,"ECH 2024 (INE); 1=Sí/2=No, 99 excluido"
+fies_hogares_menores,2024,nivel=moderada_o_severa,16.83,porcentaje,2186,"ECH 2024, módulo FIES (INE); umbral FAO 0,5"
+fies_hogares_menores,2024,nivel=moderada_o_severa;hogares_con_menores_de_6,16.74,porcentaje,674,"ECH 2024, módulo FIES (INE); umbral FAO 0,5"
+fies_hogares_menores,2024,nivel=severa,2.68,porcentaje,2186,"ECH 2024, módulo FIES (INE); umbral FAO 0,5"
+fies_hogares_menores,2024,nivel=severa;hogares_con_menores_de_6,2.53,porcentaje,674,"ECH 2024, módulo FIES (INE); umbral FAO 0,5"
+victimizacion_hogares_nna,2024,delito=Robo total de vehículo,0.22,porcentaje,9162,"ECH 2024, módulo victimización 2º semestre (INE)"
+victimizacion_hogares_nna,2024,delito=Robo de objetos del vehículo,0.32,porcentaje,9162,"ECH 2024, módulo victimización 2º semestre (INE)"
+victimizacion_hogares_nna,2024,delito=Robo en la vivienda,0.47,porcentaje,9162,"ECH 2024, módulo victimización 2º semestre (INE)"
+victimizacion_hogares_nna,2024,delito=Estafa,0.82,porcentaje,9162,"ECH 2024, módulo victimización 2º semestre (INE)"
+victimizacion_hogares_nna,2024,delito=Robo o asalto fuera de la vivienda,0.76,porcentaje,9162,"ECH 2024, módulo victimización 2º semestre (INE)"
+victimizacion_hogares_nna,2024,delito=Al menos uno,2.52,porcentaje,9162,"ECH 2024, módulo victimización 2º semestre (INE)"
+trabajo_adolescente_14a17,2024,ocupacion=total,2.93,porcentaje,15291,"ECH 2024, panel mensual de empleo (INE); promedio de 12 meses"
+trabajo_adolescente_14a17,2024,ocupacion=sexo:Varones,4.26,porcentaje,7760,"ECH 2024, panel mensual de empleo (INE); promedio de 12 meses"
+trabajo_adolescente_14a17,2024,ocupacion=sexo:Mujeres,1.54,porcentaje,7531,"ECH 2024, panel mensual de empleo (INE); promedio de 12 meses"
+trabajo_adolescente_14a17,2024,informalidad_entre_ocupados,81.55,porcentaje,442,"ECH 2024, panel mensual de empleo (INE); promedio de 12 meses; f82==2 (no aporta)"
+pobreza_0a17,2025,total,27.48,porcentaje,10826,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,tramo=0 a 5,29.11,porcentaje,2641,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,tramo=13 a 17,26.47,porcentaje,3705,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,tramo=6 a 12,27.3,porcentaje,4480,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=ARTIGAS,34.82,porcentaje,250,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=CANELONES,23.93,porcentaje,1396,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=CERRO LARGO,34.67,porcentaje,357,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=COLONIA,17.25,porcentaje,327,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=DURAZNO,18.33,porcentaje,250,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=FLORES,16.56,porcentaje,97,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=FLORIDA,20.21,porcentaje,194,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=LAVALLEJA,20.42,porcentaje,207,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=MALDONADO,15.82,porcentaje,794,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=MONTEVIDEO,32.7,porcentaje,4019,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=PAYSANDÚ,28.48,porcentaje,444,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=RIVERA,37.66,porcentaje,401,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=ROCHA,23.25,porcentaje,324,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=RÍO NEGRO,25.34,porcentaje,267,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=SALTO,32.9,porcentaje,463,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=SAN JOSÉ,11.7,porcentaje,303,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=SORIANO,34.45,porcentaje,264,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=TACUAREMBÓ,16.57,porcentaje,285,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+pobreza_0a17,2025,departamento=TREINTA Y TRES,29.37,porcentaje,184,"ECH 2025 (INE), microdatos ponderados; pobreza oficial INE, canasta 2017"
+hacinamiento_hogares_nna,2025,total,3.68,porcentaje,6913,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=ARTIGAS,5.35,porcentaje,154,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=CANELONES,3.28,porcentaje,902,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=CERRO LARGO,4.75,porcentaje,228,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=COLONIA,0.37,porcentaje,219,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=DURAZNO,3.01,porcentaje,160,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=FLORES,0.0,porcentaje,64,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=FLORIDA,3.94,porcentaje,120,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=LAVALLEJA,2.78,porcentaje,128,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=MALDONADO,2.9,porcentaje,520,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=MONTEVIDEO,4.51,porcentaje,2576,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=PAYSANDÚ,3.72,porcentaje,278,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=RIVERA,3.71,porcentaje,248,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=ROCHA,4.39,porcentaje,208,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=RÍO NEGRO,1.97,porcentaje,163,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=SALTO,5.76,porcentaje,284,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=SAN JOSÉ,1.45,porcentaje,191,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=SORIANO,3.17,porcentaje,161,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=TACUAREMBÓ,1.51,porcentaje,189,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+hacinamiento_hogares_nna,2025,departamento=TREINTA Y TRES,3.27,porcentaje,120,ECH 2025 (INE); umbral INE/CEPAL >2 personas por cuarto
+vivienda_hogares_nna,2025,carencia=goteras,24.23,porcentaje,6913,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2025,carencia=se_inunda,5.76,porcentaje,6913,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2025,carencia=peligro_derrumbe,1.43,porcentaje,6913,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+vivienda_hogares_nna,2025,carencia=humedad_cimientos,36.83,porcentaje,6913,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet,85.72,porcentaje,6913,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=1,78.31,porcentaje,573,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=2,82.09,porcentaje,584,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=3,92.89,porcentaje,656,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=4,98.2,porcentaje,519,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=5,100.0,porcentaje,244,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=6,86.44,porcentaje,694,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=7,88.52,porcentaje,750,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=8,81.15,porcentaje,1002,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=9,77.88,porcentaje,725,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=10,90.65,porcentaje,505,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=11,70.69,porcentaje,349,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet;estrato=12,91.6,porcentaje,312,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc,80.23,porcentaje,6913,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=1,67.53,porcentaje,573,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=2,74.67,porcentaje,584,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=3,83.39,porcentaje,656,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=4,92.58,porcentaje,519,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=5,97.39,porcentaje,244,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=6,80.02,porcentaje,694,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=7,74.53,porcentaje,750,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=8,82.26,porcentaje,1002,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=9,81.34,porcentaje,725,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=10,82.99,porcentaje,505,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=11,76.38,porcentaje,349,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=pc;estrato=12,80.68,porcentaje,312,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija,82.17,porcentaje,5900,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=1,76.51,porcentaje,447,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=2,84.49,porcentaje,479,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=3,91.84,porcentaje,609,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=4,92.05,porcentaje,508,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=5,94.29,porcentaje,244,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=6,86.72,porcentaje,597,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=7,67.08,porcentaje,661,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=8,86.8,porcentaje,805,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=9,79.13,porcentaje,558,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=10,74.64,porcentaje,456,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=11,70.26,porcentaje,253,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+brecha_digital_hogares_nna,2025,recurso=internet_fija;estrato=12,76.12,porcentaje,283,"ECH 2025 (INE); 1=Sí/2=No, 99 excluido"
+fies_hogares_menores,2025,nivel=moderada_o_severa,15.25,porcentaje,2022,"ECH 2025, módulo FIES (INE); umbral FAO 0,5"
+fies_hogares_menores,2025,nivel=moderada_o_severa;hogares_con_menores_de_6,17.48,porcentaje,644,"ECH 2025, módulo FIES (INE); umbral FAO 0,5"
+fies_hogares_menores,2025,nivel=severa,2.04,porcentaje,2022,"ECH 2025, módulo FIES (INE); umbral FAO 0,5"
+fies_hogares_menores,2025,nivel=severa;hogares_con_menores_de_6,1.85,porcentaje,644,"ECH 2025, módulo FIES (INE); umbral FAO 0,5"
+victimizacion_hogares_nna,2025,delito=Robo total de vehículo,0.18,porcentaje,8598,"ECH 2025, módulo victimización 2º semestre (INE)"
+victimizacion_hogares_nna,2025,delito=Robo de objetos del vehículo,0.21,porcentaje,8598,"ECH 2025, módulo victimización 2º semestre (INE)"
+victimizacion_hogares_nna,2025,delito=Robo en la vivienda,0.34,porcentaje,8598,"ECH 2025, módulo victimización 2º semestre (INE)"
+victimizacion_hogares_nna,2025,delito=Estafa,0.52,porcentaje,8598,"ECH 2025, módulo victimización 2º semestre (INE)"
+victimizacion_hogares_nna,2025,delito=Robo o asalto fuera de la vivienda,0.46,porcentaje,8598,"ECH 2025, módulo victimización 2º semestre (INE)"
+victimizacion_hogares_nna,2025,delito=Al menos uno,1.65,porcentaje,8598,"ECH 2025, módulo victimización 2º semestre (INE)"
+trabajo_adolescente_14a17,2025,ocupacion=total,3.0,porcentaje,14915,"ECH 2025, panel mensual de empleo (INE); promedio de 12 meses"
+trabajo_adolescente_14a17,2025,ocupacion=sexo:Varones,3.93,porcentaje,7605,"ECH 2025, panel mensual de empleo (INE); promedio de 12 meses"
+trabajo_adolescente_14a17,2025,ocupacion=sexo:Mujeres,2.02,porcentaje,7310,"ECH 2025, panel mensual de empleo (INE); promedio de 12 meses"
+trabajo_adolescente_14a17,2025,informalidad_entre_ocupados,88.45,porcentaje,434,"ECH 2025, panel mensual de empleo (INE); promedio de 12 meses; f82==2 (no aporta)"

@@ -1,0 +1,43 @@
+﻿anio,indicador,valor,unidad,tabla_fuente,nota
+2020,casos_cronicos_explotacion_sexual,94,casos,texto p. 48,cifra absoluta indicada en el texto
+2021,casos_cronicos_explotacion_sexual,130,casos,texto p. 48,cifra absoluta indicada en el texto
+2020,casos_explotacion_sexual,98,casos,texto p. 48,cifra absoluta indicada en el texto (2 % del total anual)
+2021,casos_explotacion_sexual,140,casos,texto p. 48,cifra absoluta indicada en el texto (2 % del total anual)
+2016,pct_abuso_sexual,20,%,tabla 4,abuso sexual sobre el total de situaciones
+2017,pct_abuso_sexual,22,%,tabla 4,abuso sexual sobre el total de situaciones
+2018,pct_abuso_sexual,23,%,tabla 4,abuso sexual sobre el total de situaciones
+2019,pct_abuso_sexual,23,%,tabla 4,abuso sexual sobre el total de situaciones
+2020,pct_abuso_sexual,19,%,tabla 4,abuso sexual sobre el total de situaciones
+2021,pct_abuso_sexual,20,%,tabla 4,abuso sexual sobre el total de situaciones
+2016,pct_cronicidad_abuso_sexual,70,%,tabla 7,
+2017,pct_cronicidad_abuso_sexual,83,%,tabla 7,
+2018,pct_cronicidad_abuso_sexual,83,%,tabla 7,
+2019,pct_cronicidad_abuso_sexual,80,%,tabla 7,
+2020,pct_cronicidad_abuso_sexual,79,%,tabla 7,
+2021,pct_cronicidad_abuso_sexual,78,%,tabla 7,
+2020,pct_cronicidad_explotacion_sexual,96,%,tabla 7,
+2021,pct_cronicidad_explotacion_sexual,93,%,tabla 7,
+2020,pct_explotacion_sexual,2,%,tabla 4,explotación sexual desagregada solo desde 2020
+2021,pct_explotacion_sexual,2,%,tabla 4,explotación sexual desagregada solo desde 2020
+2016,pct_recurrencia_abuso_sexual,81,%,tabla 6,
+2017,pct_recurrencia_abuso_sexual,71,%,tabla 6,
+2018,pct_recurrencia_abuso_sexual,72,%,tabla 6,
+2019,pct_recurrencia_abuso_sexual,66,%,tabla 6,
+2020,pct_recurrencia_abuso_sexual,66,%,tabla 6,
+2021,pct_recurrencia_abuso_sexual,65,%,tabla 6,
+2020,pct_recurrencia_explotacion_sexual,72,%,tabla 6,
+2021,pct_recurrencia_explotacion_sexual,71,%,tabla 6,
+2016,pct_victimas_femeninas_abuso_sexual,74,%,tabla 5,
+2017,pct_victimas_femeninas_abuso_sexual,71,%,tabla 5,
+2018,pct_victimas_femeninas_abuso_sexual,76,%,tabla 5,
+2019,pct_victimas_femeninas_abuso_sexual,76,%,tabla 5,
+2020,pct_victimas_femeninas_abuso_sexual,74,%,tabla 5,
+2021,pct_victimas_femeninas_abuso_sexual,76,%,tabla 5,
+2020,pct_victimas_femeninas_explotacion_sexual,92,%,tabla 5,
+2021,pct_victimas_femeninas_explotacion_sexual,87,%,tabla 5,
+2016,situaciones_maltrato_abuso_total,2647,casos,tabla 4,total de situaciones de maltrato y abuso sexual registradas por SIPIAV
+2017,situaciones_maltrato_abuso_total,3155,casos,tabla 4,total de situaciones de maltrato y abuso sexual registradas por SIPIAV
+2018,situaciones_maltrato_abuso_total,4131,casos,tabla 4,total de situaciones de maltrato y abuso sexual registradas por SIPIAV
+2019,situaciones_maltrato_abuso_total,4774,casos,tabla 4,total de situaciones de maltrato y abuso sexual registradas por SIPIAV
+2020,situaciones_maltrato_abuso_total,4911,casos,tabla 4,total de situaciones de maltrato y abuso sexual registradas por SIPIAV
+2021,situaciones_maltrato_abuso_total,7035,casos,tabla 4,total de situaciones de maltrato y abuso sexual registradas por SIPIAV

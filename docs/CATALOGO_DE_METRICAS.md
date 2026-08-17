@@ -106,13 +106,13 @@ clasificaciones de edad de cada organismo como columnas):
 
 | # | Métrica | Tipo | Detalle | Estado |
 |---|---|---|---|---|
-| 31 | Pobreza monetaria 0-17 (vs. adultos: brecha de infantilización) | Descriptiva | 28,9% ponderado en 2024 (verificado); por departamento, tramo, sexo; 2019 con metodología vieja — quiebre documentado | ✅ |
+| 31 | Pobreza monetaria 0-17 (vs. adultos: brecha de infantilización) | Descriptiva | 28,9% ponderado en 2024 (verificado); por departamento, tramo, sexo. **Dos regímenes verificados contra los archivos**: 2019 y 2023 solo traen canasta 2006 (16,2% y 18,6%); 2024-2025, canasta 2017 (28,9% y 27,5%) — la serie se corta entre 2023 y 2024 | ⚠️ quiebre 2023/2024 |
 | 32 | Hacinamiento en hogares con NNA | Descriptiva | habitaciones/personas, por departamento y tramo | ✅ |
 | 33 | Condiciones de vivienda de hogares con NNA | Descriptiva | 12 carencias en 2019 → 4 desde 2024 (quiebre heredado y documentado) | ⚠️ |
 | 34 | Brecha digital en hogares con NNA | Descriptiva | internet/PC/tablet Ibirapitá, por estrato y departamento | ✅ |
 | 35 | Inseguridad alimentaria en hogares con menores (FIES) | Descriptiva | 2023-2025, con marcador oficial menores18/menores6 | ✅ |
 | 36 | Victimización de hogares donde viven NNA | Descriptiva | 2024-2025 (5 tipos de delito, denuncia, violencia) | ✅ |
-| P8 | Pobreza infantil proyectada | Predictiva | Solo 3 puntos comparables (2023-2025) | ❌ serie insuficiente — se habilita con 2026 |
+| P8 | Pobreza infantil proyectada | Predictiva | Solo 2 puntos comparables (2024-2025, canasta 2017; 2023 quedó con la canasta 2006 — verificado contra el archivo del INE) | ❌ serie insuficiente |
 
 ## Contexto transversal — demografía de la infancia
 
