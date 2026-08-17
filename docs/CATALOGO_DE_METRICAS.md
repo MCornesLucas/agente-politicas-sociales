@@ -1,60 +1,122 @@
-# Catálogo de métricas (borrador de diseño)
+# Catálogo de métricas construibles — confirmado contra los datos reales
 
-Catálogo inicial de métricas candidatas, organizado por tema, con su
-fuente y la advertencia de rigor que le corresponde. **Estado: borrador**
-— cada métrica se confirma recién cuando se verifica que el dato existe
-publicado con la definición esperada (regla: nunca prometer una métrica
-cuyo dato no se descargó y miró). Las cinco partes que lleva cada métrica
-en un informe (nombre, pregunta, términos, gráfica, justificación) están
-definidas en [`METODOLOGIA.md`](METODOLOGIA.md), sección 1.
+Segunda versión del catálogo: la primera era un borrador de diseño; esta
+sale de **abrir los archivos** (los 12 PDF de SIPIAV, los Excel de INAU,
+el boletín ENSANNA, el informe ENTI 2010, los estudios CONAPEES y los
+bloques extraídos de la ECH) y verificar qué cuadros existen, en qué años
+y con qué desagregaciones. Cada métrica indica su serie real y sus
+quiebres. Reglas de rigor que gobiernan todas:
+[`METODOLOGIA.md`](METODOLOGIA.md); naturaleza de cada fuente:
+[`FUENTES_DE_DATOS.md`](FUENTES_DE_DATOS.md); detalle del relevamiento:
+[`RELEVAMIENTO_DE_DATOS.md`](RELEVAMIENTO_DE_DATOS.md).
 
-## Tema 1 — Violencia hacia NNA (fuente: informes anuales SIPIAV)
+Convención de estado: ✅ construible ya · ⚠️ construible con salvedad
+documentada · ❌ no existe en la fuente (documentado para no prometerlo).
 
-| # | Métrica | Pregunta que responde | Advertencia |
+## Tema 1 — Violencia hacia NNA (SIPIAV, registros administrativos; nunca prevalencia)
+
+Los 12 informes 2013-2024 tienen texto extraíble; los gráficos son
+vectoriales (valores extraíbles) solo en 2016-2019, imagen en el resto.
+
+| # | Métrica | Serie real | Estado |
 |---|---|---|---|
-| 1 | Situaciones atendidas por año (serie 2013-2024) | ¿Cómo evoluciona la respuesta del sistema? | Casos atendidos ≠ prevalencia; serie válida porque la fuente y la definición son constantes |
-| 2 | Casos nuevos vs. arrastre por año | ¿Cuánto de lo atendido es detección nueva? | Definir "situación" vs. "caso nuevo" según el glosario SIPIAV |
-| 3 | Distribución por tramo de edad | ¿En qué edades se concentra la detección? | Tramos del informe (0-5, 6-12, 13-17), no re-agrupar |
-| 4 | Distribución por tipo de violencia | ¿Qué tipo de violencia se detecta más? | Categorías del informe; violencia sexual desagregada por sexo cuando el informe lo publica |
-| 5 | Recurrencia y cronicidad | ¿Se detecta a tiempo? | ~90% recurrente / 75% crónica en 2024 — indicador de detección tardía, así se redacta |
+| 1 | Situaciones atendidas por año (absolutos) | 2011-2022 en texto (2013: 1.319 → 2022: 7.473); 2023 (8.157) y 2024 (8.924) solo en imagen del PDF — confirmables por notas oficiales de Presidencia/INAU | ⚠️ serie completa citando fuente mixta |
+| 2 | Distribución por sexo (%) | 2013-2024, todos los años (~54-56% niñas) | ✅ |
+| 3 | Distribución por franja etaria (%) | 0-3/4-5/6-12/13-17/18+ desde 2014 (2013 agregado; 2022-24 la prosa agrupa 0-5) | ⚠️ |
+| 4 | Tipos de violencia (%) | 2013-2024, con dos quiebres: 2020 aparece "explotación sexual" como 5ª categoría; 2024 fusiona abuso + explotación en "violencias sexuales" | ⚠️ quiebres 2020 y 2024 se marcan, no se interpolan |
+| 5 | Tipo de violencia × sexo y × franja etaria | Todos los años (tabla en imagen 2020-2024) | ⚠️ |
+| 6 | Recurrencia (episodio único vs. recurrente) | 2013-2024; cruce × tipo hasta 2023 | ✅ |
+| 7 | Cronicidad (>6 meses) | 2013-2024; cruce × tramo solo 2019-2020 | ✅ |
+| 8 | Vínculo de la persona agresora + convivencia | 2013-2024 (negligencia excluida del análisis desde 2019) | ✅ |
+| 9 | NNA que visualizan la violencia | 2017-2024 solamente | ✅ serie corta |
+| 10 | Inclusión de la familia en la intervención | 2014-2024 (82% → 58%: serie con lectura sustantiva) | ✅ |
+| 11 | Cobertura territorial del sistema (nº de CRL) | 2014-2024 (24 → 36) + participación sectorial 2015-2024 reconstruible | ✅ |
+| — | Situaciones por departamento | **No existe en ningún año** — el gran ausente de SIPIAV | ❌ |
+| — | Casos nuevos vs. seguimiento | Solo 2021, 2022 (+ 2024-2025 vía prensa) | ❌ como serie |
 
-## Tema 2 — Explotación sexual (fuente: CONAPEES)
+## Tema 2 — Explotación sexual (CONAPEES; el dato cuantitativo vive en el estudio FLACSO 2023, cap. 6)
 
-| # | Métrica | Pregunta que responde | Advertencia |
+| # | Métrica | Serie real | Estado |
 |---|---|---|---|
-| 6 | Situaciones atendidas por año | ¿Cómo evoluciona la detección? | Subregistro reconocido por el comité; resolver primero la discrepancia 285 vs. 456 (ver `FUENTES_DE_DATOS.md`) |
-| 7 | Modalidades (incluida la digital) | ¿Qué formas toma y cuánto pesa el entorno digital? | Fuente cualitativa/estudio, no serie — presentar como estado de situación |
+| 12 | Situaciones ESNNA atendidas (CONAPEES) | 2018: 386 · 2019: 240 · 2020: 410 · 2021: 494; **con apertura por los 19 departamentos** (tabla 2 del estudio FLACSO) | ✅ 2018-2021; 2022+ pendiente (la discrepancia 285 vs. 456 de prensa sigue sin resolver) |
+| 13 | Sexo de las víctimas ESNNA | 2020-2021 (86% niñas/adolescentes mujeres) | ✅ corta |
+| 14 | ES dentro de SIPIAV | 2020 (98 casos) y 2021 (140); desde 2024 fusionada en "violencias sexuales" | ⚠️ ventana 2020-2023 |
+| 15 | Actuaciones de Fiscalía por delitos sexuales con víctima NNA | 2018-2021, por departamento y en tasa cada 10.000 NNA | ✅ (delitos sexuales en general, no solo explotación — así se rotula) |
 
-## Tema 3 — Trabajo infantil (fuente: ENSANNA 2024, microdatos ANDA)
+## Tema 3 — Trabajo infantil (ENSANNA 2024, prevalencia; ENTI 2010; ECH 14-17)
 
-| # | Métrica | Pregunta que responde | Advertencia |
+El "informe" ENSANNA es un boletín de 4 cuadros + 4 gráficos — hasta que
+el INE publique los microdatos, esto es todo lo construible:
+
+| # | Métrica | Detalle real | Estado |
 |---|---|---|---|
-| 8 | % de NNA en trabajo infantil (ponderado) | ¿Qué prevalencia tiene el trabajo infantil? | Única familia de métricas con prevalencia real; ponderar siempre |
-| 9 | Prevalencia por sexo y tramo de edad | ¿Quiénes están más afectados? | Celdas chicas (n<30): aclarar base muestral |
-| 10 | Prevalencia por región/área | ¿Dónde se concentra? | Verificar el nivel de desagregación que soporta el diseño muestral |
-| 11 | Asistencia escolar según condición de trabajo | ¿Cómo se relaciona con la escolarización? | Lenguaje observacional, nunca causal |
-| 12 | Comparación puntual con ENTI 2009-2010 | ¿Qué cambió en 15 años? | Corte de serie: puntos sueltos + nota de comparabilidad, nunca línea |
+| 16 | Tasa y volumen de trabajo infantil 5-17 | 6,8% / 40,2 mil; por región (Mdeo 5,2 / Interior 7,7), sexo (M 7,0 / V 6,6), edad (5-8: 2,0 / 9-14: 7,6 / 15-17: 10,6) y nivel socioeconómico INSE (7,9 bajo → 4,8 alto) | ✅ |
+| 17 | Descomposición: actividades económicas (TFP) vs. trabajo no remunerado de servicios (TNRS) | Solo %, por las mismas 4 aperturas; el sesgo de género es visible (TNRS: niñas 2,8 vs. varones 1,1) | ✅ |
+| 18 | Comparación puntual 2010 ↔ 2024 | ENTI 2010: 9,9% (FPSCN) o 13,4% (FGP) — la definición elegida cambia la conclusión; el propio informe 2010 advierte incomparabilidad con mediciones previas | ⚠️ puntos sueltos + decisión de definición documentada |
+| 19 | Trabajo adolescente 14-17 (ECH propia, ponderada) | data/ech: 2023, 2024, 2025 (panel mensual) — ocupación, formalidad (f82), por sexo/departamento | ✅ anual, cálculo propio |
+| — | Asistencia escolar × trabajo, horas, trabajo peligroso, departamento | No publicados en el boletín 2024 (la ENTI 2010 sí los tenía: ~70 cuadros) | ❌ hasta microdatos |
 
-## Tema 4 — Protección especial (fuente: INAU, indicadores SIPI)
+## Tema 4 — Protección especial (INAU, xlsx del SIPI; población atendida, no infancia general)
 
-| # | Métrica | Pregunta que responde | Advertencia |
+| # | Métrica | Serie real | Estado |
 |---|---|---|---|
-| 13 | Cobertura por modalidad de atención | ¿A cuántos NNA atiende INAU y cómo? | Población atendida por INAU, no infancia general |
-| 14 | Trayectorias (tiempo en el sistema) | ¿Cuánto duran las intervenciones? | Según dimensión "trayectorias" del reporte SIPI |
-| 15 | Adopciones por año | ¿Cómo evoluciona la vía de egreso por adopción? | Números chicos: cuidado con desagregar |
+| 20 | NNA atendidos en el SPE (y % sobre población país) | 2020-2025 anual nacional; 2020-S1 a 2025-S2 semestral **por los 19 departamentos** | ✅ |
+| 21 | Residencial vs. contexto familiar (ratio) | 2020-2025; el eje de la política de desinternación | ✅ |
+| 22 | Ingresos por primera vez vs. reingresos | 2020-2025 | ✅ |
+| 23 | Egresos y tiempo de permanencia en el sistema | 2020-2025 (tiempos: desde 2021; egresos S2-2020 estimados — nota al pie del propio archivo) | ⚠️ |
+| 24 | Tránsito de residencia a familia | 2020-2025 | ✅ |
+| 25 | Adopciones: condición de adoptabilidad → tenencia | 2020-2025 | ✅ |
+| 26 | Frecuencia de contacto con familia/referentes | 2020-2025 | ✅ |
+| 27 | Educación: 0-5 en CAIF/CAPI, 6-17 en formal, 13-17 no formal | 2021-2025 (2020 no disponible) | ⚠️ |
+| 28 | Salud: controles y vacunas al día | 2020-2025 | ✅ |
+| 29 | Acogimiento familiar: tipo de familia, altas/bajas de familias acogedoras por departamento | Fotografía abril 2025 (RAF) | ✅ corte |
+| 30 | Dónde viven los NNA acompañados (familia origen / acogimiento / residencial / adoptiva) | Fotografía abril 2025 (RDVF, ~8.777 NNA) | ✅ corte |
 
-## Tema 5 — Pobreza infantil e inversión (fuente: UNICEF Uruguay + cálculo propio sobre ECH)
+Trampas documentadas por la exploración: los % del nacional vienen en
+decimal (0,068) y los departamentales en escala 10,1 — normalizar antes
+de cruzar; el nacional desagrega por 6 regiones INAU (no departamentos);
+"atendidos" (SPE) ≠ "vinculaciones" (reportes de abril).
 
-| # | Métrica | Pregunta que responde | Advertencia |
+## Tema 5 — Pobreza, vivienda y entorno del hogar (ECH propia, ponderada — data/ech/)
+
+Ya extraído y verificado (2019, 2023, 2024, 2025; universo 0-17 con las
+clasificaciones de edad de cada organismo como columnas):
+
+| # | Métrica | Detalle | Estado |
 |---|---|---|---|
-| 16 | Pobreza monetaria en NNA (ponderada, ECH) | ¿Qué % de NNA vive en hogares pobres? | Preferir cálculo propio sobre microdatos ECH (infraestructura ya probada en agente-encuesta-hogares); portal UNICEF como verificación cruzada |
-| 17 | Pobreza multidimensional en NNA | ¿Qué privaciones concretas sufren? | Citar la metodología exacta del IPM usado por la fuente |
-| 18 | Brecha de pobreza NNA vs. adultos | ¿Está la pobreza infantilizada? | Mismo año, misma línea de pobreza, mismo denominador |
+| 31 | Pobreza monetaria 0-17 (vs. adultos: brecha de infantilización) | 28,9% ponderado en 2024 (verificado); por departamento, tramo, sexo; 2019 con metodología vieja — quiebre documentado | ✅ |
+| 32 | Hacinamiento en hogares con NNA | habitaciones/personas, por departamento y tramo | ✅ |
+| 33 | Condiciones de vivienda de hogares con NNA | 12 carencias en 2019 → 4 desde 2024 (quiebre heredado y documentado) | ⚠️ |
+| 34 | Brecha digital en hogares con NNA | internet/PC/tablet Ibirapitá, por estrato y departamento | ✅ |
+| 35 | Inseguridad alimentaria en hogares con menores (FIES) | 2023-2025, con marcador oficial menores18/menores6 | ✅ |
+| 36 | Victimización de hogares donde viven NNA | 2024-2025 (5 tipos de delito, denuncia, violencia) | ✅ |
+
+## UNICEF Uruguay (75 publicaciones descargadas)
+
+Rol confirmado: **fuente de contexto y verificación cruzada**, no de
+series propias — sus datos citan a ECH/ENSANNA/SIPI. Pendiente puntual de
+alto valor: la encuesta de violencia sexual en la infancia citada en
+Infancia en Datos ("casi 1 de cada 3 antes de los 18") — si su ficha
+técnica es pública, sería la única fuente de **prevalencia** de violencia
+del proyecto (todo el Tema 1 es registro administrativo).
 
 ---
 
-**Regla transversal**: los temas 1, 2 y 4 salen de registros
-administrativos — ninguna de sus métricas habla de prevalencia. Los temas
-3 y 5 salen de encuestas — sus métricas se ponderan siempre. La nota
-metodológica del informe explica esta diferencia una vez, en lenguaje
-simple.
+## Anticipo de la parte 3 — cruces con la ECH (a desarrollar)
+
+La exploración ya define qué cruces son viables y a qué nivel:
+
+1. **INAU × ECH por departamento** (el más sólido): tasa de NNA en
+   protección especial cada 1.000 NNA (INAU semestral × población 0-17
+   ECH) contra pobreza infantil, hacinamiento y carencias de vivienda del
+   mismo departamento. Mismo nivel de agregación → sin falacia ecológica
+   si se redacta a nivel departamento.
+2. **CONAPEES/Fiscalía × ECH por departamento** (2018-2021): situaciones
+   ESNNA y actuaciones fiscales vs. condiciones socioeconómicas de la
+   infancia por departamento.
+3. **ENSANNA × ECH por nivel socioeconómico** (solo a nivel agregado: el
+   INSE de la ENSANNA no es el estrato de la ECH — se documenta como
+   comparación de gradientes, no de valores).
+4. **SIPIAV × ECH: solo a nivel nacional y por tramo de edad** — SIPIAV
+   no publica desagregación departamental de situaciones (limitación
+   estructural, documentada arriba).

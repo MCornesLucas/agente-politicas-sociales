@@ -77,11 +77,20 @@ la lista "en análisis"; cuando pasen al catálogo ANDA
 (https://www4.ine.gub.uy/Anda5/), descargarlos (ese día este proyecto
 gana su segunda fuente de prevalencia). Revisar periódicamente.
 
-## 4. CETI — Plan Nacional de Erradicación del Trabajo Infantil
+## 4. CETI — Plan de Acción 2003-2005
 
-- `data/ceti/2010s/plan_nacional_erradicacion_trabajo_infantil_mtss.pdf`
-  (OIT/MTSS):
-  https://webapps.ilo.org/static/spanish/buenos-aires/trabajo-infantil/resource/docs/sabermas/documentos/plan_nacional_erradicacion_ti_mteyss.pdf
+- `data/ceti/2003-2005/plan_accion_prevencion_erradicacion_trabajo_infantil_2003_2005.pdf`
+  — "Plan de Acción para la Prevención y Erradicación del Trabajo
+  Infantil en el Uruguay 2003-2005" (CETI/Inspección General del
+  Trabajo), verificado leyendo el contenido:
+  http://www.annaobserva.org/observatorio/wp-content/uploads/2018/03/Plan-de-Acci%C3%B3n-para-la-Prevenci%C3%B3n.pdf
+
+**Corrección registrada**: el primer PDF descargado como "plan CETI"
+(desde webapps.ilo.org, ruta buenos-aires) resultó ser el plan de
+**Argentina** (CONAETI 2011-2015) — mal catalogado en el sitio de la OIT;
+"Uruguay" no aparece ni una vez en su texto. Se eliminó. Lección
+aplicada: todo PDF descargado se verifica leyendo su contenido, no por el
+nombre del archivo ni el sitio que lo aloja.
 
 **Pendiente**: el primer plan estratégico nacional basado en la ENSANNA
 2024 está en elaboración — monitorear la
@@ -103,20 +112,26 @@ por la migración del sitio. Los datos anuales de situaciones atendidas
 del CONAPEES aparecen dentro de los informes SIPIAV y en notas de prensa
 — resolver ahí la discrepancia 285 vs. 456 ya documentada.
 
-## 6. UNICEF Uruguay — acceso verificado, selección pendiente
+## 6. UNICEF Uruguay — 75 publicaciones descargadas de la Biblioteca Digital
 
-- Portal [Infancia en Datos](https://www.unicef.org/uruguay/infancia-en-datos):
-  navegable (bloquea clientes automatizados simples; acceder con
-  navegador). Temas: pobreza infantil, educación, inclusión social,
-  protección, salud.
-- [Biblioteca Digital](https://bibliotecaunicef.uy/): catálogo operativo
-  y descargable — el canal para bajar publicaciones concretas.
-- Hallazgo a evaluar: el artículo "Violencia sexual en la infancia y la
-  adolescencia en Uruguay" cita una **encuesta** (casi 1 de cada 3
-  personas jóvenes vivió violencia sexual antes de los 18) — si esa
-  encuesta tiene ficha técnica pública, sería una fuente de prevalencia
-  de violencia, algo que ningún registro administrativo del proyecto
-  puede dar. Prioridad alta para la selección de publicaciones.
+- `data/unicef/<año>/` — **75 PDFs (~207 MB)** descargados de la
+  [Biblioteca Digital](https://bibliotecaunicef.uy/) (catálogo PMB,
+  descarga directa vía `doc_num.php?explnum_id=N`), recorriendo las
+  categorías temáticas relevantes (pobreza, violencia, explotación,
+  educación, protección, justicia penal, etc.). Cada PDF se renombró con
+  el título leído del propio documento y se archivó por el año detectado
+  en su contenido; los que no declaran año quedaron en
+  `data/unicef/sin_anio/` (clasificarlos a mano cuando se usen).
+- El portal [Infancia en Datos](https://www.unicef.org/uruguay/infancia-en-datos)
+  (unicef.org) bloquea clientes automatizados — se navega con navegador;
+  sus artículos citan como fuentes primarias a ECH/ENSANNA/SIPI, así que
+  su rol es contexto y verificación cruzada, no series propias.
+- Hallazgo a evaluar (prioridad alta): el artículo "Violencia sexual en
+  la infancia y la adolescencia en Uruguay" cita una **encuesta** (casi 1
+  de cada 3 personas jóvenes vivió violencia sexual antes de los 18) —
+  si su ficha técnica es pública, sería la única fuente de *prevalencia*
+  de violencia del proyecto. Buscarla entre lo descargado (hay un PDF
+  "encuesta_sobre_378.pdf" en sin_anio) o en la biblioteca.
 
 ## 7. ECH — extracción de infancia y adolescencia (proyecto hermano)
 

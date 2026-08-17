@@ -46,6 +46,12 @@ que rastrearla.
   adolescentes y entornos digitales: aportes de la investigación
   internacional para construir un estado de situación nacional":
   https://uruguay.unfpa.org/es/informe-conapees-explotacion-sexual-nna-entornos-digitales
+- FLACSO Uruguay / UNICEF / UNFPA (2023). "Explotación sexual hacia
+  NNA. Un diagnóstico de los abordajes en Uruguay" — su capítulo 6
+  compila las cifras oficiales: serie CONAPEES 2018-2021 por
+  departamento, ES dentro de SIPIAV 2020-2021, y actuaciones de Fiscalía
+  2018-2021 por delitos sexuales con víctima NNA:
+  https://flacso.edu.uy/wp-content/uploads/2023/12/EXPLOTACION-SEXUAL-HACIA-NINAS-NINOS-Y-ADOLESCENTES-COMPLETO.pdf
 - Presidencia de la República — "Uruguay atendió este año 285
   situaciones de explotación infantil y actualizó su plan nacional de
   acción": https://www.gub.uy/presidencia/comunicacion/noticias/uruguay-atendio-ano-285-situaciones-explotacion-infantil-actualizo-su-plan
@@ -62,9 +68,12 @@ que rastrearla.
   https://www.gub.uy/ministerio-trabajo-seguridad-social/politicas-y-gestion/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna-2024
 - MTSS — CETI, Comité Nacional para la Erradicación del Trabajo
   Infantil: https://www.gub.uy/ministerio-trabajo-seguridad-social/comunicacion/noticias/ceti
-- OIT/MTSS — Plan Nacional para la Erradicación del Trabajo Infantil
-  (antecedente del plan estratégico en elaboración):
-  https://webapps.ilo.org/static/spanish/buenos-aires/trabajo-infantil/resource/docs/sabermas/documentos/plan_nacional_erradicacion_ti_mteyss.pdf
+- CETI/Inspección General del Trabajo — "Plan de Acción para la
+  Prevención y Erradicación del Trabajo Infantil en el Uruguay
+  2003-2005" (verificado por contenido; ver la corrección registrada en
+  `RELEVAMIENTO_DE_DATOS.md` sobre un PDF argentino mal catalogado en el
+  sitio de la OIT):
+  http://www.annaobserva.org/observatorio/wp-content/uploads/2018/03/Plan-de-Acci%C3%B3n-para-la-Prevenci%C3%B3n.pdf
 - UNICEF Uruguay — "Trabajo Infantil en Uruguay" (incluye el antecedente
   ENTI 2009-2010):
   https://www.unicef.org/uruguay/infancia-en-datos/proteccion/trabajo-Infantil-en-Uruguay
