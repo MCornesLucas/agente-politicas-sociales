@@ -1,0 +1,24 @@
+# Datos descargados de las fuentes: no se redistribuyen, se descargan de las URLs citadas
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# SO / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Entorno
+.env

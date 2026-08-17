@@ -1,0 +1,124 @@
+# Bibliografía
+
+Todas las fuentes institucionales y académicas del proyecto, en un solo
+lugar, organizadas por tema y — dentro de cada tema — alfabéticamente por
+autor/organismo. Qué datos publica cada organismo y qué naturaleza tiene
+cada dato: ver [`FUENTES_DE_DATOS.md`](FUENTES_DE_DATOS.md). Este
+documento es el índice único para auditar o reutilizar una cita sin tener
+que rastrearla.
+
+## Marco normativo y de políticas (aplica a todos los temas)
+
+- Convención sobre los Derechos del Niño (ONU, 1989) — marco de derechos
+  que estructura todas las políticas del proyecto:
+  https://www.ohchr.org/es/instruments-mechanisms/instruments/convention-rights-child
+- Código de la Niñez y la Adolescencia del Uruguay (Ley 17.823, 2004):
+  https://www.impo.com.uy/bases/codigo-ninez-adolescencia/17823-2004
+- OIT — Convenio 138 sobre la edad mínima de admisión al empleo (1973) y
+  Convenio 182 sobre las peores formas de trabajo infantil (1999),
+  definiciones normativas de "trabajo infantil" usadas por ENSANNA y
+  CETI: https://normlex.ilo.org/
+
+## Violencia hacia niñas, niños y adolescentes (SIPIAV)
+
+- INAU — SIPIAV, Sistema Integral de Protección a la Infancia y a la
+  Adolescencia contra la Violencia — informes anuales (serie desde
+  2013): https://www.inau.gub.uy/sipiav
+- Presidencia de la República — "Informe de Sipiav registró 24
+  situaciones diarias de violencia hacia niñas, niños y adolescentes en
+  2024": https://www.gub.uy/presidencia/comunicacion/noticias/informe-sipiav-registro-24-situaciones-diarias-violencia-hacia-ninas-ninos
+- El Observador — "Sipiav presentó informe anual: en 2024 se detectaron
+  2.501 casos nuevos":
+  https://www.elobservador.com.uy/nacional/sipiav-presento-informe-anual-violencia-ninos-ninas-y-adolescentes-2024-se-detectaron-2501-casos-nuevos-n5995917
+
+## Explotación sexual de NNA (CONAPEES)
+
+- INAU — CONAPEES, Comité Nacional para la Erradicación de la
+  Explotación Sexual Comercial y No Comercial de la Niñez y la
+  Adolescencia (III Plan Nacional aprobado en julio de 2023):
+  https://www.inau.gub.uy/conapees
+- CONAPEES/UNFPA — "Explotación sexual comercial de niños, niñas y
+  adolescentes y entornos digitales: aportes de la investigación
+  internacional para construir un estado de situación nacional":
+  https://uruguay.unfpa.org/es/informe-conapees-explotacion-sexual-nna-entornos-digitales
+- Presidencia de la República — "Uruguay atendió este año 285
+  situaciones de explotación infantil y actualizó su plan nacional de
+  acción": https://www.gub.uy/presidencia/comunicacion/noticias/uruguay-atendio-ano-285-situaciones-explotacion-infantil-actualizo-su-plan
+
+## Trabajo infantil (ENSANNA, CETI)
+
+- INE — Encuesta Nacional sobre las Actividades de Niñas, Niños y
+  Adolescentes (ENSANNA) 2024, en convenio con MTSS y con apoyo de OIT y
+  UNICEF; microdatos en el portal ANDA:
+  https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna
+- INE — Informe Trabajo Infantil 2024:
+  https://www.gub.uy/instituto-nacional-estadistica/comunicacion/noticias/informe-trabajo-infantil-2024
+- MTSS — página de la ENSANNA 2024:
+  https://www.gub.uy/ministerio-trabajo-seguridad-social/politicas-y-gestion/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna-2024
+- MTSS — CETI, Comité Nacional para la Erradicación del Trabajo
+  Infantil: https://www.gub.uy/ministerio-trabajo-seguridad-social/comunicacion/noticias/ceti
+- OIT/MTSS — Plan Nacional para la Erradicación del Trabajo Infantil
+  (antecedente del plan estratégico en elaboración):
+  https://webapps.ilo.org/static/spanish/buenos-aires/trabajo-infantil/resource/docs/sabermas/documentos/plan_nacional_erradicacion_ti_mteyss.pdf
+- UNICEF Uruguay — "Trabajo Infantil en Uruguay" (incluye el antecedente
+  ENTI 2009-2010):
+  https://www.unicef.org/uruguay/infancia-en-datos/proteccion/trabajo-Infantil-en-Uruguay
+
+## Protección especial y cuidado institucional (INAU)
+
+- INAU — Indicadores del Sistema de Protección Especial (fuente: SIPI;
+  dimensiones: cobertura, trayectorias, adopciones, cuidados y vínculos,
+  educación y salud):
+  https://inau.gub.uy/transparencia/indicadores-sistema-de-proteccion-especial-inau
+- INAU — Sistemas institucionales (SIPI, Sistema de Información Para la
+  Infancia, en producción desde 2010):
+  https://www.inau.gub.uy/institucional/sistemas-institucionales
+
+## Pobreza infantil e inversión (UNICEF Uruguay)
+
+- UNICEF Uruguay — Infancia en Datos (portal de indicadores: salud,
+  educación, protección, inclusión social, inversión pública):
+  https://www.unicef.org/uruguay/infancia-en-datos
+- UNICEF Uruguay — "Pobreza infantil en Uruguay: datos e impacto":
+  https://www.unicef.org/uruguay/pobreza-infantil
+- UNICEF Uruguay — "¿Qué nos dice el Índice de Pobreza Multidimensional
+  sobre las privaciones de la infancia?":
+  https://www.unicef.org/uruguay/infancia-en-datos/pobreza-infantil/que-dice-el-IPM-sobre-las-privaciones-de-la-infancia
+
+## Visualización de datos (heredada del proyecto agente-encuesta-hogares, ver `CONVENCIONES_DE_GRAFICAS.md`)
+
+- Cleveland, W.S. & McGill, R. (1984). "Graphical Perception: Theory,
+  Experimentation, and Application to the Development of Graphical
+  Methods". *Journal of the American Statistical Association*. Fundamento
+  de barras horizontales para categorías con nombres largos y de evitar
+  tortas con muchas categorías.
+- Cohen, M.A. et al. (2016). "What Is the Bandwidth of Perceptual
+  Experience?". *Trends in Cognitive Sciences*. Límite de la atención
+  perceptiva: acotar categorías/series visibles por gráfica.
+- Few, S. *Show Me the Numbers*. Barras agrupadas para comparación
+  directa entre grupos.
+- Healy, K. (2018). *Data Visualization: A Practical Introduction*.
+  Princeton University Press. Integridad visual del eje y la escala:
+  nunca truncar el eje y, nunca 3D.
+- Knaflic, C.N. — *storytellingwithdata.com*, "More on slopegraphs"
+  (2014). Fundamento del dumbbell/slope chart.
+- Tufte, E. — *The Visual Display of Quantitative Information* (1983),
+  principio de data-ink ratio; slopegraphs.
+- Ware, C. *Information Visualization: Perception for Design*. Principios
+  Gestalt aplicados a agrupamientos y ordenamientos visuales.
+- Wilke, C.O. (2019). *Fundamentals of Data Visualization*. O'Reilly
+  Media. Elección del tipo de gráfica según tipo de variable; reglas de
+  proporciones y cantidades.
+
+## Fuente de microdatos
+
+Instituto Nacional de Estadística (INE) — catálogo ANDA (microdatos de
+encuestas, incluida la ENSANNA): https://www4.ine.gub.uy/Anda5/
+
+---
+
+**Cómo usar esto al agregar una métrica nueva:** si la fuente consultada
+ya está acá, no hace falta volver a buscarla. Si es nueva, agregarla en
+la sección del tema que corresponda (o crear una nueva si no encaja en
+ninguna) y registrar su naturaleza en `FUENTES_DE_DATOS.md` si es una
+fuente de datos y no solo una referencia.
