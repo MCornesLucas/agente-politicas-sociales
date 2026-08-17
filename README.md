@@ -10,7 +10,7 @@ Es el proyecto hermano de
 [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares):
 hereda su marco metodológico (reglas de rigor no negociables,
 bibliografía auditada, justificación con fundamento de cada gráfica) y lo
-aplica a un problema nuevo — y más difícil: acá la mayoría de las fuentes
+aplica a un problema nuevo — y más difícil: aquí la mayoría de las fuentes
 no son encuestas, son **registros administrativos**, donde la pregunta
 "¿qué mide realmente este número?" es la diferencia entre un análisis
 serio y uno equivocado.

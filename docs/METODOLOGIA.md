@@ -3,7 +3,7 @@
 Este proyecto hereda el marco metodológico de
 [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
 (reglas de rigor estadístico, terminología y visualización probadas sobre
-la ECH) y lo adapta a un problema distinto: acá la mayoría de las fuentes
+la ECH) y lo adapta a un problema distinto: aquí la mayoría de las fuentes
 **no son encuestas con microdatos, son registros administrativos e
 informes institucionales** (SIPIAV, INAU, CONAPEES), con una sola encuesta
 con microdatos públicos (ENSANNA 2024). Esa diferencia cambia qué
@@ -151,7 +151,7 @@ reglas:
 - **Toda proyección lleva rango, nunca un número único.** El intervalo
   sale de los residuos del modelo sobre la serie observada (esto es
   legítimo y distinto del caso "sin variables de diseño muestral" de la
-  sección 2: acá la incertidumbre es del modelo de tendencia, no del
+  sección 2: aquí la incertidumbre es del modelo de tendencia, no del
   diseño de una encuesta, y se declara como tal).
 - **Backtesting antes de publicar.** Ajustar el modelo dejando fuera los
   últimos 2 puntos de la serie y verificar que los predice

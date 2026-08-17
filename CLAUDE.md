@@ -46,7 +46,14 @@ informes institucionales además de una encuesta).
 
 ## Mantenimiento
 
+- **Lenguaje formal y español neutro** en toda la documentación y en los
+  informes: sin voseo ni regionalismos coloquiales ("acá", "arrancar",
+  "ganarle"); se escribe "aquí", "comenzar", "superar". El modelo de
+  estilo son los documentos e informes de
+  [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
+  (`docs/METODOLOGIA.md` y los informes generados). Los términos
+  técnicos de los organismos se conservan tal cual.
 - Una sola copia del proyecto (esta). Desarrollar, probar y commitear
-  desde acá; revisar el diff uno mismo antes de commitear, sin pedir
+  desde aquí; revisar el diff uno mismo antes de commitear, sin pedir
   confirmación en el chat.
 - Repositorio: https://github.com/testa10/agente-politicas-sociales

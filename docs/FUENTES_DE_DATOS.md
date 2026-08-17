@@ -128,7 +128,7 @@ Las citas completas para referenciar en informes están en
 
 ---
 
-**Cómo agregar una fuente nueva**: sumarla acá con su "naturaleza del
+**Cómo agregar una fuente nueva**: incorporarla aquí con su "naturaleza del
 dato" explícita, y la cita completa en `BIBLIOGRAFIA.md`. Si la fuente es
 un registro administrativo, la primera pregunta a responder por escrito
 es: ¿qué población cubre y qué evento registra exactamente?

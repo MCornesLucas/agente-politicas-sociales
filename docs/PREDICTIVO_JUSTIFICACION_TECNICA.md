@@ -27,8 +27,8 @@ explicar/predecir.
 2. **Backtest con los últimos 2 puntos como holdout**: se ajusta con la
    serie sin esos puntos y se mide MAE y MAPE sobre ellos.
 3. **Criterios de aceptación** (decisión de este proyecto, fijada antes
-   de calcular): el modelo elegido debe (a) ganarle al ingenuo en el
-   backtest — si ningún modelo le gana, no se publica proyección — y
+   de calcular): el modelo elegido debe (a) superar al modelo ingenuo en
+   el backtest — si ningún modelo lo supera, no se publica proyección — y
    (b) tener MAPE de holdout ≤ 15%.
 4. **El ganador del backtest no se elige a ciegas**: con 2 puntos de
    holdout, una victoria estrecha puede ser azar. Se prefiere el modelo
@@ -52,9 +52,9 @@ y 2024 (8.924) de notas oficiales (Presidencia/INAU — ver
 | Modelo | Pred. 2023 | Pred. 2024 | MAE | MAPE | Veredicto |
 |---|---|---|---|---|---|
 | Ingenuo (último valor) | 7.473 | 7.473 | 1.068 | 12,3% | línea base |
-| **Deriva** | 8.157 | 8.841 | **42** | **0,5%** | gana el backtest |
+| **Deriva** | 8.157 | 8.841 | **42** | **0,5%** | menor error de backtest |
 | **Tendencia lineal MCO** | 7.738 | 8.435 | 454 | 5,3% | **elegido** (estable, usa toda la serie, pasa ambos criterios) |
-| Tendencia log-lineal | 9.838 | 11.958 | 2.357 | 27,3% | **descartado**: el crecimiento dejó de ser exponencial; proyectarlo sobreestima groseramente |
+| Tendencia log-lineal | 9.838 | 11.958 | 2.357 | 27,3% | **descartado**: el crecimiento dejó de ser exponencial; proyectarlo sobreestima de manera notoria |
 
 - **Elección: tendencia lineal** (pendiente ≈ +696 situaciones/año),
   con la deriva como sensibilidad (casi indistinguible: su pendiente
@@ -83,7 +83,7 @@ y 2024 (8.924) de notas oficiales (Presidencia/INAU — ver
   imposibles (<0% o >100%) en horizontes largos, la recta en logit no
   (FPP3, transformaciones).
 - **Pendiente**: extraer los 11 puntos 2014-2024 de los PDF (varios años
-  están solo en prosa). Métricas del backtest se agregan acá al
+  están solo en prosa). Métricas del backtest se agregan aquí al
   calcular.
 
 ## P3 — Ratio residencial vs. contexto familiar, por departamento (pendiente)
@@ -122,6 +122,6 @@ y 2024 (8.924) de notas oficiales (Presidencia/INAU — ver
 ---
 
 **Regla de mantenimiento**: cada proyección que pase de "pendiente" a
-"calculada" agrega acá su tabla de backtest con los números reales, en
+"calculada" agrega aquí su tabla de backtest con los números reales, en
 el mismo commit que el código que la calcula. Una proyección sin su
 tabla en este documento no se publica en ningún informe.

@@ -50,7 +50,7 @@ vectoriales (valores extraíbles) solo en 2016-2019, imagen en el resto.
 | 9 | NNA que visualizan la violencia | 2017-2024 solamente | ✅ serie corta |
 | 10 | Inclusión de la familia en la intervención | 2014-2024 (82% → 58%: serie con lectura sustantiva) | ✅ |
 | 11 | Cobertura territorial del sistema (nº de CRL) | 2014-2024 (24 → 36) + participación sectorial 2015-2024 reconstruible | ✅ |
-| — | Situaciones por departamento | **No existe en ningún año** — el gran ausente de SIPIAV | ❌ |
+| — | Situaciones por departamento | **No existe en ningún año** — la ausencia principal de la fuente | ❌ |
 | — | Casos nuevos vs. seguimiento | Solo 2021, 2022 (+ 2024-2025 vía prensa) | ❌ como serie |
 
 ## Tema 2 — Explotación sexual (CONAPEES; el dato cuantitativo vive en el estudio FLACSO 2023, cap. 6)
@@ -88,10 +88,10 @@ el INE publique los microdatos, esto es todo lo construible:
 | 26 | Frecuencia de contacto con familia/referentes | 2020-2025 | ✅ |
 | 27 | Educación: 0-5 en CAIF/CAPI, 6-17 en formal, 13-17 no formal | 2021-2025 (2020 no disponible) | ⚠️ |
 | 28 | Salud: controles y vacunas al día | 2020-2025 | ✅ |
-| 29 | Acogimiento familiar: tipo de familia, altas/bajas de familias acogedoras por departamento | Fotografía abril 2025 (RAF) | ✅ corte |
-| 30 | Dónde viven los NNA acompañados (familia origen / acogimiento / residencial / adoptiva) | Fotografía abril 2025 (RDVF, ~8.777 NNA) | ✅ corte |
+| 29 | Acogimiento familiar: tipo de familia, altas/bajas de familias acogedoras por departamento | Corte transversal a abril de 2025 (RAF) | ✅ corte |
+| 30 | Dónde viven los NNA acompañados (familia origen / acogimiento / residencial / adoptiva) | Corte transversal a abril de 2025 (RDVF, ~8.777 NNA) | ✅ corte |
 
-Trampas documentadas por la exploración: los % del nacional vienen en
+Advertencias documentadas por la exploración: los % del nacional vienen en
 decimal (0,068) y los departamentales en escala 10,1 — normalizar antes
 de cruzar; el nacional desagrega por 6 regiones INAU (no departamentos);
 "atendidos" (SPE) ≠ "vinculaciones" (reportes de abril).

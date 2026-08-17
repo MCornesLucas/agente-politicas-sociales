@@ -75,7 +75,7 @@ RPP/RAF/RDVF, del gestor documental (ids 10361-10363).
 **Pendiente**: microdatos ENSANNA — [la página del INE](https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna)
 la lista "en análisis"; cuando pasen al catálogo ANDA
 (https://www4.ine.gub.uy/Anda5/), descargarlos (ese día este proyecto
-gana su segunda fuente de prevalencia). Revisar periódicamente.
+incorporará su segunda fuente de prevalencia). Revisar periódicamente.
 
 ## 4. CETI — Plan de Acción 2003-2005
 
@@ -172,7 +172,7 @@ Verificación de plausibilidad realizada: pobreza ponderada 0-17 en 2024
 frente a ~17% en la población general); población 0-17 ≈ 24% del total
 ponderado en los cuatro años.
 
-Nota: el módulo de Empleo arranca a los 14 — para trabajo infantil de
+Nota: el módulo de Empleo comienza a los 14 años — para trabajo infantil de
 5-13 la única fuente es la ENSANNA; la ECH solo cubre trabajo
 adolescente (14-17). Es un caso concreto de la regla "misma métrica,
 misma definición" al cruzar con CETI/ENSANNA.

@@ -151,7 +151,7 @@ encuestas, incluida la ENSANNA): https://www4.ine.gub.uy/Anda5/
 ---
 
 **Cómo usar esto al agregar una métrica nueva:** si la fuente consultada
-ya está acá, no hace falta volver a buscarla. Si es nueva, agregarla en
+ya está aquí, no hace falta volver a buscarla. Si es nueva, agregarla en
 la sección del tema que corresponda (o crear una nueva si no encaja en
 ninguna) y registrar su naturaleza en `FUENTES_DE_DATOS.md` si es una
 fuente de datos y no solo una referencia.

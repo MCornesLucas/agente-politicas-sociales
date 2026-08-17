@@ -27,7 +27,7 @@ que se está cruzando.
    el marco más amplio y el común denominador jurídico de todos los
    organismos) — no "de 14 a 18": esa franja quedaría corta para SIPIAV
    (cuyos casos se concentran también en 0-12) y para la ENSANNA (que
-   arranca en 5).
+   comienza en los 5 años).
 2. **Dentro de ese universo, cada análisis usa el rango de su fuente** y
    lo declara. Las comparaciones entre fuentes con rangos distintos se
    presentan lado a lado con el rango explícito de cada una, nunca
