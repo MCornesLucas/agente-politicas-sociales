@@ -13,6 +13,25 @@ quiebres. Reglas de rigor que gobiernan todas:
 Convención de estado: ✅ construible ya · ⚠️ construible con salvedad
 documentada · ❌ no existe en la fuente (documentado para no prometerlo).
 
+**El catálogo se organiza en dos bloques globales**, siguiendo el modelo
+de madurez analítica de Gartner (descriptivo: "¿qué pasó?"; predictivo:
+"¿qué va a pasar?") y la distinción explicar/predecir de Shmueli (2010)
+— citas completas en [`BIBLIOGRAFIA.md`](BIBLIOGRAFIA.md), sección
+"Marcos de análisis de datos":
+
+- **Bloque A — Análisis descriptivo**: muestra la realidad observada.
+  Métricas 1-36, organizadas en 5 temas.
+- **Bloque B — Análisis predictivo**: infiere el futuro inercial — "si
+  las cosas no cambian, esto es lo que sucederá". Proyecciones P1-P8,
+  regidas por las reglas de `METODOLOGIA.md`, sección 3 (solo escenarios
+  inerciales, serie mínima de 6 puntos comparables, horizonte ≤ 1/3 del
+  largo de la serie, rango en vez de número único, backtesting antes de
+  publicar).
+
+---
+
+# Bloque A — Análisis descriptivo (¿qué pasó / qué está pasando?)
+
 ## Tema 1 — Violencia hacia NNA (SIPIAV, registros administrativos; nunca prevalencia)
 
 Los 12 informes 2013-2024 tienen texto extraíble; los gráficos son
@@ -102,7 +121,41 @@ del proyecto (todo el Tema 1 es registro administrativo).
 
 ---
 
+# Bloque B — Análisis predictivo (¿qué sucederá si las cosas no cambian?)
+
+Toda proyección de este bloque es un **escenario inercial** (supuesto
+explícito: las condiciones actuales persisten), con rango de
+incertidumbre y backtesting — reglas completas y fundamento en
+`METODOLOGIA.md`, sección 3 (Gartner; Shmueli 2010; Hyndman &
+Athanasopoulos, *FPP3* — ver `BIBLIOGRAFIA.md`). Sobre registros
+administrativos se proyecta **la respuesta del sistema, no el
+fenómeno**, y así se rotula en cada gráfica.
+
+| # | Proyección | Serie base (fuente) | Horizonte | Estado |
+|---|---|---|---|---|
+| P1 | Situaciones que atendería el sistema SIPIAV | 2013-2024, 12 puntos anuales (informes de gestión SIPIAV; quiebre de fuentes 2018/2020 documentado) | 2025-2027 | ✅ — el informe 2025 ya presentado (2.536 situaciones nuevas, nota M. Interior) sirve como validación fuera de muestra |
+| P2 | Inclusión de la familia en la intervención | 2014-2024, 11 puntos (SIPIAV): cayó de 82% a 58% — proyectar dónde estaría en 2027 si la caída persiste | 2-3 años | ✅ |
+| P3 | Ratio cuidado residencial vs. contexto familiar (desinternación) | 2020-2025, 12 puntos semestrales, nacional y por departamento (INAU, indicadores SPE) | 2026-2027 | ✅ — la proyección responde "¿a este ritmo, cuándo llegaría el departamento X a tal proporción en familia?" |
+| P4 | NNA atendidos en protección especial cada 1.000 NNA | Numerador: INAU 2020-2025 semestral; denominador futuro: proyecciones oficiales de población del INE | 2026-2027 | ✅ |
+| P5 | Cobertura territorial del sistema (CRL) | 2014-2024, 11 puntos (SIPIAV): 24 → 36, tendencia saturante | 2-3 años | ⚠️ — proyectar con curva saturante, no lineal; valor informativo menor |
+| P6 | Población 0-17 de Uruguay (contexto demográfico de todo el proyecto) | Proyecciones oficiales del INE (no se calcula: se cita) — la caída de nacimientos achica el denominador de todas las tasas | según INE | ✅ — es la proyección más firme del bloque porque es del organismo oficial |
+| P7 | Situaciones ESNNA (CONAPEES) | 2018-2021, 4 puntos (estudio FLACSO 2023, cap. 6) | — | ❌ serie insuficiente (< 6 puntos); se reevalúa si aparecen 2022-2024 oficiales |
+| P8 | Pobreza infantil 0-17 | ECH propia: 3 puntos comparables (2023-2025; 2019 quedó con la canasta vieja) | — | ❌ serie insuficiente todavía — se habilita con 2026; mientras, solo lectura descriptiva |
+
+Lo que este bloque **nunca** va a contener, por diseño: pronósticos de
+prevalencia de violencia o explotación (no hay serie de prevalencia:
+solo registros de detección), y cualquier proyección presentada sin su
+supuesto inercial y su rango.
+
+---
+
 ## Anticipo de la parte 3 — cruces con la ECH (a desarrollar)
+
+Los cruces son análisis **descriptivo** (asociaciones observadas entre
+condiciones de la infancia y respuesta institucional — lenguaje
+observacional, nunca causal); si alguna asociación resultara estable en
+el tiempo, su extensión predictiva se evaluaría con las reglas del
+Bloque B, no antes.
 
 La exploración ya define qué cruces son viables y a qué nivel:
 

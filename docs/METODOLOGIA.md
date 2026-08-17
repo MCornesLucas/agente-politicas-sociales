@@ -115,7 +115,58 @@ original y siguen aplicando en pleno.
   de barras siempre desde cero, nunca 3D, nunca apilar proporciones que
   no suman 100% entre sí.
 
-## 3. Reglas de terminología y claridad
+## 3. Reglas del bloque predictivo (proyecciones inerciales)
+
+El proyecto se organiza en dos bloques globales (ver
+`CATALOGO_DE_METRICAS.md`): **descriptivo** ("¿qué pasó?") y
+**predictivo** ("¿qué va a pasar si nada cambia?"), siguiendo el modelo
+de madurez analítica de Gartner y la distinción formal entre modelar
+para explicar y modelar para predecir de Shmueli (2010) — citas en
+`BIBLIOGRAFIA.md`. Todo lo predictivo de este proyecto se rige por estas
+reglas:
+
+- **Solo escenarios inerciales, nunca pronósticos causales.** Lo que se
+  proyecta es la continuación de una tendencia observada bajo el
+  supuesto explícito de que las condiciones actuales persisten
+  ("escenario si nada cambia"). Redacción correcta: "si la tendencia
+  2013-2024 continúa, el sistema atendería ~X situaciones en 2027";
+  prohibido: "la violencia va a aumentar" o cualquier forma que suene a
+  ley natural o a causa identificada.
+- **Sobre registros administrativos se proyecta la respuesta del
+  sistema, no el fenómeno.** Una proyección de la serie SIPIAV proyecta
+  cuántas situaciones va a *atender* el sistema — no cuánta violencia va
+  a *haber*. La regla central del proyecto (casos atendidos ≠
+  prevalencia) se hereda intacta hacia el futuro proyectado, y va en el
+  título de la gráfica proyectada.
+- **Serie mínima y horizonte máximo.** No se proyecta ninguna serie con
+  menos de 6 puntos comparables (sin quiebre de definición en el
+  medio), y el horizonte no supera un tercio del largo de la serie
+  (regla práctica del forecasting — Hyndman & Athanasopoulos): 12
+  puntos anuales → proyectar a lo sumo 3-4 años. Series de 4 puntos
+  (CONAPEES, Fiscalía) se declaran insuficientes, no se fuerzan.
+- **Modelos simples y a la vista.** Tendencia lineal o log-lineal (o
+  deriva simple), estimada sobre la serie completa comparable. Con n <
+  15 no se usan modelos complejos ni aprendizaje automático: más
+  parámetros que datos es sobreajuste garantizado.
+- **Toda proyección lleva rango, nunca un número único.** El intervalo
+  sale de los residuos del modelo sobre la serie observada (esto es
+  legítimo y distinto del caso "sin variables de diseño muestral" de la
+  sección 2: acá la incertidumbre es del modelo de tendencia, no del
+  diseño de una encuesta, y se declara como tal).
+- **Backtesting antes de publicar.** Ajustar el modelo dejando fuera los
+  últimos 2 puntos de la serie y verificar que los predice
+  razonablemente; si no los predice, la proyección no se publica. Cuando
+  exista un dato nuevo real (ej. el informe SIPIAV 2025 ya presentado),
+  se usa como validación fuera de muestra antes que como punto más.
+- **Denominadores futuros: proyecciones oficiales del INE.** Toda tasa
+  proyectada ("cada 1.000 NNA en 2027") usa las proyecciones de
+  población publicadas por el INE como denominador, citadas — nunca un
+  denominador extrapolado por este proyecto.
+- **Los quiebres cortan la serie también hacia adelante.** Una serie con
+  cambio de definición (tipos de violencia 2020/2024, canasta de
+  pobreza 2019→2023) solo se proyecta desde el último tramo homogéneo.
+
+## 4. Reglas de terminología y claridad
 
 - **Usar los términos de cada organismo y definirlos la primera vez.**
   "Situación" (SIPIAV) no es "caso nuevo" ni "denuncia"; "trabajo

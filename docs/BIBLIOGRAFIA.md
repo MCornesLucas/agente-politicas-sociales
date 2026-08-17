@@ -99,6 +99,25 @@ que rastrearla.
   sobre las privaciones de la infancia?":
   https://www.unicef.org/uruguay/infancia-en-datos/pobreza-infantil/que-dice-el-IPM-sobre-las-privaciones-de-la-infancia
 
+## Marcos de análisis de datos: descriptivo vs. predictivo (ver `METODOLOGIA.md`, sección 3)
+
+- Gartner — Analytic Ascendancy Model: los cuatro niveles de madurez
+  analítica (descriptivo "¿qué pasó?", diagnóstico "¿por qué pasó?",
+  predictivo "¿qué va a pasar?", prescriptivo "¿cómo hacemos que
+  pase?"). Fundamento de la separación del catálogo en dos bloques
+  globales. Resumen del modelo:
+  https://www.spatialedge.ai/blog/the-analytics-journey-navigating-the-four-stages-of-data-driven-decision-making
+- Hyndman, R.J. & Athanasopoulos, G. — *Forecasting: Principles and
+  Practice* (3ª ed., OTexts). Fundamento de las reglas operativas del
+  bloque predictivo: modelos de tendencia simples, horizonte acotado
+  respecto al largo de la serie, intervalos desde residuos, validación
+  fuera de muestra: https://otexts.com/fpp3/
+- Shmueli, G. (2010). "To Explain or to Predict?". *Statistical
+  Science*, 25(3), 289-310. Distinción formal entre modelar para
+  explicar y modelar para predecir — fundamento de por qué el bloque
+  predictivo de este proyecto proyecta tendencias sin afirmar causas:
+  https://projecteuclid.org/journals/statistical-science/volume-25/issue-3/To-Explain-or-to-Predict/10.1214/10-STS330.full
+
 ## Visualización de datos (heredada del proyecto agente-encuesta-hogares, ver `CONVENCIONES_DE_GRAFICAS.md`)
 
 - Cleveland, W.S. & McGill, R. (1984). "Graphical Perception: Theory,
