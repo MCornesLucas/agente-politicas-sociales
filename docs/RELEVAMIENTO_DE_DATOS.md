@@ -118,6 +118,50 @@ del CONAPEES aparecen dentro de los informes SIPIAV y en notas de prensa
   de violencia, algo que ningún registro administrativo del proyecto
   puede dar. Prioridad alta para la selección de publicaciones.
 
+## 7. ECH — extracción de infancia y adolescencia (proyecto hermano)
+
+`data/ech/<año>/` — generado por `src/extraer_ech_infancia.py`, que
+reutiliza los loaders de
+[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
+(hereda sus correcciones de encoding y decisiones metodológicas
+verificadas). Universo: **0-17 años** (CDN), con las clasificaciones de
+cada organismo como columnas derivadas (`tramo_sipiav` 0-5/6-12/13-17,
+`clasificacion_ley_17823` niño/adolescente con corte a los 13,
+`es_adolescente_oms` 10+, `en_universo_ensanna` 5-17) — cada análisis
+posterior corta por la que corresponda a la fuente que cruce, sin volver
+a los microdatos.
+
+Bloques por año (todos conservan su ponderador — nada se calcula sin
+ponderar):
+
+| Año | personas_0a17 | hogares_con_nna | empleo_14a17 | victimización | FIES |
+|---|---|---|---|---|---|
+| 2019 | 24.389 (24,8% pond.) | 14.550 (40,9% pond.) | — | — | — |
+| 2023 | 11.424 (24,1%) | 7.100 (40,6%) | 15.131 filas-mes | — | 2.245 hogares |
+| 2024 | 11.482 (24,1%) | 7.157 (40,1%) | 15.291 filas-mes | 9.162 filas | 2.186 hogares |
+| 2025 | 10.826 (24,1%) | 6.913 (41,1%) | 14.915 filas-mes | 8.598 filas | 2.022 hogares |
+
+- `personas_0a17.csv`: personas 0-17 con contexto del hogar
+  (departamento, estrato, pobreza) y ponderador anual.
+- `hogares_con_nna.csv`: hogares con al menos un NNA — vivienda, brecha
+  digital, pobreza, territorio — con conteos de NNA por tramo SIPIAV.
+- `empleo_14a17.csv`: panel mensual de Empleo, edades 14-17 (el módulo
+  no releva menores de 14), con mes y ponderador mensual.
+- `victimizacion_hogares_con_nna.csv`: módulo de victimización (lo
+  responden adultos) restringido a hogares donde viven NNA.
+- `fies_hogares_con_menores.csv`: hogares FIES con el marcador oficial
+  `menores18 == 1` del INE.
+
+Verificación de plausibilidad realizada: pobreza ponderada 0-17 en 2024
+= 28,9% (consistente con lo publicado por el INE con metodología 2017,
+frente a ~17% en la población general); población 0-17 ≈ 24% del total
+ponderado en los cuatro años.
+
+Nota: el módulo de Empleo arranca a los 14 — para trabajo infantil de
+5-13 la única fuente es la ENSANNA; la ECH solo cubre trabajo
+adolescente (14-17). Es un caso concreto de la regla "misma métrica,
+misma definición" al cruzar con CETI/ENSANNA.
+
 ---
 
 **Cómo re-descargar todo**: cada archivo tiene su URL en esta página; la
