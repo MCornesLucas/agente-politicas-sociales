@@ -35,6 +35,13 @@ después se entiende por qué está presentado así). No hay métrica
 
 ## Específico de este proyecto
 
+- **Toda serie temporal anota el valor de su primer y su último punto**
+  (y, si hay proyección, también el punto final proyectado). Le da al
+  lector las dos o tres cifras de referencia sin recargar la gráfica —
+  equilibrio con el principio de data-ink de Tufte: se anotan los
+  extremos que el lector necesita, no todos los puntos. Estandarizado a
+  pedido del dueño del proyecto (2026-08-17).
+
 - **Toda gráfica construida desde registros administrativos (SIPIAV,
   CONAPEES, INAU) lleva en el título o subtítulo la aclaración de que
   muestra situaciones atendidas/detectadas por el sistema, no

@@ -1,0 +1,235 @@
+﻿metrica,anio,categoria,valor,unidad,verificacion
+situaciones_atendidas,2013,total,1319,situaciones,texto informe 2013
+situaciones_atendidas,2014,total,1728,situaciones,texto informe 2014
+situaciones_atendidas,2015,total,1908,situaciones,texto informe 2015
+situaciones_atendidas,2016,total,2647,situaciones,texto informe 2016
+situaciones_atendidas,2017,total,3155,situaciones,texto informe 2017
+situaciones_atendidas,2018,total,4131,situaciones,texto informe 2018
+situaciones_atendidas,2019,total,4774,situaciones,texto informe 2019
+situaciones_atendidas,2020,total,4911,situaciones,texto informe 2020
+situaciones_atendidas,2021,total,7035,situaciones,texto informe 2021
+situaciones_atendidas,2022,total,7473,situaciones,texto informe 2022
+situaciones_atendidas,2023,total,8157,situaciones,"nota oficial Presidencia/INAU, no extraíble del PDF"
+situaciones_atendidas,2024,total,8924,situaciones,"nota oficial Presidencia/INAU, no extraíble del PDF"
+distribucion_sexo,2013,Femenino,56,%,texto informe 2013
+distribucion_sexo,2013,Masculino,44,%,texto informe 2013
+distribucion_sexo,2014,Femenino,54,%,texto informe 2014
+distribucion_sexo,2014,Masculino,46,%,texto informe 2014
+distribucion_sexo,2015,Femenino,55,%,texto informe 2015
+distribucion_sexo,2015,Masculino,45,%,texto informe 2015
+distribucion_sexo,2016,Femenino,54,%,texto informe 2016
+distribucion_sexo,2016,Masculino,46,%,texto informe 2016
+distribucion_sexo,2017,Femenino,56,%,texto informe 2017
+distribucion_sexo,2017,Masculino,44,%,texto informe 2017
+distribucion_sexo,2018,Femenino,55,%,texto informe 2018
+distribucion_sexo,2018,Masculino,45,%,texto informe 2018
+distribucion_sexo,2019,Femenino,56,%,texto informe 2019
+distribucion_sexo,2019,Masculino,44,%,texto informe 2019
+distribucion_sexo,2020,Femenino,56,%,texto informe 2020
+distribucion_sexo,2020,Masculino,44,%,texto informe 2020
+distribucion_sexo,2021,Femenino,55,%,texto informe 2021
+distribucion_sexo,2021,Masculino,45,%,texto informe 2021
+distribucion_sexo,2022,Femenino,55,%,texto informe 2022
+distribucion_sexo,2022,Masculino,45,%,texto informe 2022
+distribucion_sexo,2023,Femenino,54,%,texto informe 2023
+distribucion_sexo,2023,Masculino,46,%,texto informe 2023
+distribucion_sexo,2024,Femenino,56,%,texto informe 2024
+distribucion_sexo,2024,Masculino,44,%,texto informe 2024
+distribucion_edad,2013,6-12,48,%,texto informe 2013
+distribucion_edad,2014,0-3,9,%,texto informe 2014
+distribucion_edad,2015,0-3,13,%,texto informe 2015
+distribucion_edad,2016,0-3,14,%,texto informe 2016
+distribucion_edad,2016,4-5,8,%,texto informe 2016
+distribucion_edad,2016,6-12,44,%,texto informe 2016
+distribucion_edad,2016,13-17,32,%,texto informe 2016
+distribucion_edad,2016,18 y más,2,%,texto informe 2016
+distribucion_edad,2017,0-3,14,%,texto informe 2017
+distribucion_edad,2017,4-5,8,%,texto informe 2017
+distribucion_edad,2017,6-12,42,%,texto informe 2017
+distribucion_edad,2017,13-17,34,%,texto informe 2017
+distribucion_edad,2017,18 y más,2,%,texto informe 2017
+distribucion_edad,2018,0-3,12,%,texto informe 2018
+distribucion_edad,2018,4-5,10,%,texto informe 2018
+distribucion_edad,2018,6-12,42,%,texto informe 2018
+distribucion_edad,2018,13-17,33,%,texto informe 2018
+distribucion_edad,2018,18 y más,3,%,texto informe 2018
+distribucion_edad,2019,0-3,8,%,texto informe 2019
+distribucion_edad,2019,4-5,9,%,texto informe 2019
+distribucion_edad,2019,6-12,39,%,texto informe 2019
+distribucion_edad,2019,13-17,35,%,texto informe 2019
+distribucion_edad,2019,18 y más,9,%,texto informe 2019
+distribucion_edad,2020,0-5,17,%,texto informe 2020
+distribucion_edad,2020,6-12,38,%,texto informe 2020
+distribucion_edad,2020,13-17,35,%,texto informe 2020
+distribucion_edad,2021,0-5,19,%,texto informe 2021
+distribucion_edad,2021,6-12,37,%,texto informe 2021
+distribucion_edad,2021,13-17,35,%,texto informe 2021
+distribucion_edad,2022,0-5,17,%,texto informe 2022
+distribucion_edad,2022,6-12,36,%,texto informe 2023 (retrospectivo para 2022)
+distribucion_edad,2022,13-17,36,%,texto informe 2023 (retrospectivo para 2022)
+distribucion_edad,2023,0-5,17,%,texto informe 2023
+distribucion_edad,2024,0-5,17,%,texto informe 2024
+distribucion_edad,2024,13-17,38,%,texto informe 2024
+tipo_violencia,2013,maltrato físico,15,%,texto informe 2013
+tipo_violencia,2013,negligencia,6,%,texto informe 2013
+tipo_violencia,2013,abuso sexual,28,%,texto informes 2014 y 2015 (retrospectivo para 2013)
+tipo_violencia,2014,maltrato emocional,50,%,"texto informe 2014 (prosa 'la mitad, 1 de cada 2'; consistente con suma 100)"
+tipo_violencia,2014,abuso sexual,22,%,texto informe 2014
+tipo_violencia,2014,maltrato físico,16,%,texto informe 2014
+tipo_violencia,2014,negligencia,12,%,texto informe 2014
+tipo_violencia,2015,abuso sexual,21,%,texto informe 2015
+tipo_violencia,2016,maltrato emocional,42,%,texto informe 2016
+tipo_violencia,2016,abuso sexual,20,%,texto informe 2016
+tipo_violencia,2016,maltrato físico,20,%,texto informe 2016
+tipo_violencia,2016,negligencia,18,%,texto informe 2016
+tipo_violencia,2017,maltrato emocional,39,%,texto informe 2017
+tipo_violencia,2017,abuso sexual,22,%,texto informe 2017
+tipo_violencia,2017,maltrato físico,20,%,texto informe 2017
+tipo_violencia,2017,negligencia,19,%,texto informe 2017
+tipo_violencia,2018,maltrato emocional,32,%,texto informe 2018
+tipo_violencia,2018,maltrato físico,25,%,texto informe 2018
+tipo_violencia,2018,abuso sexual,23,%,texto informe 2018
+tipo_violencia,2018,negligencia,20,%,texto informe 2018
+tipo_violencia,2019,maltrato emocional,32,%,texto informe 2019
+tipo_violencia,2019,abuso sexual,24,%,texto informe 2019 (gráfico y 'En suma' dicen 24%; un pasaje en prosa dice 23%)
+tipo_violencia,2019,maltrato físico,22,%,texto informe 2019
+tipo_violencia,2019,negligencia,22,%,texto informe 2019
+tipo_violencia,2020,maltrato emocional,34,%,texto informe 2020
+tipo_violencia,2020,negligencia,26,%,texto informe 2020
+tipo_violencia,2020,maltrato físico,19,%,texto informe 2020
+tipo_violencia,2020,abuso sexual,19,%,texto informe 2020
+tipo_violencia,2020,explotación sexual,2,%,texto informe 2020
+tipo_violencia,2021,maltrato emocional,37,%,texto informe 2021
+tipo_violencia,2021,negligencia,24,%,texto informe 2021
+tipo_violencia,2021,abuso sexual,20,%,texto informe 2021
+tipo_violencia,2021,maltrato físico,17,%,texto informe 2021
+tipo_violencia,2021,explotación sexual,2,%,texto informe 2021
+tipo_violencia,2023,maltrato emocional,39,%,texto informe 2023
+tipo_violencia,2023,abuso sexual,22,%,texto informe 2023
+tipo_violencia,2023,negligencia,21,%,texto informe 2023
+tipo_violencia,2023,maltrato físico,16,%,texto informe 2023
+tipo_violencia,2023,explotación sexual,2,%,texto informe 2023
+tipo_violencia,2022,maltrato emocional,36,%,texto informe 2022 (prosa 'poco más de un tercio'; complemento de 24+20+17+3)
+tipo_violencia,2022,negligencia,24,%,texto informe 2022
+tipo_violencia,2022,abuso sexual,20,%,texto informe 2022
+tipo_violencia,2022,maltrato físico,17,%,texto informe 2022
+tipo_violencia,2022,explotación sexual,3,%,texto informe 2022
+tipo_violencia,2024,maltrato emocional,38,%,texto informe 2024
+tipo_violencia,2024,negligencia,23,%,texto informe 2024
+tipo_violencia,2024,violencias sexuales,22,%,texto informe 2024
+tipo_violencia,2024,maltrato físico,17,%,texto informe 2024
+recurrencia,2013,recurrente,75,%,texto informe 2013 (recurrente 75% explícito; único por complemento)
+recurrencia,2013,episodio único,25,%,texto informe 2013 (recurrente 75% explícito; único por complemento)
+recurrencia,2014,recurrente,75,%,"texto informes 2014 ('3 de cada 4, coincide con 2013') y 2015 ('en 2014 eran recurrentes el 75%')"
+recurrencia,2014,episodio único,25,%,"texto informes 2014 ('3 de cada 4, coincide con 2013') y 2015 ('en 2014 eran recurrentes el 75%')"
+recurrencia,2015,recurrente,80,%,texto informe 2015
+recurrencia,2015,episodio único,20,%,texto informe 2015
+recurrencia,2016,recurrente,81,%,texto informe 2016
+recurrencia,2016,episodio único,19,%,texto informe 2016
+recurrencia,2017,recurrente,81,%,texto informe 2017
+recurrencia,2017,episodio único,19,%,texto informe 2017
+recurrencia,2018,recurrente,79,%,texto informe 2018
+recurrencia,2018,episodio único,21,%,texto informe 2018
+recurrencia,2019,recurrente,76,%,texto informe 2019
+recurrencia,2019,episodio único,24,%,texto informe 2019
+recurrencia,2022,recurrente,73,%,texto informe 2022 (único 27% explícito; recurrente por complemento)
+recurrencia,2022,episodio único,27,%,texto informe 2022 (único 27% explícito; recurrente por complemento)
+cronicidad,2013,fase crónica,87,%,texto informe 2013
+cronicidad,2013,etapa de inicio,13,%,texto informe 2013
+cronicidad,2014,fase crónica,88,%,texto informe 2014 (crónica 88% explícito; inicio por complemento)
+cronicidad,2014,etapa de inicio,12,%,texto informe 2014 (crónica 88% explícito; inicio por complemento)
+cronicidad,2016,fase crónica,91,%,texto informe 2016
+cronicidad,2016,etapa de inicio,9,%,texto informe 2016
+cronicidad,2017,fase crónica,91,%,texto informe 2017
+cronicidad,2017,etapa de inicio,9,%,texto informe 2017
+cronicidad,2018,fase crónica,92,%,texto informe 2018
+cronicidad,2018,etapa de inicio,8,%,texto informe 2018
+cronicidad,2019,fase crónica,90,%,texto informe 2019
+cronicidad,2019,etapa de inicio,10,%,texto informe 2019
+agresor_vinculo,2013,familiar directo,76,%,texto informe 2013
+agresor_vinculo,2013,padre,44,%,texto informe 2013
+agresor_vinculo,2013,madre,21,%,texto informe 2013
+agresor_vinculo,2014,madre,27,%,texto informe 2014
+agresor_vinculo,2014,pareja de la madre,15,%,texto informe 2014
+agresor_vinculo,2014,no integra la familia,7,%,texto informe 2014
+agresor_vinculo,2015,familiar directo o núcleo de convivencia,91,%,texto informe 2015
+agresor_vinculo,2015,padre,38,%,texto informe 2015
+agresor_vinculo,2015,madre,28,%,texto informe 2015
+agresor_vinculo,2015,pareja de la madre,14,%,texto informe 2015
+agresor_vinculo,2015,no familiar,8,%,texto informe 2015
+agresor_vinculo,2015,pareja,1,%,texto informe 2015
+agresor_vinculo,2016,familiar directo o núcleo de convivencia,93,%,texto informe 2016
+agresor_vinculo,2016,padre,36,%,texto informe 2016
+agresor_vinculo,2016,madre,35,%,texto informe 2016
+agresor_vinculo,2016,pareja de la madre,11,%,texto informe 2016
+agresor_vinculo,2016,otro familiar,10,%,texto informe 2016
+agresor_vinculo,2016,no familiar,7,%,texto informe 2016
+agresor_vinculo,2016,pareja,1,%,texto informe 2016
+agresor_vinculo,2017,familiar directo o núcleo de convivencia,94,%,texto informe 2017
+agresor_vinculo,2017,padre,36,%,texto informe 2017
+agresor_vinculo,2017,madre,33,%,texto informe 2017
+agresor_vinculo,2017,pareja de la madre,13,%,texto informe 2017
+agresor_vinculo,2017,otro familiar,11,%,texto informe 2017
+agresor_vinculo,2017,no familiar,6,%,texto informe 2017
+agresor_vinculo,2017,pareja,1,%,texto informe 2017
+agresor_vinculo,2018,familiar directo o núcleo de convivencia,93,%,texto informe 2018
+agresor_vinculo,2018,padre,34,%,texto informe 2018
+agresor_vinculo,2018,madre,34,%,texto informe 2018
+agresor_vinculo,2018,pareja de la madre,13,%,texto informe 2018
+agresor_vinculo,2018,otro familiar,11,%,texto informe 2018
+agresor_vinculo,2018,no familiar,7,%,texto informe 2018
+agresor_vinculo,2018,pareja,1,%,texto informe 2018
+agresor_vinculo,2019,familiar directo o núcleo de convivencia,91,%,"texto informe 2019 (excluye personas agresoras de negligencia, según aclara el informe)"
+agresor_vinculo,2019,padre,38,%,"texto informe 2019 (excluye personas agresoras de negligencia, según aclara el informe)"
+agresor_vinculo,2019,madre,24,%,"texto informe 2019 (excluye personas agresoras de negligencia, según aclara el informe)"
+agresor_vinculo,2019,pareja de la madre,15,%,"texto informe 2019 (excluye personas agresoras de negligencia, según aclara el informe)"
+agresor_vinculo,2019,otro familiar,13,%,"texto informe 2019 (excluye personas agresoras de negligencia, según aclara el informe)"
+agresor_vinculo,2019,no familiar,9,%,"texto informe 2019 (excluye personas agresoras de negligencia, según aclara el informe)"
+agresor_vinculo,2019,pareja SD,1,%,"texto informe 2019 (excluye personas agresoras de negligencia, según aclara el informe)"
+agresor_vinculo,2020,familiar directo o núcleo de convivencia,91,%,texto informe 2020
+agresor_vinculo,2020,padre,38,%,texto informe 2020
+agresor_vinculo,2020,madre,24,%,texto informe 2020
+agresor_vinculo,2020,pareja de la madre,15,%,texto informe 2020
+agresor_vinculo,2020,otro familiar,13,%,texto informe 2020
+agresor_vinculo,2021,familiar directo o núcleo de convivencia,91,%,texto informe 2021
+agresor_vinculo,2021,padre,39,%,texto informe 2021
+agresor_vinculo,2021,madre,23,%,texto informe 2021
+agresor_vinculo,2022,padre,40,%,texto informe 2022
+agresor_vinculo,2022,madre,24,%,texto informe 2022
+agresor_vinculo,2023,padre,38,%,texto informe 2023
+agresor_vinculo,2023,madre,24,%,texto informe 2023
+agresor_vinculo,2024,padre,38,%,texto informe 2024
+agresor_vinculo,2024,madre,23,%,texto informe 2024
+visualizacion,2016,visualiza,38,%,texto informe 2016
+visualizacion,2016,no visualiza,62,%,texto informe 2016
+visualizacion,2017,visualiza,40,%,texto informe 2017
+visualizacion,2017,no visualiza,60,%,texto informe 2017
+visualizacion,2018,visualiza,42,%,texto informe 2018
+visualizacion,2018,no visualiza,58,%,texto informe 2018
+visualizacion,2019,visualiza,40,%,texto informe 2019
+visualizacion,2019,no visualiza,60,%,texto informe 2019
+visualizacion,2023,visualiza,38,%,texto informe 2023
+visualizacion,2023,no visualiza,62,%,texto informe 2023 (visualiza 38% explícito; no visualiza por complemento)
+inclusion_familia,2014,incluye familia,82,%,texto informe 2014
+inclusion_familia,2015,incluye familia,80,%,texto informe 2015 (prosa 'en 4 de 5 situaciones la familia sí fue incluida')
+inclusion_familia,2016,incluye familia,75,%,texto informe 2016
+inclusion_familia,2017,incluye familia,74,%,texto informe 2017
+inclusion_familia,2018,incluye familia,76,%,texto informe 2018
+inclusion_familia,2019,incluye familia,79,%,texto informe 2019 (el informe 2020 cita retrospectivamente 71% para 2019)
+inclusion_familia,2020,incluye familia,67,%,texto informe 2020
+inclusion_familia,2021,incluye familia,67,%,"texto informe 2021 (prosa '2 de cada 3', declarado estable respecto a 2020: 67%)"
+inclusion_familia,2022,incluye familia,62,%,texto informe 2022
+inclusion_familia,2023,incluye familia,61,%,texto informe 2023
+inclusion_familia,2024,incluye familia,58,%,texto informe 2024
+crl_cantidad,2013,total,24,CRL,"texto informe 2014 ('a diciembre 2013, 24 Comités de Recepción Local')"
+crl_cantidad,2014,total,25,CRL,texto informe 2014
+crl_cantidad,2015,total,25,CRL,texto informe 2015
+crl_cantidad,2016,total,27,CRL,texto informe 2016
+crl_cantidad,2017,total,28,CRL,texto informe 2017
+crl_cantidad,2018,total,29,CRL,texto informe 2018
+crl_cantidad,2019,total,33,CRL,texto informe 2019
+crl_cantidad,2020,total,32,CRL,texto informe 2020
+crl_cantidad,2021,total,32,CRL,texto informe 2021
+crl_cantidad,2022,total,32,CRL,texto informe 2022
+crl_cantidad,2023,total,35,CRL,texto informe 2023
+crl_cantidad,2024,total,36,CRL,texto informe 2024

@@ -221,6 +221,19 @@ ax.set_title(
 )
 ax.set_ylabel("Situaciones atendidas")
 ax.legend(frameon=False, fontsize=9)
+# Convención del proyecto: toda serie anota su primer y último valor, y
+# la proyección anota su punto final (ver docs/CONVENCIONES_DE_GRAFICAS.md).
+def _fmt(v):
+    return f"{v:,.0f}".replace(",", ".")
+ax.annotate(_fmt(SIPIAV_SITUACIONES[0]), (SIPIAV_ANIOS[0], SIPIAV_SITUACIONES[0]),
+            textcoords="offset points", xytext=(0, 9), ha="center", fontsize=9, color=COLOR)
+ax.annotate(_fmt(SIPIAV_SITUACIONES[-1]), (SIPIAV_ANIOS[-1], SIPIAV_SITUACIONES[-1]),
+            textcoords="offset points", xytext=(0, 9), ha="center", fontsize=9, color=COLOR)
+# El punto proyectado se anota redondeado a centenas y con "≈": la regla
+# del bloque predictivo prohíbe sugerir precisión de unidad en una
+# proyección (el rango exacto lo da la banda y el texto).
+ax.annotate("≈" + _fmt(round(proyeccion[-1], -2)), (anios_fut[-1], proyeccion[-1]),
+            textcoords="offset points", xytext=(0, 11), ha="center", fontsize=9, color=COLOR_ACENTO)
 fig.text(0.125, -0.04,
          "Fuente: elaboración propia sobre los informes de gestión SIPIAV 2013-2024 (INAU). "
          "Supuesto: condiciones actuales sin cambios.",
