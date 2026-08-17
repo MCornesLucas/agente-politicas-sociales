@@ -15,6 +15,25 @@ no son encuestas, son **registros administrativos**, donde la pregunta
 "¿qué mide realmente este número?" es la diferencia entre un análisis
 serio y uno equivocado.
 
+## Idea base
+
+El proyecto avanza en dos etapas:
+
+1. **Recabar y sistematizar** la mayor cantidad posible de estudios,
+   informes y datos de políticas sociales de infancia de los organismos
+   del sistema de protección uruguayo, con la naturaleza de cada dato
+   documentada.
+2. **Cruzar** esos hallazgos con los indicadores de infancia y
+   adolescencia calculables desde los microdatos de la ECH (pobreza,
+   hacinamiento, condiciones de vivienda, brecha digital) con la
+   infraestructura ya probada de agente-encuesta-hogares — la ECH se
+   adapta al rango de edad de cada fuente, no al revés.
+
+El universo es **0 a 17 años** (la definición de la Convención sobre los
+Derechos del Niño), sin fijar un rango más angosto a priori: cada
+organismo clasifica distinto y cada métrica usa el rango de su fuente —
+ver [`docs/CLASIFICACION_DE_EDADES.md`](docs/CLASIFICACION_DE_EDADES.md).
+
 ## La regla que define el proyecto
 
 > **Casos atendidos ≠ prevalencia.** Cuando SIPIAV informa 8.924

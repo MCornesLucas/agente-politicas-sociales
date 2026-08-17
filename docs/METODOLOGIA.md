@@ -61,7 +61,12 @@ original y siguen aplicando en pleno.
 - **Misma métrica, misma definición, mismo denominador.** Antes de
   comparar dos números (entre años, entre fuentes, o entre informes del
   mismo organismo) verificar por escrito: rango de edad (0-17, 5-17,
-  13-17 varían entre fuentes), definición del evento (ej. "trabajo
+  13-17 varían entre fuentes — la tabla comparativa completa de cómo
+  clasifica cada organismo está en
+  [`CLASIFICACION_DE_EDADES.md`](CLASIFICACION_DE_EDADES.md); el
+  universo del proyecto es 0-17 según la CDN, y en los cruces con la ECH
+  es la ECH la que se adapta al rango de la fuente), definición del
+  evento (ej. "trabajo
   infantil" de ENSANNA vs. "actividades económicas"; "casos nuevos" vs.
   "situaciones atendidas" de SIPIAV, que incluyen arrastre de años
   anteriores), y cobertura (nacional vs. Montevideo). Caso concreto ya

@@ -9,9 +9,14 @@ que rastrearla.
 
 ## Marco normativo y de políticas (aplica a todos los temas)
 
-- Convención sobre los Derechos del Niño (ONU, 1989) — marco de derechos
-  que estructura todas las políticas del proyecto:
+- Convención sobre los Derechos del Niño (ONU, 1989) — define "niño"
+  como toda persona menor de 18 años; marco de derechos que estructura
+  todas las políticas del proyecto y su universo de edad (ver
+  `CLASIFICACION_DE_EDADES.md`):
   https://www.ohchr.org/es/instruments-mechanisms/instruments/convention-rights-child
+- OMS/UNICEF — definición de adolescencia como el período de 10 a 19
+  años (se solapa con la niñez de la CDN):
+  https://www.unicef.org/uruguay/crianza/adolescencia/que-es-la-adolescencia
 - Código de la Niñez y la Adolescencia del Uruguay (Ley 17.823, 2004):
   https://www.impo.com.uy/bases/codigo-ninez-adolescencia/17823-2004
 - OIT — Convenio 138 sobre la edad mínima de admisión al empleo (1973) y

@@ -27,8 +27,12 @@ Las citas completas para referenciar en informes están en
   fuente de este proyecto con microdatos públicos** (portal ANDA del
   INE), y por eso la única donde aplican en pleno las reglas de encuesta
   del proyecto original (ponderación, celdas chicas).
-- **Resultado central publicado**: más de 40.000 NNA en situación de
-  trabajo infantil.
+- **Universo**: NNA de **5 a 17 años** (ver
+  [`CLASIFICACION_DE_EDADES.md`](CLASIFICACION_DE_EDADES.md)).
+- **Resultados centrales publicados**: 6,8% de los NNA de 5 a 17 en
+  situación de trabajo infantil (más de 40.000); 4,9% en actividades
+  económicas remuneradas y ~2% en tareas no remuneradas; 10,6% en el
+  tramo 15-17; interior 7,7% vs. Montevideo 5,2%.
 - **Antecedente**: la encuesta anterior sobre el tema es de 2009-2010
   (ENTI/ENANNA, ~68.000 NNA afectados). **No graficar 2010 vs. 2024 como
   serie sin verificar comparabilidad metodológica** (ver
