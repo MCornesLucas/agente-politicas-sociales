@@ -30,6 +30,13 @@ informes institucionales además de una encuesta).
 - **Cifras en informes: siempre reales, nunca estimadas ni recordadas.**
   Si un número no está en un archivo descargado en `data/` o en una
   fuente citada, no va.
+- **Separación de audiencias en el bloque predictivo**: la elección de
+  algoritmos y sus métricas de backtest se documentan en
+  `docs/PREDICTIVO_JUSTIFICACION_TECNICA.md` (público técnico:
+  analistas, economistas, estadísticos). En el informe y para el usuario
+  final va solo el escenario con su rango y su supuesto inercial — nunca
+  MAE/MAPE/nombres de modelos. Una proyección sin su tabla de backtest
+  en ese documento no se publica.
 - **Tema sensible**: redacción según la terminología de los organismos
   ("niñas, niños y adolescentes"/"NNA", "situación de trabajo infantil",
   "situaciones atendidas"). No desagregar números de víctimas más que lo

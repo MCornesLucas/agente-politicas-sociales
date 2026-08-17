@@ -131,6 +131,13 @@ Athanasopoulos, *FPP3* — ver `BIBLIOGRAFIA.md`). Sobre registros
 administrativos se proyecta **la respuesta del sistema, no el
 fenómeno**, y así se rotula en cada gráfica.
 
+La elección de algoritmo de cada proyección y las métricas de backtest
+que la justifican están en
+[`PREDICTIVO_JUSTIFICACION_TECNICA.md`](PREDICTIVO_JUSTIFICACION_TECNICA.md)
+— documentación para público técnico (analistas, economistas,
+estadísticos); **no va al informe ni al usuario final**, que solo ven el
+escenario con su rango y su supuesto.
+
 | # | Proyección | Serie base (fuente) | Horizonte | Estado |
 |---|---|---|---|---|
 | P1 | Situaciones que atendería el sistema SIPIAV | 2013-2024, 12 puntos anuales (informes de gestión SIPIAV; quiebre de fuentes 2018/2020 documentado) | 2025-2027 | ✅ — el informe 2025 ya presentado (2.536 situaciones nuevas, nota M. Interior) sirve como validación fuera de muestra |
