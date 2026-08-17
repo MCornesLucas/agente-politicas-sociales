@@ -113,16 +113,30 @@ y 2024 (8.924) de notas oficiales (Presidencia/INAU — ver
   como señal (y para el lenguaje de "respuesta del sistema", nunca
   "violencia futura").
 
-## P2 — Inclusión de la familia en la intervención (pendiente de cálculo)
+## P2 — Inclusión de la familia en la intervención (calculado, 2026-08-17)
 
-- **Algoritmo previsto**: tendencia lineal sobre transformación
-  **logit** de la proporción. Por qué logit: la serie es un porcentaje
-  (82% → 58%); una recta sobre el % crudo puede proyectar valores
-  imposibles (<0% o >100%) en horizontes largos, la recta en logit no
-  (FPP3, transformaciones).
-- **Pendiente**: extraer los 11 puntos 2014-2024 de los PDF (varios años
-  están solo en prosa). Métricas del backtest se agregan aquí al
-  calcular.
+Serie: 2014-2024, 11 puntos, completa (curada de los informes SIPIAV —
+`datos_curados/sipiav_series.csv`, con respaldo textual por valor; 2015
+y 2021 provienen de prosa fraccionaria y están marcados). Ajuste con
+2014-2022, holdout 2023-2024:
+
+| Modelo | Pred. 2023 | Pred. 2024 | MAE | MAPE | Veredicto |
+|---|---|---|---|---|---|
+| Ingenuo (último valor) | 62,0 | 62,0 | 2,50 | 4,3% | línea base |
+| Deriva | 59,5 | 57,0 | 1,25 | 2,1% | menor error; queda como sensibilidad |
+| Lineal sobre % crudo | 62,7 | 60,6 | 2,14 | 3,6% | pasa, pero puede proyectar valores fuera de [0,100] en horizontes largos |
+| **Lineal sobre logit** | 62,1 | 59,5 | 1,29 | 2,2% | **elegido**: pasa ambos criterios, usa toda la serie y respeta las cotas de una proporción por construcción (FPP3, transformaciones) |
+
+- **Proyección publicable** (logit reajustado 2014-2024): 2025: ~56%
+  (48-64) · 2026: ~53% (45-61) · 2027: ~50% (42-58). Pendiente
+  equivalente en escala cruda: −2,35 puntos porcentuales por año.
+- **Lectura para el informe**: si la tendencia continúa, hacia 2027 la
+  familia se incluiría en la intervención en aproximadamente la mitad de
+  las situaciones — cuando en 2014 se lograba en más de 8 de cada 10.
+- **Advertencia**: como toda la serie SIPIAV, describe la práctica del
+  sistema (a qué proporción de intervenciones se logra incorporar a la
+  familia), con los cambios de base de cálculo documentados en
+  `datos_curados/sipiav_notas.md`.
 
 ## P3 — Ratio residencial vs. contexto familiar, por departamento (pendiente)
 
