@@ -112,6 +112,14 @@ que rastrearla.
   bloque predictivo: modelos de tendencia simples, horizonte acotado
   respecto al largo de la serie, intervalos desde residuos, validación
   fuera de muestra: https://otexts.com/fpp3/
+- Makridakis, S., Spiliotis, E. & Assimakopoulos, V. (2018).
+  "Statistical and Machine Learning forecasting methods: Concerns and
+  ways forward". *PLOS ONE* 13(3). Evidencia empírica (competencias M)
+  de que en series cortas los métodos estadísticos simples superan a los
+  de aprendizaje automático — fundamento de la exclusión de ML/deep
+  learning en el bloque predictivo (ver
+  `PREDICTIVO_JUSTIFICACION_TECNICA.md`):
+  https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0194889
 - Shmueli, G. (2010). "To Explain or to Predict?". *Statistical
   Science*, 25(3), 289-310. Distinción formal entre modelar para
   explicar y modelar para predecir — fundamento de por qué el bloque

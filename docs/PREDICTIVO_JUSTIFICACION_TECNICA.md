@@ -24,6 +24,44 @@ explicar/predecir.
    pendiente media), tendencia lineal MCO, tendencia log-lineal. Para
    series acotadas (%) se agrega tendencia sobre transformación logit;
    para series saturantes, curva asintótica.
+
+### Por qué no aprendizaje automático ni deep learning
+
+Decisión explícita, no una omisión — con tres fundamentos:
+
+- **Tamaño de los datos.** Las series temporales del proyecto tienen
+  entre 3 y 24 puntos (SIPIAV: 12 anuales; INAU: 6 anuales o 12
+  semestrales; CONAPEES: 4). Una red neuronal o un ensamble de árboles
+  tiene órdenes de magnitud más parámetros que observaciones hay
+  disponibles: el resultado sería memorizar la serie, no aprender su
+  dinámica (sobreajuste garantizado). La evidencia comparada del área
+  (competencias M de Makridakis; Makridakis, Spiliotis & Assimakopoulos,
+  2018, *PLOS ONE*, "Statistical and Machine Learning forecasting
+  methods: Concerns and ways forward") muestra que en series cortas los
+  métodos estadísticos simples superan de forma consistente a los de
+  aprendizaje automático.
+- **Auditabilidad.** Este proyecto exige que cada proyección sea
+  explicable ante público técnico y trazable a su supuesto ("si la
+  tendencia continúa"). Una pendiente MCO de +696 situaciones/año es
+  auditable a simple vista; una caja negra no, y en un tema sensible
+  (infancia, violencia) la opacidad del método es un costo inaceptable.
+- **El criterio ya está fijado y es empírico, no ideológico.** El
+  protocolo admite cualquier candidato que supere el backtest. Si algún
+  día un método más complejo lo supera de forma robusta con los datos
+  que haya, entra por la misma puerta que los demás — con su tabla de
+  métricas en este documento.
+
+**Dónde sí podría aparecer aprendizaje automático clásico en el
+futuro**: si el INE publica los microdatos de la ENSANNA (miles de
+observaciones transversales, no una serie corta), sería legítimo evaluar
+una regresión logística (u otro clasificador clásico regularizado) para
+*perfilar* qué características se asocian al trabajo infantil — como
+análisis descriptivo de asociaciones, con lenguaje observacional y
+validación cruzada. Nunca para predecir riesgo individual de NNA
+concretos: además del límite estadístico, es un uso éticamente
+inaceptable de estos datos y queda fuera del alcance del proyecto. El
+deep learning queda descartado en todos los horizontes visibles: no hay
+ningún volumen de datos en este dominio que lo justifique.
 2. **Backtest con los últimos 2 puntos como holdout**: se ajusta con la
    serie sin esos puntos y se mide MAE y MAPE sobre ellos.
 3. **Criterios de aceptación** (decisión de este proyecto, fijada antes
