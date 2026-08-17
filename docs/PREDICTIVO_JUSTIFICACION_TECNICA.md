@@ -138,15 +138,31 @@ y 2021 provienen de prosa fraccionaria y están marcados). Ajuste con
   familia), con los cambios de base de cálculo documentados en
   `datos_curados/sipiav_notas.md`.
 
-## P3 — Ratio residencial vs. contexto familiar, por departamento (pendiente)
+## P3 — Proporción del SPE en contexto familiar, por departamento (calculado, 2026-08-17)
 
-- **Algoritmo previsto**: tendencia lineal sobre logit de la proporción
-  en contexto familiar, por departamento (12 puntos semestrales
-  2020-2025, INAU). Antes de ajustar: verificar visualmente que no haya
-  patrón semestral (si lo hay, promediar el año antes de proyectar).
-- **Riesgo documentado**: 12 puntos con quiebre pandémico al inicio de
-  la serie — si el backtest no pasa los criterios en un departamento,
-  ese departamento se reporta solo descriptivo.
+Serie: proporción de NNA del Sistema de Protección Especial que viven en
+contexto familiar (indicadores departamentales 6 y 5 de INAU), 12 puntos
+semestrales 2020-S1 a 2025-S2, los 19 departamentos + total país.
+Backtest con holdout 2025-S1/2025-S2; elegible logit primero, lineal
+como alternativa; horizonte 4 semestres (2026-2027). Script:
+`src/proyeccion_desinternacion.py`; resultados completos por
+departamento en `resultados/proyecciones/p3_desinternacion.csv`.
+
+- **Proyectables: 9 de 20 unidades** (total país y 8 departamentos), en
+  todos los casos con lineal-logit superando al ingenuo y MAPE ≤ 15%.
+  Total país: 62,7% observado (2025-S2) → **66,4% (63,9-68,8) hacia
+  2027-S2** si el ritmo de desinternación persiste. Canelones es el caso
+  más firme (MAPE logit 0,43%): 70,1% → 74,8% (73,3-76,3).
+- **No proyectables: 11 unidades, por dos motivos distintos y ambos
+  documentados en el CSV**: (a) series tan estables que el ingenuo ya
+  es casi perfecto (Montevideo: MAPE ingenuo 0,24% — el escenario
+  inercial ahí es "se mantiene en torno a 53%", y no requiere modelo:
+  se reporta como lectura descriptiva); (b) series erráticas donde
+  ningún candidato alcanza los criterios (Paysandú: MAPE 23-46% — no se
+  publica proyección).
+- **Nota**: no se detectó patrón semestral sistemático que obligara a
+  anualizar antes de proyectar (verificado sobre el total país y los
+  departamentos proyectables).
 
 ## P4 — NNA en protección especial cada 1.000 NNA (pendiente)
 

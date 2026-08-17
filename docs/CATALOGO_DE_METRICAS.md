@@ -91,8 +91,8 @@ el INE publique los microdatos, esto es todo lo construible:
 | 28 | Salud: controles y vacunas al día | Descriptiva | 2020-2025 | ✅ |
 | 29 | Acogimiento familiar: tipo de familia, altas/bajas de familias acogedoras por departamento | Descriptiva | Corte transversal a abril de 2025 (RAF) | ✅ corte |
 | 30 | Dónde viven los NNA acompañados (familia origen / acogimiento / residencial / adoptiva) | Descriptiva | Corte transversal a abril de 2025 (RDVF, ~8.777 NNA) | ✅ corte |
-| P3 | Desinternación proyectada, por departamento | Predictiva | Sobre la métrica 21 (12 puntos semestrales); responde "¿a este ritmo, cuándo llegaría el departamento X a tal proporción en familia?" | ✅ pendiente de cálculo |
-| P4 | NNA en protección especial cada 1.000 NNA, proyectado | Predictiva | Numerador: métrica 20; denominador futuro: proyecciones oficiales de población del INE | ✅ pendiente de cálculo |
+| P3 | Desinternación proyectada, por departamento | Predictiva | **Calculada**: total país 62,7% → 66,4% (63,9-68,8) en contexto familiar hacia 2027-S2; 9/20 unidades proyectables, el resto estable o errático (documentado) — ver `resultados/proyecciones/p3_desinternacion.csv` | ✅ |
+| P4 | NNA en protección especial cada 1.000 NNA, proyectado | Predictiva | Numerador: métrica 20 (listo en `datos_curados/`); denominador futuro: **pendiente de descargar las proyecciones de población del INE** (único faltante) | ⏳ bloqueada por descarga INE |
 
 Advertencias documentadas por la exploración: los % del nacional vienen en
 decimal (0,068) y los departamentales en escala 10,1 — normalizar antes
