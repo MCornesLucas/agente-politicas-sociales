@@ -412,6 +412,48 @@ la incidencia crece con la edad: 10,6% entre los 15 y 17 años.
 de pobreza en 2024, con un patrón regresivo con la edad: la incidencia
 más alta está en la primera infancia (32,2% entre 0 y 5 años). La
 pobreza en Uruguay tiene rostro de infancia.
+"""),
+    md("""
+## Conclusiones
+
+1. **La pobreza uruguaya está concentrada en la infancia, y dentro de la
+   infancia, en sus edades más tempranas.** Casi tres de cada diez NNA
+   viven en hogares pobres (28,9% en 2024), y la incidencia es mayor
+   cuanto menor es la edad (32,2% entre 0 y 5 años frente a 27,5% entre
+   13 y 17). Dado que la primera infancia es la etapa de mayor
+   sensibilidad del desarrollo, este patrón regresivo constituye el dato
+   más relevante del informe para el diseño de políticas (fuente:
+   elaboración propia sobre microdatos ECH 2024, INE).
+
+2. **La respuesta del sistema de protección contra la violencia crece de
+   forma sostenida y sin señales de estabilización.** Las situaciones
+   atendidas se multiplicaron por 6,8 en doce años y, en el escenario
+   inercial, el sistema atendería entre 10.000 y 11.800 situaciones
+   anuales hacia 2027. Con registros administrativos no es posible
+   separar cuánto de ese crecimiento es mayor detección y cuánto es
+   mayor incidencia — distinguirlo requeriría una **encuesta de
+   prevalencia de violencia hacia NNA**, que Uruguay no tiene: esa es la
+   brecha de información más importante que este informe identifica
+   (fuente: informes de gestión SIPIAV 2013-2024, INAU).
+
+3. **El trabajo infantil persiste con un claro gradiente etario y
+   socioeconómico.** Afecta al 6,8% de los NNA (más de 40.000), crece
+   con la edad hasta 10,6% entre los 15 y 17 años, y es mayor en el
+   interior y en los niveles socioeconómicos más bajos (fuente: ENSANNA
+   2024, INE/MTSS).
+
+4. **Limitaciones de este informe piloto**, declaradas para su
+   evaluación experta: (a) las cifras de violencia describen la
+   respuesta del sistema, no la prevalencia del fenómeno; (b) la única
+   proyección incluida es un escenario inercial con supuesto explícito,
+   no un pronóstico; (c) los microdatos de la ENSANNA 2024 aún no son
+   públicos, por lo que el tema trabajo infantil se limita a los cuadros
+   del boletín oficial; (d) el SIPIAV no publica desagregación
+   departamental de situaciones, lo que impide por ahora el análisis
+   territorial de la violencia. La agenda inmediata del proyecto —
+   cruces departamentales entre protección especial (INAU) y condiciones
+   socioeconómicas de la infancia (ECH) — está documentada en el
+   repositorio.
 
 ---
 
