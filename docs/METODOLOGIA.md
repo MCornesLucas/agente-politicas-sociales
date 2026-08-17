@@ -27,7 +27,10 @@ fija, no la improvisa el modelo en cada corrida:
    Trabajo infantil, Protección especial, Pobreza infantil e inversión —
    ver `CATALOGO_DE_METRICAS.md`), cada uno abriendo con qué mide, de qué
    fuente sale y qué significan los términos del organismo que usan sus
-   métricas.
+   métricas. Dentro de cada tema van **todas** sus métricas, sean
+   descriptivas o predictivas: la clasificación interna
+   descriptivo/predictivo (sección 3) rige qué reglas aplican a cada
+   una, nunca dónde se muestra.
 3. **Nota metodológica** al final: qué es un registro administrativo, qué
    es una estimación ponderada de encuesta, y por qué no se comparan
    entre sí sin aclaración.
@@ -117,13 +120,17 @@ original y siguen aplicando en pleno.
 
 ## 3. Reglas del bloque predictivo (proyecciones inerciales)
 
-El proyecto se organiza en dos bloques globales (ver
-`CATALOGO_DE_METRICAS.md`): **descriptivo** ("¿qué pasó?") y
-**predictivo** ("¿qué va a pasar si nada cambia?"), siguiendo el modelo
+Cada métrica del proyecto lleva una **clasificación interna** (ver
+`CATALOGO_DE_METRICAS.md`): **descriptiva** ("¿qué pasó?") o
+**predictiva** ("¿qué va a pasar si nada cambia?"), siguiendo el modelo
 de madurez analítica de Gartner y la distinción formal entre modelar
 para explicar y modelar para predecir de Shmueli (2010) — citas en
-`BIBLIOGRAFIA.md`. Todo lo predictivo de este proyecto se rige por estas
-reglas:
+`BIBLIOGRAFIA.md`. Esta clasificación define qué reglas aplican a cada
+métrica, **no la estructura de los informes**: los bloques de todo
+informe son los temáticos (sección 1), y dentro de cada tema conviven
+sus métricas descriptivas y predictivas — igual que en
+agente-encuesta-hogares el bloque Empleo reúne todas las métricas de
+empleo. Toda métrica predictiva se rige por estas reglas:
 
 - **Solo escenarios inerciales, nunca pronósticos causales.** Lo que se
   proyecta es la continuación de una tendencia observada bajo el
