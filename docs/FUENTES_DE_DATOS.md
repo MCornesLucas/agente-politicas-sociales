@@ -18,6 +18,8 @@ Las citas completas para referenciar en informes están en
 | CONAPEES | Registro administrativo + planes + estudios | Casos atendidos / documentos | Irregular |
 | UNICEF Uruguay | Portal de indicadores + publicaciones técnicas | Agregado (reprocesa ECH/ENSANNA/registros) | Continua |
 | CETI (MTSS) | Comité interinstitucional: planes y documentos | Documentos de política | Irregular |
+| Encuesta violencia sexual NNA 2026 (UNICEF/Equipos) | Encuesta retrospectiva, muestra no probabilística | Personas de 18 a 24 años | Puntual (2026) |
+| INE — proyecciones de población (rev. 2025) | Proyección demográfica oficial | Población por sexo y edad | Revisión tras cada censo |
 
 ## 1. ENSANNA 2024 — Encuesta Nacional sobre las Actividades de Niñas, Niños y Adolescentes (INE/MTSS, con OIT y UNICEF)
 
@@ -56,6 +58,15 @@ Las citas completas para referenciar en informes están en
   cantidad (38%); 22% violencia sexual, con casi 80% de esos casos en
   niñas y adolescentes mujeres; ~90% de las situaciones detectadas eran
   recurrentes y 75% crónicas.
+- **Cifras 2025 publicadas** (informe de gestión 2025, presentado el
+  27/04/2026): 9.178 situaciones registradas con la metodología
+  tradicional — y 7.381 con la **nueva metodología** que el mismo
+  informe introduce (solo violencias activas en el año o cerradas
+  explícitamente); 2.536 nuevas situaciones (casi 7 por día). Las
+  desagregaciones 2025 incluyen una categoría explícita "sin
+  información" (17%) que rompe la comparabilidad de recurrencia,
+  cronicidad e inclusión familiar con la serie histórica — quiebres 7 y
+  8 de `datos_curados/sipiav_notas.md`.
 - **Dónde**: https://www.inau.gub.uy/sipiav (informes descargables).
 - **Naturaleza del dato**: **registro administrativo de casos detectados
   y atendidos por el sistema — NO es prevalencia**. Un aumento
@@ -113,7 +124,29 @@ Las citas completas para referenciar en informes están en
   preferir el cálculo propio y usar el del portal como verificación
   cruzada.
 
-## 6. CETI — Comité Nacional para la Erradicación del Trabajo Infantil (MTSS)
+## 6. Encuesta sobre violencia sexual contra NNA, Uruguay 2026 (UNICEF Uruguay / Equipos Consultores)
+
+- **Qué es**: encuesta web autoadministrada a personas de **18 a 24
+  años** que viven en Uruguay, sobre experiencias de violencia sexual
+  vividas antes de los 18 (medición retrospectiva). Publicada en abril
+  de 2026. Archivo:
+  `data/unicef/2026/encuesta_violencia_sexual_nna_2026_378.pdf`.
+- **Resultados centrales**: 29% reporta haber sufrido violencia sexual
+  antes de los 18 años ("casi 1 de cada 3"); 17% abuso sexual; 17%
+  situaciones de explotación; 30% de las mujeres jóvenes; 69% de
+  quienes sufrieron abuso no lo contó en su momento.
+- **Naturaleza del dato**: **estimación de prevalencia retrospectiva con
+  muestra no probabilística** (ficha metodológica, anexo 5.1: n = 617,
+  reclutamiento por publicidad en redes sociales, calibración rake
+  contra la ECH 2024). Es la única fuente de prevalencia de violencia
+  del proyecto, pero **no admite margen de error en sentido
+  probabilístico ni afirmaciones de representatividad**: se cita como
+  orden de magnitud ("aproximadamente 3 de cada 10"), nunca como serie,
+  nunca con decimales, y siempre con su diseño declarado. No es
+  comparable con los registros SIPIAV (miden cosas distintas: respuesta
+  del sistema vs. experiencia reportada).
+
+## 7. CETI — Comité Nacional para la Erradicación del Trabajo Infantil (MTSS)
 
 - **Qué es**: comité interinstitucional (Estado, empresas, sindicatos,
   ONG) que asesora y coordina la política contra el trabajo infantil.
@@ -125,6 +158,25 @@ Las citas completas para referenciar en informes están en
 - **Naturaleza del dato**: documentos de política, no datos primarios —
   útil para el marco de políticas (qué se propone, con qué metas) contra
   el cual leer los datos de ENSANNA.
+
+## 8. INE — Proyecciones de población, revisión 2025
+
+- **Qué es**: proyecciones oficiales de población de Uruguay por sexo y
+  edad, revisadas tras el Censo 2023 (período 2012-2070; archivos de
+  proyección publicados desde 2024). Publicadas el 17/07/2025. Es la
+  fuente de los denominadores poblacionales del proyecto (P4, P6):
+  `data/ine/proyecciones_rev2025/`.
+- **Cifras centrales para el proyecto**: población 0-17 = 768.969 en
+  2024 (22,0% del total) y cayendo ~2,3% anual (715.901 en 2027) — el
+  denominador de toda tasa del proyecto se achica año a año.
+- **Naturaleza del dato**: **proyección demográfica del organismo
+  productor**, con metodología y supuestos propios (fecundidad,
+  mortalidad, migración). No se modela ni se extrapola nada sobre ella:
+  se cita. Dos advertencias de uso: (a) los ponderadores de la ECH
+  siguen calibrados a la revisión anterior (0-17 = 24,1% en la ECH 2024
+  vs. 22,0% en la revisión 2025) — no mezclar bases sin anotarlo; (b)
+  el archivo departamental es quinquenal: 0-17 exacto solo existe a
+  nivel país (ver `RELEVAMIENTO_DE_DATOS.md`, sección 7).
 
 ---
 

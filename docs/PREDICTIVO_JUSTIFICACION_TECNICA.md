@@ -103,10 +103,17 @@ y 2024 (8.924) de notas oficiales (Presidencia/INAU — ver
 - **Proyección publicable** (modelo lineal reajustado 2013-2024,
   residuos s≈458): 2025: ~9.400 (8.500-10.300) · 2026: ~10.100
   (9.200-11.100) · 2027: ~10.900 (10.000-11.800).
-- **Validación pendiente**: el informe SIPIAV 2025 ya fue presentado
-  pero solo se difundió el dato de situaciones *nuevas* (2.536), que no
-  es el total — cuando se publique el PDF con el total 2025, se
-  contrasta contra el rango 8.500-10.300 antes de tocar el modelo.
+- **Validación fuera de muestra (2026-08-18)**: el informe de gestión
+  2025 (PDF descargado y verificado) publica el total 2025 bajo la
+  metodología tradicional: **9.178** — dentro del rango proyectado
+  8.500-10.300 (punto proyectado ~9.400; error del punto 2,4%). La
+  proyección queda validada en su primer año. Advertencia para el
+  siguiente ciclo: el informe 2025 introduce en paralelo una nueva
+  definición operativa (7.381 en 2025) — si desde 2026 la serie se
+  publica solo con la nueva base, la serie tradicional se corta en 2025
+  y el modelo deberá re-estimarse sobre la base nueva cuando acumule
+  puntos suficientes, no mezclarlas (ver
+  `datos_curados/sipiav_notas.md`, quiebre 7).
 - **Advertencia heredada**: la serie tiene cambios de fuente (2018-2019
   incorporan CHPR; 2021 salto pospandemia +43%) documentados en
   `CATALOGO_DE_METRICAS.md` — otra razón para no leer el ajuste fino
@@ -137,6 +144,17 @@ y 2021 provienen de prosa fraccionaria y están marcados). Ajuste con
   sistema (a qué proporción de intervenciones se logra incorporar a la
   familia), con los cambios de base de cálculo documentados en
   `datos_curados/sipiav_notas.md`.
+- **Validación fuera de muestra (2026-08-18): no concluyente por cambio
+  de base.** El informe 2025 publica inclusión familiar = 45%, pero
+  sobre una base que incorpora un 17% de casos «sin información» como
+  categoría explícita (hasta 2024 el cálculo era sobre casos válidos).
+  El 45% publicado no es comparable con la serie 2014-2024 y cae fuera
+  del rango proyectado (48-64); recalculado sobre los casos con dato
+  (45/(45+39) = 54%) cae dentro del rango. Ninguna de las dos lecturas
+  valida ni refuta limpiamente: la validación queda registrada como no
+  concluyente y el modelo no se re-estima con el punto 2025 hasta que
+  SIPIAV estabilice la base de cálculo (quiebre 7 de
+  `datos_curados/sipiav_notas.md`).
 
 ## P3 — Proporción del SPE en contexto familiar, por departamento (calculado, 2026-08-17)
 
@@ -164,14 +182,52 @@ departamento en `resultados/proyecciones/p3_desinternacion.csv`.
   anualizar antes de proyectar (verificado sobre el total país y los
   departamentos proyectables).
 
-## P4 — NNA en protección especial cada 1.000 NNA (pendiente)
+## P4 — NNA en protección especial cada 1.000 NNA (calculado, 2026-08-18)
 
-- **Algoritmo previsto**: numerador con el mismo protocolo de P1/P3;
-  denominador **sin modelo propio**: proyecciones oficiales de
-  población del INE (regla de METODOLOGIA: los denominadores futuros no
-  se extrapolan en este proyecto). La incertidumbre reportada es solo la
-  del numerador — se anota que el denominador es una proyección externa
-  con supuestos propios del INE.
+Numerador: NNA de **0 a 17 años** atendidos en el SPE (indicador
+nacional 1.1 de INAU, suma de los tramos 0-2 a 16-17 — la suma de todos
+los tramos reproduce el total del indicador en los seis años,
+verificado; se excluyen los tramos 18-20 y 21+ para que numerador y
+denominador midan el mismo universo). Serie 2020-2025: 5.583 → 5.929 →
+6.312 → 7.027 → 6.960 → 7.043. Denominador **sin modelo propio**:
+población 0-17 proyectada del INE (revisión 2025, archivo B.1.1, edad
+simple) — los denominadores futuros no se extrapolan en este proyecto.
+Script: `src/proyeccion_p4_tasa_spe.py`; resultado:
+`resultados/proyecciones/p4_tasa_spe.csv`.
+
+Ajuste con 2020-2023, holdout 2024-2025 (conteos — candidatos sin
+logit):
+
+| Modelo | MAE | MAPE | Veredicto |
+|---|---|---|---|
+| **Ingenuo (último valor)** | **41,5** | **0,6%** | línea base — imbatible |
+| Deriva | 747,5 | 10,7% | descartado |
+| Tendencia lineal MCO | 625,8 | 8,9% | descartado |
+| Tendencia log-lineal | 762,3 | 10,9% | descartado |
+
+- **Resultado del protocolo: ningún candidato supera al ingenuo → no se
+  publica proyección de modelo** (regla 3a). El numerador creció hasta
+  2023 y se amesetó (2023-2025: 7.027 → 6.960 → 7.043); proyectar la
+  pendiente 2020-2023 hacia adelante sobreestimaría de forma notoria —
+  el backtest lo muestra con claridad. Mismo desenlace que las series
+  estables de P3: el escenario inercial se reporta como lectura
+  descriptiva, sin modelo.
+- **Lectura publicable (descriptiva)**: tasa observada de NNA de 0 a 17
+  años en el SPE cada 1.000 NNA: **9,05 (2024) y 9,38 (2025)**. Si la
+  cantidad de NNA atendidos se mantuviera en torno al último valor
+  observado (~7.000), la tasa seguiría subiendo a ~9,6 (2026) y ~9,8
+  (2027) por mil **solo por la caída de la población infantil**
+  proyectada por el INE (768.969 en 2024 → 715.901 en 2027, −2,3%
+  anual). Esta cifra de referencia no lleva rango porque no hay modelo
+  del numerador: su única incertidumbre declarada es la de la
+  proyección demográfica externa (supuestos propios del INE).
+- **Limitación documentada**: la revisión 2025 del INE publica
+  proyecciones desde 2024; las estimaciones retrospectivas (2020-2023)
+  no estaban publicadas al momento del cálculo, por lo que la tasa
+  observada solo existe para 2024-2025. Cuando el INE publique la serie
+  retrospectiva de la revisión 2025, se completará 2020-2023 con esos
+  denominadores (no con los de la revisión 2013, que la ECH todavía usa
+  en sus ponderadores — ver `RELEVAMIENTO_DE_DATOS.md`, sección INE).
 
 ## P5 — Cobertura CRL (pendiente, prioridad baja)
 

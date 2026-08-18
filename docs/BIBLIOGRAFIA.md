@@ -35,6 +35,19 @@ que rastrearla.
 - El Observador — "Sipiav presentó informe anual: en 2024 se detectaron
   2.501 casos nuevos":
   https://www.elobservador.com.uy/nacional/sipiav-presento-informe-anual-violencia-ninos-ninas-y-adolescentes-2024-se-detectaron-2501-casos-nuevos-n5995917
+- INAU/SIPIAV — Informe de Gestión 2025 (presentado el 27/04/2026;
+  introduce la nueva metodología de registro y publica la serie
+  1319 → 9178 con valores en texto):
+  https://www.inau.gub.uy/sites/default/files/migrado-docs/informedegestionsipiav20251.pdf
+- Ministerio del Interior — "Sipiav presentó informe anual de gestión"
+  (27/04/2026, 2.536 nuevas situaciones en 2025):
+  https://www.gub.uy/ministerio-interior/comunicacion/noticias/presencia-del-ministerio-del-interior-sipiav-presento-informe-anual-gestion
+- UNICEF Uruguay / Equipos Consultores (2026). "Encuesta sobre
+  violencia sexual contra niños, niñas y adolescentes, Uruguay 2026"
+  (Montevideo, abril de 2026; muestra no probabilística, n = 617 — ver
+  naturaleza del dato en `FUENTES_DE_DATOS.md`, sección 6). PDF de la
+  Biblioteca Digital de UNICEF Uruguay (explnum_id 378):
+  https://bibliotecaunicef.uy/opac_css/doc_num.php?explnum_id=378
 
 ## Explotación sexual de NNA (CONAPEES)
 
@@ -55,6 +68,11 @@ que rastrearla.
 - Presidencia de la República — "Uruguay atendió este año 285
   situaciones de explotación infantil y actualizó su plan nacional de
   acción": https://www.gub.uy/presidencia/comunicacion/noticias/uruguay-atendio-ano-285-situaciones-explotacion-infantil-actualizo-su-plan
+- CONAPEES (2023). "III Plan Nacional para la erradicación de la
+  explotación sexual comercial y no comercial de la niñez y la
+  adolescencia (2023-2028)" (Decreto 48/025; documento de política, sin
+  serie de casos):
+  https://www.inau.gub.uy/sites/default/files/migrado-docs/iiiplannacionalconapees.pdf
 
 ## Trabajo infantil (ENSANNA, CETI)
 
@@ -150,6 +168,14 @@ que rastrearla.
 - Wilke, C.O. (2019). *Fundamentals of Data Visualization*. O'Reilly
   Media. Elección del tipo de gráfica según tipo de variable; reglas de
   proporciones y cantidades.
+
+## Demografía (denominadores poblacionales)
+
+- INE — "Proyecciones de población revisión 2025" (basada en el Censo
+  2023, período 2012-2070; publicada el 17/07/2025). Archivos B.1.1
+  (total país, edad simple, 2024-2070) y B.1.2 (departamentos,
+  quinquenal, 2024-2045):
+  https://www.gub.uy/instituto-nacional-estadistica/proyeccionesrev2025
 
 ## Fuente de microdatos
 

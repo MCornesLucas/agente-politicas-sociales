@@ -11,14 +11,15 @@ administrativo vs. encuesta) está en
 
 | Entidad | ¿Datos conseguidos? | Qué se descargó |
 |---|---|---|
-| SIPIAV | ✅ Serie completa publicada | 12 informes de gestión (2013-2024), PDF |
+| SIPIAV | ✅ Serie completa publicada | 13 informes de gestión (2013-2025), PDF |
 | INAU | ✅ Datos en Excel | Indicadores SPE 2020-2025 (nacional + 19 deptos) y 3 reportes estadísticos de abril 2025 |
 | ENSANNA (INE/MTSS) | ✅ Informe / ⏳ microdatos | Informe de resultados 2024 (HTML con cuadros) + informe ENTI 2010; microdatos aún "en análisis" en el INE |
 | CETI (MTSS) | ✅ Documentos de política | Plan Nacional de Erradicación del Trabajo Infantil (PDF, OIT/MTSS) |
-| CONAPEES | ⚠️ Parcial | 2 estudios 2023 (UNFPA y FLACSO); el III Plan Nacional no tiene PDF directo publicado |
-| UNICEF Uruguay | ⚠️ Acceso verificado, descarga pendiente | Portal Infancia en Datos navegable; Biblioteca Digital (bibliotecaunicef.uy) operativa para selección de publicaciones |
+| CONAPEES | ✅ Planes y estudios | 2 estudios 2023 (UNFPA y FLACSO) + III Plan Nacional 2023-2028 (PDF, gestor documental de INAU) |
+| UNICEF Uruguay | ✅ 75 publicaciones | Biblioteca Digital (bibliotecaunicef.uy); incluye la Encuesta sobre violencia sexual contra NNA 2026 (única fuente de prevalencia de violencia) |
+| INE — proyecciones de población | ✅ Revisión 2025 | B.1.1 (total país, edad simple, 2024-2070) y B.1.2 (departamentos, quinquenal, 2024-2045) — denominadores de P4/P6 |
 
-## 1. SIPIAV — 12 informes de gestión, 2013-2024 (serie completa)
+## 1. SIPIAV — 13 informes de gestión, 2013-2025 (serie completa)
 
 `data/sipiav/<año>/informe_gestion_sipiav_<año>.pdf`
 
@@ -29,17 +30,20 @@ portada de cada PDF:
 
 | Año | id | Año | id |
 |---|---|---|---|
-| 2013 | 6469 | 2019 | 6475 (=6383) |
-| 2014 | 6470 | 2020 | 6846 (=6847) |
-| 2015 | 6471 | 2021 | 7641 |
-| 2016 | 6472 | 2022 | 10367 |
-| 2017 | 6473 | 2023 | 10366 |
-| 2018 | 6474 | 2024 | 10368 |
+| 2013 | 6469 | 2020 | 6846 (=6847) |
+| 2014 | 6470 | 2021 | 7641 |
+| 2015 | 6471 | 2022 | 10367 |
+| 2016 | 6472 | 2023 | 10366 |
+| 2017 | 6473 | 2024 | 10368 |
+| 2018 | 6474 | 2025 | 11255 |
+| 2019 | 6475 (=6383) | | |
 
-**Pendiente**: informe de gestión 2025 — ya fue presentado (2.536
-situaciones nuevas, según
-[noticia del Ministerio del Interior](https://www.gub.uy/ministerio-interior/comunicacion/noticias/presencia-del-ministerio-del-interior-sipiav-presento-informe-anual-gestion)),
-pero el PDF todavía no aparece en el gestor documental — reintentar.
+**Informe 2025** (descargado 2026-08-18, id 11255, portada verificada):
+presentado el 27/04/2026 ([noticia del Ministerio del Interior](https://www.gub.uy/ministerio-interior/comunicacion/noticias/presencia-del-ministerio-del-interior-sipiav-presento-informe-anual-gestion)).
+Introduce una nueva metodología en paralelo a la tradicional y publica
+por primera vez en texto la serie completa 2011-2025 y la serie de
+nuevas situaciones 2022-2025 — detalles y quiebres en
+`datos_curados/sipiav_notas.md` (quiebres 7 y 8).
 
 Nota de contexto: el sitio de INAU está a medio migrar — las páginas de
 sección (`/sipiav`, `/conapees`) dan 404, pero el gestor documental y las
@@ -76,6 +80,8 @@ RPP/RAF/RDVF, del gestor documental (ids 10361-10363).
 la lista "en análisis"; cuando pasen al catálogo ANDA
 (https://www4.ine.gub.uy/Anda5/), descargarlos (ese día este proyecto
 incorporará su segunda fuente de prevalencia). Revisar periódicamente.
+Última revisión: 2026-08-18 — el catálogo ANDA (390 entradas, exportado
+completo) sigue sin la ENSANNA.
 
 ## 4. CETI — Plan de Acción 2003-2005
 
@@ -105,12 +111,20 @@ nombre del archivo ni el sitio que lo aloja.
   (FLACSO Uruguay):
   https://flacso.edu.uy/wp-content/uploads/2023/12/EXPLOTACION-SEXUAL-HACIA-NINAS-NINOS-Y-ADOLESCENTES-COMPLETO.pdf
 
-**Pendiente**: III Plan Nacional 2023-2028 — existe formalmente (Decreto
-48/025, https://www.impo.com.uy/bases/decretos/48-2025) pero no se
-encontró PDF directo del plan; la página del CONAPEES en INAU está caída
-por la migración del sitio. Los datos anuales de situaciones atendidas
-del CONAPEES aparecen dentro de los informes SIPIAV y en notas de prensa
-— resolver ahí la discrepancia 285 vs. 456 ya documentada.
+- `data/conapees/2023-2028/iii_plan_nacional_esnna_2023_2028.pdf` —
+  **III Plan Nacional 2023-2028, descargado 2026-08-18** del gestor
+  documental de INAU (id 10402:
+  `https://www.inau.gub.uy/sites/default/files/migrado-docs/iiiplannacionalconapees.pdf`),
+  verificado leyendo el contenido (58 páginas, CONAPEES, instituciones
+  integrantes en portada). Formalizado por Decreto 48/025
+  (https://www.impo.com.uy/bases/decretos/48-2025). **No trae serie de
+  casos atendidos** — es un documento de política (ejes, metas,
+  responsables).
+
+**Pendiente**: los datos anuales de situaciones atendidas del CONAPEES
+2022+ siguen sin fuente oficial: el III Plan no los trae, el informe
+SIPIAV 2025 mantiene la explotación sexual fusionada en "violencias
+sexuales", y la discrepancia 285 vs. 456 de prensa sigue sin resolver.
 
 ## 6. UNICEF Uruguay — 75 publicaciones descargadas de la Biblioteca Digital
 
@@ -126,14 +140,51 @@ del CONAPEES aparecen dentro de los informes SIPIAV y en notas de prensa
   (unicef.org) bloquea clientes automatizados — se navega con navegador;
   sus artículos citan como fuentes primarias a ECH/ENSANNA/SIPI, así que
   su rol es contexto y verificación cruzada, no series propias.
-- Hallazgo a evaluar (prioridad alta): el artículo "Violencia sexual en
-  la infancia y la adolescencia en Uruguay" cita una **encuesta** (casi 1
-  de cada 3 personas jóvenes vivió violencia sexual antes de los 18) —
-  si su ficha técnica es pública, sería la única fuente de *prevalencia*
-  de violencia del proyecto. Buscarla entre lo descargado (hay un PDF
-  "encuesta_sobre_378.pdf" en sin_anio) o en la biblioteca.
+- **Hallazgo resuelto (2026-08-18)**: la encuesta citada en "Violencia
+  sexual en la infancia y la adolescencia en Uruguay" es la **"Encuesta
+  sobre violencia sexual contra niños, niñas y adolescentes, Uruguay
+  2026"** (UNICEF Uruguay / Equipos Consultores, Montevideo, abril de
+  2026) — era el PDF "encuesta_sobre_378.pdf" de `sin_anio/`,
+  reclasificado a
+  `data/unicef/2026/encuesta_violencia_sexual_nna_2026_378.pdf`. Ficha
+  metodológica pública (anexo 5.1): encuesta web autoadministrada a
+  personas de 18 a 24 años, **muestra no probabilística** (n = 617,
+  calibración rake contra la ECH 2024). Resultado central: 29% reporta
+  violencia sexual antes de los 18 años; 17% abuso sexual; 17%
+  explotación. Única fuente de *prevalencia* de violencia del proyecto,
+  con la advertencia de diseño registrada en `FUENTES_DE_DATOS.md`.
 
-## 7. ECH — extracción de infancia y adolescencia (proyecto hermano)
+## 7. INE — Proyecciones de población, revisión 2025 (denominadores de P4/P6)
+
+`data/ine/proyecciones_rev2025/` — descargadas 2026-08-18 de la página
+oficial (https://www.gub.uy/instituto-nacional-estadistica/proyeccionesrev2025),
+revisión basada en el Censo 2023, publicada el 17/07/2025:
+
+- `B11_uruguay_edad_simple_2024_2070.xlsx` — total país por sexo y
+  **edad simple**, 2024-2070 (archivo original: "B.1.1 Uruguay
+  (100ymas)2024-2070.xlsx"). Verificado: población 0-17 = 768.969 en
+  2024 (22,0% del total) → 715.901 en 2027.
+- `B12_departamentos_edad_simple_2024_2045.xlsx` — departamentos por
+  sexo y **grupo quinquenal** (no edad simple, pese al nombre del
+  archivo local), 2024-2045. **Limitación**: 0-17 exacto no es
+  construible por departamento (el grupo 15-19 incluye 18 y 19 años) —
+  toda tasa departamental por 1.000 NNA queda condicionada a que el INE
+  publique edad simple departamental, no se aproxima.
+
+Advertencias documentadas:
+
+- **La revisión 2025 no es la base de los ponderadores de la ECH**: la
+  ECH 2024 ponderada da 0-17 = 24,1% del total, la revisión 2025 da
+  22,0% (el Censo 2023 rebajó la población). Un cociente entre un
+  numerador ECH y un denominador de la revisión 2025 mezcla bases — no
+  hacerlo sin anotarlo.
+- Las **estimaciones retrospectivas** (2012-2023) de la revisión 2025
+  no estaban publicadas al 2026-08-18 (solo los archivos B de
+  proyección; se verificó además que los archivos "A.\*" no existen aún
+  en el servidor). Cuando se publiquen, completar los denominadores
+  2020-2023 de P4.
+
+## 8. ECH — extracción de infancia y adolescencia (proyecto hermano)
 
 `data/ech/<año>/` — generado por `src/extraer_ech_infancia.py`, que
 reutiliza los loaders de

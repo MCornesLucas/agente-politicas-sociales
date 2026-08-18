@@ -31,33 +31,38 @@ prometerlo).
 
 ## Tema 1 — Violencia hacia NNA (SIPIAV, registros administrativos; nunca prevalencia)
 
-Los 12 informes 2013-2024 tienen texto extraíble; los gráficos son
-vectoriales (valores extraíbles) solo en 2016-2019, imagen en el resto.
+Los 13 informes 2013-2025 tienen texto extraíble; los gráficos son
+vectoriales (valores extraíbles) solo en 2016-2019 y 2025, imagen en el
+resto. **El informe 2025 introduce una nueva metodología en paralelo a
+la tradicional** (quiebre 7 de `datos_curados/sipiav_notas.md`): las
+series continúan con la tradicional, pero las desagregaciones 2025
+incluyen una categoría explícita «sin información» que rompe la
+comparabilidad de recurrencia, cronicidad e inclusión familiar.
 
 | # | Métrica | Tipo | Serie real | Estado |
 |---|---|---|---|---|
-| 1 | Situaciones atendidas por año (absolutos) | Descriptiva | 2011-2022 en texto (2013: 1.319 → 2022: 7.473); 2023 (8.157) y 2024 (8.924) solo en imagen del PDF — confirmables por notas oficiales de Presidencia/INAU | ⚠️ serie completa citando fuente mixta |
-| 2 | Distribución por sexo (%) | Descriptiva | 2013-2024, todos los años (~54-56% niñas) | ✅ |
-| 3 | Distribución por franja etaria (%) | Descriptiva | 0-3/4-5/6-12/13-17/18+ desde 2014 (2013 agregado; 2022-24 la prosa agrupa 0-5) | ⚠️ |
-| 4 | Tipos de violencia (%) | Descriptiva | 2013-2024, con dos quiebres: 2020 aparece "explotación sexual" como 5ª categoría; 2024 fusiona abuso + explotación en "violencias sexuales" | ⚠️ quiebres 2020 y 2024 se marcan, no se interpolan |
-| 5 | Tipo de violencia × sexo y × franja etaria | Descriptiva | Todos los años (tabla en imagen 2020-2024) | ⚠️ |
-| 6 | Recurrencia (episodio único vs. recurrente) | Descriptiva | 2013-2024; cruce × tipo hasta 2023 | ✅ |
-| 7 | Cronicidad (>6 meses) | Descriptiva | 2013-2024; cruce × tramo solo 2019-2020 | ✅ |
-| 8 | Vínculo de la persona agresora + convivencia | Descriptiva | 2013-2024 (negligencia excluida del análisis desde 2019) | ✅ |
+| 1 | Situaciones atendidas por año (absolutos) | Descriptiva | 2011-2025 íntegra en texto: el gráfico retrospectivo del informe 2025 trae los valores en texto (2013: 1.319 → 2025: 9.178) y confirma 2023 (8.157) y 2024 (8.924), antes solo en notas oficiales | ✅ (2016: el retrospectivo 2025 dice 2.547; se mantiene 2.647 del informe del año, discrepancia anotada) |
+| 2 | Distribución por sexo (%) | Descriptiva | 2013-2025, todos los años (~54-56% niñas) | ✅ |
+| 3 | Distribución por franja etaria (%) | Descriptiva | 0-3/4-5/6-12/13-17/18+ desde 2014 (2013 agregado; 2022-24 la prosa agrupa 0-5; 2025 publica 0-3, 0-5, 6-12 y 13-17) | ⚠️ |
+| 4 | Tipos de violencia (%) | Descriptiva | 2013-2025, con dos quiebres: 2020 aparece "explotación sexual" como 5ª categoría; desde 2024 abuso + explotación fusionados en "violencias sexuales" (2025: 18%) | ⚠️ quiebres 2020 y 2024 se marcan, no se interpolan |
+| 5 | Tipo de violencia × sexo y × franja etaria | Descriptiva | Todos los años (tabla en imagen 2020-2024; 2025 parcial en prosa) | ⚠️ |
+| 6 | Recurrencia (episodio único vs. recurrente) | Descriptiva | 2013-2025; cruce × tipo hasta 2023; 2025 con base no comparable (17% sin información) | ⚠️ desde 2025 |
+| 7 | Cronicidad (>6 meses) | Descriptiva | 2013-2025; cruce × tramo solo 2019-2020; 2025 con base no comparable (17% sin información) | ⚠️ desde 2025 |
+| 8 | Vínculo de la persona agresora + convivencia | Descriptiva | 2013-2024 (negligencia excluida del análisis desde 2019); 2025 solo publica % de convivencia por tipo | ✅ |
 | 9 | NNA que visualizan la violencia | Descriptiva | 2017-2024 solamente | ✅ serie corta |
-| 10 | Inclusión de la familia en la intervención | Descriptiva | 2014-2024 (82% → 58%: serie con lectura sustantiva) | ✅ |
-| 11 | Cobertura territorial del sistema (nº de CRL) | Descriptiva | 2014-2024 (24 → 36) + participación sectorial 2015-2024 reconstruible | ✅ |
-| P1 | Situaciones que atendería el sistema, 2025-2027 | Predictiva | Sobre la métrica 1 (12 puntos) — ya calculada: 2025 ≈ 9.400 (8.500-10.300); el informe 2025 presentado servirá de validación | ✅ |
-| P2 | Inclusión de la familia proyectada | Predictiva | Sobre la métrica 10 (11 puntos); pendiente extraer los puntos intermedios de los PDF | ✅ pendiente de cálculo |
+| 10 | Inclusión de la familia en la intervención | Descriptiva | 2014-2024 (82% → 58%: serie con lectura sustantiva); 2025 (45%) no comparable por cambio de base | ⚠️ serie comparable termina en 2024 |
+| 11 | Cobertura territorial del sistema (nº de CRL) | Descriptiva | 2014-2025 (24 → 36; 2025 estable) + participación sectorial 2015-2024 reconstruible | ✅ |
+| P1 | Situaciones que atendería el sistema, 2025-2027 | Predictiva | Sobre la métrica 1 (12 puntos) — calculada y **validada**: real 2025 = 9.178, dentro del rango proyectado 8.500-10.300 | ✅ validada en su primer año |
+| P2 | Inclusión de la familia proyectada | Predictiva | Sobre la métrica 10 (11 puntos, 2014-2024) — calculada (2027: ~50%, 42-58); validación 2025 no concluyente por el cambio de base de la fuente | ✅ calculada; ⚠️ validación pendiente de base estable |
 | P5 | Cobertura CRL proyectada | Predictiva | Sobre la métrica 11; curva saturante, valor informativo menor | ⚠️ |
 | — | Situaciones por departamento | — | **No existe en ningún año** — la ausencia principal de la fuente | ❌ |
-| — | Casos nuevos vs. seguimiento | — | Solo 2021, 2022 (+ 2024-2025 vía prensa) | ❌ como serie |
+| — | Casos nuevos (nuevas situaciones por año) | Descriptiva | Serie oficial 2022-2025 publicada por el informe 2025 (1.643 → 2.536) | ✅ corta (4 puntos; insuficiente para proyectar) |
 
 ## Tema 2 — Explotación sexual (CONAPEES; el dato cuantitativo vive en el estudio FLACSO 2023, cap. 6)
 
 | # | Métrica | Tipo | Serie real | Estado |
 |---|---|---|---|---|
-| 12 | Situaciones ESNNA atendidas (CONAPEES) | Descriptiva | 2018: 386 · 2019: 240 · 2020: 410 · 2021: 494; **con apertura por los 19 departamentos** (tabla 2 del estudio FLACSO) | ✅ 2018-2021; 2022+ pendiente (la discrepancia 285 vs. 456 de prensa sigue sin resolver) |
+| 12 | Situaciones ESNNA atendidas (CONAPEES) | Descriptiva | 2018: 386 · 2019: 240 · 2020: 410 · 2021: 494; **con apertura por los 19 departamentos** (tabla 2 del estudio FLACSO) | ✅ 2018-2021; 2022+ pendiente (la discrepancia 285 vs. 456 de prensa sigue sin resolver; el III Plan Nacional 2023-2028, descargado 2026-08-18, no trae serie de casos, y el informe SIPIAV 2025 mantiene ESNNA fusionada en "violencias sexuales") |
 | 13 | Sexo de las víctimas ESNNA | Descriptiva | 2020-2021 (86% niñas/adolescentes mujeres) | ✅ corta |
 | 14 | ES dentro de SIPIAV | Descriptiva | 2020 (98 casos) y 2021 (140); desde 2024 fusionada en "violencias sexuales" | ⚠️ ventana 2020-2023 |
 | 15 | Actuaciones de Fiscalía por delitos sexuales con víctima NNA | Descriptiva | 2018-2021, por departamento y en tasa cada 10.000 NNA | ✅ (delitos sexuales en general, no solo explotación — así se rotula) |
@@ -92,7 +97,7 @@ el INE publique los microdatos, esto es todo lo construible:
 | 29 | Acogimiento familiar: tipo de familia, altas/bajas de familias acogedoras por departamento | Descriptiva | Corte transversal a abril de 2025 (RAF) | ✅ corte |
 | 30 | Dónde viven los NNA acompañados (familia origen / acogimiento / residencial / adoptiva) | Descriptiva | Corte transversal a abril de 2025 (RDVF, ~8.777 NNA) | ✅ corte |
 | P3 | Desinternación proyectada, por departamento | Predictiva | **Calculada**: total país 62,7% → 66,4% (63,9-68,8) en contexto familiar hacia 2027-S2; 9/20 unidades proyectables, el resto estable o errático (documentado) — ver `resultados/proyecciones/p3_desinternacion.csv` | ✅ |
-| P4 | NNA en protección especial cada 1.000 NNA, proyectado | Predictiva | Numerador: métrica 20 (listo en `datos_curados/`); denominador futuro: **pendiente de descargar las proyecciones de población del INE** (único faltante) | ⏳ bloqueada por descarga INE |
+| P4 | NNA en protección especial cada 1.000 NNA | Predictiva → descriptiva | Numerador 0-17 estricto (tramos del indicador 1.1) amesetado desde 2023: ningún candidato supera al ingenuo en el backtest → sin proyección de modelo (protocolo, regla 3a). Tasa observada: 9,05 (2024) y 9,38 (2025) por mil; referencia inercial ~9,8 hacia 2027 solo por caída del denominador INE — ver `resultados/proyecciones/p4_tasa_spe.csv` | ✅ resuelta como lectura descriptiva |
 
 Advertencias documentadas por la exploración: los % del nacional vienen en
 decimal (0,068) y los departamentales en escala 10,1 — normalizar antes
@@ -118,7 +123,7 @@ clasificaciones de edad de cada organismo como columnas):
 
 | # | Métrica | Tipo | Detalle | Estado |
 |---|---|---|---|---|
-| P6 | Población 0-17 de Uruguay | Predictiva | Proyecciones oficiales del INE (no se calculan: se citan) — la caída de nacimientos achica el denominador de todas las tasas del proyecto | ✅ — la proyección más firme del catálogo porque es del organismo oficial |
+| P6 | Población 0-17 de Uruguay | Predictiva | Proyecciones oficiales del INE, revisión 2025 (Censo 2023), **descargadas y verificadas** (`data/ine/proyecciones_rev2025/`): 0-17 = 768.969 (2024) → 715.901 (2027), −2,3% anual — la caída achica el denominador de todas las tasas del proyecto | ✅ — la proyección más firme del catálogo porque es del organismo oficial |
 
 Lo que la parte predictiva **nunca** va a contener, por diseño:
 pronósticos de prevalencia de violencia o explotación (no hay serie de
@@ -128,11 +133,20 @@ presentada sin su supuesto inercial y su rango.
 ## UNICEF Uruguay (75 publicaciones descargadas)
 
 Rol confirmado: **fuente de contexto y verificación cruzada**, no de
-series propias — sus datos citan a ECH/ENSANNA/SIPI. Pendiente puntual de
-alto valor: la encuesta de violencia sexual en la infancia citada en
-Infancia en Datos ("casi 1 de cada 3 antes de los 18") — si su ficha
-técnica es pública, sería la única fuente de **prevalencia** de violencia
-del proyecto (todo el Tema 1 es registro administrativo).
+series propias — sus datos citan a ECH/ENSANNA/SIPI. El pendiente de
+alto valor quedó resuelto (2026-08-18): la encuesta citada en Infancia
+en Datos es la **"Encuesta sobre violencia sexual contra niños, niñas y
+adolescentes, Uruguay 2026"** (UNICEF Uruguay/Equipos Consultores,
+abril de 2026), ya estaba entre lo descargado y fue archivada en
+`data/unicef/2026/`. Tiene ficha metodológica pública: encuesta web
+autoadministrada a personas de 18 a 24 años, **muestra no
+probabilística** (n = 617, calibrada por rake contra la ECH 2024).
+Resultado central: 29% reporta haber sufrido violencia sexual antes de
+los 18 años. Es la única fuente de **prevalencia** de violencia del
+proyecto, con advertencia obligatoria: sin marco muestral no hay margen
+de error en sentido probabilístico ni representatividad garantizada —
+se usa como orden de magnitud, nunca como serie ni con decimales (ver
+`FUENTES_DE_DATOS.md`).
 
 ---
 

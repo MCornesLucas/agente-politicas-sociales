@@ -79,10 +79,20 @@ src/                          Código reutilizable (carga, ponderación, visuali
 
 ## Estado
 
-**Fase de diseño (v0.1)**: fuentes relevadas y verificadas, marco
-metodológico y catálogo inicial de 18 métricas en 5 temas definidos.
-Próximo paso: descargar los informes SIPIAV y los microdatos ENSANNA, y
-confirmar métrica por métrica contra el dato real.
+**Fase de análisis (v0.2)**: catálogo de 36 métricas descriptivas en 5
+temas, confirmado métrica por métrica contra los archivos reales
+(`docs/CATALOGO_DE_METRICAS.md`); series SIPIAV 2013-2025 curadas con
+respaldo textual por valor (`datos_curados/`); bloque predictivo con
+protocolo de backtest aplicado: P1 calculada y validada con el dato real
+2025, P2 y P3 calculadas, P4 resuelta como lectura descriptiva (el
+numerador se amesetó y ningún modelo supera al ingenuo), P6 citada del
+INE (revisión 2025 descargada). Informe piloto en `notebooks/`.
+
+Pendientes que dependen de terceros: microdatos ENSANNA (INE los lista
+"en análisis"), serie ESNNA 2022+ oficial (CONAPEES), estimaciones
+retrospectivas de la revisión 2025 del INE, plan estratégico del CETI
+basado en la ENSANNA. El detalle vive en
+`docs/RELEVAMIENTO_DE_DATOS.md`.
 
 ## Licencia
 
