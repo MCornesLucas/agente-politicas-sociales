@@ -58,6 +58,10 @@ informes institucionales además de una encuesta).
   datos; todo guardián nuevo lleva su test que verifique que realmente
   detiene la corrida con datos que no cumplen (lección heredada:
   los supuestos sin verificar contra la salida real fallan en silencio).
+- Los guardianes del informe viven en `.claude/hooks/*.cjs` (calibrados
+  contra el notebook real, con tests en ambas direcciones: dejan pasar el
+  informe correcto y bloquean uno saboteado) y se registran en
+  `.claude/settings.json`, que edita solo el dueño del proyecto.
 
 ## Mantenimiento
 

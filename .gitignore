@@ -30,6 +30,10 @@ Thumbs.db
 .claude/python_path.txt
 .claude/settings.local.json
 
+# Bitacora de corridas y bloqueos de hooks: historia local de cada
+# maquina, no del repositorio
+logs/
+
 # Conversiones completas de fuentes: demasiado grandes para versionar
 # (la versión compacta sí se versiona con otro nombre)
 datos_curados/inau_spe_departamental.csv
