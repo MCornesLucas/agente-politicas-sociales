@@ -73,6 +73,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import numpy as np
 import pandas as pd
+from scipy.stats import spearmanr
 
 RAIZ = Path.cwd().parent if Path.cwd().name == "notebooks" else Path.cwd()
 CURADOS = RAIZ / "datos_curados"
@@ -116,6 +117,11 @@ def serie_sipiav(metrica, categoria=None):
     if categoria is not None:
         s = s[s["categoria"] == categoria]
     s = s.sort_values("anio")
+    return s["anio"].to_numpy(), s["valor"].to_numpy(dtype=float)
+
+
+def serie_inau(codigo):
+    s = INAU[(INAU["indicador_codigo"] == codigo) & (INAU["apertura"] == "total")].sort_values("anio")
     return s["anio"].to_numpy(), s["valor"].to_numpy(dtype=float)
 
 

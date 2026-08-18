@@ -65,6 +65,48 @@ button[type=submit]:hover { background: #559874; }
   font-family: inherit;
 }
 .boton-salir:hover { color: var(--rojo); }
+.opcion {
+  display: block; border: 2px solid #d0d7de; border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 12px; cursor: pointer; font-size: 14px;
+}
+.opcion:hover { border-color: var(--verde); }
+.opcion input { margin-right: 10px; }
+.opcion .detalle { color: var(--gris); }
+.categoria { margin-bottom: 26px; }
+.categoria h2 {
+  font-size: 14px; color: var(--verde); text-transform: uppercase;
+  letter-spacing: 0.03em; border-bottom: 2px solid #eef1f4;
+  padding-bottom: 6px; margin-bottom: 10px;
+}
+.barra-acciones { display: flex; gap: 10px; margin-bottom: 12px; }
+.barra-acciones button {
+  flex: none; width: auto; padding: 8px 16px; font-size: 13px;
+  font-weight: 600; border-radius: 6px; cursor: pointer;
+  border: 1px solid #d0d7de; background: #f6f8fa; color: var(--texto);
+}
+.metrica { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0 2px; cursor: pointer; }
+.metrica input { margin-top: 4px; width: 18px; height: 18px; flex: none; cursor: pointer; }
+.metrica .texto { font-size: 14px; line-height: 1.5; }
+.metrica .explicacion { color: var(--gris); }
+.metrica-fila { border-bottom: 1px solid #f0f2f4; }
+.metrica-fila:last-child { border-bottom: none; }
+.otra { background: #f6f8fa; border-radius: 10px; padding: 16px 20px; margin: 20px 0; }
+.problema {
+  background: #fef2f2; border-left: 3px solid var(--rojo);
+  border-radius: 8px; padding: 14px 18px; font-size: 14px;
+  line-height: 1.6; margin-bottom: 16px;
+}
+.original {
+  background: #f6f8fa; border-radius: 8px; padding: 14px 18px;
+  font-size: 14px; color: var(--gris); margin-bottom: 16px;
+}
+label { display: block; font-weight: 600; margin-top: 20px; margin-bottom: 8px; }
+textarea {
+  width: 100%; padding: 12px 14px; font-size: 15px;
+  border: 2px solid #d0d7de; border-radius: 8px; font-family: inherit;
+}
+textarea:focus { outline: none; border-color: var(--verde); }
+.error { color: var(--rojo); font-size: 13px; margin-top: 8px; display: none; }
 """
 
 _SCRIPT_LISTO = """
@@ -177,14 +219,15 @@ document.getElementById('form').addEventListener('submit', async (e) => {{
 
 
 def plantilla_catalogo(bloques: list[dict]) -> str:
-    """Paso de selección: qué temas (y si los cruces) incluye esta edición
-    del informe. `bloques` viene de `construir_informe.bloques_disponibles()`
-    — los conteos se calculan desde las celdas reales, así el formulario
-    nunca promete contenido desalineado del informe.
+    """Paso de selección de bloques: qué temas (y si los cruces) incluye
+    esta edición. `bloques` viene de
+    `construir_informe.bloques_disponibles()` — los conteos se calculan
+    desde las celdas reales, así el formulario nunca promete contenido
+    desalineado del informe.
 
-    Todos los bloques vienen preseleccionados: el informe completo es la
-    edición estándar; destildar es la excepción. El envío exige al menos
-    un tema (una edición solo de cruces no es un informe).
+    Ningún bloque viene preseleccionado (decisión del dueño del
+    proyecto): elegir es del usuario, no un valor por defecto. El envío
+    exige al menos un tema (una edición solo de cruces no es un informe).
     """
     filas = []
     for b in bloques:
@@ -198,32 +241,25 @@ def plantilla_catalogo(bloques: list[dict]) -> str:
         detalle = " · ".join(contenido)
         filas.append(
             f'<label class="opcion"><input type="checkbox" name="bloque" '
-            f'value="{b["clave"]}" checked> <strong>{b["titulo"]}</strong>'
+            f'value="{b["clave"]}"> <strong>{b["titulo"]}</strong>'
             f'<span class="detalle"> — {detalle}</span></label>'
         )
     filas_html = "\n".join(filas)
     return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
 <title>Contenido del informe</title>
-<style>{_ESTILO}
-.opcion {{ display: block; border: 2px solid #d0d7de; border-radius: 10px;
-  padding: 14px 16px; margin-bottom: 12px; cursor: pointer; font-size: 14px; }}
-.opcion:hover {{ border-color: var(--verde); }}
-.opcion input {{ margin-right: 10px; }}
-.opcion .detalle {{ color: var(--gris); }}
-.error {{ color: var(--rojo); font-size: 13px; margin-top: 8px; display: none; }}
-</style></head><body>
+<style>{_ESTILO}</style></head><body>
 <div class="tarjeta" id="tarjeta">
   <div class="emoji">🗂️</div>
-  <h1>¿Qué incluye tu informe?</h1>
-  <p class="subtitulo">Todos los bloques vienen marcados (el informe
-  completo es la edición estándar). Destildá lo que no necesites. El
-  resumen analítico y las conclusiones solo se incluyen en el informe
+  <h1>¿Qué temas incluye tu informe?</h1>
+  <p class="subtitulo">Marcá los bloques que te interesan. En el paso
+  siguiente vas a poder elegir las métricas de cada bloque, una por una.
+  El resumen analítico y las conclusiones solo se incluyen en el informe
   completo, porque recorren los cinco temas.</p>
   <form id="form">
     {filas_html}
     <p class="error" id="error">Elegí al menos un tema (los cruces solos no
     alcanzan para armar un informe).</p>
-    <button type="submit">Generar esta edición →</button>
+    <button type="submit">Continuar →</button>
   </form>
   {_BOTON_SALIR}
 </div>
@@ -240,6 +276,164 @@ document.getElementById('form').addEventListener('submit', async (e) => {{
   }}
   await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
     body: JSON.stringify({{bloques: marcados}})}});
+  mostrarListo();
+}});
+</script></body></html>"""
+
+
+def plantilla_metricas(estructura: list[dict]) -> str:
+    """Paso de selección fina: las métricas de los bloques elegidos, cada
+    una con su explicación real (la pregunta que responde, extraída de
+    las propias celdas del informe por
+    `construir_informe.unidades_disponibles(bloques)`). Vienen todas
+    marcadas — son lo que el informe imprimirá salvo que el usuario
+    destilde — con botones de marcar todas/ninguna por bloque (estilo
+    heredado del proyecto hermano).
+
+    Si una unidad declara dependencias (`requiere`), el envío las
+    autocompleta y lo avisa: elegir una métrica sin lo que necesita no es
+    posible.
+
+    Incluye el campo libre "otra métrica": el usuario puede pedir una
+    métrica que no está en el catálogo, y el agente analiza con los datos
+    del repositorio si puede calcularse con el rigor del proyecto.
+    """
+    secciones = []
+    for bloque in estructura:
+        filas = []
+        for u in bloque["unidades"]:
+            requiere = ",".join(u.get("requiere", []))
+            explicacion = f' <span class="explicacion">— {u["explicacion"]}</span>' if u["explicacion"] else ""
+            filas.append(
+                f'<div class="metrica-fila"><label class="metrica">'
+                f'<input type="checkbox" name="unidad" value="{u["clave"]}" '
+                f'data-requiere="{requiere}" checked>'
+                f'<span class="texto"><strong>{u["titulo"]}</strong>{explicacion}</span>'
+                f"</label></div>"
+            )
+        secciones.append(
+            f'<div class="categoria" data-bloque="{bloque["clave"]}">'
+            f'<h2>{bloque["titulo"]}</h2>'
+            f'<div class="barra-acciones">'
+            f'<button type="button" onclick="marcarBloque(\'{bloque["clave"]}\', true)">Marcar todas</button>'
+            f'<button type="button" onclick="marcarBloque(\'{bloque["clave"]}\', false)">Ninguna</button>'
+            f"</div>{''.join(filas)}</div>"
+        )
+    secciones_html = "\n".join(secciones)
+    return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<title>Métricas del informe</title>
+<style>{_ESTILO}
+.tarjeta {{ max-width: 760px; }}
+</style></head><body>
+<div class="tarjeta" id="tarjeta">
+  <div class="emoji">📋</div>
+  <h1>Elegí las métricas de tu informe</h1>
+  <p class="subtitulo">Estas son las métricas de los bloques que
+  elegiste, todas marcadas: destildá las que no necesites. Cada una se
+  imprime con su gráfica, su justificación, su lectura y su fuente.</p>
+  <form id="form">
+    {secciones_html}
+    <div class="otra">
+      <label for="otra_metrica">¿Querés agregar una métrica que no está en el catálogo?</label>
+      <p class="subtitulo" style="margin-bottom:8px;">Describila con tus
+      palabras (qué querés saber, de qué fuente, para qué años). El agente
+      va a analizar si puede calcularse con los datos ya verificados del
+      proyecto y con sus reglas de rigor; si no puede, te va a explicar
+      por qué y ofrecer una opción.</p>
+      <textarea id="otra_metrica" name="otra_metrica" rows="3"
+        placeholder="Ej.: cómo evolucionó la proporción de situaciones con violencia reiterada respecto del total, 2019-2025"></textarea>
+    </div>
+    <p class="error" id="error">Elegí al menos una métrica o proyección de
+    un tema (los cruces solos no alcanzan para armar un informe).</p>
+    <p class="error" id="aviso-requiere"></p>
+    <button type="submit">Generar el informe →</button>
+  </form>
+  {_BOTON_SALIR}
+</div>
+<script>
+{_SCRIPT_LISTO}
+{_SCRIPT_SALIR}
+function marcarBloque(bloque, estado) {{
+  document.querySelectorAll('[data-bloque=' + bloque + '] input[name=unidad]')
+    .forEach((c) => {{ c.checked = estado; }});
+}}
+document.getElementById('form').addEventListener('submit', async (e) => {{
+  e.preventDefault();
+  const casillas = Array.from(document.querySelectorAll('input[name=unidad]'));
+  const marcadas = new Set(casillas.filter((c) => c.checked).map((c) => c.value));
+  // Autocompletar dependencias declaradas: una unidad nunca viaja sin lo
+  // que necesita (la clausura completa la termina el servidor igual).
+  const agregadas = [];
+  let cambio = true;
+  while (cambio) {{
+    cambio = false;
+    for (const c of casillas) {{
+      if (!marcadas.has(c.value)) continue;
+      for (const req of (c.dataset.requiere || '').split(',').filter(Boolean)) {{
+        if (!marcadas.has(req)) {{ marcadas.add(req); agregadas.push(req); cambio = true; }}
+      }}
+    }}
+  }}
+  if (agregadas.length > 0) {{
+    casillas.forEach((c) => {{ if (marcadas.has(c.value)) c.checked = true; }});
+    const aviso = document.getElementById('aviso-requiere');
+    aviso.textContent = 'Se agregaron métricas que las elegidas necesitan: ' + agregadas.join(', ');
+    aviso.style.display = 'block';
+  }}
+  const esDeTema = (v) => v.startsWith('metrica_') || v.startsWith('proyeccion_');
+  if (![...marcadas].some(esDeTema)) {{
+    document.getElementById('error').style.display = 'block';
+    return;
+  }}
+  await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{unidades: [...marcadas],
+      otra_metrica: document.getElementById('otra_metrica').value.trim()}})}});
+  mostrarListo();
+}});
+</script></body></html>"""
+
+
+def plantilla_revision(metrica_pedida: str, problema: str,
+                       alternativa: str = "") -> str:
+    """Revisión de una métrica pedida que no puede calcularse: explica el
+    porqué con los datos y reglas del proyecto y ofrece una opción
+    (estilo heredado del proyecto hermano). El usuario decide: usar la
+    alternativa propuesta (si existe) o continuar solo con las métricas
+    del catálogo que eligió.
+    """
+    boton_alternativa = (
+        '<button type="submit" name="decision" value="alternativa" '
+        'class="boton-accion boton-primario">Usar la alternativa propuesta</button>'
+        if alternativa else ""
+    )
+    bloque_alternativa = (
+        f'<div class="valor"><strong>Alternativa posible:</strong> {alternativa}</div>'
+        if alternativa else ""
+    )
+    return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<title>Sobre la métrica que pediste</title>
+<style>{_ESTILO}</style></head><body>
+<div class="tarjeta" id="tarjeta">
+  <div class="emoji">🔍</div>
+  <h1>La métrica que pediste no puede calcularse así</h1>
+  <div class="original"><strong>Pediste:</strong> {metrica_pedida}</div>
+  <div class="problema">{problema}</div>
+  {bloque_alternativa}
+  <form id="form" style="display:flex; flex-direction:column; gap:10px;">
+    {boton_alternativa}
+    <button type="submit" name="decision" value="descartar"
+      class="boton-accion boton-secundario">Continuar sin la métrica nueva</button>
+  </form>
+  {_BOTON_SALIR}
+</div>
+<script>
+{_SCRIPT_LISTO}
+{_SCRIPT_SALIR}
+document.getElementById('form').addEventListener('submit', async (e) => {{
+  e.preventDefault();
+  const decision = e.submitter ? e.submitter.value : 'descartar';
+  await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{decision: decision}})}});
   mostrarListo();
 }});
 </script></body></html>"""

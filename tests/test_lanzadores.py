@@ -56,20 +56,29 @@ def test_el_agente_existe_y_manda_usar_el_envoltorio():
     assert "primera acción" in agente
 
 
-@pytest.mark.skipif(node is None, reason="requiere Node.js")
-@pytest.mark.parametrize("nombre_plantilla", ["plantilla_arranque", "plantilla_bienvenida",
-                                              "plantilla_catalogo", "plantilla_finalizacion"])
-def test_el_javascript_de_las_plantillas_es_valido(tmp_path, nombre_plantilla):
-    # node --check sobre cada <script>: un error de sintaxis en el JS deja
-    # el formulario mudo (el botón no hace nada) sin ningún aviso.
+def _html_de_plantilla(nombre_plantilla):
     from politicas_sociales import construir_informe, plantillas
     funcion = getattr(plantillas, nombre_plantilla)
     if nombre_plantilla == "plantilla_finalizacion":
-        html = funcion(pdf_disponible=True, html_disponible=True)
-    elif nombre_plantilla == "plantilla_catalogo":
-        html = funcion(construir_informe.bloques_disponibles())
-    else:
-        html = funcion()
+        return funcion(pdf_disponible=True, html_disponible=True)
+    if nombre_plantilla == "plantilla_catalogo":
+        return funcion(construir_informe.bloques_disponibles())
+    if nombre_plantilla == "plantilla_metricas":
+        return funcion(construir_informe.unidades_disponibles())
+    if nombre_plantilla == "plantilla_revision":
+        return funcion(metrica_pedida="una métrica", problema="un problema",
+                       alternativa="una alternativa")
+    return funcion()
+
+
+@pytest.mark.skipif(node is None, reason="requiere Node.js")
+@pytest.mark.parametrize("nombre_plantilla", ["plantilla_arranque", "plantilla_bienvenida",
+                                              "plantilla_catalogo", "plantilla_metricas",
+                                              "plantilla_revision", "plantilla_finalizacion"])
+def test_el_javascript_de_las_plantillas_es_valido(tmp_path, nombre_plantilla):
+    # node --check sobre cada <script>: un error de sintaxis en el JS deja
+    # el formulario mudo (el botón no hace nada) sin ningún aviso.
+    html = _html_de_plantilla(nombre_plantilla)
     scripts = re.findall(r"<script>(.*?)</script>", html, re.DOTALL)
     assert scripts, f"{nombre_plantilla} sin <script>"
     for i, script in enumerate(scripts):
@@ -78,6 +87,39 @@ def test_el_javascript_de_las_plantillas_es_valido(tmp_path, nombre_plantilla):
         resultado = subprocess.run([node, "--check", str(archivo)],
                                    capture_output=True, text=True, timeout=60)
         assert resultado.returncode == 0, resultado.stderr
+
+
+def test_catalogo_sin_preseleccion_por_decision_del_dueno():
+    # 2026-08-19: los bloques NO vienen marcados — elegir es del usuario,
+    # no un valor por defecto.
+    html = _html_de_plantilla("plantilla_catalogo")
+    assert 'name="bloque"' in html
+    # Ningún checkbox lleva el atributo checked (el ":checked" del
+    # JavaScript es el selector, no el atributo).
+    assert " checked>" not in html
+
+
+def test_metricas_preseleccionadas_con_explicacion_y_campo_libre():
+    html = _html_de_plantilla("plantilla_metricas")
+    # Las 44 unidades vienen marcadas (son lo que el informe imprimirá
+    # salvo que el usuario destilde) y cada una muestra su explicación.
+    assert html.count('name="unidad"') == 44
+    assert html.count(" checked>") == 44
+    assert "¿Qué querés agregar" not in html  # el campo libre tiene su propio texto
+    assert 'name="otra_metrica"' in html
+    assert "Marcar todas" in html
+    # Una explicación real extraída de las celdas, no redactada a mano.
+    assert "¿Cómo evolucionó la cantidad de situaciones" in html
+
+
+def test_revision_sin_alternativa_no_ofrece_el_boton():
+    from politicas_sociales import plantillas
+    html = plantillas.plantilla_revision(metrica_pedida="x", problema="y")
+    assert "Usar la alternativa" not in html
+    assert "Continuar sin la métrica nueva" in html
+    con = plantillas.plantilla_revision(metrica_pedida="x", problema="y",
+                                        alternativa="z")
+    assert "Usar la alternativa" in con
 
 
 def test_json_de_ejemplo_del_agente_es_coherente_con_el_paquete():

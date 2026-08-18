@@ -97,6 +97,20 @@ def medir(nombre: str, **detalle):
         registrar(f"{nombre}_fin", duracion_segundos=round(time.monotonic() - inicio, 1), **detalle)
 
 
+def sugerir_catalogo(metrica: str, motivo: str) -> None:
+    """Registra que una métrica a medida parece lo bastante reusable como
+    para valer la pena incorporarla al catálogo permanente — para que el
+    dueño del proyecto la vea después revisando la bitácora.
+
+    A propósito NO es una pregunta interactiva al usuario (heredado del
+    hermano): la consola corre en segundo plano para quien usa el flujo
+    guiado, y el proceso puede cerrarse apenas la persona termina. Quedar
+    en un archivo que sobrevive al cierre es la única forma confiable de
+    que no se pierda.
+    """
+    registrar("sugerencia_catalogo", metrica=metrica, motivo=motivo)
+
+
 def medir_comando(nombre: str, comando: list[str]) -> subprocess.CompletedProcess:
     """Corre un comando externo (ej. `jupyter nbconvert`) cronometrando
     cuánto tarda, y lo registra. Para los pasos pesados que el agente

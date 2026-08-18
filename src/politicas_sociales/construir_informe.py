@@ -11,18 +11,27 @@ preparación de datos, un tramo por tema con las cinco partes por
 métrica, nota metodológica, resumen analítico y conclusiones. Español
 neutro y formal; toda cifra con su fuente.
 
-**Selección de bloques**: el usuario puede elegir qué temas (y si los
-cruces) incluye su edición del informe. Las reglas de una edición
-parcial, decididas con el dueño del proyecto:
+**Selección de contenido** (flujo decidido con el dueño del proyecto):
+el usuario elige primero los bloques (temas/cruces, sin preselección) y
+después las unidades — cada métrica, proyección o cruce individual — en
+un segundo formulario que muestra la explicación real de cada una.
+Reglas de una edición parcial:
 
 - La infraestructura no se elige: introducción, preparación de datos,
-  contexto demográfico (es transversal — "la demografía detrás de todas
-  las tasas") y nota metodológica van siempre.
+  contexto demográfico (es transversal) y nota metodológica van siempre.
+  La presentación de un tema va siempre que la edición incluya al menos
+  una unidad del tema.
 - El resumen analítico y las conclusiones solo van en el informe
-  completo: son transversales a los cinco temas y citarían hallazgos de
-  secciones que la edición no contiene.
+  completo: son transversales y citarían hallazgos ausentes.
 - La introducción de una edición parcial describe lo que la edición
   realmente contiene — nunca promete contenido que no está.
+- Cada unidad es auto-contenida (sus celdas solo dependen de la
+  preparación de datos): los helpers compartidos (serie_sipiav,
+  serie_inau, spearmanr) viven en la celda de preparación, verificado
+  ejecutando cada unidad sola contra los datos reales. Si alguna vez una
+  unidad necesita de otra, se declara en REQUIERE y la selección se
+  autocompleta con las requeridas — nunca se permite elegir una unidad
+  sin lo que necesita (regla del dueño del proyecto).
 
 Las celdas viven en informe_celdas_1.py (introducción y temas 1-3) y
 informe_celdas_2.py (temas 4-5, cruces, contexto y cierre); los textos
@@ -58,16 +67,27 @@ SELECCIONABLES = {
 }
 _TEMAS = [clave for clave in SELECCIONABLES if clave.startswith("tema_")]
 
+# Dependencias declaradas entre unidades: unidad -> unidades que necesita.
+# Hoy está vacío porque todas las unidades son auto-contenidas (los
+# helpers compartidos viven en la preparación de datos, verificado
+# ejecutando cada unidad sola). Si una unidad nueva necesitara de otra,
+# se declara acá y la selección se autocompleta — elegirla sin su
+# requerida no es posible.
+REQUIERE: dict[str, set[str]] = {}
+
 # Bloques fijos (nunca se eligen) y bloques que solo van en el completo.
 _FIJOS_INICIO = "inicio"          # introducción + preparación de datos
 _FIJOS_FIN = ("contexto", "nota")  # contexto demográfico + nota metodológica
-_SOLO_COMPLETO = ("resumen", "conclusiones")
 _ENCABEZADOS_FIJOS = {
     "## Contexto transversal": "contexto",
     "## Nota metodológica": "nota",
     "## Resumen analítico": "resumen",
     "## Conclusiones": "conclusiones",
 }
+
+# Una unidad seleccionable dentro de un bloque: métrica, proyección o cruce.
+_PATRON_UNIDAD = re.compile(r"^#{2,4}\s*(?:Métrica (\d+)\.|Proyección (P\d+)\.|Cruce (\d+)\.)")
+_PATRON_PREGUNTA = re.compile(r"\*\*¿Qué pregunta responde\?\*\*\s*(.+?)(?:\n\n|$)", re.S)
 
 
 def _clave_de_encabezado(primera_linea: str) -> str | None:
@@ -80,90 +100,215 @@ def _clave_de_encabezado(primera_linea: str) -> str | None:
     return None
 
 
-def _particionar(celdas) -> dict[str, list]:
-    """Reparte las celdas en bloques según sus encabezados "## "."""
-    partes: dict[str, list] = {_FIJOS_INICIO: []}
-    actual = _FIJOS_INICIO
+def _clave_de_unidad(primera_linea: str) -> str | None:
+    m = _PATRON_UNIDAD.match(primera_linea)
+    if not m:
+        return None
+    if m.group(1):
+        return f"metrica_{m.group(1)}"
+    if m.group(2):
+        return f"proyeccion_{m.group(2).lower()}"
+    return f"cruce_{m.group(3)}"
+
+
+def _primera_linea(celda) -> str:
+    return next((linea for linea in celda.source.split("\n") if linea.strip()), "")
+
+
+def _particionar(celdas) -> dict:
+    """Reparte las celdas en bloques (por encabezado "## ") y, dentro de
+    los bloques seleccionables, en la introducción del bloque y sus
+    unidades (por encabezado "### Métrica/Proyección/Cruce")."""
+    partes: dict = {_FIJOS_INICIO: []}
+    bloque, unidad = _FIJOS_INICIO, None
     for celda in celdas:
         if celda.cell_type == "markdown":
-            primera = next((linea for linea in celda.source.split("\n") if linea.strip()), "")
-            clave = _clave_de_encabezado(primera)
-            if clave is not None:
-                actual = clave
-                partes.setdefault(actual, [])
-        partes[actual].append(celda)
+            primera = _primera_linea(celda)
+            clave_bloque = _clave_de_encabezado(primera)
+            if clave_bloque is not None:
+                bloque, unidad = clave_bloque, None
+                if clave_bloque in SELECCIONABLES:
+                    partes.setdefault(bloque, {"intro": [], "unidades": {}, "orden": []})
+                else:
+                    partes.setdefault(bloque, [])
+            elif bloque in SELECCIONABLES:
+                clave_unidad = _clave_de_unidad(primera)
+                if clave_unidad is not None:
+                    unidad = clave_unidad
+                    partes[bloque]["unidades"][unidad] = []
+                    partes[bloque]["orden"].append(unidad)
+        if bloque in SELECCIONABLES:
+            destino = (partes[bloque]["unidades"][unidad] if unidad
+                       else partes[bloque]["intro"])
+            destino.append(celda)
+        else:
+            partes[bloque].append(celda)
     return partes
 
 
-def bloques_disponibles() -> list[dict]:
-    """Los bloques seleccionables con sus conteos reales de contenido,
-    contados desde las celdas (fuente única): lo que ofrece el formulario
-    de catálogo nunca puede desalinearse de lo que el informe contiene."""
+def _titulo_de(celdas_unidad) -> str:
+    return _primera_linea(celdas_unidad[0]).lstrip("# ").strip()
+
+
+def _explicacion_de(celdas_unidad) -> str:
+    """La pregunta que responde la unidad, extraída de su propia celda —
+    la explicación del formulario nunca puede desalinearse del informe."""
+    texto = "\n".join(c.source for c in celdas_unidad if c.cell_type == "markdown")
+    m = _PATRON_PREGUNTA.search(texto)
+    if not m:
+        return ""
+    return re.sub(r"\s+", " ", m.group(1)).strip()
+
+
+def unidades_disponibles(bloques: list[str] | None = None) -> list[dict]:
+    """Los bloques con sus unidades (título, explicación real y
+    dependencias declaradas), para el formulario de selección fina."""
     partes = _particionar(CELDAS_1 + CELDAS_2)
     salida = []
     for clave, (_, nombre) in SELECCIONABLES.items():
-        celdas = partes.get(clave, [])
-        texto = "\n".join(c.source for c in celdas if c.cell_type == "markdown")
+        if bloques is not None and clave not in bloques:
+            continue
+        bloque = partes.get(clave)
+        if not bloque:
+            continue
+        titulo = next((_primera_linea(c).lstrip("# ").strip()
+                       for c in bloque["intro"] if c.cell_type == "markdown"
+                       and _primera_linea(c).startswith("## ")), nombre)
         salida.append({
             "clave": clave,
             "nombre": nombre,
-            "titulo": next((linea.lstrip("# ").strip() for c in celdas
-                            for linea in c.source.split("\n") if linea.startswith("## ")), nombre),
-            "metricas": len(re.findall(r"^### Métrica ", texto, re.M)),
-            "proyecciones": len(re.findall(r"^### Proyección ", texto, re.M)),
-            "cruces": len(re.findall(r"^### Cruce ", texto, re.M)),
+            "titulo": titulo,
+            "unidades": [{
+                "clave": u,
+                "titulo": _titulo_de(bloque["unidades"][u]),
+                "explicacion": _explicacion_de(bloque["unidades"][u]),
+                "requiere": sorted(REQUIERE.get(u, set())),
+            } for u in bloque["orden"]],
         })
     return salida
 
 
-def _alcance_parcial(seleccion: set[str]) -> str:
-    nombres = [SELECCIONABLES[c][1] for c in _TEMAS if c in seleccion]
-    partes = "; ".join(nombres)
-    alcance = (f"una selección del catálogo del proyecto — "
-               f"{'los temas' if len(nombres) > 1 else 'el tema'}: {partes}")
-    if "cruces" in seleccion:
-        alcance += " — junto con los cruces entre fuentes contra la ECH, cada uno con sus limitaciones declaradas"
+def bloques_disponibles() -> list[dict]:
+    """Los bloques seleccionables con sus conteos reales de contenido."""
+    salida = []
+    for bloque in unidades_disponibles():
+        claves = [u["clave"] for u in bloque["unidades"]]
+        salida.append({
+            "clave": bloque["clave"],
+            "nombre": bloque["nombre"],
+            "titulo": bloque["titulo"],
+            "metricas": sum(1 for c in claves if c.startswith("metrica_")),
+            "proyecciones": sum(1 for c in claves if c.startswith("proyeccion_")),
+            "cruces": sum(1 for c in claves if c.startswith("cruce_")),
+        })
+    return salida
+
+
+def _todas_las_unidades(partes) -> dict[str, str]:
+    """Mapa unidad → bloque, en el orden del informe."""
+    mapa = {}
+    for clave in SELECCIONABLES:
+        for unidad in partes.get(clave, {}).get("orden", []):
+            mapa[unidad] = clave
+    return mapa
+
+
+def _cerrar_dependencias(seleccion: set[str]) -> set[str]:
+    """Autocompleta la selección con las unidades requeridas (clausura
+    transitiva de REQUIERE): elegir una unidad sin lo que necesita no es
+    posible — la regla del dueño del proyecto."""
+    cerrada = set(seleccion)
+    pendientes = list(seleccion)
+    while pendientes:
+        for requerida in REQUIERE.get(pendientes.pop(), set()):
+            if requerida not in cerrada:
+                cerrada.add(requerida)
+                pendientes.append(requerida)
+    return cerrada
+
+
+def _alcance_parcial(partes, seleccion: set[str]) -> str:
+    mapa = _todas_las_unidades(partes)
+    bloques_presentes = [c for c in _TEMAS if any(mapa[u] == c for u in seleccion)]
+    n_metricas = sum(1 for u in seleccion if u.startswith("metrica_"))
+    n_proy = sum(1 for u in seleccion if u.startswith("proyeccion_"))
+    n_cruces = sum(1 for u in seleccion if u.startswith("cruce_"))
+    contenido = []
+    if n_metricas:
+        contenido.append(f"{n_metricas} métrica{'s' if n_metricas != 1 else ''}")
+    if n_proy:
+        contenido.append(f"{n_proy} proyección{'es' if n_proy != 1 else ''}")
+    if n_cruces:
+        contenido.append(f"{n_cruces} cruce{'s' if n_cruces != 1 else ''} entre fuentes")
+    nombres = "; ".join(SELECCIONABLES[c][1] for c in bloques_presentes)
+    alcance = (f"una selección del catálogo del proyecto — {', '.join(contenido)} — "
+               f"{'en los temas' if len(bloques_presentes) > 1 else 'en el tema'}: {nombres}")
     alcance += (". El catálogo completo comprende cinco temas y cuatro "
-                "cruces; esta edición contiene los bloques elegidos al generarla")
+                "cruces; esta edición contiene lo elegido al generarla")
     return alcance
 
 
-def celdas_del_informe(bloques: list[str] | None = None) -> list:
+def _normalizar_seleccion(partes, bloques, unidades) -> set[str]:
+    mapa = _todas_las_unidades(partes)
+    seleccion: set[str] = set()
+    if bloques is not None:
+        desconocidos = set(bloques) - set(SELECCIONABLES)
+        if desconocidos:
+            raise ValueError(f"Bloques desconocidos: {sorted(desconocidos)}. "
+                             f"Válidos: {sorted(SELECCIONABLES)}")
+        seleccion |= {u for u, b in mapa.items() if b in set(bloques)}
+    if unidades is not None:
+        desconocidas = set(unidades) - set(mapa)
+        if desconocidas:
+            raise ValueError(f"Unidades desconocidas: {sorted(desconocidas)}. "
+                             f"Válidas: {sorted(mapa)}")
+        seleccion |= set(unidades)
+    seleccion = _cerrar_dependencias(seleccion)
+    if not any(mapa[u] in _TEMAS for u in seleccion):
+        raise ValueError("La selección necesita al menos una métrica o "
+                         "proyección de un tema (el informe no puede ser "
+                         "solo cruces).")
+    return seleccion
+
+
+def celdas_del_informe(bloques: list[str] | None = None,
+                       unidades: list[str] | None = None) -> list:
     """Las celdas del informe para la selección pedida.
 
-    `None` (o la selección completa) devuelve el informe completo,
-    idéntico al de siempre. Una selección parcial valida las claves,
-    exige al menos un tema, reemplaza la introducción por una que
-    describe la edición real, y omite el resumen analítico y las
-    conclusiones (transversales a los cinco temas).
+    Sin selección devuelve el informe completo, idéntico al de siempre;
+    también si la selección cubre todas las unidades. `bloques` suma
+    bloques enteros; `unidades` suma métricas, proyecciones o cruces
+    individuales (claves de `unidades_disponibles()`); pueden combinarse.
     """
-    if bloques is None:
+    if bloques is None and unidades is None:
         return CELDAS_1 + CELDAS_2
-    seleccion = set(bloques)
-    desconocidos = seleccion - set(SELECCIONABLES)
-    if desconocidos:
-        raise ValueError(f"Bloques desconocidos: {sorted(desconocidos)}. "
-                         f"Válidos: {sorted(SELECCIONABLES)}")
-    if not seleccion & set(_TEMAS):
-        raise ValueError("La selección necesita al menos un tema (el informe "
-                         "no puede ser solo cruces).")
-    if seleccion == set(SELECCIONABLES):
+    partes = _particionar(CELDAS_1 + CELDAS_2)
+    seleccion = _normalizar_seleccion(partes, bloques, unidades)
+    mapa = _todas_las_unidades(partes)
+    if seleccion == set(mapa):
         return CELDAS_1 + CELDAS_2
 
-    partes = _particionar(CELDAS_1 + CELDAS_2)
-    celdas = [celda_introduccion(_alcance_parcial(seleccion))]
+    celdas = [celda_introduccion(_alcance_parcial(partes, seleccion))]
     celdas += partes[_FIJOS_INICIO][1:]  # preparación de datos, sin la intro original
     for clave in list(_TEMAS) + ["cruces"]:
-        if clave in seleccion:
-            celdas += partes.get(clave, [])
+        bloque = partes.get(clave)
+        if not bloque:
+            continue
+        elegidas = [u for u in bloque["orden"] if u in seleccion]
+        if not elegidas:
+            continue
+        celdas += bloque["intro"]
+        for unidad in elegidas:
+            celdas += bloque["unidades"][unidad]
     for clave in _FIJOS_FIN:
         celdas += partes.get(clave, [])
     return celdas
 
 
-def main(destino: Path = DESTINO, bloques: list[str] | None = None) -> None:
+def main(destino: Path = DESTINO, bloques: list[str] | None = None,
+         unidades: list[str] | None = None) -> None:
     nb = nbf.v4.new_notebook()
-    nb.cells = celdas_del_informe(bloques)
+    nb.cells = celdas_del_informe(bloques, unidades)
     nb.metadata["kernelspec"] = {
         "display_name": "Python 3",
         "language": "python",
@@ -173,10 +318,14 @@ def main(destino: Path = DESTINO, bloques: list[str] | None = None) -> None:
     nbf.write(nb, destino)
     n_metricas = sum(1 for c in nb.cells if c.cell_type == "markdown" and c.source.startswith("### Métrica"))
     n_proy = sum(1 for c in nb.cells if c.cell_type == "markdown" and c.source.startswith("### Proyección"))
-    edicion = "completo" if bloques is None or set(bloques) == set(SELECCIONABLES) else f"parcial {sorted(set(bloques))}"
+    completo = bloques is None and unidades is None
+    edicion = "completo" if completo else f"parcial {sorted(set(bloques or []) | set(unidades or []))}"
     print(f"Notebook escrito en {destino} ({edicion}): {len(nb.cells)} celdas, "
           f"{n_metricas} métricas, {n_proy} proyecciones.")
 
 
 if __name__ == "__main__":
-    main(bloques=sys.argv[1:] or None)
+    argumentos = sys.argv[1:]
+    bloques_cli = [a for a in argumentos if a in SELECCIONABLES] or None
+    unidades_cli = [a for a in argumentos if a not in SELECCIONABLES] or None
+    main(bloques=bloques_cli, unidades=unidades_cli)

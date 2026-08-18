@@ -66,16 +66,69 @@ respuesta = formularios.mostrar_formulario(formularios.plantilla_bienvenida())
 # respuesta es un dict; chequear salir_del_flujo antes de seguir
 ```
 
-**Paso 1b — Selección de contenido.** Mostrar el catálogo de bloques (los
-conteos salen de las celdas reales, nunca escribirlos a mano):
+**Paso 1b — Selección de bloques.** Mostrar el catálogo de bloques (los
+conteos salen de las celdas reales, nunca escribirlos a mano; ningún
+bloque viene preseleccionado — elegir es del usuario):
 
 ```python
 from politicas_sociales import construir_informe, formularios
 respuesta = formularios.mostrar_formulario(
     formularios.plantilla_catalogo(construir_informe.bloques_disponibles())
 )
-# respuesta["bloques"] es la lista de claves elegidas (ej. ["tema_1", "cruces"]);
+bloques = respuesta["bloques"]  # ej. ["tema_1", "cruces"]; chequear salir_del_flujo
+```
+
+**Paso 1c — Selección de métricas.** Mostrar las métricas de los bloques
+elegidos, cada una con su explicación real (extraída de las celdas del
+informe — nunca redactar explicaciones a mano):
+
+```python
+respuesta = formularios.mostrar_formulario(
+    formularios.plantilla_metricas(construir_informe.unidades_disponibles(bloques))
+)
+unidades = respuesta["unidades"]          # ej. ["metrica_1", "proyeccion_p1"]
+otra_metrica = respuesta.get("otra_metrica", "")  # texto libre, puede ser ""
 # chequear salir_del_flujo antes de seguir
+```
+
+**Paso 1d — Métrica a medida (solo si `otra_metrica` no está vacío).**
+El usuario describió una métrica que no está en el catálogo. Analizarla
+ANTES de generar nada, con este criterio y en este orden:
+
+1. **¿Alcanzan los datos del repositorio?** Solo valen `datos_curados/`,
+   `resultados/` y los archivos ya descargados y verificados en `data/`
+   (consultar `docs/FUENTES_DE_DATOS.md` y `docs/RELEVAMIENTO_DE_DATOS.md`
+   por la naturaleza de cada dato). Nunca descargar datos nuevos ni
+   estimar valores que no están en un archivo.
+2. **¿Respeta las reglas de rigor?** Las de `docs/METODOLOGIA.md`,
+   sección 2, sin excepción: casos atendidos ≠ prevalencia (un pedido
+   redactado como prevalencia sobre registros administrativos NO es
+   viable tal cual — la alternativa honesta se ofrece en el paso de
+   revisión), microdatos siempre ponderados, celdas chicas (n < 30) no
+   se grafican sin advertencia, quiebres de serie no se interpolan,
+   lenguaje observacional.
+3. **Si es viable**: después de construir el notebook (paso 2.1), agregar
+   con nbformat — nunca editando JSON a mano — una sección al final,
+   inmediatamente antes de la celda "## Contexto transversal": una celda
+   markdown "## Métrica a medida" + las celdas de la métrica con el
+   encabezado "### Métrica a medida. <título>" y las cinco partes
+   (pregunta, gráfica con matplotlib y `fuente(...)`, "Por qué esta
+   gráfica" citando el principio, "**Lectura**" observacional). Los
+   guardianes de `.claude/hooks/` la revisan igual que a las del
+   catálogo. Registrar `bitacora.sugerir_catalogo(metrica, motivo)` para
+   que el dueño evalúe incorporarla al catálogo permanente.
+4. **Si NO es viable**: mostrar el formulario de revisión explicando el
+   porqué con el dato concreto (qué archivo falta, qué regla lo impide)
+   y, si existe, una alternativa calculable cercana:
+
+```python
+respuesta = formularios.mostrar_formulario(formularios.plantilla_revision(
+    metrica_pedida=otra_metrica,
+    problema="...",       # el porqué, con la fuente o regla concreta
+    alternativa="...",    # opcional: qué SÍ puede calcularse
+))
+# respuesta["decision"]: "alternativa" (calcularla como métrica a medida)
+# o "descartar" (seguir solo con lo elegido); chequear salir_del_flujo
 ```
 
 **Paso 2 — Generar el informe.** Cuatro comandos, en este orden, cada uno
@@ -83,13 +136,15 @@ envuelto con `bitacora.medir_comando(...)` para que la bitácora registre
 cuánto tardó cada paso (escribir un `.py` con Write que los invoque, y
 correrlo con `./run_python.bat`):
 
-1. `-m politicas_sociales.construir_informe` con los bloques elegidos
+1. `-m politicas_sociales.construir_informe` con las unidades elegidas
    como argumentos (ej.
-   `-m politicas_sociales.construir_informe tema_1 tema_4 cruces`; sin
-   argumentos construye el informe completo) — reconstruye el notebook
-   desde los módulos de celdas. Las ediciones parciales ajustan la
-   introducción y omiten el resumen y las conclusiones solas: no hay que
-   editar ninguna celda a mano.
+   `-m politicas_sociales.construir_informe metrica_1 metrica_4 cruce_1`;
+   sin argumentos construye el informe completo) — reconstruye el
+   notebook desde los módulos de celdas. Las ediciones parciales ajustan
+   la introducción y omiten el resumen y las conclusiones solas; las
+   dependencias declaradas se autocompletan: no hay que editar ninguna
+   celda a mano. Si hay métrica a medida viable, agregarla ahora (paso
+   1d.3).
 2. `-m jupyter nbconvert --to notebook --execute --inplace notebooks/informe_infancia.ipynb`
    — lo ejecuta completo. Los guardianes de `.claude/hooks/` revisan el
    notebook en este paso: si alguno bloquea, leer el motivo, corregir la

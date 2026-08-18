@@ -33,10 +33,6 @@ protección especial y qué proporción de la población del país
 representa?
 """),
     code("""
-def serie_inau(codigo):
-    s = INAU[(INAU["indicador_codigo"] == codigo) & (INAU["apertura"] == "total")].sort_values("anio")
-    return s["anio"].to_numpy(), s["valor"].to_numpy(dtype=float)
-
 anios_i, atendidos = serie_inau("1.1")
 fig, ax = plt.subplots()
 ax.plot(anios_i, atendidos, marker="o", color=COLOR, linewidth=2)
@@ -791,7 +787,6 @@ cuenta en el departamento de la residencia.
 """),
     code("""
 CRUCE = pd.read_csv(RESULTADOS / "cruces" / "cruce_inau_ech_departamental.csv")
-from scipy.stats import spearmanr
 
 c25 = CRUCE[CRUCE["anio"] == 2025]
 rho25, _ = spearmanr(c25["tasa_spe_por_mil"], c25["pobreza_0a17_pct"])

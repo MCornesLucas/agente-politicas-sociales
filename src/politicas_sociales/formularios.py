@@ -30,6 +30,8 @@ from .plantillas import (  # noqa: F401 — reexports: la cara pública es formu
     plantilla_bienvenida,
     plantilla_catalogo,
     plantilla_finalizacion,
+    plantilla_metricas,
+    plantilla_revision,
 )
 
 

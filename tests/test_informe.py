@@ -97,7 +97,7 @@ def test_seleccion_invalida_se_rechaza():
     import pytest
     with pytest.raises(ValueError, match="desconocidos"):
         construir_informe.celdas_del_informe(["tema_9"])
-    with pytest.raises(ValueError, match="al menos un tema"):
+    with pytest.raises(ValueError, match="al menos una métrica"):
         construir_informe.celdas_del_informe(["cruces"])
 
 
@@ -108,3 +108,55 @@ def test_bloques_disponibles_cuentan_el_contenido_real():
     assert bloques["cruces"]["cruces"] == 4
     assert all(bloques[t]["metricas"] > 0 for t in
                ("tema_1", "tema_2", "tema_3", "tema_4", "tema_5"))
+
+
+def test_unidades_disponibles_con_explicacion_real():
+    unidades = [u for b in construir_informe.unidades_disponibles()
+                for u in b["unidades"]]
+    assert len(unidades) == 44  # 36 métricas + 4 proyecciones + 4 cruces
+    # Cada unidad lleva su explicación extraída de las celdas ("¿Qué
+    # pregunta responde?"): si una celda pierde la pregunta, esto lo ve.
+    sin_explicacion = [u["clave"] for u in unidades if not u["explicacion"]]
+    assert sin_explicacion == []
+    assert all(isinstance(u["requiere"], list) for u in unidades)
+
+
+def test_seleccion_por_unidades_arma_solo_lo_elegido():
+    celdas = construir_informe.celdas_del_informe(
+        unidades=["metrica_1", "proyeccion_p1", "cruce_4"])
+    texto = "\n".join(c.source for c in celdas if c.cell_type == "markdown")
+    assert "### Métrica 1." in texto
+    assert "### Proyección P1." in texto
+    assert "### Cruce 4." in texto
+    assert "### Métrica 2." not in texto      # misma sección, no elegida
+    assert "### Cruce 1." not in texto
+    assert "## Tema 1" in texto               # presentación del tema presente
+    assert "## Tema 4" not in texto
+    # La introducción parcial cuenta lo elegido de verdad.
+    assert "1 métrica, 1 proyección, 1 cruce entre fuentes" in celdas[0].source
+
+
+def test_todas_las_unidades_equivalen_al_informe_completo():
+    todas = [u["clave"] for b in construir_informe.unidades_disponibles()
+             for u in b["unidades"]]
+    assert construir_informe.celdas_del_informe(unidades=todas) == CELDAS_1 + CELDAS_2
+
+
+def test_unidad_desconocida_y_solo_cruces_se_rechazan():
+    import pytest
+    with pytest.raises(ValueError, match="desconocidas"):
+        construir_informe.celdas_del_informe(unidades=["metrica_99"])
+    with pytest.raises(ValueError, match="al menos una métrica"):
+        construir_informe.celdas_del_informe(unidades=["cruce_1"])
+
+
+def test_las_dependencias_declaradas_se_autocompletan(monkeypatch):
+    # Regla del dueño: elegir una unidad sin lo que necesita no es
+    # posible — la selección se autocompleta (clausura transitiva).
+    monkeypatch.setattr(construir_informe, "REQUIERE",
+                        {"metrica_2": {"metrica_1"}, "metrica_3": {"metrica_2"}})
+    celdas = construir_informe.celdas_del_informe(unidades=["metrica_3"])
+    texto = "\n".join(c.source for c in celdas if c.cell_type == "markdown")
+    assert "### Métrica 1." in texto
+    assert "### Métrica 2." in texto
+    assert "### Métrica 3." in texto
