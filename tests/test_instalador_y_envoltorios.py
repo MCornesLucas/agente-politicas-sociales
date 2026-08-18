@@ -59,6 +59,19 @@ def test_instalar_escribe_python_path_y_verifica_al_hermano():
     assert "playwright install chromium" in contenido
 
 
+def test_settings_permite_el_envoltorio():
+    # settings.json (versionado, creado por el dueño) debe ser JSON
+    # válido y permitir run_python.bat: si una edición lo rompe, todas
+    # las reglas de permisos desaparecen en silencio y el agente vuelve
+    # a preguntar por cada comando.
+    import json
+    settings = json.loads((RAIZ / ".claude" / "settings.json")
+                          .read_text(encoding="utf-8-sig"))
+    allow = settings["permissions"]["allow"]
+    assert any("run_python.bat" in regla for regla in allow)
+    assert any("instalar.bat" in regla for regla in allow)
+
+
 def test_instalar_no_pausa_en_modo_no_interactivo():
     # Cada "pause" debe estar protegido por la variable de modo no
     # interactivo: una pausa suelta colgaria para siempre una corrida

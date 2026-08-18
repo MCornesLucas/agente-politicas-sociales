@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(run_python.bat *)",
+      "Bash(./run_python.bat *)",
+      "Bash(.\\run_python.bat *)",
+      "Bash(cmd //c run_python.bat *)",
+      "Bash(cmd /c run_python.bat *)",
+      "Bash(./instalar.bat *)",
+      "Bash(POLITICAS_SOCIALES_NONINTERACTIVE=1 ./instalar.bat *)"
+    ]
+  }
+}
