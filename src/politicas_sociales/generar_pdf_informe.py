@@ -1,4 +1,4 @@
-"""Genera el PDF del informe piloto a partir del HTML sin código.
+"""Genera el PDF del informe a partir del HTML sin código.
 
 Replica el pipeline de agente-encuesta-hogares
 (`docs/FLUJO_DE_TRABAJO.md`, sección 2, de ese repositorio): se toma el
@@ -9,7 +9,7 @@ páginas, tamaño A4, márgenes) y se imprime con Chromium sin interfaz vía
 Playwright. No se usa `nbconvert --to pdf` porque depende de LaTeX
 (pesado y frágil en Windows).
 
-Salida: notebooks/Informe_Piloto_Infancia.pdf + copia en Descargas.
+Salida: notebooks/Informe_Infancia.pdf + copia en Descargas.
 """
 
 from __future__ import annotations
@@ -23,10 +23,10 @@ from playwright.sync_api import sync_playwright
 
 from politicas_sociales import config
 
-HTML_ORIGEN = config.NOTEBOOKS / "informe_piloto.html"
+HTML_ORIGEN = config.NOTEBOOKS / "informe_infancia.html"
 CSS = config.DOCS / "informe_estilo.css"
-HTML_IMPRESION = config.NOTEBOOKS / "_informe_piloto_impresion.html"
-PDF_SALIDA = config.NOTEBOOKS / "Informe_Piloto_Infancia.pdf"
+HTML_IMPRESION = config.NOTEBOOKS / "_informe_infancia_impresion.html"
+PDF_SALIDA = config.NOTEBOOKS / "Informe_Infancia.pdf"
 
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
          "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
@@ -37,10 +37,10 @@ def portada() -> str:
     fecha = f"{hoy.day} de {MESES[hoy.month - 1]} de {hoy.year}"
     return f"""
 <div class="portada">
-  <h1>Pol&iacute;ticas sociales de infancia en Uruguay &mdash; Informe piloto</h1>
-  <div class="subtitulo">Las 36 m&eacute;tricas del cat&aacute;logo en cinco temas
+  <h1>Pol&iacute;ticas sociales de infancia en Uruguay &mdash; Informe</h1>
+  <div class="subtitulo">M&eacute;tricas descriptivas y proyecciones validadas en cinco temas
   &mdash; violencia, explotaci&oacute;n sexual, trabajo infantil, protecci&oacute;n
-  especial y pobreza &mdash; con sus proyecciones validadas</div>
+  especial y pobreza</div>
   <div class="meta">Generado el {fecha} &middot;
   Proyecto agente-politicas-sociales</div>
 </div>

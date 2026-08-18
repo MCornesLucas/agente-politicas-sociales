@@ -1,4 +1,4 @@
-"""Celdas del informe piloto — introducción, preparación y temas 1 a 3.
+"""Celdas del informe — introducción, preparación y temas 1 a 3.
 
 Toda cifra citada en los textos proviene de los archivos curados del
 repositorio (datos_curados/, resultados/) o de los documentos
@@ -7,15 +7,15 @@ descargados y verificados en data/ — ver docs/RELEVAMIENTO_DE_DATOS.md.
 
 from __future__ import annotations
 
-from politicas_sociales.piloto_base import code, md
+from politicas_sociales.informe_base import code, md
 
 CELDAS = [
     # ==================================================================
     md("""
-# Informe piloto — Políticas sociales de infancia en Uruguay
+# Políticas sociales de infancia en Uruguay — Informe
 
-Este informe presenta el **catálogo completo del proyecto: 36 métricas en
-5 temas** (violencia hacia niñas, niños y adolescentes; explotación
+Este informe presenta las métricas del catálogo del proyecto en **cinco
+temas** (violencia hacia niñas, niños y adolescentes; explotación
 sexual; trabajo infantil; protección especial; pobreza, vivienda y
 entorno del hogar), junto con las proyecciones calculadas y validadas
 hasta la fecha y el primer **cruce territorial entre fuentes** (INAU ×
@@ -605,7 +605,7 @@ condiciones actuales persisten. No predice cuánta violencia habrá: es la
 trayectoria del propio sistema si nada cambia.
 """),
     code("""
-# La proyección publicada en el piloto anterior se calculó con la serie
+# La proyección publicada en la versión anterior del informe se calculó con la serie
 # 2013-2024. El informe 2025 (9.178) quedó dentro del rango publicado
 # 8.500-10.300: la proyección se muestra junto con el dato real que la
 # validó, y se extiende con el mismo método (justificación técnica y

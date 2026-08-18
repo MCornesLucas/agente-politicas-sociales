@@ -163,7 +163,7 @@ contexto familiar (indicadores departamentales 6 y 5 de INAU), 12 puntos
 semestrales 2020-S1 a 2025-S2, los 19 departamentos + total país.
 Backtest con holdout 2025-S1/2025-S2; elegible logit primero, lineal
 como alternativa; horizonte 4 semestres (2026-2027). Script:
-`src/proyeccion_desinternacion.py`; resultados completos por
+`politicas_sociales/proyeccion_desinternacion.py`; resultados completos por
 departamento en `resultados/proyecciones/p3_desinternacion.csv`.
 
 - **Proyectables: 9 de 20 unidades** (total país y 8 departamentos), en

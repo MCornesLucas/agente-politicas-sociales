@@ -1,15 +1,18 @@
-"""Construye el informe piloto completo (notebooks/informe_piloto.ipynb).
+"""Construye el informe (notebooks/informe_infancia.ipynb).
 
-Versión con el catálogo completo: 36 métricas descriptivas en 5 temas,
-las proyecciones calculadas (P1 con validación 2025, P2, P3, P4) y el
-contexto demográfico (P6). Estructura estándar heredada de
+Versión actual: las métricas confirmadas del catálogo (hoy 36, en 5
+temas), las proyecciones calculadas (P1 con validación 2025, P2, P3, P4)
+y el contexto demográfico (P6). El nombre no lleva "piloto" ni el texto
+anuncia el catálogo completo: el informe es el producto del proyecto, y
+qué métricas incluye cada versión es una decisión de quien lo pide, no
+una promesa del título. Estructura estándar heredada de
 agente-encuesta-hogares (docs/METODOLOGIA.md, sección 1): introducción,
 preparación de datos, un tramo por tema con las cinco partes por
 métrica, nota metodológica, resumen analítico y conclusiones. Español
 neutro y formal; toda cifra con su fuente.
 
-Las celdas viven en piloto_celdas_1.py (introducción y temas 1-3) y
-piloto_celdas_2.py (temas 4-5, contexto y cierre); los textos citan
+Las celdas viven en informe_celdas_1.py (introducción y temas 1-3) y
+informe_celdas_2.py (temas 4-5, contexto y cierre); los textos citan
 únicamente valores verificados en datos_curados/, resultados/ y los
 documentos de data/ (ver docs/RELEVAMIENTO_DE_DATOS.md).
 """
@@ -21,10 +24,10 @@ from pathlib import Path
 import nbformat as nbf
 
 from politicas_sociales import config
-from politicas_sociales.piloto_celdas_1 import CELDAS as CELDAS_1
-from politicas_sociales.piloto_celdas_2 import CELDAS as CELDAS_2
+from politicas_sociales.informe_celdas_1 import CELDAS as CELDAS_1
+from politicas_sociales.informe_celdas_2 import CELDAS as CELDAS_2
 
-DESTINO = config.NOTEBOOKS / "informe_piloto.ipynb"
+DESTINO = config.NOTEBOOKS / "informe_infancia.ipynb"
 
 
 def main(destino: Path = DESTINO) -> None:

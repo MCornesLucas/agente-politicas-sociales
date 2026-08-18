@@ -1,4 +1,4 @@
-"""Helpers compartidos por los módulos de celdas del informe piloto."""
+"""Helpers compartidos por los módulos de celdas del informe."""
 
 from __future__ import annotations
 

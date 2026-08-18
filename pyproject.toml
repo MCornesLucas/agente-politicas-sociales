@@ -21,7 +21,7 @@ dependencies = [
     "numpy>=1.24",
     "scipy>=1.10",        # correlación de Spearman en el cruce INAU × ECH
     "openpyxl>=3.1",      # proyecciones de población del INE (revisión 2025, .xlsx)
-    "nbformat>=5.0",      # construcción del informe piloto
+    "nbformat>=5.0",      # construcción del informe
     "matplotlib>=3.7",    # las celdas del informe grafican con matplotlib
     # El informe se ejecuta con `jupyter nbconvert --execute` (misma lección
     # que en el proyecto hermano: no es dependencia de desarrollo — sin

@@ -1,8 +1,8 @@
-"""Celdas del informe piloto — temas 4 y 5, contexto demográfico y cierre."""
+"""Celdas del informe — temas 4 y 5, contexto demográfico y cierre."""
 
 from __future__ import annotations
 
-from politicas_sociales.piloto_base import code, md
+from politicas_sociales.informe_base import code, md
 
 CELDAS = [
     # ==================================================================

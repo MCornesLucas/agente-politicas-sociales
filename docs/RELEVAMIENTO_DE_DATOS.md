@@ -186,7 +186,7 @@ Advertencias documentadas:
 
 ## 8. ECH — extracción de infancia y adolescencia (proyecto hermano)
 
-`data/ech/<año>/` — generado por `src/extraer_ech_infancia.py`, que
+`data/ech/<año>/` — generado por `politicas_sociales/extraer_ech_infancia.py`, que
 reutiliza los loaders de
 [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
 (hereda sus correcciones de encoding y decisiones metodológicas

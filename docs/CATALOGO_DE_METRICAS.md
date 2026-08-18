@@ -162,10 +162,10 @@ clasificación predictiva, no antes.
    tasa de NNA en protección especial cada 1.000 NNA (INAU 2024-S2 y
    2025-S2 × población 0-17 ponderada de la ECH) contra pobreza infantil
    y hacinamiento del mismo departamento
-   (`src/cruce_inau_ech.py` → `resultados/cruces/`). Resultado: **sin
+   (`politicas_sociales/cruce_inau_ech.py` → `resultados/cruces/`). Resultado: **sin
    asociación estable** (Spearman: pobreza −0,10/+0,02; hacinamiento
    −0,28/+0,19) — las tasas altas están en departamentos chicos de
-   pobreza baja o media; lectura observacional en el informe piloto.
+   pobreza baja o media; lectura observacional en el informe.
    Advertencias: el numerador registra el departamento de atención (no
    de origen); carencias de vivienda sin apertura departamental en los
    curados actuales (extensión pendiente).
