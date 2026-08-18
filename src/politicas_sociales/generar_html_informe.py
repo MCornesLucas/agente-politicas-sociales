@@ -63,4 +63,11 @@ def main(notebook: Path = NOTEBOOK, html: Path = HTML) -> None:
 
 
 if __name__ == "__main__":
-    main()
+    argumentos = sys.argv[1:]
+    if argumentos:
+        notebook_cli = Path(argumentos[0])
+        html_cli = (Path(argumentos[1]) if len(argumentos) > 1
+                    else notebook_cli.with_suffix(".html"))
+        main(notebook_cli, html_cli)
+    else:
+        main()

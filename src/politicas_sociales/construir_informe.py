@@ -324,8 +324,20 @@ def main(destino: Path = DESTINO, bloques: list[str] | None = None,
           f"{n_metricas} métricas, {n_proy} proyecciones.")
 
 
-if __name__ == "__main__":
-    argumentos = sys.argv[1:]
+def _interpretar_argumentos(argumentos: list[str]) -> tuple[Path, list[str] | None, list[str] | None]:
+    """CLI: claves de bloque y/o unidad, más `--destino <ruta>` opcional
+    (las ediciones del flujo guiado van a notebooks/ediciones/, nunca
+    sobre los informe_infancia.* oficiales del repositorio)."""
+    destino = DESTINO
+    if "--destino" in argumentos:
+        indice = argumentos.index("--destino")
+        destino = Path(argumentos[indice + 1])
+        argumentos = argumentos[:indice] + argumentos[indice + 2:]
     bloques_cli = [a for a in argumentos if a in SELECCIONABLES] or None
     unidades_cli = [a for a in argumentos if a not in SELECCIONABLES] or None
-    main(bloques=bloques_cli, unidades=unidades_cli)
+    return destino, bloques_cli, unidades_cli
+
+
+if __name__ == "__main__":
+    destino_cli, bloques_cli, unidades_cli = _interpretar_argumentos(sys.argv[1:])
+    main(destino_cli, bloques=bloques_cli, unidades=unidades_cli)

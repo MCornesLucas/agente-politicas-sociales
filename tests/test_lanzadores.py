@@ -54,6 +54,16 @@ def test_el_agente_existe_y_manda_usar_el_envoltorio():
     assert "mostrar_finalizacion" in agente
     # El primer paso del flujo es el formulario, nunca construir directo.
     assert "primera acción" in agente
+    # Las corridas del flujo van a notebooks/ediciones/ (no versionada);
+    # los informe_infancia.* oficiales no se tocan desde el flujo.
+    assert "notebooks/ediciones/" in agente
+
+
+def test_las_ediciones_de_usuario_no_se_versionan():
+    # Hallazgo de la corrida real (2026-08-19): la edición de un usuario
+    # pisaba el informe completo versionado del repositorio.
+    gitignore = (RAIZ / ".gitignore").read_text(encoding="utf-8")
+    assert "notebooks/ediciones/" in gitignore
 
 
 def _html_de_plantilla(nombre_plantilla):

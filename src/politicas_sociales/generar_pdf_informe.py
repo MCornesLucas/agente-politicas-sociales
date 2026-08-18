@@ -26,7 +26,6 @@ from politicas_sociales.entrega import respaldar_si_existe
 
 HTML_ORIGEN = config.NOTEBOOKS / "informe_infancia.html"
 CSS = config.DOCS / "informe_estilo.css"
-HTML_IMPRESION = config.NOTEBOOKS / "_informe_infancia_impresion.html"
 PDF_SALIDA = config.NOTEBOOKS / "Informe_Infancia.pdf"
 
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
@@ -47,20 +46,23 @@ def portada() -> str:
 """
 
 
-def main() -> None:
-    html = HTML_ORIGEN.read_text(encoding="utf-8")
+def main(html_origen: Path = HTML_ORIGEN, pdf_salida: Path = PDF_SALIDA) -> None:
+    html = html_origen.read_text(encoding="utf-8")
     estilo = CSS.read_text(encoding="utf-8")
 
+    # El HTML intermedio de impresión vive junto al de origen, con nombre
+    # derivado: dos ediciones distintas nunca chocan entre sí.
+    html_impresion = html_origen.with_name(f"_{html_origen.stem}_impresion.html")
     html = html.replace("</head>", f"<style>\n{estilo}\n</style>\n</head>", 1)
     html = re.sub(r"(<body[^>]*>)", r"\1" + portada(), html, count=1)
-    HTML_IMPRESION.write_text(html, encoding="utf-8")
+    html_impresion.write_text(html, encoding="utf-8")
 
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
-        page.goto(HTML_IMPRESION.resolve().as_uri())
+        page.goto(html_impresion.resolve().as_uri())
         page.pdf(
-            path=str(PDF_SALIDA),
+            path=str(pdf_salida),
             format="A4",
             print_background=True,
             display_header_footer=True,
@@ -74,15 +76,23 @@ def main() -> None:
         )
         browser.close()
 
-    HTML_IMPRESION.unlink(missing_ok=True)
-    descargas = Path.home() / "Downloads" / PDF_SALIDA.name
+    html_impresion.unlink(missing_ok=True)
+    descargas = Path.home() / "Downloads" / pdf_salida.name
     # La copia de Descargas no la versiona git: sin respaldo, volver a
     # generar el informe la pisaba sin aviso ni forma de recuperarla.
     respaldar_si_existe(descargas)
-    shutil.copy(PDF_SALIDA, descargas)
-    print(f"PDF generado: {PDF_SALIDA} ({PDF_SALIDA.stat().st_size / 1e6:.1f} MB)")
+    shutil.copy(pdf_salida, descargas)
+    print(f"PDF generado: {pdf_salida} ({pdf_salida.stat().st_size / 1e6:.1f} MB)")
     print(f"Copia en Descargas: {descargas}")
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    argumentos = sys.argv[1:]
+    if argumentos:
+        html_cli = Path(argumentos[0])
+        pdf_cli = (Path(argumentos[1]) if len(argumentos) > 1
+                   else html_cli.with_suffix(".pdf"))
+        main(html_cli, pdf_cli)
+    else:
+        main()

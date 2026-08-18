@@ -34,6 +34,11 @@ Thumbs.db
 # maquina, no del repositorio
 logs/
 
+# Ediciones generadas por el flujo guiado: cada corrida de un usuario
+# escribe aqui (con fecha en el nombre); los informe_infancia.* oficiales
+# del repositorio solo se regeneran en mantenimiento
+notebooks/ediciones/
+
 # Conversiones completas de fuentes: demasiado grandes para versionar
 # (la versión compacta sí se versiona con otro nombre)
 datos_curados/inau_spe_departamental.csv

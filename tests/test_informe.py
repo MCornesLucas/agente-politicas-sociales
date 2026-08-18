@@ -150,6 +150,17 @@ def test_unidad_desconocida_y_solo_cruces_se_rechazan():
         construir_informe.celdas_del_informe(unidades=["cruce_1"])
 
 
+def test_cli_interpreta_destino_bloques_y_unidades():
+    destino, bloques, unidades = construir_informe._interpretar_argumentos(
+        ["--destino", "notebooks/ediciones/edicion_x.ipynb", "tema_1", "metrica_12"])
+    assert destino.name == "edicion_x.ipynb"
+    assert bloques == ["tema_1"]
+    assert unidades == ["metrica_12"]
+    destino, bloques, unidades = construir_informe._interpretar_argumentos([])
+    assert destino == construir_informe.DESTINO
+    assert bloques is None and unidades is None
+
+
 def test_las_dependencias_declaradas_se_autocompletan(monkeypatch):
     # Regla del dueño: elegir una unidad sin lo que necesita no es
     # posible — la selección se autocompleta (clausura transitiva).

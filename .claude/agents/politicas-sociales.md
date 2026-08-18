@@ -115,10 +115,17 @@ ANTES de generar nada, con este criterio y en este orden:
    markdown "## Métrica a medida" + las celdas de la métrica con el
    encabezado "### Métrica a medida. <título>" y las cinco partes
    (pregunta, gráfica con matplotlib y `fuente(...)`, "Por qué esta
-   gráfica" citando el principio, "**Lectura**" observacional). Los
-   guardianes de `.claude/hooks/` la revisan igual que a las del
-   catálogo. Registrar `bitacora.sugerir_catalogo(metrica, motivo)` para
-   que el dueño evalúe incorporarla al catálogo permanente.
+   gráfica" citando el principio, "**Lectura**" observacional). La
+   "Lectura" es la síntesis de la métrica: en una edición parcial no hay
+   resumen analítico global, así que ese es su cierre. Si la edición
+   fuera completa (incluye "## Resumen analítico"), insertar además una
+   celda markdown inmediatamente antes de "## Conclusiones" con un
+   párrafo "**Métrica a medida.** ..." de dos o tres frases con las
+   cifras del cálculo real — el guardián de cifras la valida contra los
+   outputs, igual que al resto del resumen. Los guardianes de
+   `.claude/hooks/` revisan la métrica igual que a las del catálogo.
+   Registrar `bitacora.sugerir_catalogo(metrica, motivo)` para que el
+   dueño evalúe incorporarla al catálogo permanente.
 4. **Si NO es viable**: mostrar el formulario de revisión explicando el
    porqué con el dato concreto (qué archivo falta, qué regla lo impide)
    y, si existe, una alternativa calculable cercana:
@@ -133,36 +140,45 @@ respuesta = formularios.mostrar_formulario(formularios.plantilla_revision(
 # o "descartar" (seguir solo con lo elegido); chequear salir_del_flujo
 ```
 
-**Paso 2 — Generar el informe.** Cuatro comandos, en este orden, cada uno
-envuelto con `bitacora.medir_comando(...)` para que la bitácora registre
-cuánto tardó cada paso (escribir un `.py` con Write que los invoque, y
-correrlo con `./run_python.bat`):
+**Paso 2 — Generar el informe.** Regla de rutas: **toda corrida del flujo
+guiado escribe en `notebooks/ediciones/`** (carpeta no versionada) con un
+nombre con fecha — `edicion_<AAAAMMDD-HHMM>` con la fecha real del
+sistema —; los archivos oficiales `informe_infancia.*` del repositorio
+**no se tocan nunca desde este flujo** (solo se regeneran en
+mantenimiento, por el dueño del proyecto). Cuatro comandos, en este
+orden, cada uno envuelto con `bitacora.medir_comando(...)` para que la
+bitácora registre cuánto tardó cada paso (escribir un `.py` con Write que
+los invoque, y correrlo con `./run_python.bat`); abajo, `<ED>` es
+`notebooks/ediciones/edicion_<AAAAMMDD-HHMM>`:
 
-1. `-m politicas_sociales.construir_informe` con las unidades elegidas
-   como argumentos (ej.
-   `-m politicas_sociales.construir_informe metrica_1 metrica_4 cruce_1`;
-   sin argumentos construye el informe completo) — reconstruye el
-   notebook desde los módulos de celdas. Las ediciones parciales ajustan
-   la introducción y omiten el resumen y las conclusiones solas; las
+1. `-m politicas_sociales.construir_informe --destino "<ED>.ipynb"` con
+   las unidades elegidas como argumentos (ej.
+   `... --destino "<ED>.ipynb" metrica_1 metrica_4 cruce_1`; sin claves
+   de unidad construye el informe completo) — reconstruye el notebook
+   desde los módulos de celdas. Las ediciones parciales ajustan la
+   introducción y omiten el resumen y las conclusiones solas; las
    dependencias declaradas se autocompletan: no hay que editar ninguna
    celda a mano. Si hay métrica a medida viable, agregarla ahora (paso
    1d.3).
-2. `-m jupyter nbconvert --to notebook --execute --inplace notebooks/informe_infancia.ipynb`
+2. `-m jupyter nbconvert --to notebook --execute --inplace "<ED>.ipynb"`
    — lo ejecuta completo. Los guardianes de `.claude/hooks/` revisan el
    notebook en este paso: si alguno bloquea, leer el motivo, corregir la
-   causa en los módulos (`informe_celdas_*.py`) y volver a construir y
-   ejecutar — nunca esquivar el guardián ni editar el `.ipynb` a mano.
-3. `-m politicas_sociales.generar_html_informe` — HTML sin código, con
-   el título corregido.
-4. `-m politicas_sociales.generar_pdf_informe` — PDF con portada + copia
-   en Descargas (la copia anterior queda respaldada como "(anterior)").
+   causa (en la métrica a medida, o en los módulos `informe_celdas_*.py`)
+   y volver a construir y ejecutar — nunca esquivar el guardián ni
+   editar el `.ipynb` a mano.
+3. `-m politicas_sociales.generar_html_informe "<ED>.ipynb" "<ED>.html"`
+   — HTML sin código, con el título corregido.
+4. `-m politicas_sociales.generar_pdf_informe "<ED>.html" "<ED>.pdf"` —
+   PDF con portada + copia en Descargas (la copia anterior queda
+   respaldada como "(anterior)").
 
-**Paso 3 — Entrega.** Mostrar la pantalla final con los dos archivos:
+**Paso 3 — Entrega.** Mostrar la pantalla final con los dos archivos de
+la edición generada:
 
 ```python
 respuesta = formularios.mostrar_finalizacion(
-    pdf_path=r"notebooks\Informe_Infancia.pdf",
-    html_path=r"notebooks\informe_infancia.html",
+    pdf_path=r"notebooks\ediciones\edicion_<AAAAMMDD-HHMM>.pdf",
+    html_path=r"notebooks\ediciones\edicion_<AAAAMMDD-HHMM>.html",
 )
 ```
 
