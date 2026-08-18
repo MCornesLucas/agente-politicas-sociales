@@ -156,7 +156,8 @@ los invoque, y correrlo con `./run_python.bat`); abajo, `<ED>` es
    `... --destino "<ED>.ipynb" metrica_1 metrica_4 cruce_1`; sin claves
    de unidad construye el informe completo) — reconstruye el notebook
    desde los módulos de celdas. Las ediciones parciales ajustan la
-   introducción y omiten el resumen y las conclusiones solas; las
+   introducción, incluyen las conclusiones de sus bloques y la sección
+   de fuentes (siempre), y omiten solo el resumen analítico; las
    dependencias declaradas se autocompletan: no hay que editar ninguna
    celda a mano. Si hay métrica a medida viable, agregarla ahora (paso
    1d.3).

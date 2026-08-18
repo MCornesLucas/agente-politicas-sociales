@@ -18,11 +18,16 @@ un segundo formulario que muestra la explicación real de cada una.
 Reglas de una edición parcial:
 
 - La infraestructura no se elige: introducción, preparación de datos,
-  contexto demográfico (es transversal) y nota metodológica van siempre.
-  La presentación de un tema va siempre que la edición incluya al menos
-  una unidad del tema.
-- El resumen analítico y las conclusiones solo van en el informe
-  completo: son transversales y citarían hallazgos ausentes.
+  contexto demográfico (es transversal), nota metodológica y la sección
+  de **fuentes de datos y bibliografía** van siempre — decisión del
+  dueño (2026-08-19): las fuentes con sus enlaces validan los números y
+  las elecciones de cualquier edición. La presentación de un tema va
+  siempre que la edición incluya al menos una unidad del tema.
+- Las **conclusiones van siempre**, filtradas por bloque (decisión del
+  dueño, 2026-08-19): cada conclusión declara en CONCLUSIONES_BLOQUES de
+  qué bloques se alimenta y una edición incluye las de sus bloques (las
+  transversales, marcadas "siempre", van en todas). El resumen analítico
+  sí queda solo en el informe completo.
 - La introducción de una edición parcial describe lo que la edición
   realmente contiene — nunca promete contenido que no está.
 - Cada unidad es auto-contenida (sus celdas solo dependen de la
@@ -83,6 +88,20 @@ _ENCABEZADOS_FIJOS = {
     "## Nota metodológica": "nota",
     "## Resumen analítico": "resumen",
     "## Conclusiones": "conclusiones",
+    "## Fuentes de datos": "fuentes",
+}
+
+# Cada conclusión (celda i-ésima después del encabezado "## Conclusiones")
+# declara de qué bloques se alimenta; una edición parcial incluye las de
+# sus bloques y las transversales ("siempre"). Un test mantiene este mapa
+# alineado con la cantidad real de celdas de conclusión.
+CONCLUSIONES_BLOQUES: dict[int, set[str] | str] = {
+    0: {"tema_5"},                 # pobreza concentrada en la infancia
+    1: {"tema_1", "tema_4"},       # sistemas en expansión, infancia en contracción
+    2: {"tema_1"},                 # detección tardía, intervención pierde a la familia
+    3: {"tema_1", "tema_2"},       # violencia sexual adolescente y de género
+    4: {"tema_1"},                 # Uruguay no mide prevalencia
+    5: "siempre",                  # limitaciones declaradas del informe
 }
 
 # Una unidad seleccionable dentro de un bloque: métrica, proyección o cruce.
@@ -302,6 +321,18 @@ def celdas_del_informe(bloques: list[str] | None = None,
             celdas += bloque["unidades"][unidad]
     for clave in _FIJOS_FIN:
         celdas += partes.get(clave, [])
+    # Conclusiones: siempre, filtradas por los bloques presentes en la
+    # edición; las transversales ("siempre") van en todas.
+    bloques_presentes = {mapa[u] for u in seleccion}
+    conclusiones = partes.get("conclusiones", [])
+    if conclusiones:
+        celdas.append(conclusiones[0])  # encabezado "## Conclusiones"
+        for indice, celda in enumerate(conclusiones[1:]):
+            aplica = CONCLUSIONES_BLOQUES.get(indice, "siempre")
+            if aplica == "siempre" or aplica & bloques_presentes:
+                celdas.append(celda)
+    # Fuentes de datos y bibliografía: en toda edición, sin excepción.
+    celdas += partes.get("fuentes", [])
     return celdas
 
 

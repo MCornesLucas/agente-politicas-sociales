@@ -24,7 +24,11 @@ const path = require("path");
 const { resolverNotebookEjecutado, fuenteDe, textoDeOutputs } = require("./_lib_notebook_ejecutado.cjs");
 const { denegar } = require("./_lib_bitacora.cjs");
 
-const ENCABEZADO_RESUMEN = /resumen anal[ií]tico/i;
+// El chequeo arranca en el Resumen analítico o, si la edición no lo
+// tiene (las parciales), en las Conclusiones — que desde 2026-08-19 van
+// en TODAS las ediciones, filtradas por bloque, y también se escriben a
+// mano.
+const ENCABEZADO_RESUMEN = /resumen anal[ií]tico|^##\s+Conclusiones/im;
 const MILES = /^\d{1,3}(?:\.\d{3})+$/;
 
 function valoresDe(texto) {

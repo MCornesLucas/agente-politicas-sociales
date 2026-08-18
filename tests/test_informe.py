@@ -78,9 +78,39 @@ def test_edicion_parcial_incluye_lo_elegido_y_lo_fijo():
     assert "## Nota metodológica" in texto         # siempre
     assert "## Tema 4" not in texto
     assert "## Cruces entre fuentes" not in texto
-    # Resumen y conclusiones son transversales: solo en el completo.
+    # El resumen analítico recorre los cinco temas: solo en el completo.
     assert "## Resumen analítico" not in texto
-    assert "## Conclusiones" not in texto
+    # Las conclusiones y las fuentes van SIEMPRE (decisión del dueño,
+    # 2026-08-19: las fuentes validan los números y las elecciones).
+    assert "## Conclusiones" in texto
+    assert "## Fuentes de datos y bibliografía" in texto
+    assert "https://www.inau.gub.uy/sipiav" in texto
+
+
+def test_conclusiones_filtradas_por_bloque():
+    # Edición solo de pobreza (tema_5): lleva la conclusión de pobreza y
+    # las transversales, pero no las que se alimentan de otros temas.
+    celdas = construir_informe.celdas_del_informe(["tema_5"])
+    texto = "\n".join(c.source for c in celdas if c.cell_type == "markdown")
+    assert "La pobreza uruguaya está concentrada en la infancia" in texto
+    assert "Limitaciones declaradas de este informe" in texto  # "siempre"
+    assert "La detección de la violencia llega tarde" not in texto  # tema_1
+    # Edición de violencia (tema_1): al revés.
+    celdas = construir_informe.celdas_del_informe(["tema_1"])
+    texto = "\n".join(c.source for c in celdas if c.cell_type == "markdown")
+    assert "La detección de la violencia llega tarde" in texto
+    assert "La pobreza uruguaya está concentrada en la infancia" not in texto
+
+
+def test_el_mapa_de_conclusiones_esta_alineado_con_las_celdas():
+    # Si se agrega o quita una conclusión sin actualizar el mapa, una
+    # edición parcial incluiría (o perdería) conclusiones en silencio.
+    partes = construir_informe._particionar(CELDAS_1 + CELDAS_2)
+    celdas_conclusion = partes["conclusiones"][1:]  # sin el encabezado
+    assert len(celdas_conclusion) == len(construir_informe.CONCLUSIONES_BLOQUES)
+    bloques_validos = set(construir_informe.SELECCIONABLES)
+    for aplica in construir_informe.CONCLUSIONES_BLOQUES.values():
+        assert aplica == "siempre" or (aplica and aplica <= bloques_validos)
 
 
 def test_edicion_parcial_describe_su_alcance_real_en_la_introduccion():

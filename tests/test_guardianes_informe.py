@@ -132,6 +132,26 @@ def test_cifras_bloquea_una_cifra_inventada(tmp_path):
 
 
 @requiere_node
+def test_cifras_tambien_vigila_las_conclusiones_sin_resumen(tmp_path):
+    # Desde 2026-08-19 las conclusiones van en TODAS las ediciones; en
+    # una parcial no hay resumen analítico, así que el guardián tiene que
+    # arrancar en "## Conclusiones" — si no, las cifras escritas a mano
+    # de una edición parcial quedaban sin vigilar.
+    (tmp_path / "datos_curados").mkdir()
+    (tmp_path / "datos_curados" / "datos.csv").write_text("valor\n27.48\n",
+                                                          encoding="utf-8")
+    nb = escribir_nb(tmp_path / "notebooks" / "nb.ipynb", [
+        celda_code("print(1)", outputs=[{"output_type": "stream", "name": "stdout",
+                                         "text": "1\n"}]),
+        celda_md("## Conclusiones"),
+        celda_md("1. **Algo.** El 88,8% de los hogares."),
+    ])
+    salida = correr_hook("gate-informe-cifras-sin-respaldo.cjs", comando_ejecutar(nb))
+    decision = json.loads(salida)["hookSpecificOutput"]
+    assert decision["permissionDecision"] == "deny"
+    assert "88,8" in decision["permissionDecisionReason"]
+
+
 def test_cifras_ignora_anios_y_texto_antes_del_resumen(tmp_path):
     # "2024" es un año y "el 15,0%" está ANTES del encabezado del resumen:
     # ninguno debe bloquear.

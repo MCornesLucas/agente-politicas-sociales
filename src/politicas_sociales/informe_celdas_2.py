@@ -1220,16 +1220,23 @@ perfil etario de la atención del SIPIAV no sigue al tramo más pobre: la
 primera infancia — la más pobre — fue históricamente la menos
 representada en la atención, aunque en 2025 se acercó a la paridad.
 """),
+    # ==================================================================
+    # Conclusiones: una celda por conclusión, a propósito — las ediciones
+    # parciales incluyen las conclusiones de sus bloques (el mapa
+    # conclusión → bloques vive en construir_informe.CONCLUSIONES_BLOQUES
+    # y un test lo mantiene alineado con estas celdas).
     md("""
 ## Conclusiones
-
+"""),
+    md("""
 1. **La pobreza uruguaya está concentrada en la infancia, y dentro de la
    infancia, en sus edades más tempranas.** 27,5% de los NNA en hogares
    pobres (2025) frente a ~17% en la población general, con incidencia
    máxima en la primera infancia. Es el dato más relevante del informe
    para el diseño de políticas (fuente: elaboración propia sobre ECH,
    INE).
-
+"""),
+    md("""
 2. **El país tiene sistemas de protección en expansión y una infancia en
    contracción.** La respuesta del SIPIAV se multiplicó por 7; el SPE
    del INAU creció hasta amesetarse en ~8.000 atendidos; y la población
@@ -1237,21 +1244,24 @@ representada en la atención, aunque en 2025 se acercó a la paridad.
    institucionalización crecientes aun sin crecimiento de los sistemas
    (P4) — leer cualquier tasa de infancia sin su denominador demográfico
    induce a error (fuentes: SIPIAV, INAU, INE).
-
+"""),
+    md("""
 3. **La detección de la violencia llega tarde y la intervención pierde a
    la familia.** En la serie comparable, ~9 de cada 10 situaciones
    detectadas ya eran crónicas, solo 4 de cada 10 NNA visualizan la
    violencia que sufren, y la inclusión familiar en la intervención cayó
    24 puntos en una década (82% → 58%), con escenario inercial en ~50%
    hacia 2027 (fuente: SIPIAV).
-
+"""),
+    md("""
 4. **La violencia sexual hacia NNA es adolescente y de género, y perdió
    visibilidad estadística.** 76% de las violencias sexuales afecta a
    niñas y adolescentes mujeres y 51% se concentra en 13-17 años; la
    explotación sexual no tiene serie oficial desde 2022 y desde 2024
    quedó fusionada dentro de «violencias sexuales» (fuentes: SIPIAV,
    CONAPEES/FLACSO).
-
+"""),
+    md("""
 5. **Uruguay no mide la prevalencia de la violencia hacia NNA.** Todo el
    tema 1 es registro administrativo. La única aproximación existente —
    una encuesta de 2026 de UNICEF con muestra no probabilística, que
@@ -1260,7 +1270,8 @@ representada en la atención, aunque en 2025 se acercó a la paridad.
    muestral: esa es la brecha de información más importante que este
    proyecto identifica (fuentes: SIPIAV; UNICEF/Equipos 2026, con su
    diseño declarado).
-
+"""),
+    md("""
 6. **Limitaciones declaradas de este informe**: (a) las cifras de
    registros administrativos describen la respuesta de los sistemas, no
    la prevalencia; (b) las proyecciones son escenarios inerciales con
@@ -1277,13 +1288,64 @@ representada en la atención, aunque en 2025 se acercó a la paridad.
    escalas socioeconómicas no comparables y sin errores estándar en la
    ENSANNA, porcentajes redondeados y renormalizados en el SIPIAV, y
    conteos chicos con condiciones fijadas en 2019 en CONAPEES/Fiscalía.
+"""),
+    # ==================================================================
+    # Fuentes: sección fija de TODA edición (total o parcial) — decisión
+    # del dueño del proyecto (2026-08-19): las fuentes con sus enlaces
+    # validan los números y las elecciones del informe. Los enlaces son
+    # los ya citados en docs/BIBLIOGRAFIA.md (fuente única de citas).
+    md("""
+## Fuentes de datos y bibliografía
+
+Cada cifra de este informe lleva su fuente citada en su propia sección;
+esta lista reúne las fuentes de datos del proyecto con sus enlaces
+oficiales, para verificación directa.
+
+**Registros administrativos e informes institucionales**
+
+- **SIPIAV — informes de gestión (serie desde 2013)**, INAU y sistema
+  interinstitucional: [inau.gub.uy/sipiav](https://www.inau.gub.uy/sipiav).
+  Registro administrativo: mide situaciones atendidas, nunca prevalencia.
+- **INAU — indicadores del Sistema de Protección Especial (SIPI)**:
+  [inau.gub.uy/transparencia](https://inau.gub.uy/transparencia/indicadores-sistema-de-proteccion-especial-inau).
+  Registro administrativo nacional y departamental.
+- **CONAPEES — explotación sexual de NNA**:
+  [inau.gub.uy/conapees](https://www.inau.gub.uy/conapees); serie
+  cuantitativa 2018-2021 compilada por el estudio de
+  [FLACSO Uruguay (2023)](https://flacso.edu.uy/wp-content/uploads/2023/12/EXPLOTACION-SEXUAL-HACIA-NINAS-NINOS-Y-ADOLESCENTES-COMPLETO.pdf),
+  capítulo 6 (incluye las actuaciones de la Fiscalía General de la Nación).
+- **CETI — política nacional contra el trabajo infantil (MTSS)**:
+  [gub.uy/ministerio-trabajo-seguridad-social](https://www.gub.uy/ministerio-trabajo-seguridad-social/comunicacion/noticias/ceti).
+
+**Encuestas y estadísticas oficiales (INE)**
+
+- **ENSANNA 2024** — Encuesta Nacional sobre las Actividades de Niñas,
+  Niños y Adolescentes (INE/MTSS), única fuente de prevalencia de
+  trabajo infantil:
+  [gub.uy/instituto-nacional-estadistica](https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna).
+- **ECH — Encuesta Continua de Hogares (INE)**, microdatos ponderados
+  (pobreza, hacinamiento, vivienda, brecha digital, empleo adolescente,
+  FIES, victimización):
+  [www4.ine.gub.uy/Anda5](https://www4.ine.gub.uy/Anda5/), procesados
+  con la infraestructura verificada de
+  [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares).
+- **Proyecciones de población, revisión 2025 (INE, Censo 2023)** — el
+  denominador demográfico de todas las tasas:
+  [gub.uy/instituto-nacional-estadistica/proyeccionesrev2025](https://www.gub.uy/instituto-nacional-estadistica/proyeccionesrev2025).
+
+**Fuentes secundarias**
+
+- **UNICEF Uruguay — Infancia en Datos** (pobreza infantil, protección):
+  [unicef.org/uruguay/infancia-en-datos](https://www.unicef.org/uruguay/infancia-en-datos).
+
+Las citas completas, con la naturaleza de cada dato y sus advertencias
+de uso, están en `docs/BIBLIOGRAFIA.md` y `docs/FUENTES_DE_DATOS.md` del
+repositorio; el respaldo textual de cada valor de las series curadas, en
+`datos_curados/*_notas.md`.
 
 ---
 
 *Informe generado por el proyecto*
-[agente-politicas-sociales](https://github.com/testa10/agente-politicas-sociales)
-*— cada cifra tiene su fuente citada en su sección; las citas completas
-están en `docs/BIBLIOGRAFIA.md` y el respaldo textual de las series
-curadas en `datos_curados/`.*
+[agente-politicas-sociales](https://github.com/testa10/agente-politicas-sociales).
 """),
 ]
