@@ -169,12 +169,35 @@ clasificación predictiva, no antes.
    Advertencias: el numerador registra el departamento de atención (no
    de origen); carencias de vivienda sin apertura departamental en los
    curados actuales (extensión pendiente).
-2. **CONAPEES/Fiscalía × ECH por departamento** (2018-2021): situaciones
-   ESNNA y actuaciones fiscales vs. condiciones socioeconómicas de la
-   infancia por departamento.
-3. **ENSANNA × ECH por nivel socioeconómico** (solo a nivel agregado: el
-   INSE de la ENSANNA no es el estrato de la ECH — se documenta como
-   comparación de gradientes, no de valores).
-4. **SIPIAV × ECH: solo a nivel nacional y por tramo de edad** — SIPIAV
-   no publica desagregación departamental de situaciones (limitación
-   estructural, documentada arriba).
+2. **CONAPEES/Fiscalía × ECH por departamento** — **desarrollado
+   (2026-08-19)**: tasas cada 10.000 NNA (situaciones ESNNA 2018-2021 y
+   actuaciones FGN; población y condiciones de la ECH 2019, único año de
+   la ventana con microdatos) contra pobreza y hacinamiento
+   (`politicas_sociales/cruce_conapees_fiscalia_ech.py` →
+   `resultados/cruces/`). Resultado: con pobreza sin asociación (rho
+   −0,27 a +0,09); con hacinamiento **asociación negativa en las ocho
+   combinaciones fuente × año** (rho −0,22 a −0,71) — se registra menos
+   donde el hacinamiento es mayor, consistente con la advertencia del
+   estudio FLACSO (recursos de detección, no incidencia).
+   Advertencias: conteos chicos (0-59), lado ECH fijo en 2019, Paysandú
+   2020 (FGN=1) anómalo — el resultado se sostiene al excluirlo.
+3. **ENSANNA × ECH por nivel socioeconómico** — **desarrollado
+   (2026-08-19)**, como comparación de gradientes, no de valores (el
+   INSE de la ENSANNA no es el estrato de la ECH, y el estrato ECH
+   ordenado solo existe para Montevideo)
+   (`politicas_sociales/cruce_ensanna_ech.py`). Resultado: ambos
+   gradientes monótonos, pero el del trabajo infantil es mucho más plano
+   (razón extremos 1,6 contra 20 de la pobreza) y la geografía se
+   invierte: trabajo infantil mayor en el interior (ENSANNA 7,7 vs. 5,2;
+   ocupación ECH 14-17 3,7 vs. 1,7) con pobreza infantil algo mayor en
+   Montevideo (30,9 vs. 27,8 en 2024).
+4. **SIPIAV × ECH nacional por tramo de edad** — **desarrollado
+   (2026-08-19)**; SIPIAV no publica desagregación departamental
+   (limitación estructural, documentada arriba)
+   (`politicas_sociales/cruce_sipiav_ech.py`). Resultado: índice de
+   representación (participación en situaciones / participación en
+   población): 13-17 sobrerrepresentado en 2019 y 2025 (1,20 y 1,08);
+   0-5 pasó de 0,65 (2019) a 0,95 (2025) — y es el tramo más pobre en
+   ambos años: el perfil etario de la atención no sigue al de la
+   pobreza. Advertencias: porcentajes publicados redondeados y
+   renormalizados a 0-17; quiebre de tramos en 2020.

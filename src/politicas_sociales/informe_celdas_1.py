@@ -18,8 +18,9 @@ Este informe presenta las métricas del catálogo del proyecto en **cinco
 temas** (violencia hacia niñas, niños y adolescentes; explotación
 sexual; trabajo infantil; protección especial; pobreza, vivienda y
 entorno del hogar), junto con las proyecciones calculadas y validadas
-hasta la fecha y el primer **cruce territorial entre fuentes** (INAU ×
-ECH por departamento). Cada métrica se presenta con la pregunta que responde,
+hasta la fecha y los **cuatro cruces entre fuentes** del catálogo (INAU,
+CONAPEES/Fiscalía, ENSANNA y SIPIAV contra la ECH), cada uno con sus
+limitaciones declaradas. Cada métrica se presenta con la pregunta que responde,
 su gráfica, la justificación del tipo de gráfica elegido y su lectura,
 con la fuente citada en cada caso
 ([agente-politicas-sociales](https://github.com/testa10/agente-politicas-sociales)).

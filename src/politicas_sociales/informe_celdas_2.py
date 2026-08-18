@@ -766,14 +766,21 @@ releva desde 2024): su valor analítico crecerá con los años.
 """),
     # ==================================================================
     md("""
-## Cruce territorial — Protección especial y condiciones de vida por departamento
+## Cruces entre fuentes — ¿La respuesta institucional sigue el mapa de la necesidad?
 
-Primer cruce entre fuentes del proyecto: la tasa departamental de NNA en
-protección especial (INAU) contra las condiciones socioeconómicas de la
-infancia del mismo departamento (cálculo propio sobre la ECH). Ambos
-lados del cruce están al **mismo nivel de agregación** (departamento) y
-la lectura se mantiene en ese nivel — nada de lo que sigue describe a
-individuos.
+Los cuatro cruces del catálogo contrastan la respuesta de los sistemas
+de protección (INAU, CONAPEES/Fiscalía, SIPIAV) y la única prevalencia
+disponible (ENSANNA) con las condiciones socioeconómicas de la infancia
+calculadas sobre la ECH. Reglas comunes a todos: ambos lados de cada
+cruce al **mismo nivel de agregación**, lectura observacional
+(asociación, nunca causa) y las limitaciones de cada cruce declaradas en
+su propia sección — ninguna conclusión describe individuos.
+"""),
+    md("""
+### Cruce 1. ¿La intensidad territorial de la protección especial sigue el mapa de la pobreza infantil?
+
+**¿Qué pregunta responde?** ¿Los departamentos con más pobreza infantil
+son también los de mayor tasa de NNA en protección especial?
 
 **Construcción**: tasa = NNA atendidos en proyectos del SPE del
 departamento (segundo semestre de cada año) cada 1.000 NNA residentes
@@ -781,12 +788,6 @@ departamento (segundo semestre de cada año) cada 1.000 NNA residentes
 importante del numerador: cuenta dónde se **atiende** al NNA, no de
 dónde proviene — un niño derivado a una residencia de otro departamento
 cuenta en el departamento de la residencia.
-"""),
-    md("""
-### Cruce 1. ¿La intensidad territorial de la protección especial sigue el mapa de la pobreza infantil?
-
-**¿Qué pregunta responde?** ¿Los departamentos con más pobreza infantil
-son también los de mayor tasa de NNA en protección especial?
 """),
     code("""
 CRUCE = pd.read_csv(RESULTADOS / "cruces" / "cruce_inau_ech_departamental.csv")
@@ -859,6 +860,227 @@ el CSV del cruce). Aun con esas salvedades, la ausencia de correlación
 es un hallazgo para la discusión de política territorial — y la pregunta
 que abre (¿la oferta está donde está la necesidad?) excede lo que estas
 fuentes pueden responder solas.
+"""),
+    md("""
+### Cruce 2. ¿La detección de la explotación sexual sigue el mapa de las carencias?
+
+**¿Qué pregunta responde?** ¿Los departamentos con más pobreza infantil
+y hacinamiento son también los de más situaciones de ESNNA atendidas
+(CONAPEES) y más actuaciones fiscales por delitos sexuales contra NNA
+(Fiscalía General de la Nación), en proporción a su población infantil?
+
+**Construcción**: tasa cada 10.000 NNA = casos del departamento
+(2018-2021, tablas 2 y 8 del estudio FLACSO 2023) sobre la población
+0-17 ponderada de la ECH 2019 — el único año de la ventana con
+microdatos extraídos; el lado socioeconómico (pobreza y hacinamiento)
+queda fijo en 2019 por la misma razón, de modo que 2020 y 2021 se cruzan
+contra condiciones previas a la pandemia. Tres advertencias mayores
+acotan este cruce: los conteos departamentales son chicos (de 0 a 59
+situaciones anuales en CONAPEES — una situación mueve la tasa de un
+departamento chico), el registro mide detección y atención — nunca
+incidencia — y el propio estudio FLACSO advierte que los departamentos
+con más actuaciones cada 10.000 NNA posiblemente tienen más recursos y
+equipos locales, no más explotación (pp. 46 y 52).
+"""),
+    code("""
+CFE = pd.read_csv(RESULTADOS / "cruces" / "cruce_conapees_fiscalia_ech.csv")
+
+etiquetas_fuente = {"conapees": "CONAPEES (situaciones ESNNA)",
+                    "fiscalia": "Fiscalía (actuaciones)"}
+rhos = []
+for fuente_cruce in ["conapees", "fiscalia"]:
+    for anio_cruce in [2018, 2019, 2020, 2021]:
+        t = CFE[(CFE["fuente"] == fuente_cruce) & (CFE["anio"] == anio_cruce)]
+        for variable, etiqueta_v in [("pobreza_2019_pct", "pobreza"),
+                                     ("hacinamiento_2019_pct", "hacinamiento")]:
+            rho, _ = spearmanr(t["tasa_por_10mil"], t[variable])
+            rhos.append({"fuente": etiquetas_fuente[fuente_cruce],
+                         "anio": anio_cruce, "variable": etiqueta_v, "rho": rho})
+RHOS = pd.DataFrame(rhos)
+
+fig, ax = plt.subplots(figsize=(9, 4.8))
+filas_y = [(f, a) for f in etiquetas_fuente.values() for a in [2018, 2019, 2020, 2021]]
+posiciones = {fa: i for i, fa in enumerate(filas_y)}
+for variable, color, marcador in [("hacinamiento", COLOR, "o"), ("pobreza", ACENTO, "s")]:
+    sub = RHOS[RHOS["variable"] == variable]
+    y = [posiciones[(f, a)] for f, a in zip(sub["fuente"], sub["anio"])]
+    ax.scatter(sub["rho"], y, color=color, marker=marcador, s=55, zorder=3,
+               label=f"tasa vs. {variable}")
+ax.axvline(0, color="#999999", linewidth=1)
+ax.set_yticks(range(len(filas_y)))
+ax.set_yticklabels([f"{f} · {a}" for f, a in filas_y], fontsize=9)
+ax.invert_yaxis()
+ax.set_xlim(-1, 1)
+ax.set_xlabel("Correlación de rangos (Spearman) con la tasa cada 10.000 NNA")
+ax.set_title("Asociación departamental de la detección de explotación sexual con pobreza y hacinamiento\\n"
+             "(cada punto es un año de una fuente; a la izquierda de 0: más detección donde hay menos carencia)")
+ax.legend(frameon=False, loc="lower right")
+fuente(fig, "Fuente: elaboración propia sobre FLACSO Uruguay 2023 (tablas 2 y 8; CONAPEES y FGN/SIPPAU 2018-2021) y "
+            "microdatos de la ECH 2019 (INE). Detalle y n muestrales: resultados/cruces/cruce_conapees_fiscalia_ech.csv.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Con dos fuentes, cuatro años y dos variables,
+mostrar el plano de un solo año sería una selección arbitraria: se
+muestra el coeficiente de cada combinación (16 puntos) para exhibir lo
+único que este cruce puede afirmar con honestidad — la estabilidad del
+signo a través de años y fuentes. El detalle departamental, con sus n
+muestrales, queda en el CSV del cruce.
+
+**Lectura**: con la pobreza no hay asociación (rho entre −0,27 y +0,09
+según año y fuente, siempre compatible con el azar). Con el hacinamiento
+la asociación es **negativa en las ocho combinaciones** (entre −0,22 y
+−0,71): los departamentos con más hacinamiento tienden a registrar
+*menos* situaciones atendidas y menos actuaciones fiscales cada 10.000
+NNA, no más. Leída junto con la advertencia del propio estudio FLACSO —
+más actuaciones donde hay más recursos y equipos, no necesariamente más
+incidencia — la interpretación observacional prudente es que este cruce
+retrata la **geografía de la capacidad de detección, no la del
+fenómeno**: donde las carencias habitacionales son mayores, el sistema
+registra menos. Advertencias adicionales: el valor de Paysandú 2020 en
+la fuente fiscal (1 actuación) es una anomalía interna del estudio — el
+resultado se sostiene al excluirlo (rho = −0,66) — y el numerador
+registra el departamento de actuación, no el de residencia de la
+víctima.
+"""),
+    md("""
+### Cruce 3. ¿El trabajo infantil sigue el gradiente socioeconómico de la pobreza?
+
+**¿Qué pregunta responde?** ¿El trabajo infantil declarado (la única
+prevalencia real del proyecto) se concentra en los niveles
+socioeconómicos bajos tanto como la pobreza infantil?
+
+**Construcción**: este cruce compara **formas de gradiente, no
+valores** — las escalas socioeconómicas de los dos lados no son la misma
+variable. La ENSANNA clasifica por INSE (índice de CINVE, nacional,
+cinco niveles); la extracción de la ECH solo trae un ordenamiento
+socioeconómico comparable para Montevideo (estratos 1 a 5 — los códigos
+del interior son geográficos, sin orden socioeconómico). A eso se suman
+universos distintos (5-17 contra 0-17) y que el boletín ENSANNA no
+publica errores estándar ni microdatos. Por eso los paneles llevan
+escalas separadas y ninguna cifra de un lado se compara con el nivel del
+otro.
+"""),
+    code("""
+CEE = pd.read_csv(RESULTADOS / "cruces" / "cruce_ensanna_ech.csv")
+orden_nse = ["Bajo", "Medio bajo", "Medio", "Medio alto", "Alto"]
+ens_nse = (CEE[(CEE["fuente"] == "ensanna_2024") & (CEE["dimension"] == "nse")
+               & (CEE["metrica"] == "trabajo_infantil")]
+           .set_index("categoria").loc[orden_nse, "valor"])
+ech_nse = (CEE[(CEE["fuente"] == "ech_2024") & (CEE["dimension"] == "nse")]
+           .set_index("categoria").loc[orden_nse, "valor"])
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9.5, 4.4))
+for ax, serie, titulo, color in [
+    (ax1, ens_nse, "Trabajo infantil 5-17\\n(ENSANNA 2024, INSE nacional)", COLOR),
+    (ax2, ech_nse, "Pobreza 0-17\\n(ECH 2024, estratos de Montevideo)", ACENTO),
+]:
+    ax.barh(range(len(serie)), serie.to_numpy(), color=color)
+    ax.set_yticks(range(len(serie)))
+    ax.set_yticklabels(serie.index)
+    ax.invert_yaxis()
+    ax.set_title(titulo, fontsize=10)
+    for i, v in enumerate(serie):
+        ax.annotate(pct(v), (v, i), textcoords="offset points", xytext=(4, 0),
+                    va="center", fontsize=9)
+    ax.set_xlim(0, serie.max() * 1.2)
+fig.suptitle("Dos gradientes socioeconómicos — comparación de formas, no de niveles (escalas distintas)",
+             y=1.04, fontsize=12)
+fuente(fig, "Fuente: ENSANNA 2024, Cuadro 4 (INE/MTSS; INSE de CINVE) y elaboración propia sobre microdatos de la "
+            "ECH 2024 (INE), solo Montevideo. Detalle y n muestrales: resultados/cruces/cruce_ensanna_ech.csv.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Dos paneles de barras con escalas separadas:
+la única comparación defendible entre dos índices socioeconómicos
+distintos es la forma del gradiente (¿es monótono? ¿cuánto separa a los
+extremos?), y esa forma se ve en los largos relativos de las barras de
+cada panel, sin inducir jamás la comparación de niveles entre paneles.
+
+**Lectura**: los dos gradientes son monótonos — a menor nivel
+socioeconómico, más trabajo infantil y más pobreza — pero sus pendientes
+relativas son muy distintas: la pobreza infantil de Montevideo se
+multiplica por 20 entre el estrato alto y el bajo (2,7% a 54,5%),
+mientras el trabajo infantil nacional apenas se multiplica por 1,6 (4,8%
+a 7,9%). En términos observacionales: **el trabajo infantil declarado
+atraviesa toda la estructura social** y su gradiente es mucho más plano
+que el de la pobreza. La región refuerza esa disociación con dos fuentes
+independientes: el trabajo infantil 5-17 es más frecuente en el interior
+que en Montevideo (7,7% contra 5,2%, y el doble en actividades
+económicas: 5,9% contra 2,9%), igual que la ocupación adolescente 14-17
+medida por la ECH (3,7% contra 1,7%) — pero la pobreza infantil es algo
+mayor en Montevideo (30,9% contra 27,8% en 2024). **La geografía del
+trabajo infantil no es la geografía de la pobreza infantil**: el
+componente rural y de actividades económicas del interior pesa más que
+la privación monetaria. Advertencia final: la ENSANNA mide actividades
+declaradas por los hogares, y la subdeclaración no es necesariamente
+pareja entre niveles socioeconómicos.
+"""),
+    md("""
+### Cruce 4. ¿Las edades atendidas por el SIPIAV reflejan las edades de la población infantil?
+
+**¿Qué pregunta responde?** ¿Qué tramos de edad pesan en las situaciones
+de violencia atendidas más de lo que pesan en la población — y ese
+sesgo, sigue al tramo más pobre?
+
+**Construcción**: índice de representación = participación del tramo en
+las situaciones atendidas (SIPIAV, distribución publicada, renormalizada
+al universo 0-17) sobre su participación en la población 0-17 (ECH
+ponderada del mismo año). 1 = el tramo pesa en la atención lo mismo que
+en la población. Años comparables: 2019 y 2025, los únicos con la
+distribución etaria completa y microdatos ECH extraídos. El SIPIAV no
+publica apertura departamental, así que este cruce es solo nacional
+(limitación estructural del catálogo).
+"""),
+    code("""
+CSE = pd.read_csv(RESULTADOS / "cruces" / "cruce_sipiav_ech_tramos.csv")
+tramos_cruce = ["0 a 5", "6 a 12", "13 a 17"]
+fig, ax = plt.subplots(figsize=(9, 3.8))
+for anio_cruce, color in [(2019, "#999999"), (2025, COLOR)]:
+    t = CSE[CSE["anio"] == anio_cruce].set_index("tramo").loc[tramos_cruce]
+    ax.scatter(t["indice_representacion"], range(len(tramos_cruce)), s=70,
+               color=color, zorder=3, label=str(anio_cruce))
+    for i, v in enumerate(t["indice_representacion"]):
+        ax.annotate(f"{v:.2f}".replace(".", ","), (v, i),
+                    textcoords="offset points", xytext=(0, 9), ha="center",
+                    fontsize=9, color=color)
+ax.axvline(1, color="#bbbbbb", linewidth=1)
+ax.set_yticks(range(len(tramos_cruce)))
+ax.set_yticklabels(tramos_cruce)
+ax.invert_yaxis()
+ax.set_xlim(0.5, 1.4)
+ax.set_xlabel("Índice de representación (participación en situaciones / participación en población)")
+ax.set_title("Representación de cada tramo de edad en las situaciones atendidas por el SIPIAV\\n"
+             "(1 = el tramo pesa en la atención lo mismo que en la población 0-17)")
+ax.legend(frameon=False, loc="lower right")
+fuente(fig, "Fuente: elaboración propia sobre SIPIAV (informes 2019 y 2025, distribución renormalizada a 0-17) y "
+            "microdatos de la ECH (INE). Detalle: resultados/cruces/cruce_sipiav_ech_tramos.csv.", y=-0.08)
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** El índice de representación en un eje único
+con la línea de paridad marcada: la pregunta del cruce es de desvío
+respecto de 1, y esa distancia se lee directamente, con los dos años
+como control de estabilidad.
+
+**Lectura**: los adolescentes (13-17) están sobrerrepresentados en las
+situaciones atendidas en ambos años (índice 1,20 en 2019 y 1,08 en
+2025). El cambio grande es la primera infancia: pasó de una
+subrepresentación fuerte en 2019 (0,65) a la casi paridad en 2025
+(0,95). El registro no permite distinguir si eso refleja más violencia
+hacia la primera infancia o mejor detección temprana — y el informe
+SIPIAV 2025 introdujo además una metodología nueva en paralelo, con
+quiebres documentados en la serie curada. Lo que el cruce sí permite
+afirmar: **el perfil etario de la atención no sigue al de la pobreza** —
+la primera infancia es el tramo más pobre en ambos años (29,1% contra
+26,5% de los adolescentes en 2025) y aun así fue el tramo históricamente
+menos representado en la atención. La sobrerrepresentación adolescente
+es coherente con la mayor visibilidad de esa violencia para el sistema
+(escolarización, capacidad de denuncia propia), no necesariamente con
+mayor incidencia. Advertencias: porcentajes publicados redondeados a
+enteros y renormalizados (2019 incluía un 9% de mayores de 18) y quiebre
+de tramos en 2020 (0-3/4-5 pasa a 0-5): la comparación usa el agregado
+0-5, único comparable.
 """),
     # ==================================================================
     md("""
@@ -989,6 +1211,19 @@ hacinamiento del departamento (Spearman sin asociación estable en 2024 y
 localización de la oferta institucional y a las derivaciones más que al
 mapa de la necesidad — una pregunta abierta para la política
 territorial.
+
+**Cruces entre fuentes (CONAPEES/Fiscalía, ENSANNA, SIPIAV × ECH).** La
+detección de la explotación sexual tampoco sigue el mapa de las
+carencias: la asociación con el hacinamiento es negativa y estable en
+las ocho combinaciones de fuente y año — se registra menos donde las
+carencias habitacionales son mayores, consistente con que el registro
+retrata la capacidad de detección y no el fenómeno. El trabajo infantil
+declarado atraviesa toda la estructura social, con un gradiente mucho
+más plano que el de la pobreza y la geografía invertida (más frecuente
+en el interior, con la pobreza infantil algo mayor en Montevideo). Y el
+perfil etario de la atención del SIPIAV no sigue al tramo más pobre: la
+primera infancia — la más pobre — fue históricamente la menos
+representada en la atención, aunque en 2025 se acercó a la paridad.
 """),
     md("""
 ## Conclusiones
@@ -1038,12 +1273,15 @@ territorial.
    hay proyección; (c) los microdatos de la ENSANNA aún no son públicos
    (el tema 3 usa el boletín oficial); (d) el SIPIAV no publica
    desagregación departamental, lo que limita el análisis territorial de
-   la violencia; (e) el cruce territorial incluido registra el
-   departamento de atención (no el de origen del NNA) y usa estimaciones
-   departamentales de la ECH con error muestral mayor en departamentos
-   chicos; los tres cruces restantes del catálogo (CONAPEES/Fiscalía ×
-   ECH, ENSANNA × ECH, SIPIAV × ECH nacional) quedan para la fase
-   siguiente.
+   la violencia; (e) los cuatro cruces entre fuentes comparten tres
+   límites estructurales — los numeradores administrativos registran
+   dónde se atiende o actúa (no dónde reside el NNA), las estimaciones
+   departamentales de la ECH tienen error muestral mayor en los
+   departamentos chicos, y toda asociación es observacional — además de
+   las limitaciones propias declaradas en la sección de cada cruce:
+   escalas socioeconómicas no comparables y sin errores estándar en la
+   ENSANNA, porcentajes redondeados y renormalizados en el SIPIAV, y
+   conteos chicos con condiciones fijadas en 2019 en CONAPEES/Fiscalía.
 
 ---
 

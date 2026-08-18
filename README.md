@@ -106,7 +106,9 @@ respaldo textual por valor (`datos_curados/`); bloque predictivo con
 protocolo de backtest aplicado: P1 calculada y validada con el dato real
 2025, P2 y P3 calculadas, P4 resuelta como lectura descriptiva (el
 numerador se amesetó y ningún modelo supera al ingenuo), P6 citada del
-INE (revisión 2025 descargada). Informe en `notebooks/`.
+INE (revisión 2025 descargada); los cuatro cruces entre fuentes del
+catálogo calculados, cada uno con sus limitaciones declaradas
+(`resultados/cruces/`). Informe en `notebooks/`.
 
 Pendientes que dependen de terceros: microdatos ENSANNA (INE los lista
 "en análisis"), serie ESNNA 2022+ oficial (CONAPEES), estimaciones
