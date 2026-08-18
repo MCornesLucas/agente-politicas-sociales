@@ -12,9 +12,9 @@ where node >nul 2>nul
 if errorlevel 1 (
     echo [1/6] No se encontro Node.js en esta computadora.
     echo        Se va a abrir la pagina de descarga en tu navegador.
-    echo        Instalalo con las opciones por defecto del instalador,
-    echo        y despues vuelve a hacer doble clic en este archivo,
-    echo        instalar.bat, para continuar donde quedaste.
+    echo        Instala Node.js con las opciones por defecto y despues
+    echo        vuelve a hacer doble clic en este archivo, instalar.bat,
+    echo        para continuar donde quedaste.
     echo.
     start https://nodejs.org
     if not defined POLITICAS_SOCIALES_NONINTERACTIVE pause
@@ -80,10 +80,11 @@ if not exist "!ECH_RUTA!\src\encuesta_hogares\" (
     echo No se encontro el proyecto hermano agente-encuesta-hogares en:
     echo   !ECH_RUTA!
     echo.
-    echo Descargalo de https://github.com/testa10/agente-encuesta-hogares
-    echo y dejalo como carpeta hermana de esta ^(mismo directorio^), o
-    echo define la variable de entorno AGENTE_ECH_RUTA con su ruta, y
-    echo vuelve a correr este instalador.
+    echo Para continuar: descargar el proyecto desde
+    echo https://github.com/testa10/agente-encuesta-hogares y dejarlo
+    echo como carpeta hermana de esta ^(mismo directorio^), o definir la
+    echo variable de entorno AGENTE_ECH_RUTA con su ruta, y volver a
+    echo correr este instalador.
     if not defined POLITICAS_SOCIALES_NONINTERACTIVE pause
     exit /b 1
 )

@@ -7,7 +7,7 @@ REM en .claude\settings.json sea la misma para cualquier usuario.
 setlocal
 set "AQUI=%~dp0"
 if not exist "%AQUI%.claude\python_path.txt" (
-    echo No existe .claude\python_path.txt: corre primero instalar.bat,
+    echo No existe .claude\python_path.txt: ejecuta primero instalar.bat,
     echo que esta en esta misma carpeta.
     exit /b 1
 )

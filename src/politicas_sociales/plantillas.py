@@ -2,8 +2,15 @@
 
 Heredadas del proyecto hermano (mismo estilo y las mismas decisiones de
 usabilidad: botón de salida en cada paso, pantalla de espera tras cada
-envío). El servidor y los `mostrar_*` viven en `formularios.py`, que
-reexporta estas funciones.
+envío), con dos diferencias decididas por el dueño de este proyecto
+(2026-08-19): el lenguaje es **español neutro y profesional** (tuteo
+estándar, sin voseo ni regionalismos — el hermano vosea; la regla de
+este proyecto es la de sus docs e informes) y los pasos intermedios
+ofrecen **volver al paso anterior** (POST `{"volver": true}`) para
+corregir una elección sin salir del flujo.
+
+El servidor y los `mostrar_*` viven en `formularios.py`, que reexporta
+estas funciones.
 """
 
 from __future__ import annotations
@@ -58,6 +65,13 @@ button[type=submit]:hover { background: #559874; }
 .boton-primario:hover { background: #559874; }
 .boton-secundario { color: white; background: var(--gris); }
 .boton-secundario:hover { background: #46505a; }
+.boton-volver {
+  display: block; width: 100%; text-align: center; margin-top: 10px;
+  padding: 10px; font-size: 13px; font-weight: 600; color: var(--gris);
+  background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 8px;
+  cursor: pointer; font-family: inherit;
+}
+.boton-volver:hover { border-color: var(--verde); color: var(--texto); }
 .boton-salir {
   display: block; width: 100%; text-align: center; margin-top: 10px;
   padding: 10px; font-size: 13px; font-weight: 600; color: var(--gris);
@@ -114,31 +128,42 @@ function mostrarListo() {
   document.getElementById('tarjeta').innerHTML = `
     <div class="listo">
       <div class="spinner"></div>
-      <h1>Aguardá un momento...</h1>
-      <p>Estamos preparando tu informe. Puede tardar unos minutos; cuando
-      esté listo, se va a abrir solo el siguiente paso en una pestaña
-      nueva.</p>
+      <h1>Un momento, por favor...</h1>
+      <p>Estamos procesando tu solicitud. Cuando el siguiente paso esté
+      listo, se abrirá solo en una pestaña nueva.</p>
     </div>`;
 }
 """
 
-# Botón presente en los pasos intermedios para que alguien que no quiere
-# seguir pueda salir en el momento, en vez de que el agente quede
-# esperando hasta 30 minutos a que la pestaña cerrada llegue al timeout.
+# Botón presente en los pasos intermedios para que quien no quiere seguir
+# pueda salir en el momento, en vez de que el agente quede esperando
+# hasta 30 minutos a que la pestaña cerrada llegue al timeout.
 _BOTON_SALIR = '<button type="button" class="boton-salir" onclick="salirDelFlujo()">Salir sin generar el informe</button>'
 
 _SCRIPT_SALIR = """
 function salirDelFlujo() {
-  if (!confirm('¿Seguro que querés salir sin generar el informe?')) return;
+  if (!confirm('¿Confirmas que quieres salir sin generar el informe?')) return;
   fetch('/', {method: 'POST', headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({salir_del_flujo: true})}).then(() => {
     document.getElementById('tarjeta').innerHTML = `
       <div class="listo">
         <div class="check">👋</div>
         <h1>Listo, no se generó ningún informe.</h1>
-        <p>Ya podés cerrar esta pestaña.</p>
+        <p>Ya puedes cerrar esta pestaña.</p>
       </div>`;
   });
+}
+"""
+
+# Botón de volver al paso anterior (pedido del dueño, 2026-08-19: sin
+# esto no había forma de corregir una elección ya enviada). El agente
+# recibe {"volver": true} y vuelve a mostrar el paso anterior.
+_BOTON_VOLVER = '<button type="button" class="boton-volver" onclick="volverAtras()">← Volver al paso anterior</button>'
+
+_SCRIPT_VOLVER = """
+function volverAtras() {
+  fetch('/', {method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({volver: true})}).then(() => { mostrarListo(); });
 }
 """
 
@@ -154,7 +179,7 @@ def plantilla_arranque() -> str:
 <div class="tarjeta" id="tarjeta">
   <div class="emoji">👋</div>
   <h1>Bienvenido a tu agente de políticas sociales de infancia</h1>
-  <p class="subtitulo">Elegí una opción para continuar.</p>
+  <p class="subtitulo">Elige una opción para continuar.</p>
   <button type="button" class="boton-accion boton-primario" onclick="elegir('empezar')">Empezar</button>
   <button type="button" class="boton-accion boton-secundario" onclick="elegir('salir')">Salir del agente</button>
 </div>
@@ -164,7 +189,7 @@ async function elegir(accion) {{
     <div class="listo">
       <div class="spinner"></div>
       <h1>${{accion === 'empezar' ? 'Iniciando…' : 'Cerrando…'}}</h1>
-      <p>${{accion === 'empezar' ? 'Ya te vamos a abrir el primer formulario en una pestaña nueva.' : 'Si esta pestaña no se cierra sola, cerrala vos.'}}</p>
+      <p>${{accion === 'empezar' ? 'El primer formulario se abrirá en una pestaña nueva.' : 'Si esta pestaña no se cierra sola, puedes cerrarla.'}}</p>
     </div>`;
   await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
     body: JSON.stringify({{accion: accion}})}});
@@ -191,10 +216,9 @@ def plantilla_bienvenida() -> str:
   protección (SIPIAV, INAU, CONAPEES, ENSANNA y la ECH) en un informe
   claro y riguroso.</p>
   <div class="valor">
-    El informe incluye las métricas confirmadas del catálogo en cinco
-    temas — violencia, explotación sexual, trabajo infantil, protección
-    especial y pobreza —, las proyecciones validadas y los cruces entre
-    fuentes, cada cifra con su fuente citada.
+    Eliges los temas y las métricas; el informe se genera con las
+    métricas confirmadas del catálogo, las proyecciones validadas y los
+    cruces entre fuentes, cada cifra con su fuente citada.
   </div>
   <div class="advertencia">
     La mayoría de las fuentes son registros administrativos: miden la
@@ -202,7 +226,7 @@ def plantilla_bienvenida() -> str:
     problema. El informe explica esa diferencia en lenguaje simple.
   </div>
   <form id="form">
-    <button type="submit">Generar el informe →</button>
+    <button type="submit">Continuar →</button>
   </form>
   {_BOTON_SALIR}
 </div>
@@ -212,7 +236,7 @@ def plantilla_bienvenida() -> str:
 document.getElementById('form').addEventListener('submit', async (e) => {{
   e.preventDefault();
   await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
-    body: JSON.stringify({{accion: 'generar'}})}});
+    body: JSON.stringify({{accion: 'continuar'}})}});
   mostrarListo();
 }});
 </script></body></html>"""
@@ -251,21 +275,23 @@ def plantilla_catalogo(bloques: list[dict]) -> str:
 <div class="tarjeta" id="tarjeta">
   <div class="emoji">🗂️</div>
   <h1>¿Qué temas incluye tu informe?</h1>
-  <p class="subtitulo">Marcá los bloques que te interesan. En el paso
-  siguiente vas a poder elegir las métricas de cada bloque, una por una.
-  El resumen analítico y las conclusiones solo se incluyen en el informe
+  <p class="subtitulo">Marca los bloques que te interesen. En el paso
+  siguiente podrás elegir las métricas de cada bloque, una por una. El
+  resumen analítico y las conclusiones solo se incluyen en el informe
   completo, porque recorren los cinco temas.</p>
   <form id="form">
     {filas_html}
-    <p class="error" id="error">Elegí al menos un tema (los cruces solos no
+    <p class="error" id="error">Elige al menos un tema (los cruces solos no
     alcanzan para armar un informe).</p>
     <button type="submit">Continuar →</button>
   </form>
+  {_BOTON_VOLVER}
   {_BOTON_SALIR}
 </div>
 <script>
 {_SCRIPT_LISTO}
 {_SCRIPT_SALIR}
+{_SCRIPT_VOLVER}
 document.getElementById('form').addEventListener('submit', async (e) => {{
   e.preventDefault();
   const marcados = Array.from(document.querySelectorAll('input[name=bloque]:checked'))
@@ -287,7 +313,7 @@ def plantilla_metricas(estructura: list[dict]) -> str:
     las propias celdas del informe por
     `construir_informe.unidades_disponibles(bloques)`). Vienen todas
     marcadas — son lo que el informe imprimirá salvo que el usuario
-    destilde — con botones de marcar todas/ninguna por bloque (estilo
+    desmarque — con botones de marcar todas/ninguna por bloque (estilo
     heredado del proyecto hermano).
 
     Si una unidad declara dependencias (`requiere`), el envío las
@@ -327,32 +353,34 @@ def plantilla_metricas(estructura: list[dict]) -> str:
 </style></head><body>
 <div class="tarjeta" id="tarjeta">
   <div class="emoji">📋</div>
-  <h1>Elegí las métricas de tu informe</h1>
+  <h1>Elige las métricas de tu informe</h1>
   <p class="subtitulo">Estas son las métricas de los bloques que
-  elegiste, todas marcadas: destildá las que no necesites. Cada una se
-  imprime con su gráfica, su justificación, su lectura y su fuente.</p>
+  elegiste, todas marcadas: desmarca las que no necesites. Cada una se imprime con
+  su gráfica, su justificación, su lectura y su fuente.</p>
   <form id="form">
     {secciones_html}
     <div class="otra">
-      <label for="otra_metrica">¿Querés agregar una métrica que no está en el catálogo?</label>
-      <p class="subtitulo" style="margin-bottom:8px;">Describila con tus
-      palabras (qué querés saber, de qué fuente, para qué años). El agente
-      va a analizar si puede calcularse con los datos ya verificados del
-      proyecto y con sus reglas de rigor; si no puede, te va a explicar
-      por qué y ofrecer una opción.</p>
+      <label for="otra_metrica">¿Quieres agregar una métrica que no está en el catálogo?</label>
+      <p class="subtitulo" style="margin-bottom:8px;">Descríbela con tus
+      palabras (qué quieres saber, de qué fuente, para qué años). El agente
+      analizará si puede calcularse con los datos ya verificados del
+      proyecto y con sus reglas de rigor; si no puede, te explicará por
+      qué y te ofrecerá una opción.</p>
       <textarea id="otra_metrica" name="otra_metrica" rows="3"
         placeholder="Ej.: cómo evolucionó la proporción de situaciones con violencia reiterada respecto del total, 2019-2025"></textarea>
     </div>
-    <p class="error" id="error">Elegí al menos una métrica o proyección de
+    <p class="error" id="error">Elige al menos una métrica o proyección de
     un tema (los cruces solos no alcanzan para armar un informe).</p>
     <p class="error" id="aviso-requiere"></p>
     <button type="submit">Generar el informe →</button>
   </form>
+  {_BOTON_VOLVER}
   {_BOTON_SALIR}
 </div>
 <script>
 {_SCRIPT_LISTO}
 {_SCRIPT_SALIR}
+{_SCRIPT_VOLVER}
 function marcarBloque(bloque, estado) {{
   document.querySelectorAll('[data-bloque=' + bloque + '] input[name=unidad]')
     .forEach((c) => {{ c.checked = estado; }});
@@ -411,12 +439,12 @@ def plantilla_revision(metrica_pedida: str, problema: str,
         if alternativa else ""
     )
     return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
-<title>Sobre la métrica que pediste</title>
+<title>Sobre la métrica solicitada</title>
 <style>{_ESTILO}</style></head><body>
 <div class="tarjeta" id="tarjeta">
   <div class="emoji">🔍</div>
-  <h1>La métrica que pediste no puede calcularse así</h1>
-  <div class="original"><strong>Pediste:</strong> {metrica_pedida}</div>
+  <h1>La métrica solicitada no puede calcularse así</h1>
+  <div class="original"><strong>Tu pedido:</strong> {metrica_pedida}</div>
   <div class="problema">{problema}</div>
   {bloque_alternativa}
   <form id="form" style="display:flex; flex-direction:column; gap:10px;">
@@ -460,7 +488,7 @@ def plantilla_finalizacion(pdf_disponible: bool, html_disponible: bool) -> str:
   <div class="emoji">✅</div>
   <h1>Tu informe fue creado con éxito</h1>
   <p class="subtitulo">Gracias por usar el agente de políticas sociales de
-  infancia. Podés abrir tu informe con los botones de abajo, las veces
+  infancia. Puedes abrir tu informe con los botones de abajo, las veces
   que quieras.</p>
   {botones_html}
   <form id="form" style="margin-top:24px; display:flex; flex-direction:column; gap:10px;">
@@ -480,8 +508,8 @@ document.getElementById('form').addEventListener('submit', async (e) => {{
       <div class="check">${{esNuevo ? '🔄' : '🙏'}}</div>
       <h1>${{esNuevo ? 'Preparando un nuevo informe…' : '¡Gracias!'}}</h1>
       <p>${{esNuevo
-        ? 'Ya te vamos a abrir el primer formulario en una pestaña nueva.'
-        : 'Ya podés cerrar esta pestaña.'}}</p>
+        ? 'El primer formulario se abrirá en una pestaña nueva.'
+        : 'Ya puedes cerrar esta pestaña.'}}</p>
     </div>`;
 }});
 </script></body></html>"""

@@ -76,6 +76,7 @@ respuesta = formularios.mostrar_formulario(
     formularios.plantilla_catalogo(construir_informe.bloques_disponibles())
 )
 bloques = respuesta["bloques"]  # ej. ["tema_1", "cruces"]; chequear salir_del_flujo
+# si respuesta.get("volver"): repetir el paso 1 (bienvenida)
 ```
 
 **Paso 1c — Selección de métricas.** Mostrar las métricas de los bloques
@@ -89,6 +90,7 @@ respuesta = formularios.mostrar_formulario(
 unidades = respuesta["unidades"]          # ej. ["metrica_1", "proyeccion_p1"]
 otra_metrica = respuesta.get("otra_metrica", "")  # texto libre, puede ser ""
 # chequear salir_del_flujo antes de seguir
+# si respuesta.get("volver"): repetir el paso 1b (bloques)
 ```
 
 **Paso 1d — Métrica a medida (solo si `otra_metrica` no está vacío).**

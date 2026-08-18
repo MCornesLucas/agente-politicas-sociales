@@ -5,7 +5,7 @@ title Agente - Politicas Sociales de Infancia
 where claude >nul 2>nul
 if errorlevel 1 (
     echo No se encontro Claude Code en esta computadora.
-    echo Corre primero instalar.bat, que esta en esta misma carpeta.
+    echo Ejecuta primero instalar.bat, que esta en esta misma carpeta.
     pause
     exit /b 1
 )

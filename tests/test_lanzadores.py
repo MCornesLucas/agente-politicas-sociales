@@ -122,6 +122,33 @@ def test_revision_sin_alternativa_no_ofrece_el_boton():
     assert "Usar la alternativa" in con
 
 
+_TODAS_LAS_PLANTILLAS = ["plantilla_arranque", "plantilla_bienvenida",
+                         "plantilla_catalogo", "plantilla_metricas",
+                         "plantilla_revision", "plantilla_finalizacion"]
+
+
+@pytest.mark.parametrize("nombre_plantilla", _TODAS_LAS_PLANTILLAS)
+def test_las_plantillas_no_vosean_ni_usan_regionalismos(nombre_plantilla):
+    # Regla del proyecto (2026-08-19): lenguaje neutro y profesional en
+    # todo lo que ve el usuario — el hermano vosea y al portar sus
+    # plantillas el voseo se coló una vez; este guardián evita la
+    # reincidencia.
+    voseo = re.compile(
+        r"\b(vos|elegí|marcá|hacé|mirá|podés|querés|tenés|sabés|destildá|"
+        r"aguardá|acordate|fijate|avisame|contame|acá)\b", re.IGNORECASE)
+    encontrados = voseo.findall(_html_de_plantilla(nombre_plantilla))
+    assert encontrados == [], f"voseo/regionalismos en {nombre_plantilla}: {encontrados}"
+
+
+def test_los_pasos_intermedios_permiten_volver():
+    # Pedido del dueño (2026-08-19): tiene que existir una forma de
+    # corregir una elección ya enviada sin salir del flujo.
+    for plantilla in ("plantilla_catalogo", "plantilla_metricas"):
+        html = _html_de_plantilla(plantilla)
+        assert "Volver al paso anterior" in html, plantilla
+        assert "volver: true" in html, plantilla
+
+
 def test_json_de_ejemplo_del_agente_es_coherente_con_el_paquete():
     # Los imports que el agente copia textualmente tienen que existir.
     from politicas_sociales import formularios
