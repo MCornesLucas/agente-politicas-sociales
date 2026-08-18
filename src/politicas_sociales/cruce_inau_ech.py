@@ -32,9 +32,11 @@ from pathlib import Path
 import pandas as pd
 from scipy.stats import spearmanr
 
-PROYECTO = Path(__file__).resolve().parent.parent
-CURADOS = PROYECTO / "datos_curados"
-SALIDA = PROYECTO / "resultados" / "cruces"
+from politicas_sociales import config
+
+CURADOS = config.DATOS_CURADOS
+DATOS_ECH = config.DATA_DIR / "ech"
+SALIDA = config.RESULTADOS / "cruces"
 ANIOS = [2024, 2025]
 
 
@@ -44,8 +46,8 @@ def clave(nombre: str) -> str:
     return "".join(c for c in s if not unicodedata.combining(c)).upper().strip()
 
 
-def poblacion_ech(anio: int) -> pd.DataFrame:
-    p = pd.read_csv(PROYECTO / "data" / "ech" / str(anio) / "personas_0a17.csv",
+def poblacion_ech(anio: int, datos_ech: Path = DATOS_ECH) -> pd.DataFrame:
+    p = pd.read_csv(datos_ech / str(anio) / "personas_0a17.csv",
                     usecols=["departamento", "ponderador_hogar"])
     g = p.groupby("departamento").agg(
         poblacion_0a17_ech=("ponderador_hogar", "sum"),
@@ -66,7 +68,7 @@ def metrica_ech(df: pd.DataFrame, metrica: str, anio: int, nombre: str) -> pd.Da
 
 def main() -> None:
     inau = pd.read_csv(CURADOS / "inau_spe_departamental_totales.csv")
-    echm = pd.read_csv(PROYECTO / "resultados" / "ech" / "metricas_ech_0a17.csv")
+    echm = pd.read_csv(config.RESULTADOS / "ech" / "metricas_ech_0a17.csv")
 
     filas = []
     for anio in ANIOS:

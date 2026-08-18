@@ -19,14 +19,13 @@ fuerzan.
 
 from __future__ import annotations
 
-from pathlib import Path
-
 import numpy as np
 import pandas as pd
 
-PROYECTO = Path(__file__).resolve().parent.parent
-CURADOS = PROYECTO / "datos_curados"
-SALIDA = PROYECTO / "resultados" / "proyecciones"
+from politicas_sociales import config
+
+CURADOS = config.DATOS_CURADOS
+SALIDA = config.RESULTADOS / "proyecciones"
 
 HOLDOUT = 2
 SEMESTRES_FUTUROS = ["2026-S1", "2026-S2", "2027-S1", "2027-S2"]

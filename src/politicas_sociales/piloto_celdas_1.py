@@ -7,7 +7,7 @@ descargados y verificados en data/ — ver docs/RELEVAMIENTO_DE_DATOS.md.
 
 from __future__ import annotations
 
-from piloto_base import code, md
+from politicas_sociales.piloto_base import code, md
 
 CELDAS = [
     # ==================================================================

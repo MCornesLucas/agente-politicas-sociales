@@ -8,29 +8,26 @@ preparación de datos, un tramo por tema con las cinco partes por
 métrica, nota metodológica, resumen analítico y conclusiones. Español
 neutro y formal; toda cifra con su fuente.
 
-Las celdas viven en src/piloto_celdas_1.py (introducción y temas 1-3) y
-src/piloto_celdas_2.py (temas 4-5, contexto y cierre); los textos citan
+Las celdas viven en piloto_celdas_1.py (introducción y temas 1-3) y
+piloto_celdas_2.py (temas 4-5, contexto y cierre); los textos citan
 únicamente valores verificados en datos_curados/, resultados/ y los
 documentos de data/ (ver docs/RELEVAMIENTO_DE_DATOS.md).
 """
 
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 
 import nbformat as nbf
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+from politicas_sociales import config
+from politicas_sociales.piloto_celdas_1 import CELDAS as CELDAS_1
+from politicas_sociales.piloto_celdas_2 import CELDAS as CELDAS_2
 
-from piloto_celdas_1 import CELDAS as CELDAS_1  # noqa: E402
-from piloto_celdas_2 import CELDAS as CELDAS_2  # noqa: E402
-
-PROYECTO = Path(__file__).resolve().parent.parent
-DESTINO = PROYECTO / "notebooks" / "informe_piloto.ipynb"
+DESTINO = config.NOTEBOOKS / "informe_piloto.ipynb"
 
 
-def main() -> None:
+def main(destino: Path = DESTINO) -> None:
     nb = nbf.v4.new_notebook()
     nb.cells = CELDAS_1 + CELDAS_2
     nb.metadata["kernelspec"] = {
@@ -38,11 +35,11 @@ def main() -> None:
         "language": "python",
         "name": "python3",
     }
-    DESTINO.parent.mkdir(parents=True, exist_ok=True)
-    nbf.write(nb, DESTINO)
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    nbf.write(nb, destino)
     n_metricas = sum(1 for c in nb.cells if c.cell_type == "markdown" and c.source.startswith("### Métrica"))
     n_proy = sum(1 for c in nb.cells if c.cell_type == "markdown" and c.source.startswith("### Proyección"))
-    print(f"Notebook escrito en {DESTINO}: {len(nb.cells)} celdas, "
+    print(f"Notebook escrito en {destino}: {len(nb.cells)} celdas, "
           f"{n_metricas} métricas, {n_proy} proyecciones.")
 
 

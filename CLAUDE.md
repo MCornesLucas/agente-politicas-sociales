@@ -44,6 +44,18 @@ informes institucionales además de una encuesta).
 - `data/` no se versiona (ver `.gitignore`): los datos se descargan de
   las fuentes citadas, no se redistribuyen.
 
+## Código y tests
+
+- El código vive en el paquete `politicas_sociales` (`src/politicas_sociales/`);
+  los pipelines se ejecutan como módulos (`python -m politicas_sociales.metricas_ech`),
+  nunca como scripts sueltos por ruta.
+- Las rutas del proyecto y el acceso al proyecto hermano se centralizan en
+  `politicas_sociales/config.py` — ningún módulo escribe rutas absolutas.
+- La suite (`python -m pytest`) cubre la lógica pura y los guardianes de
+  datos; todo guardián nuevo lleva su test que verifique que realmente
+  detiene la corrida con datos que no cumplen (lección heredada:
+  los supuestos sin verificar contra la salida real fallan en silencio).
+
 ## Mantenimiento
 
 - **Lenguaje formal y español neutro** en toda la documentación y en los

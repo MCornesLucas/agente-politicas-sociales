@@ -24,17 +24,17 @@ la regla de celdas chicas (n < 30) al momento de graficar.
 
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-PROYECTO = Path(__file__).resolve().parent.parent
-DATOS = PROYECTO / "data" / "ech"
-SALIDA = PROYECTO / "resultados" / "ech"
+from politicas_sociales import config
 
-sys.path.insert(0, str(Path(r"C:\Users\estes\Documents\agente-encuesta-hogares") / "src"))
+DATOS = config.DATA_DIR / "ech"
+SALIDA = config.RESULTADOS / "ech"
+
+config.preparar_import_ech()
 from encuesta_hogares import preprocessing  # noqa: E402  (normalizar_departamento)
 
 UMBRAL_HACINAMIENTO = 2.0   # personas por cuarto (INE/CEPAL, heredado)
@@ -66,8 +66,8 @@ def pct_ponderado(df: pd.DataFrame, flag: pd.Series, peso: str) -> tuple[float, 
     return round(float(pct), 2), int(len(validos))
 
 
-def anios_disponibles() -> list[int]:
-    return sorted(int(p.name) for p in DATOS.iterdir() if p.is_dir())
+def anios_disponibles(datos: Path = DATOS) -> list[int]:
+    return sorted(int(p.name) for p in datos.iterdir() if p.is_dir())
 
 
 def filas(metrica, anio, categoria, valor, unidad, n, fuente):

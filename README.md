@@ -73,9 +73,29 @@ docs/
   CATALOGO_DE_METRICAS.md     Métricas candidatas por tema, con su advertencia de rigor
   CONVENCIONES_DE_GRAFICAS.md Justificación con fundamento del tipo de gráfica
 data/                         Datos descargados de las fuentes (no versionados)
-notebooks/                    Análisis
-src/                          Código reutilizable (carga, ponderación, visualización)
+datos_curados/                Series curadas con respaldo textual por valor
+notebooks/                    Informes generados
+resultados/                   Agregados calculados (ponderados, versionables)
+src/politicas_sociales/       Paquete Python: extracción, métricas, cruces,
+                              proyecciones y construcción del informe
+tests/                        Suite de la lógica del paquete y sus guardianes
 ```
+
+## Instalación y ejecución
+
+Requiere Python 3.10 o superior y el proyecto hermano
+[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
+clonado como carpeta hermana (o su ruta en la variable de entorno
+`AGENTE_ECH_RUTA`): los loaders de la ECH se importan desde su copia de
+trabajo para heredar las correcciones al día.
+
+```bash
+python -m pip install -e ".[dev]"
+```
+
+Los pipelines se ejecutan como módulos del paquete — por ejemplo
+`python -m politicas_sociales.metricas_ech` — y la suite con
+`python -m pytest`.
 
 ## Estado
 

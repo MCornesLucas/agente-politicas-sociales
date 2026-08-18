@@ -36,18 +36,14 @@ nunca proporción simple (docs/METODOLOGIA.md, sección 2).
 
 from __future__ import annotations
 
-import sys
-from pathlib import Path
-
 import pandas as pd
 
-PROYECTO_ECH = Path(r"C:\Users\estes\Documents\agente-encuesta-hogares")
-sys.path.insert(0, str(PROYECTO_ECH / "src"))
+from politicas_sociales import config as config_infancia
 
+config_infancia.preparar_import_ech()
 from encuesta_hogares import config, data_loader  # noqa: E402
 
-PROYECTO_INFANCIA = Path(__file__).resolve().parent.parent
-DESTINO = PROYECTO_INFANCIA / "data" / "ech"
+DESTINO = config_infancia.DATA_DIR / "ech"
 
 EDAD_MAX = 17  # universo 0-17: "niño" según la CDN es toda persona menor de 18
 

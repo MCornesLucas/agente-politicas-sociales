@@ -36,16 +36,16 @@ import numpy as np
 import openpyxl
 import pandas as pd
 
-PROYECTO = Path(__file__).resolve().parent.parent
-CURADOS = PROYECTO / "datos_curados"
+from politicas_sociales import config
+
+CURADOS = config.DATOS_CURADOS
 INE_B11 = (
-    PROYECTO
-    / "data"
+    config.DATA_DIR
     / "ine"
     / "proyecciones_rev2025"
     / "B11_uruguay_edad_simple_2024_2070.xlsx"
 )
-SALIDA = PROYECTO / "resultados" / "proyecciones"
+SALIDA = config.RESULTADOS / "proyecciones"
 
 HOLDOUT = 2
 ANIOS_FUTUROS = [2026, 2027]
@@ -59,10 +59,14 @@ TRAMOS_0A17 = [
 ]
 
 
-def numerador_0a17() -> pd.Series:
-    """Serie anual 2020-2025 de NNA 0-17 atendidos en el SPE."""
+def numerador_0a17(archivo: Path | None = None) -> pd.Series:
+    """Serie anual 2020-2025 de NNA 0-17 atendidos en el SPE.
+
+    `archivo` existe para poder probar el guardián con datos sintéticos;
+    en una corrida normal se usa el CSV curado del repositorio.
+    """
     df = pd.read_csv(
-        CURADOS / "inau_spe_nacional.csv", dtype={"indicador_codigo": str}
+        archivo or CURADOS / "inau_spe_nacional.csv", dtype={"indicador_codigo": str}
     )
     s = df[(df["indicador_codigo"] == "1.1") & (df["apertura"].isin(TRAMOS_0A17))]
     serie = s.groupby("anio")["valor"].sum().sort_index()
@@ -84,9 +88,13 @@ def numerador_0a17() -> pd.Series:
     return serie
 
 
-def denominador_ine(anios: list[int]) -> dict[int, float]:
-    """Población 0-17 proyectada (INE rev. 2025, B.1.1, ambos sexos)."""
-    wb = openpyxl.load_workbook(INE_B11, read_only=True)
+def denominador_ine(anios: list[int], archivo: Path | None = None) -> dict[int, float]:
+    """Población 0-17 proyectada (INE rev. 2025, B.1.1, ambos sexos).
+
+    `archivo` existe para poder probar el guardián de estructura con un
+    libro sintético; en una corrida normal se usa el B.1.1 descargado.
+    """
+    wb = openpyxl.load_workbook(archivo or INE_B11, read_only=True)
     filas = list(wb["Uruguay"].iter_rows(values_only=True))
     wb.close()
     encabezado = filas[4]  # fila 5: None, 2024, 2025, ...
