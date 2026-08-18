@@ -158,11 +158,17 @@ observacional, nunca causal); si alguna asociación resultara estable en
 el tiempo, su extensión predictiva se evaluaría con las reglas de la
 clasificación predictiva, no antes.
 
-1. **INAU × ECH por departamento** (el más sólido): tasa de NNA en
-   protección especial cada 1.000 NNA (INAU semestral × población 0-17
-   ECH) contra pobreza infantil, hacinamiento y carencias de vivienda del
-   mismo departamento. Mismo nivel de agregación → sin falacia ecológica
-   si se redacta a nivel departamento.
+1. **INAU × ECH por departamento** — **desarrollado (2026-08-18)**:
+   tasa de NNA en protección especial cada 1.000 NNA (INAU 2024-S2 y
+   2025-S2 × población 0-17 ponderada de la ECH) contra pobreza infantil
+   y hacinamiento del mismo departamento
+   (`src/cruce_inau_ech.py` → `resultados/cruces/`). Resultado: **sin
+   asociación estable** (Spearman: pobreza −0,10/+0,02; hacinamiento
+   −0,28/+0,19) — las tasas altas están en departamentos chicos de
+   pobreza baja o media; lectura observacional en el informe piloto.
+   Advertencias: el numerador registra el departamento de atención (no
+   de origen); carencias de vivienda sin apertura departamental en los
+   curados actuales (extensión pendiente).
 2. **CONAPEES/Fiscalía × ECH por departamento** (2018-2021): situaciones
    ESNNA y actuaciones fiscales vs. condiciones socioeconómicas de la
    infancia por departamento.

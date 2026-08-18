@@ -766,6 +766,102 @@ releva desde 2024): su valor analítico crecerá con los años.
 """),
     # ==================================================================
     md("""
+## Cruce territorial — Protección especial y condiciones de vida por departamento
+
+Primer cruce entre fuentes del proyecto: la tasa departamental de NNA en
+protección especial (INAU) contra las condiciones socioeconómicas de la
+infancia del mismo departamento (cálculo propio sobre la ECH). Ambos
+lados del cruce están al **mismo nivel de agregación** (departamento) y
+la lectura se mantiene en ese nivel — nada de lo que sigue describe a
+individuos.
+
+**Construcción**: tasa = NNA atendidos en proyectos del SPE del
+departamento (segundo semestre de cada año) cada 1.000 NNA residentes
+(población 0-17 ponderada de la ECH del mismo año). Advertencia
+importante del numerador: cuenta dónde se **atiende** al NNA, no de
+dónde proviene — un niño derivado a una residencia de otro departamento
+cuenta en el departamento de la residencia.
+"""),
+    md("""
+### Cruce 1. ¿La intensidad territorial de la protección especial sigue el mapa de la pobreza infantil?
+
+**¿Qué pregunta responde?** ¿Los departamentos con más pobreza infantil
+son también los de mayor tasa de NNA en protección especial?
+"""),
+    code("""
+CRUCE = pd.read_csv(RESULTADOS / "cruces" / "cruce_inau_ech_departamental.csv")
+from scipy.stats import spearmanr
+
+c25 = CRUCE[CRUCE["anio"] == 2025]
+rho25, _ = spearmanr(c25["tasa_spe_por_mil"], c25["pobreza_0a17_pct"])
+c24 = CRUCE[CRUCE["anio"] == 2024]
+rho24, _ = spearmanr(c24["tasa_spe_por_mil"], c24["pobreza_0a17_pct"])
+
+fig, ax = plt.subplots(figsize=(9, 5.5))
+ax.scatter(c25["pobreza_0a17_pct"], c25["tasa_spe_por_mil"], color=COLOR, s=45, zorder=3)
+a_la_izquierda = {"Treinta y Tres", "Tacuarembó"}
+abajo = {"Montevideo", "Colonia"}
+arriba = {"Salto"}
+for _, fila in c25.iterrows():
+    d = fila["departamento"]
+    dx, dy, ha = 5, 4, "left"
+    if d in a_la_izquierda:
+        dx, ha = -6, "right"
+    if d in abajo:
+        dy = -12
+    if d in arriba:
+        dy = 10
+    ax.annotate(d, (fila["pobreza_0a17_pct"], fila["tasa_spe_por_mil"]),
+                textcoords="offset points", xytext=(dx, dy), ha=ha, fontsize=8, color="#444444")
+ax.set_xlim(0, 40)
+ax.set_ylim(0, 22)
+ax.set_yticks(np.arange(0, 21, 5))
+def _rho(v):
+    return f"{v:+.2f}".replace(".", ",")
+ax.set_title(
+    "Tasa de NNA en protección especial y pobreza infantil por departamento, 2025\\n"
+    "(cada punto es un departamento; asociación de rangos "
+    f"rho = {_rho(rho25)} en 2025 y {_rho(rho24)} en 2024 — sin asociación estable)"
+)
+ax.set_xlabel("Pobreza monetaria 0-17 (% ponderado, ECH)")
+ax.set_ylabel("NNA en el SPE cada 1.000 NNA residentes")
+fuente(fig, "Fuente: elaboración propia sobre INAU (SIPI, indicador departamental 1, 2025-S2) y microdatos "
+            "de la ECH 2025 (INE). Detalle y n muestrales: resultados/cruces/cruce_inau_ech_departamental.csv.",
+       y=-0.02)
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Dispersión con los dos ejes en sus escalas
+reales y cada departamento identificado: para una asociación entre dos
+variables a nivel de 19 unidades, el plano completo con etiquetas es más
+honesto que un coeficiente solo — el lector ve qué departamentos
+sostienen (o desarman) la relación. El coeficiente de rangos (Spearman)
+acompaña en el título con su valor en ambos años.
+
+**Lectura**: **la intensidad territorial de la protección especial no
+sigue el mapa de la pobreza infantil** (rho = −0,10 en 2025 y +0,02 en
+2024: sin asociación, con signo inestable). Las tasas más altas están en
+dos departamentos chicos de pobreza baja o media — Florida (19,4 por
+mil, con 20,2% de pobreza infantil) y Flores (16,3 por mil, 16,6%) —
+mientras que en el otro extremo conviven departamentos de pobreza
+infantil alta con tasas bajas: Canelones (3,8 por mil, 23,9% de
+pobreza), Paysandú (4,9 y 28,5%) y Rivera, que tiene la pobreza infantil
+más alta del país (37,7%) y una tasa de 7,6. Con el hacinamiento el
+resultado es el mismo (rho inestable entre −0,28 y +0,19). La interpretación prudente, en lenguaje observacional: la
+distribución territorial de la atención parece responder a la
+localización histórica de la oferta institucional (dónde hay residencias
+y proyectos) y a derivaciones entre departamentos, más que a la
+distribución territorial de la necesidad socioeconómica. Dos advertencias
+acotan esta lectura: el numerador registra el departamento de atención
+(no el de origen del NNA), y las estimaciones departamentales de la ECH
+tienen error muestral mayor en los departamentos chicos (n muestrales en
+el CSV del cruce). Aun con esas salvedades, la ausencia de correlación
+es un hallazgo para la discusión de política territorial — y la pregunta
+que abre (¿la oferta está donde está la necesidad?) excede lo que estas
+fuentes pueden responder solas.
+"""),
+    # ==================================================================
+    md("""
 ## Contexto transversal — La demografía detrás de todas las tasas
 
 ### P6. Población de 0 a 17 años de Uruguay, proyección oficial
@@ -885,6 +981,14 @@ de un tercio de los hogares con NNA tiene humedades estructurales; la
 inseguridad alimentaria mejora pero alcanza al 15,3% de los hogares con
 menores; la brecha digital se cierra en acceso general pero retrocede en
 internet fija.
+
+**Cruce territorial (INAU × ECH).** La tasa departamental de NNA en
+protección especial no está asociada a la pobreza infantil ni al
+hacinamiento del departamento (Spearman sin asociación estable en 2024 y
+2025): la distribución territorial de la atención parece responder a la
+localización de la oferta institucional y a las derivaciones más que al
+mapa de la necesidad — una pregunta abierta para la política
+territorial.
 """),
     md("""
 ## Conclusiones
@@ -934,8 +1038,12 @@ internet fija.
    hay proyección; (c) los microdatos de la ENSANNA aún no son públicos
    (el tema 3 usa el boletín oficial); (d) el SIPIAV no publica
    desagregación departamental, lo que limita el análisis territorial de
-   la violencia; (e) los cruces territoriales INAU × ECH — el siguiente
-   paso del proyecto — no forman parte de este piloto.
+   la violencia; (e) el cruce territorial incluido registra el
+   departamento de atención (no el de origen del NNA) y usa estimaciones
+   departamentales de la ECH con error muestral mayor en departamentos
+   chicos; los tres cruces restantes del catálogo (CONAPEES/Fiscalía ×
+   ECH, ENSANNA × ECH, SIPIAV × ECH nacional) quedan para la fase
+   siguiente.
 
 ---
 
