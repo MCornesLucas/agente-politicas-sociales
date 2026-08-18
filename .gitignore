@@ -23,6 +23,13 @@ Thumbs.db
 # Entorno
 .env
 
+# Configuracion local de Claude Code por maquina: la ruta de Python la
+# escribe instalar.bat en cada computadora, y settings.local.json son los
+# permisos locales que Claude Code agrega en cada maquina (a diferencia
+# de .claude/settings.json, que si se versiona).
+.claude/python_path.txt
+.claude/settings.local.json
+
 # Conversiones completas de fuentes: demasiado grandes para versionar
 # (la versión compacta sí se versiona con otro nombre)
 datos_curados/inau_spe_departamental.csv

@@ -49,6 +49,9 @@ informes institucionales además de una encuesta).
 - El código vive en el paquete `politicas_sociales` (`src/politicas_sociales/`);
   los pipelines se ejecutan como módulos (`python -m politicas_sociales.metricas_ech`),
   nunca como scripts sueltos por ruta.
+- En una máquina instalada con `instalar.bat`, invocar Python siempre a
+  través de `run_python.bat` (lee la ruta real de `.claude/python_path.txt`),
+  nunca por una ruta de Python escrita a mano.
 - Las rutas del proyecto y el acceso al proyecto hermano se centralizan en
   `politicas_sociales/config.py` — ningún módulo escribe rutas absolutas.
 - La suite (`python -m pytest`) cubre la lógica pura y los guardianes de

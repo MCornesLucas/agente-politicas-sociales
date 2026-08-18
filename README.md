@@ -85,9 +85,21 @@ tests/                        Suite de la lógica del paquete y sus guardianes
 
 Requiere Python 3.10 o superior y el proyecto hermano
 [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
-clonado como carpeta hermana (o su ruta en la variable de entorno
+como carpeta hermana (o su ruta en la variable de entorno
 `AGENTE_ECH_RUTA`): los loaders de la ECH se importan desde su copia de
 trabajo para heredar las correcciones al día.
+
+**Instalación rápida (Windows)**: doble clic en `instalar.bat` — detecta
+Python (Anaconda), verifica el proyecto hermano, instala el paquete con
+sus dependencias y prepara el generador de PDF. Deja la ruta de Python
+en `.claude/python_path.txt`, que `run_python.bat` usa para ejecutar
+cualquier comando sin depender del PATH de cada máquina:
+
+```bash
+run_python.bat -m politicas_sociales.metricas_ech
+```
+
+**Instalación manual** (cualquier sistema):
 
 ```bash
 python -m pip install -e ".[dev]"
