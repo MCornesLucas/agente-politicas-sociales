@@ -115,17 +115,16 @@ ANTES de generar nada, con este criterio y en este orden:
    markdown "## Métrica a medida" + las celdas de la métrica con el
    encabezado "### Métrica a medida. <título>" y las cinco partes
    (pregunta, gráfica con matplotlib y `fuente(...)`, "Por qué esta
-   gráfica" citando el principio, "**Lectura**" observacional). La
-   "Lectura" es la síntesis de la métrica: en una edición parcial no hay
-   resumen analítico global, así que ese es su cierre. Si la edición
-   fuera completa (incluye "## Resumen analítico"), insertar además una
-   celda markdown inmediatamente antes de "## Conclusiones" con un
-   párrafo "**Métrica a medida.** ..." de dos o tres frases con las
-   cifras del cálculo real — el guardián de cifras la valida contra los
-   outputs, igual que al resto del resumen. Los guardianes de
-   `.claude/hooks/` revisan la métrica igual que a las del catálogo.
-   Registrar `bitacora.sugerir_catalogo(metrica, motivo)` para que el
-   dueño evalúe incorporarla al catálogo permanente.
+   gráfica" citando el principio, "**Lectura**" observacional). Toda
+   edición incluye la sección "## Resumen analítico" (filtrada por
+   bloque): insertar además una celda markdown al final de esa sección —
+   inmediatamente antes de "## Conclusiones" — con un párrafo
+   "**Métrica a medida.** ..." de dos o tres frases con las cifras del
+   cálculo real; el guardián de cifras la valida contra los outputs,
+   igual que al resto del resumen. Los guardianes de `.claude/hooks/`
+   revisan la métrica igual que a las del catálogo. Registrar
+   `bitacora.sugerir_catalogo(metrica, motivo)` para que el dueño evalúe
+   incorporarla al catálogo permanente.
 4. **Si NO es viable**: mostrar el formulario de revisión explicando el
    porqué con el dato concreto (qué archivo falta, qué regla lo impide)
    y, si existe, una alternativa calculable cercana:
@@ -156,8 +155,8 @@ los invoque, y correrlo con `./run_python.bat`); abajo, `<ED>` es
    `... --destino "<ED>.ipynb" metrica_1 metrica_4 cruce_1`; sin claves
    de unidad construye el informe completo) — reconstruye el notebook
    desde los módulos de celdas. Las ediciones parciales ajustan la
-   introducción, incluyen las conclusiones de sus bloques y la sección
-   de fuentes (siempre), y omiten solo el resumen analítico; las
+   introducción e incluyen siempre el resumen analítico y las
+   conclusiones de sus bloques más la sección de fuentes; las
    dependencias declaradas se autocompletan: no hay que editar ninguna
    celda a mano. Si hay métrica a medida viable, agregarla ahora (paso
    1d.3).

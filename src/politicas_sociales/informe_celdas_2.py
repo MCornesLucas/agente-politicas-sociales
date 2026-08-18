@@ -1159,9 +1159,14 @@ desagregación por debajo del umbral que publica el propio organismo, y
 las categorías de datos faltantes se muestran cuando la fuente las
 publica (métrica 26): la calidad del registro es parte del dato.
 """),
+    # ==================================================================
+    # Resumen analítico: un párrafo por celda, a propósito — las
+    # ediciones parciales incluyen los párrafos de sus bloques (el mapa
+    # vive en construir_informe.RESUMEN_BLOQUES, con test de alineación).
     md("""
 ## Resumen analítico
-
+"""),
+    md("""
 **Violencia (SIPIAV).** La respuesta del sistema se multiplicó por 7 en
 doce años (1.319 → 9.178 situaciones) y la proyección publicada para
 2025 quedó validada por el dato real. La detección sigue siendo tardía
@@ -1169,21 +1174,24 @@ doce años (1.319 → 9.178 situaciones) y la proyección publicada para
 la inclusión de la familia en la intervención cayó de 82% a 58% en una
 década. Las violencias sexuales tienen patrón propio: 76% niñas y
 adolescentes mujeres, 51% concentrado en 13-17 años.
-
+"""),
+    md("""
 **Explotación sexual (CONAPEES/Fiscalía).** Entre 240 y 494 situaciones
 atendidas por año (2018-2021, 86% niñas y adolescentes mujeres) y más de
 2.000 actuaciones anuales de Fiscalía por delitos sexuales con víctima
 NNA. El vacío es el dato: no hay serie oficial desde 2022, y desde 2024
 la explotación sexual perdió su categoría propia en el registro del
 SIPIAV.
-
+"""),
+    md("""
 **Trabajo infantil (ENSANNA/ECH).** 6,8% de los NNA de 5 a 17 (40.200)
 en situación de trabajo infantil, con gradientes por edad, región y
 nivel socioeconómico. El trabajo no remunerado de servicios ya muestra
 división sexual (niñas 2,8% frente a varones 1,1%). El trabajo
 adolescente que existe es casi todo informal (82-93% de los ocupados de
 14-17).
-
+"""),
+    md("""
 **Protección especial (INAU).** El sistema creció hasta 2023 y se
 amesetó (~8.000 atendidos; ~7.000 de 0-17). La desinternación avanza
 (50,9% → 62,7% en contexto familiar) y llegaría a 66,4% en 2027 si el
@@ -1191,14 +1199,16 @@ ritmo persiste. Las señales de alerta: 56,9% de los casos sin registro
 de contacto familiar, casi 4 de cada 10 sin controles médicos al día, y
 una tasa de NNA en protección (9,4 por mil) que sube por pura
 demografía.
-
+"""),
+    md("""
 **Pobreza y entorno (ECH).** 27,5% de los NNA en hogares pobres (2025,
 canasta 2017), con la primera infancia como el grupo más afectado. Más
 de un tercio de los hogares con NNA tiene humedades estructurales; la
 inseguridad alimentaria mejora pero alcanza al 15,3% de los hogares con
 menores; la brecha digital se cierra en acceso general pero retrocede en
 internet fija.
-
+"""),
+    md("""
 **Cruce territorial (INAU × ECH).** La tasa departamental de NNA en
 protección especial no está asociada a la pobreza infantil ni al
 hacinamiento del departamento (Spearman sin asociación estable en 2024 y
@@ -1206,7 +1216,8 @@ hacinamiento del departamento (Spearman sin asociación estable en 2024 y
 localización de la oferta institucional y a las derivaciones más que al
 mapa de la necesidad — una pregunta abierta para la política
 territorial.
-
+"""),
+    md("""
 **Cruces entre fuentes (CONAPEES/Fiscalía, ENSANNA, SIPIAV × ECH).** La
 detección de la explotación sexual tampoco sigue el mapa de las
 carencias: la asociación con el hacinamiento es negativa y estable en

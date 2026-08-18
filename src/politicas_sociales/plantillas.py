@@ -277,9 +277,8 @@ def plantilla_catalogo(bloques: list[dict]) -> str:
   <h1>¿Qué temas incluye tu informe?</h1>
   <p class="subtitulo">Marca los bloques que te interesen. En el paso
   siguiente podrás elegir las métricas de cada bloque, una por una. Toda
-  edición incluye las conclusiones de sus bloques y la sección de fuentes
-  con sus enlaces; el resumen analítico solo se incluye en el informe
-  completo, porque recorre los cinco temas.</p>
+  edición incluye el resumen analítico y las conclusiones de sus
+  bloques, y la sección de fuentes con sus enlaces.</p>
   <form id="form">
     {filas_html}
     <p class="error" id="error">Elige al menos un tema (los cruces solos no

@@ -123,6 +123,17 @@ def test_cifras_acepta_redondeo_honesto_y_magnitud(tmp_path):
 
 
 @requiere_node
+def test_cifras_acepta_conteos_publicados_en_miles(tmp_path):
+    # La ENSANNA publica 40,2 (miles de NNA) y el texto escribe "40.200":
+    # el mismo número en otra unidad. Caso real detectado al separar el
+    # resumen en celdas — hasta entonces esos párrafos quedaban exentos
+    # por accidente (compartían celda con el encabezado).
+    nb = _nb_con_resumen(tmp_path, "Son 40.200 los NNA en esa situación.",
+                         csv="valor\n40.2\n")
+    assert correr_hook("gate-informe-cifras-sin-respaldo.cjs", comando_ejecutar(nb)) == ""
+
+
+@requiere_node
 def test_cifras_bloquea_una_cifra_inventada(tmp_path):
     nb = _nb_con_resumen(tmp_path, "La pobreza es 99,9% de los hogares.")
     salida = correr_hook("gate-informe-cifras-sin-respaldo.cjs", comando_ejecutar(nb))

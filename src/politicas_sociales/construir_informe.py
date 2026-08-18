@@ -23,11 +23,11 @@ Reglas de una edición parcial:
   dueño (2026-08-19): las fuentes con sus enlaces validan los números y
   las elecciones de cualquier edición. La presentación de un tema va
   siempre que la edición incluya al menos una unidad del tema.
-- Las **conclusiones van siempre**, filtradas por bloque (decisión del
-  dueño, 2026-08-19): cada conclusión declara en CONCLUSIONES_BLOQUES de
-  qué bloques se alimenta y una edición incluye las de sus bloques (las
-  transversales, marcadas "siempre", van en todas). El resumen analítico
-  sí queda solo en el informe completo.
+- El **resumen analítico y las conclusiones van siempre**, filtrados por
+  bloque (decisión del dueño, 2026-08-19): cada párrafo del resumen y
+  cada conclusión declaran en RESUMEN_BLOQUES/CONCLUSIONES_BLOQUES de
+  qué bloques se alimentan, y una edición incluye los de sus bloques
+  (las conclusiones transversales, marcadas "siempre", van en todas).
 - La introducción de una edición parcial describe lo que la edición
   realmente contiene — nunca promete contenido que no está.
 - Cada unidad es auto-contenida (sus celdas solo dependen de la
@@ -89,6 +89,20 @@ _ENCABEZADOS_FIJOS = {
     "## Resumen analítico": "resumen",
     "## Conclusiones": "conclusiones",
     "## Fuentes de datos": "fuentes",
+}
+
+# Cada párrafo del resumen analítico (celda i-ésima después del
+# encabezado "## Resumen analítico") declara de qué bloque se alimenta;
+# una edición parcial incluye los de sus bloques. Un test mantiene este
+# mapa alineado con la cantidad real de celdas.
+RESUMEN_BLOQUES: dict[int, set[str] | str] = {
+    0: {"tema_1"},                 # violencia (SIPIAV)
+    1: {"tema_2"},                 # explotación sexual (CONAPEES/Fiscalía)
+    2: {"tema_3"},                 # trabajo infantil (ENSANNA/ECH)
+    3: {"tema_4"},                 # protección especial (INAU)
+    4: {"tema_5"},                 # pobreza y entorno (ECH)
+    5: {"cruces"},                 # cruce territorial (INAU × ECH)
+    6: {"cruces"},                 # cruces entre fuentes
 }
 
 # Cada conclusión (celda i-ésima después del encabezado "## Conclusiones")
@@ -321,16 +335,23 @@ def celdas_del_informe(bloques: list[str] | None = None,
             celdas += bloque["unidades"][unidad]
     for clave in _FIJOS_FIN:
         celdas += partes.get(clave, [])
-    # Conclusiones: siempre, filtradas por los bloques presentes en la
-    # edición; las transversales ("siempre") van en todas.
+    # Resumen analítico y conclusiones: siempre, filtrados por los
+    # bloques presentes en la edición; las conclusiones transversales
+    # ("siempre") van en todas.
     bloques_presentes = {mapa[u] for u in seleccion}
-    conclusiones = partes.get("conclusiones", [])
-    if conclusiones:
-        celdas.append(conclusiones[0])  # encabezado "## Conclusiones"
-        for indice, celda in enumerate(conclusiones[1:]):
-            aplica = CONCLUSIONES_BLOQUES.get(indice, "siempre")
-            if aplica == "siempre" or aplica & bloques_presentes:
-                celdas.append(celda)
+    for seccion, mapa_bloques in (("resumen", RESUMEN_BLOQUES),
+                                  ("conclusiones", CONCLUSIONES_BLOQUES)):
+        celdas_seccion = partes.get(seccion, [])
+        if not celdas_seccion:
+            continue
+        filtradas = [
+            celda for indice, celda in enumerate(celdas_seccion[1:])
+            if (aplica := mapa_bloques.get(indice, "siempre")) == "siempre"
+            or aplica & bloques_presentes
+        ]
+        if filtradas:
+            celdas.append(celdas_seccion[0])  # encabezado de la sección
+            celdas += filtradas
     # Fuentes de datos y bibliografía: en toda edición, sin excepción.
     celdas += partes.get("fuentes", [])
     return celdas

@@ -78,10 +78,11 @@ def test_edicion_parcial_incluye_lo_elegido_y_lo_fijo():
     assert "## Nota metodológica" in texto         # siempre
     assert "## Tema 4" not in texto
     assert "## Cruces entre fuentes" not in texto
-    # El resumen analítico recorre los cinco temas: solo en el completo.
-    assert "## Resumen analítico" not in texto
-    # Las conclusiones y las fuentes van SIEMPRE (decisión del dueño,
-    # 2026-08-19: las fuentes validan los números y las elecciones).
+    # Resumen, conclusiones y fuentes van SIEMPRE (decisión del dueño,
+    # 2026-08-19), con resumen y conclusiones filtrados por bloque.
+    assert "## Resumen analítico" in texto
+    assert "**Violencia (SIPIAV).**" in texto          # párrafo del tema elegido
+    assert "**Pobreza y entorno (ECH).**" not in texto  # párrafo de otro tema
     assert "## Conclusiones" in texto
     assert "## Fuentes de datos y bibliografía" in texto
     assert "https://www.inau.gub.uy/sipiav" in texto
@@ -102,15 +103,17 @@ def test_conclusiones_filtradas_por_bloque():
     assert "La pobreza uruguaya está concentrada en la infancia" not in texto
 
 
-def test_el_mapa_de_conclusiones_esta_alineado_con_las_celdas():
-    # Si se agrega o quita una conclusión sin actualizar el mapa, una
-    # edición parcial incluiría (o perdería) conclusiones en silencio.
+def test_los_mapas_de_resumen_y_conclusiones_estan_alineados_con_las_celdas():
+    # Si se agrega o quita un párrafo sin actualizar su mapa, una edición
+    # parcial incluiría (o perdería) contenido en silencio.
     partes = construir_informe._particionar(CELDAS_1 + CELDAS_2)
-    celdas_conclusion = partes["conclusiones"][1:]  # sin el encabezado
-    assert len(celdas_conclusion) == len(construir_informe.CONCLUSIONES_BLOQUES)
     bloques_validos = set(construir_informe.SELECCIONABLES)
-    for aplica in construir_informe.CONCLUSIONES_BLOQUES.values():
-        assert aplica == "siempre" or (aplica and aplica <= bloques_validos)
+    for seccion, mapa in (("resumen", construir_informe.RESUMEN_BLOQUES),
+                          ("conclusiones", construir_informe.CONCLUSIONES_BLOQUES)):
+        celdas_seccion = partes[seccion][1:]  # sin el encabezado
+        assert len(celdas_seccion) == len(mapa), seccion
+        for aplica in mapa.values():
+            assert aplica == "siempre" or (aplica and aplica <= bloques_validos)
 
 
 def test_edicion_parcial_describe_su_alcance_real_en_la_introduccion():

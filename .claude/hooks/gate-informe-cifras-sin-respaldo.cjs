@@ -135,9 +135,17 @@ process.stdin.on("end", () => {
     }
     if (!dentroDelResumen) continue;
     for (const cifra of cifrasDe(texto)) {
+      // Para los enteros con separador de miles se acepta también la
+      // equivalencia de escala x1000: varias fuentes publican conteos en
+      // miles (la ENSANNA publica 40,2 miles de NNA y el texto escribe
+      // "40.200") — el mismo número en otra unidad, no una cifra
+      // distinta. Detectado al separar el resumen analítico en celdas
+      // (2026-08-19): hasta entonces esos párrafos compartían celda con
+      // el encabezado y quedaban exentos por accidente.
       const existe = reales.some((real) =>
         cifra.magnitud > 1
           ? Math.round(real / cifra.magnitud) * cifra.magnitud === cifra.valor
+            || Math.round((real * 1000) / cifra.magnitud) * cifra.magnitud === cifra.valor
           : redondear(real, cifra.decimales) === cifra.valor
       );
       if (!existe) sospechosas.push(cifra.texto);
