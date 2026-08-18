@@ -72,6 +72,29 @@ def test_settings_permite_el_envoltorio():
     assert any("instalar.bat" in regla for regla in allow)
 
 
+def test_settings_registra_los_tres_guardianes_y_existen():
+    # Un hook des-registrado deja de correr sin ningún error (en el
+    # proyecto hermano, una variable vacía dejó seis hooks apagados
+    # durante días): el registro y la existencia del archivo se fijan
+    # juntos.
+    import json
+    settings = json.loads((RAIZ / ".claude" / "settings.json")
+                          .read_text(encoding="utf-8-sig"))
+    comandos = [h["command"]
+                for grupos in settings["hooks"].values()
+                for g in grupos for h in g["hooks"]]
+    for gate in ("gate-informe-metrica-incompleta.cjs",
+                 "gate-informe-cifras-sin-respaldo.cjs",
+                 "gate-informe-graficas-faltantes.cjs"):
+        assert any(gate in c for c in comandos), f"{gate} sin registrar"
+        assert (RAIZ / ".claude" / "hooks" / gate).exists()
+    # Los PreToolUse van en PreToolUse y el PostToolUse en PostToolUse:
+    # registrar el de gráficas como Pre lo dejaría mirando el notebook
+    # de ANTES de ejecutar, verde para siempre.
+    post = [h["command"] for g in settings["hooks"]["PostToolUse"] for h in g["hooks"]]
+    assert any("graficas-faltantes" in c for c in post)
+
+
 def test_instalar_no_pausa_en_modo_no_interactivo():
     # Cada "pause" debe estar protegido por la variable de modo no
     # interactivo: una pausa suelta colgaria para siempre una corrida

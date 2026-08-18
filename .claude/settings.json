@@ -9,5 +9,24 @@
       "Bash(./instalar.bat *)",
       "Bash(POLITICAS_SOCIALES_NONINTERACTIVE=1 ./instalar.bat *)"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/gate-informe-metrica-incompleta.cjs\"" },
+          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/gate-informe-cifras-sin-respaldo.cjs\"" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/gate-informe-graficas-faltantes.cjs\"" }
+        ]
+      }
+    ]
   }
 }
