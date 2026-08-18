@@ -89,10 +89,11 @@ como carpeta hermana (o su ruta en la variable de entorno
 `AGENTE_ECH_RUTA`): los loaders de la ECH se importan desde su copia de
 trabajo para heredar las correcciones al día.
 
-**Instalación rápida (Windows)**: doble clic en `instalar.bat` — detecta
-Python (Anaconda), verifica el proyecto hermano, instala el paquete con
-sus dependencias y prepara el generador de PDF. Deja la ruta de Python
-en `.claude/python_path.txt`, que `run_python.bat` usa para ejecutar
+**Instalación rápida (Windows)**: doble clic en `instalar.bat` — verifica
+Node.js, instala Claude Code (versión fijada), detecta Python (Anaconda),
+verifica el proyecto hermano, instala el paquete con sus dependencias y
+prepara el generador de PDF. Deja la ruta de Python en
+`.claude/python_path.txt`, que `run_python.bat` usa para ejecutar
 cualquier comando sin depender del PATH de cada máquina:
 
 ```bash
@@ -108,6 +109,13 @@ python -m pip install -e ".[dev]"
 Los pipelines se ejecutan como módulos del paquete — por ejemplo
 `python -m politicas_sociales.metricas_ech` — y la suite con
 `python -m pytest`.
+
+**Uso guiado (sin conocimientos técnicos)**: doble clic en
+`abrir_agente.bat`. Todo pasa por formularios que se abren en el
+navegador — bienvenida, generación del informe y entrega del PDF/HTML —
+sin escribir ningún comando; al terminar, la ventana se cierra sola.
+Cada corrida queda registrada en una bitácora local
+(`logs/bitacora.jsonl`) que nunca sale de la computadora.
 
 ## Estado
 

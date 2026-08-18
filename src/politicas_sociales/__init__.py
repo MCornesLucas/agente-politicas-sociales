@@ -7,4 +7,4 @@ Las reglas de rigor viven en docs/METODOLOGIA.md; ninguna función de este
 paquete las reemplaza.
 """
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"

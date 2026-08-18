@@ -62,6 +62,11 @@ informes institucionales además de una encuesta).
   contra el notebook real, con tests en ambas direcciones: dejan pasar el
   informe correcto y bloquean uno saboteado) y se registran en
   `.claude/settings.json`, que edita solo el dueño del proyecto.
+- El flujo guiado para usuarios no técnicos (`abrir_agente.bat` →
+  formularios en el navegador → informe → cierre automático de la
+  consola) lo conduce el agente `.claude/agents/politicas-sociales.md`;
+  la maquinaria (formularios, bitácora, cierre, entrega) vive en el
+  paquete, heredada del proyecto hermano con sus lecciones documentadas.
 
 ## Mantenimiento
 

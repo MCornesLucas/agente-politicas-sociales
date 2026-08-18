@@ -22,6 +22,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 from politicas_sociales import config
+from politicas_sociales.entrega import respaldar_si_existe
 
 HTML_ORIGEN = config.NOTEBOOKS / "informe_infancia.html"
 CSS = config.DOCS / "informe_estilo.css"
@@ -76,6 +77,9 @@ def main() -> None:
 
     HTML_IMPRESION.unlink(missing_ok=True)
     descargas = Path.home() / "Downloads" / PDF_SALIDA.name
+    # La copia de Descargas no la versiona git: sin respaldo, volver a
+    # generar el informe la pisaba sin aviso ni forma de recuperarla.
+    respaldar_si_existe(descargas)
     shutil.copy(PDF_SALIDA, descargas)
     print(f"PDF generado: {PDF_SALIDA} ({PDF_SALIDA.stat().st_size / 1e6:.1f} MB)")
     print(f"Copia en Descargas: {descargas}")

@@ -7,13 +7,45 @@ echo   Instalador - Agente de Politicas Sociales
 echo ================================================
 echo.
 
-REM Este instalador cubre el lado Python del proyecto (paquete,
-REM dependencias, generador de PDF). Los pasos de Node/Claude Code y la
-REM ventana del agente (abrir_agente.bat) llegan con el punto
-REM "formularios" de la lista de paridad: hoy este proyecto no tiene
-REM flujo de usuario no tecnico que abrir.
+REM --- 1. Verificar Node.js (lo necesita Claude Code) ---
+where node >nul 2>nul
+if errorlevel 1 (
+    echo [1/6] No se encontro Node.js en esta computadora.
+    echo        Se va a abrir la pagina de descarga en tu navegador.
+    echo        Instalalo con las opciones por defecto del instalador,
+    echo        y despues vuelve a hacer doble clic en este archivo,
+    echo        instalar.bat, para continuar donde quedaste.
+    echo.
+    start https://nodejs.org
+    if not defined POLITICAS_SOCIALES_NONINTERACTIVE pause
+    exit /b 1
+)
+echo [1/6] Node.js encontrado: OK
 
-REM --- 1. Detectar Python (Anaconda) ---
+REM --- 2. Verificar/instalar Claude Code ---
+REM Version FIJADA a proposito, no "lo ultimo que haya hoy": el flujo se
+REM prueba de punta a punta con esta version, y un instalador que trae una
+REM version distinta segun el dia convierte cualquier cambio de
+REM comportamiento en un "no me funciona" indiagnosticable a distancia.
+REM Para actualizarla: probar el flujo completo con la version nueva y
+REM recien entonces cambiar este numero (misma logica que fijar el modelo
+REM en abrir_agente.bat). Mismo numero que el proyecto hermano.
+where claude >nul 2>nul
+if errorlevel 1 (
+    echo [2/6] Instalando Claude Code, puede tardar un minuto...
+    call npm install -g @anthropic-ai/claude-code@2.1.233
+    if errorlevel 1 (
+        echo.
+        echo No se pudo instalar Claude Code. Revisa tu conexion a
+        echo internet y vuelve a intentar.
+        if not defined POLITICAS_SOCIALES_NONINTERACTIVE pause
+        exit /b 1
+    )
+) else (
+    echo [2/6] Claude Code ya estaba instalado: OK
+)
+
+REM --- 3. Detectar Python (Anaconda) ---
 REM Se prueba primero la ubicacion tipica de Anaconda, sin depender del
 REM PATH: Windows trae un "python.exe" falso propio (el alias de Microsoft
 REM Store) que aparece en el PATH aunque no haya ningun Python instalado
@@ -33,9 +65,9 @@ if not exist "!PYEXE!" (
         exit /b 1
     )
 )
-echo [1/4] Python encontrado: OK
+echo [3/6] Python encontrado: OK
 
-REM --- 2. Verificar el proyecto hermano agente-encuesta-hogares ---
+REM --- 4. Verificar el proyecto hermano agente-encuesta-hogares ---
 REM Este proyecto importa los loaders de la ECH desde la copia de trabajo
 REM del proyecto hermano (ver src/politicas_sociales/config.py): sin el,
 REM la extraccion de la ECH y varias metricas no pueden correr. Se acepta
@@ -55,10 +87,10 @@ if not exist "!ECH_RUTA!\src\encuesta_hogares\" (
     if not defined POLITICAS_SOCIALES_NONINTERACTIVE pause
     exit /b 1
 )
-echo [2/4] Proyecto hermano agente-encuesta-hogares: OK
+echo [4/6] Proyecto hermano agente-encuesta-hogares: OK
 
-REM --- 3. Instalar las dependencias del proyecto ---
-echo [3/4] Instalando las dependencias de Python del proyecto...
+REM --- 5. Instalar las dependencias del proyecto ---
+echo [5/6] Instalando las dependencias de Python del proyecto...
 "!PYEXE!" -m pip install -e ".[dev]" --quiet
 if errorlevel 1 (
     echo.
@@ -72,8 +104,8 @@ REM sin tener que volver a buscarla ni adivinar cada vez que corre un comando.
 if not exist ".claude" mkdir ".claude"
 > ".claude\python_path.txt" echo !PYEXE!
 
-REM --- 4. Preparar el generador de PDF (descarga Chromium una sola vez) ---
-echo [4/4] Preparando el generador de informes PDF, puede tardar unos minutos la primera vez...
+REM --- 6. Preparar el generador de PDF (descarga Chromium una sola vez) ---
+echo [6/6] Preparando el generador de informes PDF, puede tardar unos minutos la primera vez...
 "!PYEXE!" -m playwright install chromium
 REM Sin este chequeo, si la descarga de Chromium falla (red, proxy,
 REM antivirus) el instalador igual diria "Listo" y el problema apareceria
@@ -92,9 +124,10 @@ echo ================================================
 echo   Listo. Ya esta todo instalado.
 echo ================================================
 echo.
-echo Los pipelines se ejecutan con run_python.bat, por ejemplo:
-echo   run_python.bat -m politicas_sociales.metricas_ech
-echo y la suite de tests con:
-echo   run_python.bat -m pytest
+echo Para usar el agente, cierra esta ventana y haz doble clic en
+echo el archivo "abrir_agente.bat", que esta en esta misma carpeta.
+echo.
+echo No hace falta escribir ningun comando: el agente te va a ir
+echo guiando con formularios que se abren en el navegador.
 echo.
 if not defined POLITICAS_SOCIALES_NONINTERACTIVE pause

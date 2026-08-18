@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "politicas-sociales-agente"
-version = "0.3.0"
+version = "0.4.0"
 description = "Agente y paquete para analizar las políticas sociales de infancia en Uruguay — violencia, explotación sexual, trabajo infantil, protección especial y pobreza — a partir de registros administrativos (SIPIAV, INAU, CONAPEES), encuestas (ENSANNA, ECH) e informes institucionales."
 readme = "README.md"
 license = "PolyForm-Noncommercial-1.0.0"
