@@ -66,13 +66,30 @@ respuesta = formularios.mostrar_formulario(formularios.plantilla_bienvenida())
 # respuesta es un dict; chequear salir_del_flujo antes de seguir
 ```
 
+**Paso 1b — Selección de contenido.** Mostrar el catálogo de bloques (los
+conteos salen de las celdas reales, nunca escribirlos a mano):
+
+```python
+from politicas_sociales import construir_informe, formularios
+respuesta = formularios.mostrar_formulario(
+    formularios.plantilla_catalogo(construir_informe.bloques_disponibles())
+)
+# respuesta["bloques"] es la lista de claves elegidas (ej. ["tema_1", "cruces"]);
+# chequear salir_del_flujo antes de seguir
+```
+
 **Paso 2 — Generar el informe.** Cuatro comandos, en este orden, cada uno
 envuelto con `bitacora.medir_comando(...)` para que la bitácora registre
 cuánto tardó cada paso (escribir un `.py` con Write que los invoque, y
 correrlo con `./run_python.bat`):
 
-1. `-m politicas_sociales.construir_informe` — reconstruye el notebook
-   desde los módulos de celdas.
+1. `-m politicas_sociales.construir_informe` con los bloques elegidos
+   como argumentos (ej.
+   `-m politicas_sociales.construir_informe tema_1 tema_4 cruces`; sin
+   argumentos construye el informe completo) — reconstruye el notebook
+   desde los módulos de celdas. Las ediciones parciales ajustan la
+   introducción y omiten el resumen y las conclusiones solas: no hay que
+   editar ninguna celda a mano.
 2. `-m jupyter nbconvert --to notebook --execute --inplace notebooks/informe_infancia.ipynb`
    — lo ejecuta completo. Los guardianes de `.claude/hooks/` revisan el
    notebook en este paso: si alguno bloquea, leer el motivo, corregir la

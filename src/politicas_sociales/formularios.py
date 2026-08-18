@@ -28,6 +28,7 @@ from . import bitacora, cierre
 from .plantillas import (  # noqa: F401 — reexports: la cara pública es formularios.plantilla_*
     plantilla_arranque,
     plantilla_bienvenida,
+    plantilla_catalogo,
     plantilla_finalizacion,
 )
 

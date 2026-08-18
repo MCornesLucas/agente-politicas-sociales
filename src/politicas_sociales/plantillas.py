@@ -176,6 +176,75 @@ document.getElementById('form').addEventListener('submit', async (e) => {{
 </script></body></html>"""
 
 
+def plantilla_catalogo(bloques: list[dict]) -> str:
+    """Paso de selección: qué temas (y si los cruces) incluye esta edición
+    del informe. `bloques` viene de `construir_informe.bloques_disponibles()`
+    — los conteos se calculan desde las celdas reales, así el formulario
+    nunca promete contenido desalineado del informe.
+
+    Todos los bloques vienen preseleccionados: el informe completo es la
+    edición estándar; destildar es la excepción. El envío exige al menos
+    un tema (una edición solo de cruces no es un informe).
+    """
+    filas = []
+    for b in bloques:
+        contenido = []
+        if b["metricas"]:
+            contenido.append(f"{b['metricas']} métricas")
+        if b["proyecciones"]:
+            contenido.append(f"{b['proyecciones']} proyecciones")
+        if b["cruces"]:
+            contenido.append(f"{b['cruces']} cruces")
+        detalle = " · ".join(contenido)
+        filas.append(
+            f'<label class="opcion"><input type="checkbox" name="bloque" '
+            f'value="{b["clave"]}" checked> <strong>{b["titulo"]}</strong>'
+            f'<span class="detalle"> — {detalle}</span></label>'
+        )
+    filas_html = "\n".join(filas)
+    return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<title>Contenido del informe</title>
+<style>{_ESTILO}
+.opcion {{ display: block; border: 2px solid #d0d7de; border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 12px; cursor: pointer; font-size: 14px; }}
+.opcion:hover {{ border-color: var(--verde); }}
+.opcion input {{ margin-right: 10px; }}
+.opcion .detalle {{ color: var(--gris); }}
+.error {{ color: var(--rojo); font-size: 13px; margin-top: 8px; display: none; }}
+</style></head><body>
+<div class="tarjeta" id="tarjeta">
+  <div class="emoji">🗂️</div>
+  <h1>¿Qué incluye tu informe?</h1>
+  <p class="subtitulo">Todos los bloques vienen marcados (el informe
+  completo es la edición estándar). Destildá lo que no necesites. El
+  resumen analítico y las conclusiones solo se incluyen en el informe
+  completo, porque recorren los cinco temas.</p>
+  <form id="form">
+    {filas_html}
+    <p class="error" id="error">Elegí al menos un tema (los cruces solos no
+    alcanzan para armar un informe).</p>
+    <button type="submit">Generar esta edición →</button>
+  </form>
+  {_BOTON_SALIR}
+</div>
+<script>
+{_SCRIPT_LISTO}
+{_SCRIPT_SALIR}
+document.getElementById('form').addEventListener('submit', async (e) => {{
+  e.preventDefault();
+  const marcados = Array.from(document.querySelectorAll('input[name=bloque]:checked'))
+    .map((c) => c.value);
+  if (!marcados.some((v) => v.startsWith('tema_'))) {{
+    document.getElementById('error').style.display = 'block';
+    return;
+  }}
+  await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{bloques: marcados}})}});
+  mostrarListo();
+}});
+</script></body></html>"""
+
+
 def plantilla_finalizacion(pdf_disponible: bool, html_disponible: bool) -> str:
     """Último paso: agradecimiento + botones que abren el/los informe(s)."""
     botones = []

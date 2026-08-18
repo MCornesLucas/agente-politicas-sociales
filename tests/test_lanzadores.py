@@ -58,14 +58,18 @@ def test_el_agente_existe_y_manda_usar_el_envoltorio():
 
 @pytest.mark.skipif(node is None, reason="requiere Node.js")
 @pytest.mark.parametrize("nombre_plantilla", ["plantilla_arranque", "plantilla_bienvenida",
-                                              "plantilla_finalizacion"])
+                                              "plantilla_catalogo", "plantilla_finalizacion"])
 def test_el_javascript_de_las_plantillas_es_valido(tmp_path, nombre_plantilla):
     # node --check sobre cada <script>: un error de sintaxis en el JS deja
     # el formulario mudo (el botón no hace nada) sin ningún aviso.
-    from politicas_sociales import plantillas
+    from politicas_sociales import construir_informe, plantillas
     funcion = getattr(plantillas, nombre_plantilla)
-    html = (funcion(pdf_disponible=True, html_disponible=True)
-            if nombre_plantilla == "plantilla_finalizacion" else funcion())
+    if nombre_plantilla == "plantilla_finalizacion":
+        html = funcion(pdf_disponible=True, html_disponible=True)
+    elif nombre_plantilla == "plantilla_catalogo":
+        html = funcion(construir_informe.bloques_disponibles())
+    else:
+        html = funcion()
     scripts = re.findall(r"<script>(.*?)</script>", html, re.DOTALL)
     assert scripts, f"{nombre_plantilla} sin <script>"
     for i, script in enumerate(scripts):

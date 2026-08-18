@@ -9,18 +9,24 @@ from __future__ import annotations
 
 from politicas_sociales.informe_base import code, md
 
-CELDAS = [
-    # ==================================================================
-    md("""
-# Políticas sociales de infancia en Uruguay — Informe
-
-Este informe presenta las métricas del catálogo del proyecto en **cinco
+# El alcance del informe completo. Las ediciones parciales (selección de
+# temas por el usuario) reemplazan este texto por uno que describe lo que
+# la edición realmente contiene — la introducción nunca promete contenido
+# que no está (misma decisión que sacar "el catálogo completo" del texto).
+ALCANCE_COMPLETO = """las métricas del catálogo del proyecto en **cinco
 temas** (violencia hacia niñas, niños y adolescentes; explotación
 sexual; trabajo infantil; protección especial; pobreza, vivienda y
 entorno del hogar), junto con las proyecciones calculadas y validadas
 hasta la fecha y los **cuatro cruces entre fuentes** del catálogo (INAU,
 CONAPEES/Fiscalía, ENSANNA y SIPIAV contra la ECH), cada uno con sus
-limitaciones declaradas. Cada métrica se presenta con la pregunta que responde,
+limitaciones declaradas"""
+
+
+def celda_introduccion(alcance: str = ALCANCE_COMPLETO):
+    return md(f"""
+# Políticas sociales de infancia en Uruguay — Informe
+
+Este informe presenta {alcance}. Cada métrica se presenta con la pregunta que responde,
 su gráfica, la justificación del tipo de gráfica elegido y su lectura,
 con la fuente citada en cada caso
 ([agente-politicas-sociales](https://github.com/testa10/agente-politicas-sociales)).
@@ -35,7 +41,12 @@ informe son registros administrativos — miden las situaciones que cada
 sistema detecta y atiende, no cuántos niños atraviesan cada problema en
 el país. La nota metodológica del final explica esta diferencia en
 lenguaje simple; cada gráfica la lleva incorporada en su título.
-"""),
+""")
+
+
+CELDAS = [
+    # ==================================================================
+    celda_introduccion(),
     # ==================================================================
     md("""
 ## Preparación de datos
