@@ -134,6 +134,12 @@ tipo_violencia,2025,maltrato emocional,38,%,texto informe 2025
 tipo_violencia,2025,negligencia,24,%,texto informe 2025
 tipo_violencia,2025,violencias sexuales,18,%,texto informe 2025
 tipo_violencia,2025,maltrato físico,15,%,texto informe 2025
+tipo_violencia_sexo,2025,violencias sexuales|Femenino,76,%,"texto informe 2025, p. 52 («el 76% de las situaciones de violencias sexuales corresponden a niñas y adolescentes mujeres»)"
+tipo_violencia_sexo,2025,violencias sexuales|Masculino,24,%,"texto informe 2025, p. 52"
+tipo_violencia_franja,2025,violencias sexuales|13-17,51,%,"texto informe 2025, p. 53 («alcanzando el 51% de los registros en el tramo de 13 a 17 años»)"
+tipo_violencia_franja,2025,maltrato emocional|6-12,37,%,"texto informe 2025, p. 53 (prosa: emocional/físico/negligencia concentran en 6-12: 37%, 38% y 42%)"
+tipo_violencia_franja,2025,maltrato físico|6-12,38,%,"texto informe 2025, p. 53"
+tipo_violencia_franja,2025,negligencia|6-12,42,%,"texto informe 2025, p. 53 (la tabla 1 completa existe en el PDF pero su extracción de texto no permite asignar tramos con certeza; solo se consignan los valores confirmados por prosa)"
 recurrencia,2013,recurrente,75,%,texto informe 2013 (recurrente 75% explícito; único por complemento)
 recurrencia,2013,episodio único,25,%,texto informe 2013 (recurrente 75% explícito; único por complemento)
 recurrencia,2014,recurrente,75,%,"texto informes 2014 ('3 de cada 4, coincide con 2013') y 2015 ('en 2014 eran recurrentes el 75%')"

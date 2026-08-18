@@ -1,0 +1,948 @@
+"""Celdas del informe piloto — temas 4 y 5, contexto demográfico y cierre."""
+
+from __future__ import annotations
+
+from piloto_base import code, md
+
+CELDAS = [
+    # ==================================================================
+    md("""
+## Tema 4 — Protección especial (INAU)
+
+Indicadores del Sistema de Protección Especial (SPE) del INAU, con
+fuente en el SIPI (Sistema de Información Para la Infancia). Describen a
+la **población atendida por el INAU** — los NNA que están en el sistema
+de protección — no a la infancia uruguaya en general. Serie anual
+2020-2025 a nivel nacional; los mismos indicadores existen por
+departamento con frecuencia semestral.
+
+Términos utilizados por la fuente:
+
+- **Cuidado residencial / contexto familiar**: las dos grandes
+  modalidades de cuidado; reducir la primera en favor de la segunda
+  («desinternación») es el eje declarado de la política.
+- **SPE**: incluye también a jóvenes de 18 años y más que permanecen en
+  proyectos del sistema; cuando una métrica se restringe a 0-17, se
+  indica.
+"""),
+    md("""
+### Métrica 20. NNA atendidos en el Sistema de Protección Especial
+
+**¿Qué pregunta responde?** ¿Cuántas personas atiende el sistema de
+protección especial y qué proporción de la población del país
+representa?
+"""),
+    code("""
+def serie_inau(codigo):
+    s = INAU[(INAU["indicador_codigo"] == codigo) & (INAU["apertura"] == "total")].sort_values("anio")
+    return s["anio"].to_numpy(), s["valor"].to_numpy(dtype=float)
+
+anios_i, atendidos = serie_inau("1.1")
+fig, ax = plt.subplots()
+ax.plot(anios_i, atendidos, marker="o", color=COLOR, linewidth=2)
+ax.set_ylim(0, 9000)
+ax.set_xticks(anios_i)
+ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda v, _: fmt(v)))
+ax.set_title(
+    "NNA y jóvenes atendidos en el Sistema de Protección Especial (INAU)\\n"
+    "(población atendida por el sistema — no describe a la infancia general)"
+)
+ax.set_ylabel("Personas atendidas")
+anotar_extremos(ax, anios_i, atendidos, COLOR)
+fuente(fig, "Fuente: INAU, Indicadores del Sistema de Protección Especial (SIPI), indicador 1.1.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Serie anual de conteos: línea con marcadores,
+eje desde cero, extremos anotados.
+
+**Lectura**: el sistema pasó de 6.516 personas atendidas en 2020 a 7.988
+en 2025, con el máximo en 2023 (8.017) y estabilización posterior.
+Restringido a 0-17 años (sumando los tramos de edad del indicador), la
+población atendida pasó de 5.583 a 7.043 y también se amesetó desde
+2023. Como proporción de la población total del país, el sistema
+atiende cerca del 1% (0,77% en 2020 → 0,97% en 2025, indicador 1.3).
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 21. Cuidado residencial frente a contexto familiar
+
+**¿Qué pregunta responde?** ¿Avanza la desinternación — que los NNA del
+sistema vivan en contexto familiar y no en residencias?
+"""),
+    code("""
+anios_r, resid = serie_inau("2.1")
+_, familia = serie_inau("2.2")
+pct_familia = familia / (resid + familia) * 100
+fig, ax = plt.subplots()
+ax.plot(anios_r, pct_familia, marker="o", color=COLOR, linewidth=2)
+ax.set_ylim(0, 100)
+ax.set_xticks(anios_r)
+ax.set_title(
+    "NNA del Sistema de Protección Especial que viven en contexto familiar (%)\\n"
+    "(el eje de la política de desinternación; población atendida por el sistema)"
+)
+ax.set_ylabel("% en contexto familiar")
+anotar_extremos(ax, anios_r, pct_familia, COLOR, dec=1)
+fuente(fig, "Fuente: elaboración propia sobre INAU (SIPI), indicadores 2.1 (residencia) y 2.2 (contexto familiar).")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** La proporción en contexto familiar resume en
+una sola serie la relación entre las dos modalidades; eje 0-100 completo
+para no exagerar el avance (Healy, 2018).
+
+**Lectura**: la desinternación avanza de forma sostenida: 50,9% de los
+NNA del sistema vivía en contexto familiar en 2020 y 62,7% en 2025. En
+términos del ratio que publica la fuente, se pasó de prácticamente un
+NNA en residencia por cada uno en familia (0,97) a 0,6. El avance es
+consistente pero se desacelera en los últimos semestres — la proyección
+P3 estima su trayectoria.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 22. Ingresos al sistema: primera vez y reingresos
+
+**¿Qué pregunta responde?** ¿Cuánto de la demanda del sistema es nueva y
+cuánta es reincidencia de trayectorias anteriores?
+"""),
+    code("""
+anios_p, primera = serie_inau("3.2")
+_, reingreso = serie_inau("4.2")
+fig, ax = plt.subplots()
+ax.plot(anios_p, primera, marker="o", color=COLOR, linewidth=2, label="Ingresan por primera vez")
+ax.plot(anios_p, reingreso, marker="o", color=ACENTO, linewidth=2, label="Ingresan con trayectoria anterior")
+ax.set_ylim(0, 35)
+ax.set_xticks(anios_p)
+ax.set_title(
+    "Ingresos al Sistema de Protección Especial como % de los atendidos\\n"
+    "(población atendida por el sistema)"
+)
+ax.set_ylabel("% del total de atendidos")
+ax.legend(frameon=False, fontsize=9)
+anotar_extremos(ax, anios_p, primera, COLOR, dec=1)
+anotar_extremos(ax, anios_p, reingreso, ACENTO, dec=1)
+fuente(fig, "Fuente: INAU (SIPI), indicadores 3.2 y 4.2.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Dos líneas en el mismo plano porque comparten
+unidad y denominador (% del total de atendidos); no se apilan porque no
+agotan el universo.
+
+**Lectura**: cada año, entre 21% y 26% de los atendidos son ingresos por
+primera vez, mientras que los reingresos con trayectoria anterior se
+mantienen en torno al 5%. La demanda nueva domina sobre la reincidencia
+— la puerta de entrada del sistema sigue muy activa, coherente con el
+crecimiento de la métrica 20 hasta 2023.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 23. Egresos del sistema
+
+**¿Qué pregunta responde?** ¿A qué ritmo egresan los NNA del sistema de
+protección?
+"""),
+    code("""
+anios_e, egresos = serie_inau("5.4")
+fig, ax = plt.subplots()
+ax.plot(anios_e, egresos, marker="o", color=COLOR, linewidth=2)
+ax.set_ylim(0, 35)
+ax.set_xticks(anios_e)
+ax.set_title(
+    "Egresos del Sistema de Protección Especial como % de los atendidos\\n"
+    "(población atendida por el sistema)"
+)
+ax.set_ylabel("% que egresa en el año")
+anotar_extremos(ax, anios_e, egresos, COLOR, dec=1)
+fuente(fig, "Fuente: INAU (SIPI), indicador 5.4. Los egresos del segundo semestre de 2020 son estimados "
+            "(nota del propio archivo de la fuente).")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Serie anual simple: línea con marcadores, eje
+desde cero.
+
+**Lectura**: el sistema egresa cada año a alrededor de un cuarto de su
+población atendida (23-26%). Combinado con la métrica 22 (más ingresos
+que egresos hasta 2023), el saldo explica el crecimiento del stock. Los
+tiempos de permanencia — publicados desde 2021 — completan esta lectura
+en la fuente.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 24. Tránsito de residencia a familia
+
+**¿Qué pregunta responde?** ¿Cuántos NNA dejan el cuidado residencial
+para pasar a vivir con una familia?
+"""),
+    code("""
+anios_t, transito = serie_inau("6.2")
+fig, ax = plt.subplots()
+ax.plot(anios_t, transito, marker="o", color=COLOR, linewidth=2)
+ax.set_ylim(0, 40)
+ax.set_xticks(anios_t)
+ax.set_title(
+    "NNA que pasan de residencia a vivir con una familia, como % de los atendidos\\n"
+    "(población atendida por el sistema)"
+)
+ax.set_ylabel("% del total de atendidos")
+anotar_extremos(ax, anios_t, transito, COLOR, dec=1)
+fuente(fig, "Fuente: INAU (SIPI), indicador 6.2.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Serie anual simple, misma convención que las
+anteriores del tema.
+
+**Lectura**: entre 25% y 32% de los atendidos pasa cada año de
+residencia a un entorno familiar (28,2% en 2025, con máximo de 31,7% en
+2022). Es el flujo que sostiene el avance de la desinternación que
+muestra la métrica 21.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 25. Adopciones: condición de adoptabilidad y tenencia
+
+**¿Qué pregunta responde?** ¿Cuántos NNA del sistema tienen condición de
+adoptabilidad declarada, y cuántos avanzan a tenencia?
+"""),
+    code("""
+anios_a, adoptables = serie_inau("7.1")
+fig, ax = plt.subplots()
+ax.plot(anios_a, adoptables, marker="o", color=COLOR, linewidth=2)
+ax.set_ylim(0, 900)
+ax.set_xticks(anios_a)
+ax.set_title(
+    "NNA con condición de adoptabilidad declarada\\n"
+    "(población atendida por el sistema)"
+)
+ax.set_ylabel("Cantidad de NNA")
+anotar_extremos(ax, anios_a, adoptables, COLOR)
+fuente(fig, "Fuente: INAU (SIPI), indicadores 7.1 y 8.2.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Serie anual de un conteo; el segundo indicador
+del proceso (paso a tenencia) se reporta en la lectura para no
+superponer unidades distintas (cantidad y porcentaje) en un mismo eje.
+
+**Lectura**: los NNA con condición de adoptabilidad pasaron de 560
+(2020) a 732 (2025), alrededor del 7-8% de los atendidos. De ellos, solo
+entre 15% y 18% pasa cada año a seguimiento de tenencia (15,4% en
+2025): la distancia entre adoptabilidad declarada y adopción efectiva es
+el cuello de botella que la fuente permite dimensionar.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 26. Frecuencia de contacto con la familia o referentes
+
+**¿Qué pregunta responde?** ¿Con qué frecuencia los NNA atendidos
+mantienen contacto con sus familias o referentes afectivos?
+"""),
+    code("""
+n91 = INAU[(INAU["indicador_codigo"] == "9.1") & (INAU["anio"] == 2025) &
+           (INAU["apertura"].str.match(r"^frecuencia="))].copy()
+n91["cat"] = n91["apertura"].str.replace("frecuencia=", "", regex=False)
+orden = ["Constante", "Esporádica", "Nula", "Sin datos"]
+n91 = n91.set_index("cat").loc[orden]
+colores = [COLOR, PALETA[3], ACENTO, "#aaaaaa"]
+fig, ax = plt.subplots(figsize=(8, 3.8))
+barras = ax.barh(orden[::-1], n91["valor"].to_numpy()[::-1], color=colores[::-1], height=0.55)
+ax.bar_label(barras, labels=[pct(v) for v in barras.datavalues], padding=4, fontsize=10)
+ax.set_xlim(0, 70)
+ax.set_title(
+    "Frecuencia del contacto con la familia o referentes, 2025 (%)\\n"
+    "(población atendida por el sistema; «Sin datos» = casos sin registro de la variable)"
+)
+ax.set_xlabel("% de los NNA atendidos")
+fuente(fig, "Fuente: INAU (SIPI), indicador 9.1, año 2025.", y=-0.07)
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Barras horizontales para categorías con
+nombre, **incluida la categoría de datos faltantes**: ocultar el «sin
+datos» haría parecer que el 27,5% con contacto constante es mayoría,
+cuando la mayoría real es la falta de registro.
+
+**Lectura**: entre quienes tienen la variable registrada, el contacto
+constante domina (27,5% del total) sobre el esporádico (6,9%) y el nulo
+(8,7%). Pero el dato principal es otro: **56,9% de los casos no tiene
+registro de esta variable** — la calidad del registro es hoy el límite
+de lo que esta métrica puede decir, y así se reporta.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 27. Educación de los NNA del sistema
+
+**¿Qué pregunta responde?** ¿Los NNA atendidos por el sistema asisten a
+la educación?
+"""),
+    code("""
+anios_11, ed05 = serie_inau("11.1")
+anios_12, ed617 = serie_inau("11.2")
+fig, ax = plt.subplots()
+ax.plot(anios_11, ed05, marker="o", color=COLOR, linewidth=2,
+        label="0-5 años en centros de educación y cuidado")
+ax.plot(anios_12, ed617, marker="o", color=ACENTO, linewidth=2,
+        label="6-17 años en educación formal")
+ax.set_ylim(0, 100)
+ax.set_xticks(anios_12)
+ax.set_title(
+    "Inscripción educativa de los NNA del Sistema de Protección Especial (%)\\n"
+    "(población atendida por el sistema; sin dato de 2020 para 0-5)"
+)
+ax.set_ylabel("% inscriptos")
+ax.legend(frameon=False, fontsize=9)
+anotar_extremos(ax, anios_11, ed05, COLOR, dec=1)
+anotar_extremos(ax, anios_12, ed617, ACENTO, dec=1)
+fuente(fig, "Fuente: INAU (SIPI), indicadores 11.1 y 11.2. El indicador de educación no formal (13-17) "
+            "no publica total nacional en el archivo de la fuente.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Dos líneas con la misma unidad y universos
+declarados por tramo; eje 0-100.
+
+**Lectura**: la inscripción en educación formal de los 6-17 es alta y
+creciente (89,3% en 2021 → 91,5% en 2025); la de 0-5 en centros de
+educación y cuidado ronda el 78-82%. La contracara: aun dentro del
+sistema de protección, cerca de 1 de cada 10 NNA de 6 a 17 no está
+inscripto en educación formal.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 28. Salud: controles y vacunas al día
+
+**¿Qué pregunta responde?** ¿Los NNA atendidos tienen su atención básica
+de salud al día?
+"""),
+    code("""
+anios_s, controles = serie_inau("12.1")
+_, vacunas = serie_inau("13.1")
+fig, ax = plt.subplots()
+ax.plot(anios_s, controles, marker="o", color=COLOR, linewidth=2, label="Controles médicos al día")
+ax.plot(anios_s, vacunas, marker="o", color=ACENTO, linewidth=2, label="Vacunas al día")
+ax.set_ylim(0, 100)
+ax.set_xticks(anios_s)
+ax.set_title(
+    "Salud de los NNA del Sistema de Protección Especial (%)\\n"
+    "(población atendida por el sistema)"
+)
+ax.set_ylabel("% al día")
+ax.legend(frameon=False, fontsize=9)
+anotar_extremos(ax, anios_s, controles, COLOR, dec=1)
+anotar_extremos(ax, anios_s, vacunas, ACENTO, dec=1)
+fuente(fig, "Fuente: INAU (SIPI), indicadores 12.1 y 13.1.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Dos líneas de la misma unidad; eje 0-100
+completo para que la distancia al 100% — que es el dato — sea visible.
+
+**Lectura**: ambos indicadores mejoran (controles: 49,2% en 2020 → 61,8%
+en 2025; vacunas: 74,6% → 78,0%), pero el nivel sigue siendo el
+hallazgo: en una población bajo cuidado del Estado, casi 4 de cada 10
+NNA no tienen los controles médicos al día y más de 2 de cada 10 no
+tienen las vacunas al día.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 29. Acogimiento familiar por tipo de familia (abril 2025)
+
+**¿Qué pregunta responde?** ¿En qué tipo de familias se acogen los NNA
+que no viven con su familia de origen?
+"""),
+    code("""
+raf = RAF[(RAF["cuadro"] == "Cuadro 1") & (RAF["departamento"] == "Total país") &
+          (RAF["columna"] == "Total general") &
+          (RAF["fila"].isin(["Familia Amiga y Alternativa Familiar", "Familia Extensa", "Familia Afinidad"]))]
+raf = raf.sort_values("valor")
+fig, ax = plt.subplots(figsize=(8, 3.6))
+barras = ax.barh(raf["fila"], raf["valor"], color=COLOR, height=0.55)
+ax.bar_label(barras, labels=[fmt(v) for v in barras.datavalues], padding=4, fontsize=10)
+ax.set_title(
+    "NNA en acogimiento familiar por tipo de familia — corte a abril de 2025\\n"
+    "(población atendida por el sistema)"
+)
+ax.set_xlabel("Cantidad de NNA")
+fuente(fig, "Fuente: INAU, Reporte de Acogimiento Familiar, abril de 2025 (edición Excel), Cuadro 1.", y=-0.07)
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Barras horizontales ordenadas por magnitud
+para categorías con nombres largos (Cleveland y McGill, 1984; orden por
+total, Ware).
+
+**Lectura**: el acogimiento se apoya sobre todo en la red del propio
+NNA: la familia extensa y la familia por afinidad concentran la mayor
+parte de los acogimientos, mientras el programa de familias amigas y
+alternativas familiares — captación de familias sin vínculo previo —
+aporta el grupo menor. La fuente permite además la apertura por etapa de
+desarrollo, sexo y departamento.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 30. Dónde viven los NNA acompañados por el sistema (abril 2025)
+
+**¿Qué pregunta responde?** Considerando a todos los NNA vinculados a
+dispositivos de protección, ¿dónde están viviendo?
+"""),
+    code("""
+dvf = DVF[(DVF["cuadro"] == "Cuadro 1") & (DVF["departamento"] == "Total país") &
+          (DVF["fila"] == "Total") & (DVF["columna"] != "total")].copy()
+dvf["lugar"] = (dvf["columna"].str.replace(r"\\d+$", "", regex=True).str.strip())
+dvf = dvf.sort_values("valor")
+total_dvf = dvf["valor"].sum()
+fig, ax = plt.subplots(figsize=(8.5, 4))
+barras = ax.barh(dvf["lugar"], dvf["valor"], color=COLOR, height=0.6)
+ax.bar_label(barras, labels=[fmt(v) for v in barras.datavalues], padding=4, fontsize=10)
+ax.set_title(
+    f"Dónde viven los {fmt(total_dvf)} NNA vinculados a dispositivos de protección — abril de 2025\\n"
+    "(población atendida por el sistema)"
+)
+ax.set_xlabel("Cantidad de NNA")
+fuente(fig, "Fuente: INAU, Reporte Derecho a Vivir en Familia, abril de 2025 (edición Excel), Cuadro 1.", y=-0.06)
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Barras horizontales ordenadas por magnitud —
+misma convención que la métrica 29, con el total en el título para dar
+el denominador de una sola vez.
+
+**Lectura**: la fotografía de abril de 2025 muestra la composición
+residencial completa de los NNA acompañados: el cuidado residencial
+sigue siendo el destino de una parte sustantiva, pero la mayoría vive en
+entornos familiares (familia de origen, contexto familiar propio,
+acogimientos y familias adoptivas). Es el corte transversal que
+complementa la serie de la métrica 21.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Proyección P3. Desinternación proyectada por departamento, 2026-2027
+
+**¿Qué pregunta responde?** Si el ritmo de desinternación persiste, ¿qué
+proporción de los NNA del sistema vivirá en contexto familiar hacia
+fines de 2027, y en qué departamentos?
+"""),
+    code("""
+p3 = P3[P3["modelo"] != "no_proyectable"].sort_values("proy_2027-S2")
+fig, ax = plt.subplots(figsize=(8.5, 5))
+y_pos = np.arange(len(p3))
+ax.barh(y_pos + 0.2, p3["ultimo_observado_2025S2"], height=0.38, color=COLOR,
+        label="Observado (2025, segundo semestre)")
+ax.barh(y_pos - 0.2, p3["proy_2027-S2"], height=0.38, color=ACENTO,
+        label="Escenario inercial (2027, segundo semestre)")
+ax.set_yticks(y_pos, p3["unidad_territorial"])
+for i, (obs, proy) in enumerate(zip(p3["ultimo_observado_2025S2"], p3["proy_2027-S2"])):
+    ax.annotate(pct(obs), (obs + 0.5, i + 0.2), fontsize=8, va="center", color=COLOR)
+    ax.annotate(pct(proy), (proy + 0.5, i - 0.2), fontsize=8, va="center", color=ACENTO)
+ax.set_xlim(0, 100)
+ax.set_title(
+    "NNA del sistema en contexto familiar: observado y escenario inercial (%)\\n"
+    "(solo las 9 de 20 unidades donde la proyección superó los criterios de validación)"
+)
+ax.set_xlabel("% en contexto familiar")
+ax.legend(frameon=False, fontsize=9, loc="upper center", bbox_to_anchor=(0.5, -0.10), ncol=2)
+fuente(fig, "Fuente: elaboración propia sobre INAU (SIPI), indicadores departamentales 5 y 6, series semestrales "
+            "2020-2025. Rangos y unidades no proyectables: resultados/proyecciones/p3_desinternacion.csv.", y=-0.10)
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Barras agrupadas observado/proyectado por
+unidad territorial, mostrando **solo** las unidades cuyo modelo superó
+el backtest — las 11 restantes no se fuerzan: las estables se reportan
+como «se mantiene» y las erráticas como no proyectables (protocolo del
+bloque predictivo).
+
+**Lectura**: si el ritmo actual persiste, el total del país pasaría de
+62,7% a 66,4% de los NNA del sistema en contexto familiar hacia fines de
+2027 (rango 63,9-68,8). Canelones es el caso más firme (70,1% → 74,8%).
+Montevideo — no graficado — es un caso distinto: su serie es tan estable
+en torno a 53% que el escenario inercial es «se mantiene», sin
+necesidad de modelo.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Proyección P4. NNA en protección especial cada 1.000 NNA
+
+**¿Qué pregunta responde?** ¿Qué proporción de la infancia uruguaya está
+en el sistema de protección especial, y hacia dónde va esa tasa?
+
+**Término** — **tasa cada 1.000 NNA**: NNA de 0 a 17 en el SPE dividido
+por la población de 0 a 17 del país (proyecciones oficiales del INE,
+revisión 2025), por mil.
+"""),
+    code("""
+obs = P4[P4["tipo"] == "observado"]
+ref = P4[P4["tipo"] != "observado"]
+fig, ax = plt.subplots(figsize=(8, 4.2))
+ax.plot(obs["anio"], obs["tasa_por_mil"], marker="o", color=COLOR, linewidth=2,
+        label="Tasa observada")
+ax.plot(np.append(obs["anio"].iloc[-1], ref["anio"]),
+        np.append(obs["tasa_por_mil"].iloc[-1], ref["tasa_por_mil"]),
+        marker="s", linestyle=":", color="#888888",
+        label="Referencia si el numerador se mantiene (~7.000 NNA)")
+for _, fila in pd.concat([obs, ref]).iterrows():
+    ax.annotate(f"{fila['tasa_por_mil']:.2f}".replace(".", ","), (fila["anio"], fila["tasa_por_mil"]),
+                textcoords="offset points", xytext=(0, 9), ha="center", fontsize=9,
+                color=COLOR if fila["tipo"] == "observado" else "#888888")
+ax.set_ylim(0, 12)
+ax.set_xticks(P4["anio"])
+ax.set_title(
+    "NNA de 0 a 17 años en el Sistema de Protección Especial cada 1.000 NNA\\n"
+    "(tasa sobre la población infantil del país; referencia sin modelo — ver texto)"
+)
+ax.set_ylabel("Por cada 1.000 NNA")
+ax.legend(frameon=False, fontsize=8)
+fuente(fig, "Fuente: elaboración propia sobre INAU (SIPI, indicador 1.1 por tramos de edad) e INE "
+            "(proyecciones de población, revisión 2025). La revisión 2025 publica denominadores desde 2024.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** La referencia 2026-2027 se dibuja punteada,
+gris y sin banda: **no es una proyección de modelo**. El protocolo del
+bloque predictivo exigía que algún modelo del numerador superara al
+ingenuo en el backtest, y ninguno lo hizo (el numerador se amesetó en
+torno a 7.000 desde 2023) — en ese caso no se publica proyección y el
+escenario inercial se degrada a lectura descriptiva.
+
+**Lectura**: 9,05 de cada 1.000 NNA del país estaban en el sistema de
+protección especial en 2024, y 9,38 en 2025. El hallazgo está en la
+descomposición: la tasa sube **aunque la cantidad de NNA atendidos ya no
+crece**, porque la población infantil del país cae 2,3% por año. Si el
+sistema simplemente mantiene su tamaño actual, la tasa llegará a ~9,8
+por mil en 2027 solo por efecto demográfico — una advertencia general
+para todas las tasas de infancia del país.
+"""),
+    # ==================================================================
+    md("""
+## Tema 5 — Pobreza, vivienda y entorno del hogar (ECH)
+
+Cálculo propio sobre los **microdatos de la ECH** (INE), universo 0-17
+años, siempre ponderado (2019, 2023, 2024 y 2025; la extracción
+reutiliza los procedimientos verificados del proyecto
+[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)).
+A diferencia de los temas 1, 2 y 4, estas métricas sí describen a la
+infancia uruguaya en general.
+"""),
+    md("""
+### Métrica 31. Pobreza monetaria en la infancia
+
+**¿Qué pregunta responde?** ¿Qué proporción de NNA vive en hogares en
+situación de pobreza?
+
+**Advertencia de fuente**: la serie tiene un corte metodológico — 2019 y
+2023 se calculan con la canasta 2006 del INE y 2024-2025 con la canasta
+2017 (verificado contra los archivos: cada año trae solo su variable).
+Los dos regímenes no se unen.
+"""),
+    code("""
+pob = ECHM[(ECHM["metrica"] == "pobreza_0a17") & (ECHM["categoria"] == "total")].sort_values("anio")
+r1 = pob[pob["anio"] <= 2023]
+r2 = pob[pob["anio"] >= 2024]
+fig, ax = plt.subplots()
+ax.plot(r1["anio"], r1["valor"], marker="o", color=PALETA[3], linewidth=2,
+        label="Canasta 2006 (metodología anterior)")
+ax.plot(r2["anio"], r2["valor"], marker="o", color=COLOR, linewidth=2,
+        label="Canasta 2017 (metodología vigente)")
+for df_r, c in [(r1, PALETA[3]), (r2, COLOR)]:
+    anotar_extremos(ax, df_r["anio"].to_numpy(), df_r["valor"].to_numpy(), c, dec=1)
+ax.set_ylim(0, 40)
+ax.set_xticks(pob["anio"])
+ax.set_title(
+    "Pobreza monetaria en NNA de 0 a 17 años (% ponderado)\\n"
+    "(las dos metodologías del INE no se unen: el salto 2023-2024 es del cambio de canasta)"
+)
+ax.set_ylabel("% de NNA en hogares pobres")
+ax.legend(frameon=False, fontsize=9)
+fuente(fig, "Fuente: elaboración propia sobre microdatos de la ECH (INE), universo 0-17, ponderador anual. "
+            "Clasificación de pobreza oficial del INE de cada año.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Dos segmentos con colores distintos y sin
+línea entre 2023 y 2024: unir los regímenes inventaría un salto de 10
+puntos que es metodológico, no social (convención de cortes de serie).
+
+**Lectura**: con la metodología vigente, 28,9% de los NNA vivía en
+hogares pobres en 2024 y 27,5% en 2025. El patrón por edad es regresivo
+con la primera infancia (32,2% entre 0 y 5 años frente a 27,5% entre 13
+y 17, en 2024) y la comparación con la población general (~17%)
+confirma la lectura central del proyecto: la pobreza uruguaya está
+concentrada en la infancia.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 32. Hacinamiento en hogares con NNA
+
+**¿Qué pregunta responde?** ¿Qué proporción de los hogares donde viven
+NNA está en situación de hacinamiento?
+"""),
+    code("""
+hac = ECHM[(ECHM["metrica"] == "hacinamiento_hogares_nna") & (ECHM["categoria"] == "total")].sort_values("anio")
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(hac["anio"], hac["valor"], marker="o", color=COLOR, linewidth=2)
+ax.set_ylim(0, 8)
+ax.set_xticks(hac["anio"])
+ax.set_title("Hogares con NNA en situación de hacinamiento (% ponderado)")
+ax.set_ylabel("% de hogares con NNA")
+anotar_extremos(ax, hac["anio"].to_numpy(), hac["valor"].to_numpy(), COLOR, dec=1)
+fuente(fig, "Fuente: elaboración propia sobre microdatos de la ECH (INE), hogares con al menos un NNA, "
+            "ponderador anual (definición operativa en src/metricas_ech.py). Sin microdato 2020-2022 en el proyecto.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Serie de cuatro mediciones reales: línea con
+marcadores; los años ausentes son años sin extracción en el proyecto,
+no ceros.
+
+**Lectura**: el hacinamiento afecta a entre 3,7% y 4,9% de los hogares
+con NNA según el año (3,7% en 2025, el valor más bajo de la serie). Su
+apertura por departamento y tramo de edad queda disponible para el
+análisis territorial.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 33. Condiciones de la vivienda en hogares con NNA
+
+**¿Qué pregunta responde?** ¿Qué carencias físicas tienen las viviendas
+donde crecen los NNA?
+
+**Advertencia de fuente**: la ECH relevó 12 carencias en 2019 y solo 4
+desde 2024 (cambio del formulario del INE, heredado y documentado). Se
+comparan únicamente las 4 presentes en ambos regímenes.
+"""),
+    code("""
+viv = ECHM[(ECHM["metrica"] == "vivienda_hogares_nna") &
+           (ECHM["categoria"].str.startswith("carencia="))].copy()
+viv["carencia"] = viv["categoria"].str.replace("carencia=", "", regex=False)
+piv = viv.pivot_table(index="carencia", columns="anio", values="valor")
+comunes = piv.dropna().sort_values(2025)
+etiquetas = {"humedad_cimientos": "Humedades en cimientos", "goteras": "Goteras",
+             "se_inunda": "Se inunda", "peligro_derrumbe": "Peligro de derrumbe"}
+nombres = [etiquetas.get(c, c) for c in comunes.index]
+y_pos = np.arange(len(comunes))
+fig, ax = plt.subplots(figsize=(8.5, 4))
+for i, (anio, color) in enumerate([(2019, PALETA[3]), (2024, PALETA[2]), (2025, COLOR)]):
+    ax.barh(y_pos + 0.25 - i * 0.25, comunes[anio], height=0.23, color=color, label=str(anio))
+    for j, v in enumerate(comunes[anio]):
+        ax.annotate(pct(v), (v + 0.4, j + 0.25 - i * 0.25), fontsize=8, va="center", color=color)
+ax.set_yticks(y_pos, nombres)
+ax.set_xlim(0, 45)
+ax.set_title("Carencias de la vivienda en hogares con NNA (% ponderado)\\n"
+             "(solo las 4 carencias comparables entre el formulario 2019 y el vigente)")
+ax.set_xlabel("% de hogares con NNA")
+ax.legend(frameon=False, fontsize=9)
+fuente(fig, "Fuente: elaboración propia sobre microdatos de la ECH (INE), hogares con al menos un NNA, "
+            "ponderador anual.", y=-0.05)
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Barras horizontales agrupadas por año: permite
+comparar cada carencia entre años sin encadenar una serie que el cambio
+de formulario no sostiene.
+
+**Lectura**: las humedades en los cimientos son la carencia más
+extendida (36,8% de los hogares con NNA en 2025, subiendo desde 32,1% en
+2019) y las goteras afectan a un cuarto (24,2%). Más de un tercio de la
+infancia uruguaya crece en viviendas con problemas de humedad
+estructural.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 34. Brecha digital en hogares con NNA
+
+**¿Qué pregunta responde?** ¿Los hogares donde viven NNA tienen acceso a
+internet y a dispositivos?
+"""),
+    code("""
+bd = ECHM[(ECHM["metrica"] == "brecha_digital_hogares_nna") &
+          (ECHM["categoria"].isin(["recurso=internet", "recurso=internet_fija", "recurso=pc"]))].copy()
+bd["recurso"] = bd["categoria"].str.replace("recurso=", "", regex=False)
+piv = bd.pivot_table(index="anio", columns="recurso", values="valor")
+fig, ax = plt.subplots()
+nombres = {"internet": "Acceso a internet (cualquier tipo)", "internet_fija": "Internet fija en la vivienda",
+           "pc": "Computadora o tablet"}
+for i, col in enumerate(["internet", "internet_fija", "pc"]):
+    ax.plot(piv.index, piv[col], marker="o", linewidth=2, color=PALETA[i], label=nombres[col])
+    anotar_extremos(ax, piv.index.to_numpy(), piv[col].to_numpy(), PALETA[i], dec=1)
+ax.set_ylim(0, 100)
+ax.set_xticks(piv.index)
+ax.set_title("Acceso digital en hogares con NNA (% ponderado)")
+ax.set_ylabel("% de hogares con NNA")
+ax.legend(frameon=False, fontsize=9, loc="lower right")
+fuente(fig, "Fuente: elaboración propia sobre microdatos de la ECH (INE), hogares con al menos un NNA, "
+            "ponderador anual.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Tres líneas de la misma unidad, eje 0-100;
+los extremos anotados por recurso.
+
+**Lectura**: el acceso general a internet crece (71,0% en 2019 → 85,7%
+en 2025), pero la composición cambia: la internet **fija** en la
+vivienda retrocede (88,8% → 82,2% entre los hogares con internet del
+formulario de cada año) — consistente con la migración a conexiones
+móviles — y la tenencia de computadora está estancada (~80%). La brecha
+por estrato queda disponible en la fuente para el análisis
+socioeconómico.
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 35. Inseguridad alimentaria en hogares con menores (FIES)
+
+**¿Qué pregunta responde?** ¿Qué proporción de los hogares con menores
+de 18 años experimenta inseguridad alimentaria?
+"""),
+    code("""
+fies = ECHM[(ECHM["metrica"] == "fies_hogares_menores") &
+            (ECHM["categoria"].isin(["nivel=moderada_o_severa", "nivel=severa"]))].copy()
+piv = fies.pivot_table(index="anio", columns="categoria", values="valor")
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(piv.index, piv["nivel=moderada_o_severa"], marker="o", color=COLOR, linewidth=2,
+        label="Moderada o severa")
+ax.plot(piv.index, piv["nivel=severa"], marker="o", color=ACENTO, linewidth=2, label="Severa")
+anotar_extremos(ax, piv.index.to_numpy(), piv["nivel=moderada_o_severa"].to_numpy(), COLOR, dec=1)
+anotar_extremos(ax, piv.index.to_numpy(), piv["nivel=severa"].to_numpy(), ACENTO, dec=1)
+ax.set_ylim(0, 25)
+ax.set_xticks(piv.index)
+ax.set_title("Inseguridad alimentaria en hogares con menores de 18 años (% ponderado, escala FIES)")
+ax.set_ylabel("% de hogares con menores")
+ax.legend(frameon=False, fontsize=9)
+fuente(fig, "Fuente: elaboración propia sobre el módulo FIES de la ECH (INE), hogares con el marcador "
+            "oficial menores18, ponderador del módulo.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Dos niveles de la misma escala en líneas
+separadas (no apiladas: «severa» es subconjunto de «moderada o
+severa»).
+
+**Lectura**: la inseguridad alimentaria moderada o severa desciende
+(18,3% de los hogares con menores en 2023 → 15,3% en 2025), igual que la
+severa (3,4% → 2,0%). Aun con la mejora, en 2025 unos 15 de cada 100
+hogares con niños experimentaron inseguridad alimentaria — y en los
+hogares con menores de 6 años la incidencia es levemente mayor (17,5%).
+"""),
+    # ------------------------------------------------------------------
+    md("""
+### Métrica 36. Victimización de hogares donde viven NNA
+
+**¿Qué pregunta responde?** ¿Qué proporción de los hogares con NNA
+sufrió delitos en el último año?
+"""),
+    code("""
+vic = ECHM[(ECHM["metrica"] == "victimizacion_hogares_nna") &
+           (ECHM["categoria"].str.startswith("delito="))].copy()
+vic["delito"] = vic["categoria"].str.replace("delito=", "", regex=False)
+piv = vic.pivot_table(index="delito", columns="anio", values="valor").sort_values(2025)
+y_pos = np.arange(len(piv))
+fig, ax = plt.subplots(figsize=(8.5, 4.2))
+ax.barh(y_pos + 0.2, piv[2024], height=0.38, color=PALETA[3], label="2024")
+ax.barh(y_pos - 0.2, piv[2025], height=0.38, color=COLOR, label="2025")
+for i, (v24, v25) in enumerate(zip(piv[2024], piv[2025])):
+    ax.annotate(pct(v24), (v24 + 0.05, i + 0.2), fontsize=8, va="center", color=PALETA[3])
+    ax.annotate(pct(v25), (v25 + 0.05, i - 0.2), fontsize=8, va="center", color=COLOR)
+ax.set_yticks(y_pos, piv.index)
+ax.set_xlim(0, 3.2)
+ax.set_title("Hogares con NNA que declaran haber sufrido delitos (% ponderado)\\n"
+             "(módulo de victimización de la ECH; responden personas adultas del hogar)")
+ax.set_xlabel("% de hogares con NNA")
+ax.legend(frameon=False, fontsize=9)
+fuente(fig, "Fuente: elaboración propia sobre el módulo de victimización de la ECH (INE), hogares con al menos "
+            "un NNA, ponderador del módulo.", y=-0.04)
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Barras horizontales agrupadas por año,
+ordenadas por magnitud, para comparar tipos de delito con nombres
+largos entre dos mediciones.
+
+**Lectura**: 2,5% de los hogares con NNA declaró haber sufrido al menos
+un delito en 2024, y 1,7% en 2025; el robo o asalto fuera de la
+vivienda y la estafa encabezan los tipos. Serie nueva (el módulo se
+releva desde 2024): su valor analítico crecerá con los años.
+"""),
+    # ==================================================================
+    md("""
+## Contexto transversal — La demografía detrás de todas las tasas
+
+### P6. Población de 0 a 17 años de Uruguay, proyección oficial
+
+**¿Qué pregunta responde?** ¿Cómo evoluciona el denominador de todas las
+tasas de infancia del país?
+"""),
+    code("""
+import openpyxl
+
+wb = openpyxl.load_workbook(DATA / "ine" / "proyecciones_rev2025" / "B11_uruguay_edad_simple_2024_2070.xlsx",
+                            read_only=True)
+filas = list(wb["Uruguay"].iter_rows(values_only=True))
+wb.close()
+encabezado = filas[4]
+cols = {a: i for i, a in enumerate(encabezado) if isinstance(a, int) and a <= 2040}
+anios_ine = sorted(cols)
+pob017 = [sum(filas[6 + edad][cols[a]] for edad in range(18)) for a in anios_ine]
+
+fig, ax = plt.subplots()
+ax.plot(anios_ine, pob017, marker="o", color=COLOR, linewidth=2, markersize=4)
+ax.set_ylim(0, 850000)
+ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda v, _: fmt(v)))
+ax.set_title("Población proyectada de 0 a 17 años, Uruguay (proyección oficial del INE)")
+ax.set_ylabel("Personas de 0 a 17 años")
+anotar_extremos(ax, anios_ine, pob017, COLOR)
+fuente(fig, "Fuente: INE, proyecciones de población revisión 2025 (Censo 2023), archivo B.1.1, suma de "
+            "edades simples 0 a 17. No es un cálculo propio: se cita la proyección del organismo oficial.")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Línea sobre la proyección del organismo
+productor (única proyección del informe que no es propia): se cita, no
+se modela.
+
+**Lectura**: la población de 0 a 17 años cae de 768.969 (2024) a menos
+de 600.000 hacia 2040 según la revisión 2025 del INE — más de un quinto
+menos en una década y media. Toda tasa «cada 1.000 NNA» del país subirá
+mecánicamente si su numerador no cae al mismo ritmo (el caso de P4), y
+todo servicio dimensionado para la infancia actual operará sobre una
+población menguante: es el trasfondo demográfico de todos los temas de
+este informe.
+"""),
+    # ==================================================================
+    md("""
+## Nota metodológica
+
+**Registros administrativos y prevalencia.** La mayoría de las cifras de
+este informe (SIPIAV, CONAPEES, Fiscalía, INAU) cuentan las situaciones
+que cada sistema detecta y atiende. No miden cuántos NNA atraviesan cada
+problema: un aumento puede reflejar mayor capacidad de detección, más
+denuncia o más incidencia, y el registro solo no permite distinguirlo.
+Por eso ninguna frase de este informe convierte cifras de registro en
+afirmaciones sobre la magnitud del fenómeno. Las únicas fuentes de
+prevalencia son la ENSANNA 2024 y los cálculos propios sobre la ECH.
+
+**Qué significa «ponderado».** Las cifras de encuestas no son
+porcentajes simples de las personas encuestadas: cada hogar de la
+muestra representa a un número distinto de hogares del país. Todos los
+porcentajes de encuesta de este informe usan esa expansión.
+
+**Escenarios inerciales.** Las proyecciones describen qué sucedería **si
+las condiciones actuales persisten**, siempre con un rango. No son
+pronósticos. Cuando ningún modelo simple supera la prueba de validación
+(el caso de P4), no se publica proyección — se dice explícitamente. La
+justificación técnica de cada método, con sus pruebas, está en el
+repositorio (`docs/PREDICTIVO_JUSTIFICACION_TECNICA.md`) y no forma
+parte de este informe.
+
+**Quiebres de serie.** Ninguna serie con cambio de definición o de
+metodología se presenta empalmada: los quiebres se marcan en la propia
+gráfica (tipos de violencia 2020 y 2024, base de cálculo SIPIAV 2025,
+canasta de pobreza 2023-2024, formulario de vivienda) y los puntos no
+comparables se dibujan sueltos.
+
+**Celdas chicas y datos faltantes.** No se publica ninguna
+desagregación por debajo del umbral que publica el propio organismo, y
+las categorías de datos faltantes se muestran cuando la fuente las
+publica (métrica 26): la calidad del registro es parte del dato.
+"""),
+    md("""
+## Resumen analítico
+
+**Violencia (SIPIAV).** La respuesta del sistema se multiplicó por 7 en
+doce años (1.319 → 9.178 situaciones) y la proyección publicada para
+2025 quedó validada por el dato real. La detección sigue siendo tardía
+(en la serie comparable, ~9 de cada 10 situaciones ya eran crónicas) y
+la inclusión de la familia en la intervención cayó de 82% a 58% en una
+década. Las violencias sexuales tienen patrón propio: 76% niñas y
+adolescentes mujeres, 51% concentrado en 13-17 años.
+
+**Explotación sexual (CONAPEES/Fiscalía).** Entre 240 y 494 situaciones
+atendidas por año (2018-2021, 86% niñas y adolescentes mujeres) y más de
+2.000 actuaciones anuales de Fiscalía por delitos sexuales con víctima
+NNA. El vacío es el dato: no hay serie oficial desde 2022, y desde 2024
+la explotación sexual perdió su categoría propia en el registro del
+SIPIAV.
+
+**Trabajo infantil (ENSANNA/ECH).** 6,8% de los NNA de 5 a 17 (40.200)
+en situación de trabajo infantil, con gradientes por edad, región y
+nivel socioeconómico. El trabajo no remunerado de servicios ya muestra
+división sexual (niñas 2,8% frente a varones 1,1%). El trabajo
+adolescente que existe es casi todo informal (82-93% de los ocupados de
+14-17).
+
+**Protección especial (INAU).** El sistema creció hasta 2023 y se
+amesetó (~8.000 atendidos; ~7.000 de 0-17). La desinternación avanza
+(50,9% → 62,7% en contexto familiar) y llegaría a 66,4% en 2027 si el
+ritmo persiste. Las señales de alerta: 56,9% de los casos sin registro
+de contacto familiar, casi 4 de cada 10 sin controles médicos al día, y
+una tasa de NNA en protección (9,4 por mil) que sube por pura
+demografía.
+
+**Pobreza y entorno (ECH).** 27,5% de los NNA en hogares pobres (2025,
+canasta 2017), con la primera infancia como el grupo más afectado. Más
+de un tercio de los hogares con NNA tiene humedades estructurales; la
+inseguridad alimentaria mejora pero alcanza al 15,3% de los hogares con
+menores; la brecha digital se cierra en acceso general pero retrocede en
+internet fija.
+"""),
+    md("""
+## Conclusiones
+
+1. **La pobreza uruguaya está concentrada en la infancia, y dentro de la
+   infancia, en sus edades más tempranas.** 27,5% de los NNA en hogares
+   pobres (2025) frente a ~17% en la población general, con incidencia
+   máxima en la primera infancia. Es el dato más relevante del informe
+   para el diseño de políticas (fuente: elaboración propia sobre ECH,
+   INE).
+
+2. **El país tiene sistemas de protección en expansión y una infancia en
+   contracción.** La respuesta del SIPIAV se multiplicó por 7; el SPE
+   del INAU creció hasta amesetarse en ~8.000 atendidos; y la población
+   de 0 a 17 cae 2,3% por año. La combinación produce tasas de
+   institucionalización crecientes aun sin crecimiento de los sistemas
+   (P4) — leer cualquier tasa de infancia sin su denominador demográfico
+   induce a error (fuentes: SIPIAV, INAU, INE).
+
+3. **La detección de la violencia llega tarde y la intervención pierde a
+   la familia.** En la serie comparable, ~9 de cada 10 situaciones
+   detectadas ya eran crónicas, solo 4 de cada 10 NNA visualizan la
+   violencia que sufren, y la inclusión familiar en la intervención cayó
+   24 puntos en una década (82% → 58%), con escenario inercial en ~50%
+   hacia 2027 (fuente: SIPIAV).
+
+4. **La violencia sexual hacia NNA es adolescente y de género, y perdió
+   visibilidad estadística.** 76% de las violencias sexuales afecta a
+   niñas y adolescentes mujeres y 51% se concentra en 13-17 años; la
+   explotación sexual no tiene serie oficial desde 2022 y desde 2024
+   quedó fusionada dentro de «violencias sexuales» (fuentes: SIPIAV,
+   CONAPEES/FLACSO).
+
+5. **Uruguay no mide la prevalencia de la violencia hacia NNA.** Todo el
+   tema 1 es registro administrativo. La única aproximación existente —
+   una encuesta de 2026 de UNICEF con muestra no probabilística, que
+   sugiere que cerca de 3 de cada 10 jóvenes vivió violencia sexual
+   antes de los 18 — no sustituye una medición oficial con diseño
+   muestral: esa es la brecha de información más importante que este
+   proyecto identifica (fuentes: SIPIAV; UNICEF/Equipos 2026, con su
+   diseño declarado).
+
+6. **Limitaciones declaradas de este informe**: (a) las cifras de
+   registros administrativos describen la respuesta de los sistemas, no
+   la prevalencia; (b) las proyecciones son escenarios inerciales con
+   supuesto explícito — y donde ningún modelo pasó la validación (P4) no
+   hay proyección; (c) los microdatos de la ENSANNA aún no son públicos
+   (el tema 3 usa el boletín oficial); (d) el SIPIAV no publica
+   desagregación departamental, lo que limita el análisis territorial de
+   la violencia; (e) los cruces territoriales INAU × ECH — el siguiente
+   paso del proyecto — no forman parte de este piloto.
+
+---
+
+*Informe generado por el proyecto*
+[agente-politicas-sociales](https://github.com/testa10/agente-politicas-sociales)
+*— cada cifra tiene su fuente citada en su sección; las citas completas
+están en `docs/BIBLIOGRAFIA.md` y el respaldo textual de las series
+curadas en `datos_curados/`.*
+"""),
+]

@@ -35,8 +35,9 @@ fecha = f"{hoy.day} de {MESES[hoy.month - 1]} de {hoy.year}"
 PORTADA = f"""
 <div class="portada">
   <h1>Pol&iacute;ticas sociales de infancia en Uruguay &mdash; Informe piloto</h1>
-  <div class="subtitulo">Violencia, trabajo infantil y pobreza en ni&ntilde;as,
-  ni&ntilde;os y adolescentes: an&aacute;lisis descriptivo y escenario inercial</div>
+  <div class="subtitulo">Las 36 m&eacute;tricas del cat&aacute;logo en cinco temas
+  &mdash; violencia, explotaci&oacute;n sexual, trabajo infantil, protecci&oacute;n
+  especial y pobreza &mdash; con sus proyecciones validadas</div>
   <div class="meta">Generado el {fecha} &middot;
   Proyecto agente-politicas-sociales</div>
 </div>
