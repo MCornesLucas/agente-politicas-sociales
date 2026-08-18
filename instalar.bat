@@ -104,6 +104,14 @@ REM sin tener que volver a buscarla ni adivinar cada vez que corre un comando.
 if not exist ".claude" mkdir ".claude"
 > ".claude\python_path.txt" echo !PYEXE!
 
+REM Dejar la carpeta pre-aprobada en Claude Code (modulo creado por el
+REM dueno del proyecto): sin esto, la primera corrida de abrir_agente.bat
+REM muestra un chequeo interactivo de confianza EN LA CONSOLA - justo lo
+REM que el usuario final no debe ver (hallazgo de la primera corrida
+REM real). El consentimiento es correr este instalador; si falla, no es
+REM grave: el chequeo aparece una unica vez.
+"!PYEXE!" -m politicas_sociales.preaprobar_confianza
+
 REM --- 6. Preparar el generador de PDF (descarga Chromium una sola vez) ---
 echo [6/6] Preparando el generador de informes PDF, puede tardar unos minutos la primera vez...
 "!PYEXE!" -m playwright install chromium
