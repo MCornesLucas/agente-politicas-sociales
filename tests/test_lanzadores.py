@@ -57,6 +57,12 @@ def test_el_agente_existe_y_manda_usar_el_envoltorio():
     # Las corridas del flujo van a notebooks/ediciones/ (no versionada);
     # los informe_infancia.* oficiales no se tocan desde el flujo.
     assert "notebooks/ediciones/" in agente
+    # Punto 3 (2026-08-20): la métrica a medida destaca su fuente en la
+    # sección de fuentes, anclada antes de la celda de la firma y
+    # rotulada con el título real de la métrica, nunca con un rótulo
+    # genérico (corrección del dueño, 2026-08-20).
+    assert "Fuente de «<título de la métrica>»" in agente
+    assert "rotulada con el título" in agente
 
 
 def test_las_ediciones_de_usuario_no_se_versionan():

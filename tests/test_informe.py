@@ -120,6 +120,22 @@ def test_las_fuentes_no_remiten_a_rutas_locales_del_repositorio():
     assert "https://github.com/testa10/agente-politicas-sociales" in fuentes[0]
 
 
+def test_la_firma_es_celda_propia_y_es_el_ancla_de_la_fuente_a_medida():
+    # Decisión del dueño (2026-08-20, punto 3): cuando una edición lleva
+    # métrica a medida, el agente inserta la nota de su fuente antes de
+    # la celda de la firma. El ancla tiene que existir en TODA edición:
+    # una celda propia que comienza con "---" y contiene la firma, última
+    # del informe, inmediatamente después de la sección de fuentes.
+    for seleccion in (None, ["tema_1"]):
+        celdas = construir_informe.celdas_del_informe(seleccion)
+        firma = celdas[-1]
+        assert firma.cell_type == "markdown"
+        assert firma.source.startswith("---"), seleccion
+        assert "Informe generado por el proyecto" in firma.source
+        # La celda anterior es el cierre de la sección de fuentes.
+        assert "bibliografía completa del proyecto" in celdas[-2].source
+
+
 def test_conclusiones_filtradas_por_bloque():
     # Edición solo de pobreza (tema_5): lleva la conclusión de pobreza y
     # las transversales, pero no las que se alimentan de otros temas.

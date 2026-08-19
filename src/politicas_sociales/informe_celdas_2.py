@@ -1391,7 +1391,12 @@ La bibliografía completa del proyecto —con la naturaleza de cada dato,
 sus advertencias de uso y el respaldo textual de cada valor de las
 series curadas— es pública y está en el repositorio:
 <https://github.com/testa10/agente-politicas-sociales>
-
+"""),
+    # La firma es una celda propia a propósito: cuando una edición lleva
+    # métrica a medida, el agente inserta su nota de fuente inmediatamente
+    # antes de esta celda (el ancla es el "---" inicial) — así la nota
+    # queda al cierre de la sección de fuentes, nunca después de la firma.
+    md("""
 ---
 
 *Informe generado por el proyecto*

@@ -118,13 +118,24 @@ ANTES de generar nada, con este criterio y en este orden:
    gráfica" citando el principio, "**Lectura**" observacional). Toda
    edición incluye la sección "## Resumen analítico" (filtrada por
    bloque): insertar además una celda markdown al final de esa sección —
-   inmediatamente antes de "## Conclusiones" — con un párrafo
-   "**Métrica a medida.** ..." de dos o tres frases con las cifras del
-   cálculo real; el guardián de cifras la valida contra los outputs,
-   igual que al resto del resumen. Los guardianes de `.claude/hooks/`
-   revisan la métrica igual que a las del catálogo. Registrar
-   `bitacora.sugerir_catalogo(metrica, motivo)` para que el dueño evalúe
-   incorporarla al catálogo permanente.
+   inmediatamente antes de "## Conclusiones" — con un párrafo rotulado
+   con el título real de la métrica ("**«<título de la métrica>».** ...")
+   de dos o tres frases con las cifras del cálculo real; el guardián de
+   cifras la valida contra los outputs,
+   igual que al resto del resumen. Insertar también, al final de la
+   sección "## Fuentes de datos y bibliografía" — inmediatamente antes
+   de la celda de la firma (la que comienza con "---") — una celda
+   markdown que destaque la fuente del cálculo, rotulada con el título
+   real de la métrica — nunca con un rótulo genérico como "métrica a
+   medida", que no es lenguaje de informe:
+   `**Fuente de «<título de la métrica>».** <organismo y serie usados> —
+   <archivo de datos_curados/ o resultados/ que respalda el cálculo>.`
+   Las métricas a medida solo usan datos ya verificados del repositorio,
+   así que su fuente siempre es una de las listadas arriba: esta nota la
+   conecta con el cálculo concreto, no agrega fuentes nuevas. Los
+   guardianes de `.claude/hooks/` revisan la métrica igual que a las del
+   catálogo. Registrar `bitacora.sugerir_catalogo(metrica, motivo)` para
+   que el dueño evalúe incorporarla al catálogo permanente.
 4. **Si NO es viable**: mostrar el formulario de revisión explicando el
    porqué con el dato concreto (qué archivo falta, qué regla lo impide)
    y, si existe, una alternativa calculable cercana:
