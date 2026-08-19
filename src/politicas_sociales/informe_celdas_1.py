@@ -733,6 +733,56 @@ base de la fuente (el 45% publicado no es comparable; sobre los casos
 con dato, 54%, dentro del rango proyectado 48-64): el modelo no se
 re-estima hasta que la base se estabilice.
 """),
+    # ------------------------------------------------------------------
+    md("""
+### Proyección P5. Cobertura territorial proyectada, 2026-2028
+
+**¿Qué pregunta responde?** Si el ritmo de aperturas de la métrica 11
+continúa, ¿cuántos Comités de Recepción Local tendría el sistema en los
+próximos años?
+"""),
+    code("""
+P5C = pd.read_csv(RESULTADOS / "proyecciones" / "p5_cobertura_crl.csv")
+obs5 = P5C[P5C["tipo"] == "observado"]
+proy5 = P5C[P5C["tipo"] == "proyectado"]
+rango5 = proy5["rango"].str.split("-", expand=True).astype(float)
+
+fig, ax = plt.subplots()
+ax.plot(obs5["anio"], obs5["crl"], marker="o", color=COLOR, linewidth=2,
+        label="Observado (2013-2025)")
+ax.plot(np.append(obs5["anio"].iloc[-1], proy5["anio"]),
+        np.append(obs5["crl"].iloc[-1], proy5["crl"]), marker="o", linestyle="--",
+        color=ACENTO, label="Escenario inercial")
+ax.fill_between(proy5["anio"], rango5[0], rango5[1], color=ACENTO, alpha=0.15,
+                label="Rango del escenario")
+ax.set_ylim(0, 45)
+ax.set_xticks(np.arange(2013, 2029, 2))
+ax.set_title(
+    "Comités de Recepción Local si el ritmo de aperturas continúa\\n"
+    "(cobertura territorial del sistema — escenario inercial con rango)"
+)
+ax.set_ylabel("Cantidad de CRL")
+ax.legend(frameon=False, fontsize=8)
+ax.annotate("≈" + fmt(proy5["crl"].iloc[-1]), (proy5["anio"].iloc[-1], proy5["crl"].iloc[-1]),
+            textcoords="offset points", xytext=(0, 11), ha="center", fontsize=9, color=ACENTO)
+fuente(fig, "Fuente: elaboración propia sobre informes de gestión SIPIAV (INAU). "
+            "Proyección de crecimiento amortiguado (una cobertura territorial no crece indefinidamente).")
+plt.show()
+"""),
+    md("""
+**Por qué esta gráfica.** Misma convención que P1 y P2: serie observada
+en línea continua, escenario inercial punteado con su rango sombreado y
+eje desde cero (Healy, 2018). La proyección crece de forma amortiguada —
+la cobertura de un territorio finito no crece indefinidamente
+(justificación técnica en el repositorio).
+
+**Lectura**: de seguir el ritmo de aperturas, el sistema sumaría unos
+tres comités hacia 2028 (39, rango 37-41), sobre los 36 actuales. La
+serie crece a saltos administrativos (mesetas de dos o tres años entre
+tandas de apertura), así que la lectura útil es el orden de magnitud —
+la cobertura seguiría expandiéndose lentamente — y no el año exacto de
+cada apertura.
+"""),
     # ==================================================================
     md("""
 ## Tema 2 — Explotación sexual de NNA (CONAPEES, Fiscalía)

@@ -1,7 +1,7 @@
 """Construye el informe (notebooks/informe_infancia.ipynb).
 
 Versión actual: las métricas confirmadas del catálogo (hoy 36, en 5
-temas), las proyecciones calculadas (P1 con validación 2025, P2, P3, P4)
+temas), las proyecciones calculadas (P1 con validación 2025, P2, P3, P4, P5)
 y el contexto demográfico (P6). El nombre no lleva "piloto" ni el texto
 anuncia el catálogo completo: el informe es el producto del proyecto, y
 qué métricas incluye cada versión es una decisión de quien lo pide, no

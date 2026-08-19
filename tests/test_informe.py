@@ -1,7 +1,7 @@
 """Tests de la construcción del informe.
 
 La versión actual del informe contiene las 36 métricas confirmadas del
-catálogo (docs/CATALOGO_DE_METRICAS.md) y las 4 proyecciones calculadas.
+catálogo (docs/CATALOGO_DE_METRICAS.md) y las 5 proyecciones calculadas.
 Los tests atan ese contenido al catálogo: si una celda de métrica se
 borra o se renumera por accidente, la suite lo detecta. Cuando el
 informe pase a construirse con métricas elegidas por el usuario, estos
@@ -32,7 +32,7 @@ def test_el_informe_contiene_las_36_metricas_confirmadas_y_4_proyecciones():
     proyecciones = [c for c in celdas
                     if c.cell_type == "markdown" and c.source.startswith("### Proyección")]
     assert len(metricas) == 36
-    assert len(proyecciones) == 4
+    assert len(proyecciones) == 5
 
 
 def test_el_informe_ya_no_se_presenta_como_piloto_ni_promete_el_catalogo_completo():
@@ -169,7 +169,7 @@ def test_seleccion_invalida_se_rechaza():
 def test_bloques_disponibles_cuentan_el_contenido_real():
     bloques = {b["clave"]: b for b in construir_informe.bloques_disponibles()}
     assert sum(b["metricas"] for b in bloques.values()) == 36
-    assert sum(b["proyecciones"] for b in bloques.values()) == 4
+    assert sum(b["proyecciones"] for b in bloques.values()) == 5
     assert bloques["cruces"]["cruces"] == 4
     assert all(bloques[t]["metricas"] > 0 for t in
                ("tema_1", "tema_2", "tema_3", "tema_4", "tema_5"))
@@ -178,7 +178,7 @@ def test_bloques_disponibles_cuentan_el_contenido_real():
 def test_unidades_disponibles_con_explicacion_real():
     unidades = [u for b in construir_informe.unidades_disponibles()
                 for u in b["unidades"]]
-    assert len(unidades) == 44  # 36 métricas + 4 proyecciones + 4 cruces
+    assert len(unidades) == 45  # 36 métricas + 5 proyecciones + 4 cruces
     # Cada unidad lleva su explicación extraída de las celdas ("¿Qué
     # pregunta responde?"): si una celda pierde la pregunta, esto lo ve.
     sin_explicacion = [u["clave"] for u in unidades if not u["explicacion"]]
