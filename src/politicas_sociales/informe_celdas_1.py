@@ -51,9 +51,9 @@ CELDAS = [
     md("""
 ## Preparación de datos
 
-Se cargan las fuentes curadas y documentadas del repositorio
-(`docs/RELEVAMIENTO_DE_DATOS.md`; respaldo textual de cada valor en
-`datos_curados/*_notas.md`):
+Se cargan las fuentes curadas y documentadas del repositorio del
+proyecto (con inventario de descargas y respaldo textual de cada valor
+en sus notas de curaduría):
 
 - **SIPIAV**: series 2013-2025 curadas de los trece informes de gestión
   (INAU), con sus quiebres metodológicos documentados.
@@ -75,7 +75,14 @@ import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
 
-RAIZ = Path.cwd().parent if Path.cwd().name == "notebooks" else Path.cwd()
+# La raíz del proyecto se busca hacia arriba desde el directorio de
+# trabajo: el notebook puede ejecutarse desde notebooks/, desde
+# notebooks/ediciones/ (las ediciones del flujo guiado) o desde la raíz —
+# la heurística anterior ("el padre si estoy en notebooks") fallaba en las
+# ediciones, hallazgo de una corrida real del flujo guiado (2026-08-19).
+RAIZ = Path.cwd()
+while not (RAIZ / "datos_curados").is_dir() and RAIZ != RAIZ.parent:
+    RAIZ = RAIZ.parent
 CURADOS = RAIZ / "datos_curados"
 RESULTADOS = RAIZ / "resultados"
 DATA = RAIZ / "data"
@@ -195,9 +202,9 @@ plt.show()
 """),
     md("""
 **Por qué esta gráfica.** Serie anual de mediciones reales: línea con
-marcadores sobre eje temporal en escala real (Cleveland y McGill, 1984;
-`docs/CONVENCIONES_DE_GRAFICAS.md`), eje vertical desde cero (Healy,
-2018) y extremos anotados (convención del proyecto).
+marcadores sobre eje temporal en escala real (Cleveland y McGill,
+1984), eje vertical desde cero (Healy, 2018) y extremos anotados
+(convenciones de gráficas del proyecto).
 
 **Lectura**: las situaciones atendidas se multiplicaron por 7 entre 2013
 (1.319) y 2025 (9.178). La serie tiene saltos con explicación
@@ -277,7 +284,7 @@ plt.show()
 **Por qué esta gráfica.** Líneas con marcadores y huecos visibles: el
 marcador distingue la medición real, y la ausencia de línea entre años
 sin dato evita inventar continuidad que la fuente no publicó
-(`docs/CONVENCIONES_DE_GRAFICAS.md`: los cortes no se interpolan).
+(convención del proyecto: los cortes no se interpolan).
 
 **Lectura**: las edades escolares concentran el registro: en 2025, 38%
 de las situaciones corresponden al tramo 6-12 y 34% al 13-17 (72 de
@@ -412,7 +419,7 @@ plt.show()
 suelto con marcador distinto** para 2025: el cambio de base de cálculo
 (la fuente incorpora 17% de casos «sin información» a la base) hace que
 unirlo con una línea inventaría una caída que no se midió
-(`docs/CONVENCIONES_DE_GRAFICAS.md`: cortes como puntos sueltos).
+(convención del proyecto: los cortes se dibujan como puntos sueltos).
 
 **Lectura**: en toda la serie comparable, entre 73% y 81% de las
 situaciones ya eran recurrentes al ser detectadas — el sistema suele
@@ -490,8 +497,8 @@ plt.show()
     md("""
 **Por qué esta gráfica.** Líneas por categoría con huecos sin
 interpolar: la cobertura de categorías se reduce desde 2020 porque los
-gráficos de los informes dejan de ser extraíbles (documentado en
-`datos_curados/sipiav_notas.md`).
+gráficos de los informes dejan de ser extraíbles (documentado en las
+notas de curaduría del proyecto).
 
 **Lectura**: la violencia registrada ocurre dentro del entorno del NNA:
 alrededor de 9 de cada 10 personas agresoras son familiares directos o
@@ -664,7 +671,7 @@ plt.show()
 **Por qué esta gráfica.** Proyección como continuación punteada con
 banda de rango (nunca un número único), y el dato real 2025 superpuesto
 con marcador propio: la validación fuera de muestra se muestra, no solo
-se declara (`docs/METODOLOGIA.md`, sección 3).
+se declara (regla metodológica del proyecto).
 
 **Lectura**: la proyección publicada antes de conocerse el dato 2025
 (entre 8.500 y 10.300 situaciones) quedó **validada**: el real fue

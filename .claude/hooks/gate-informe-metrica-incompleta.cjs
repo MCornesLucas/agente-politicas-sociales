@@ -19,6 +19,12 @@ const { resolverNotebookEjecutado, fuenteDe } = require("./_lib_notebook_ejecuta
 const { denegar } = require("./_lib_bitacora.cjs");
 
 const ENCABEZADO_GRUPO = /^#{2,4}\s*(M[ée]trica|Cruce)\s+(\w+)[.\s]/;
+// La seccion "## Metrica del usuario" (la metrica creada a pedido en el
+// flujo guiado) se vigila como un grupo mas: sus celdas tambien deben
+// traer las cinco partes. Sin esto, la metrica creada entraria al
+// informe sin control (el encabezado de su unidad es solo el titulo,
+// sin rotulo, por regla del dueño 2026-08-20).
+const ENCABEZADO_MEDIDA = /^##\s+M[ée]trica del usuario/;
 const ENCABEZADO_SECCION = /^##\s+(?!\d)/;
 const TIENE_GRAFICA = /plt\.|\.plot\(|\.barh?\(|\.scatter\(/;
 
@@ -43,6 +49,14 @@ process.stdin.on("end", () => {
     if (cell.cell_type === "markdown") {
       const texto = fuenteDe(cell);
       const primera = texto.split("\n").find((l) => l.trim().length > 0) || "";
+      // La medida se chequea ANTES que el patron generico: su encabezado
+      // "## Metrica del usuario" tambien coincide con "Metrica \w+" y el
+      // generico la rotularia "Metrica del".
+      if (ENCABEZADO_MEDIDA.test(primera)) {
+        if (actual) grupos.push(actual);
+        actual = { id: "Métrica del usuario", md: [texto], codigo: [] };
+        continue;
+      }
       const m = primera.match(ENCABEZADO_GRUPO);
       if (m) {
         if (actual) grupos.push(actual);

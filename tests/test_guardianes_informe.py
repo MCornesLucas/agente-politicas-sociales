@@ -81,21 +81,22 @@ def test_metrica_incompleta_bloquea_una_metrica_sin_lectura(tmp_path):
 
 
 @requiere_node
-def test_la_metrica_a_medida_tambien_es_vigilada(tmp_path):
-    # Decisión del dueño (2026-08-20): la métrica libre lleva la misma
-    # estructura que una preestablecida. Su encabezado es "### Métrica a
-    # medida. ..." — el guardián debe reconocerlo y exigirle las cinco
-    # partes; si el patrón no lo cubriera, entraría al informe sin
-    # control.
+def test_la_metrica_del_usuario_tambien_es_vigilada(tmp_path):
+    # Reglas del dueño (2026-08-20): la métrica creada a pedido vive en
+    # la sección "## Métrica del usuario" (el rótulo aparece una sola
+    # vez) y su encabezado es solo el título, sin rótulo. El guardián
+    # reconoce la sección y le exige las cinco partes — si no la
+    # cubriera, la métrica creada entraría al informe sin control.
     nb = escribir_nb(tmp_path / "nb.ipynb", _grupo_metrica(1) + [
-        celda_md("### Métrica a medida. Algo nuevo\n\n"
+        celda_md("## Métrica del usuario"),
+        celda_md("### Proporción de situaciones nuevas\n\n"
                  "**¿Qué pregunta responde?** Algo.\n"),
         celda_code("plt.plot(x)\nplt.show()"),  # sin justificación/lectura/fuente
     ])
     salida = correr_hook("gate-informe-metrica-incompleta.cjs", comando_ejecutar(nb))
     decision = json.loads(salida)["hookSpecificOutput"]
     assert decision["permissionDecision"] == "deny"
-    assert "Métrica a" in decision["permissionDecisionReason"]
+    assert "Métrica del usuario" in decision["permissionDecisionReason"]
     assert "sin lectura" in decision["permissionDecisionReason"]
 
 

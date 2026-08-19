@@ -442,7 +442,7 @@ ax.set_title(
 ax.set_xlabel("% en contexto familiar")
 ax.legend(frameon=False, fontsize=9, loc="upper center", bbox_to_anchor=(0.5, -0.10), ncol=2)
 fuente(fig, "Fuente: elaboración propia sobre INAU (SIPI), indicadores departamentales 5 y 6, series semestrales "
-            "2020-2025. Rangos y unidades no proyectables: resultados/proyecciones/p3_desinternacion.csv.", y=-0.10)
+            "2020-2025. Rangos y unidades no proyectables en los datos publicados del proyecto.", y=-0.10)
 plt.show()
 """),
     md("""
@@ -586,7 +586,7 @@ ax.set_title("Hogares con NNA en situación de hacinamiento (% ponderado)")
 ax.set_ylabel("% de hogares con NNA")
 anotar_extremos(ax, hac["anio"].to_numpy(), hac["valor"].to_numpy(), COLOR, dec=1)
 fuente(fig, "Fuente: elaboración propia sobre microdatos de la ECH (INE), hogares con al menos un NNA, "
-            "ponderador anual (definición operativa en src/metricas_ech.py). Sin microdato 2020-2022 en el proyecto.")
+            "ponderador anual (definición operativa en el código del proyecto). Sin microdato 2020-2022 en el proyecto.")
 plt.show()
 """),
     md("""
@@ -823,7 +823,7 @@ ax.set_title(
 ax.set_xlabel("Pobreza monetaria 0-17 (% ponderado, ECH)")
 ax.set_ylabel("NNA en el SPE cada 1.000 NNA residentes")
 fuente(fig, "Fuente: elaboración propia sobre INAU (SIPI, indicador departamental 1, 2025-S2) y microdatos "
-            "de la ECH 2025 (INE). Detalle y n muestrales: resultados/cruces/cruce_inau_ech_departamental.csv.",
+            "de la ECH 2025 (INE). Detalle y n muestrales en los datos publicados del proyecto.",
        y=-0.02)
 plt.show()
 """),
@@ -912,7 +912,7 @@ ax.set_title("Asociación departamental de la detección de explotación sexual 
              "(cada punto es un año de una fuente; a la izquierda de 0: más detección donde hay menos carencia)")
 ax.legend(frameon=False, loc="lower right")
 fuente(fig, "Fuente: elaboración propia sobre FLACSO Uruguay 2023 (tablas 2 y 8; CONAPEES y FGN/SIPPAU 2018-2021) y "
-            "microdatos de la ECH 2019 (INE). Detalle y n muestrales: resultados/cruces/cruce_conapees_fiscalia_ech.csv.")
+            "microdatos de la ECH 2019 (INE). Detalle y n muestrales en los datos publicados del proyecto.")
 plt.show()
 """),
     md("""
@@ -983,7 +983,7 @@ for ax, serie, titulo, color in [
 fig.suptitle("Dos gradientes socioeconómicos — comparación de formas, no de niveles (escalas distintas)",
              y=1.04, fontsize=12)
 fuente(fig, "Fuente: ENSANNA 2024, Cuadro 4 (INE/MTSS; INSE de CINVE) y elaboración propia sobre microdatos de la "
-            "ECH 2024 (INE), solo Montevideo. Detalle y n muestrales: resultados/cruces/cruce_ensanna_ech.csv.")
+            "ECH 2024 (INE), solo Montevideo. Detalle y n muestrales en los datos publicados del proyecto.")
 plt.show()
 """),
     md("""
@@ -1050,7 +1050,7 @@ ax.set_title("Representación de cada tramo de edad en las situaciones atendidas
              "(1 = el tramo pesa en la atención lo mismo que en la población 0-17)")
 ax.legend(frameon=False, loc="lower right")
 fuente(fig, "Fuente: elaboración propia sobre SIPIAV (informes 2019 y 2025, distribución renormalizada a 0-17) y "
-            "microdatos de la ECH (INE). Detalle: resultados/cruces/cruce_sipiav_ech_tramos.csv.", y=-0.08)
+            "microdatos de la ECH (INE). Detalle en los datos publicados del proyecto.", y=-0.08)
 plt.show()
 """),
     md("""
@@ -1145,9 +1145,8 @@ porcentajes de encuesta de este informe usan esa expansión.
 las condiciones actuales persisten**, siempre con un rango. No son
 pronósticos. Cuando ningún modelo simple supera la prueba de validación
 (el caso de P4), no se publica proyección — se dice explícitamente. La
-justificación técnica de cada método, con sus pruebas, está en el
-repositorio (`docs/PREDICTIVO_JUSTIFICACION_TECNICA.md`) y no forma
-parte de este informe.
+justificación técnica de cada método, con sus pruebas, está publicada
+en el repositorio del proyecto y no forma parte de este informe.
 
 **Quiebres de serie.** Ninguna serie con cambio de definición o de
 metodología se presenta empalmada: los quiebres se marcan en la propia

@@ -112,8 +112,10 @@ ANTES de generar nada, con este criterio y en este orden:
 3. **Si es viable**: después de construir el notebook (paso 2.1), agregar
    con nbformat — nunca editando JSON a mano — una sección al final,
    inmediatamente antes de la celda "## Contexto transversal": una celda
-   markdown "## Métrica a medida" + las celdas de la métrica con el
-   encabezado "### Métrica a medida. <título>" y las cinco partes
+   markdown "## Métrica del usuario" (ese rótulo aparece UNA sola vez,
+   como título de la sección — regla del dueño, 2026-08-20) + las celdas
+   de la métrica con el encabezado "### <título de la métrica>" (solo el
+   nombre, sin ningún rótulo) y las cinco partes
    (pregunta, gráfica con matplotlib y `fuente(...)`, "Por qué esta
    gráfica" citando el principio, "**Lectura**" observacional). Toda
    edición incluye la sección "## Resumen analítico" (armada desde los

@@ -185,6 +185,26 @@ def test_el_cierre_solo_dice_lo_que_la_edicion_muestra():
     assert texto.count(sintesis.RESUMEN["metrica_32"]) == 1
 
 
+def test_el_informe_no_referencia_carpetas_del_repositorio():
+    # Pedido del dueño (2026-08-20): quien lee el PDF no tiene el
+    # repositorio — nada de rutas tipo docs/X.md o resultados/x.csv en el
+    # texto visible (markdown y pies de figura). El material completo se
+    # referencia por la URL pública del repositorio, en la sección de
+    # fuentes.
+    import re
+    patron = re.compile(r"\b(docs|datos_curados|resultados|src|notebooks)/")
+    for celda in construir_informe.celdas_del_informe(None):
+        if celda.cell_type == "markdown":
+            hallazgo = patron.search(celda.source)
+            assert hallazgo is None, (hallazgo.group(0), celda.source[:80])
+        else:
+            # En el HTML sin código solo se ven los outputs: lo visible
+            # de una celda de código son sus textos entre comillas (los
+            # pies de figura de fuente(...)).
+            for literal in re.findall(r'"[^"\n]*"', celda.source):
+                assert patron.search(literal) is None, (literal, celda.source[:80])
+
+
 def test_edicion_parcial_describe_su_alcance_real_en_la_introduccion():
     celdas = construir_informe.celdas_del_informe(["tema_1", "cruces"])
     intro = celdas[0].source
