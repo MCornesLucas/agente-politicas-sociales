@@ -75,6 +75,15 @@ function redondear(valor, decimales) {
   return Math.round(valor * factor) / factor;
 }
 
+// Las direcciones web no contienen cifras estadísticas: el DOI
+// "10.1371/journal.pone.0194889" de una referencia bibliográfica no es
+// un conteo que deba coincidir con ningún dato. Se quitan antes de
+// buscar cifras (detectado al imprimir la bibliografía en el informe,
+// 2026-08-19: el guardián marcaba "10.137" y "10.121" de dos DOI).
+function sinEnlaces(texto) {
+  return texto.replace(/<?https?:\/\/[^\s>)\]]+>?/g, " ");
+}
+
 function csvsBajo(carpeta) {
   const rutas = [];
   let entradas = [];
@@ -134,7 +143,7 @@ process.stdin.on("end", () => {
       continue;
     }
     if (!dentroDelResumen) continue;
-    for (const cifra of cifrasDe(texto)) {
+    for (const cifra of cifrasDe(sinEnlaces(texto))) {
       // Para los enteros con separador de miles se acepta también la
       // equivalencia de escala x1000: varias fuentes publican conteos en
       // miles (la ENSANNA publica 40,2 miles de NNA y el texto escribe

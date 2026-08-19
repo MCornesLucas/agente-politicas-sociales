@@ -1308,51 +1308,89 @@ representada en la atención, aunque en 2025 se acercó a la paridad.
     md("""
 ## Fuentes de datos y bibliografía
 
-Cada cifra de este informe lleva su fuente citada en su propia sección;
-esta lista reúne las fuentes de datos del proyecto con sus enlaces
-oficiales, para verificación directa.
+Cada cifra de este informe lleva su fuente citada en su propia sección.
+Esta última sección reúne, para verificación directa, las fuentes de
+datos con su dirección completa y las referencias que respaldan las
+decisiones de método y de gráfica.
+
+### Fuentes de datos
 
 **Registros administrativos e informes institucionales**
 
 - **SIPIAV — informes de gestión (serie desde 2013)**, INAU y sistema
-  interinstitucional: [inau.gub.uy/sipiav](https://www.inau.gub.uy/sipiav).
-  Registro administrativo: mide situaciones atendidas, nunca prevalencia.
-- **INAU — indicadores del Sistema de Protección Especial (SIPI)**:
-  [inau.gub.uy/transparencia](https://inau.gub.uy/transparencia/indicadores-sistema-de-proteccion-especial-inau).
-  Registro administrativo nacional y departamental.
-- **CONAPEES — explotación sexual de NNA**:
-  [inau.gub.uy/conapees](https://www.inau.gub.uy/conapees); serie
-  cuantitativa 2018-2021 compilada por el estudio de
-  [FLACSO Uruguay (2023)](https://flacso.edu.uy/wp-content/uploads/2023/12/EXPLOTACION-SEXUAL-HACIA-NINAS-NINOS-Y-ADOLESCENTES-COMPLETO.pdf),
-  capítulo 6 (incluye las actuaciones de la Fiscalía General de la Nación).
-- **CETI — política nacional contra el trabajo infantil (MTSS)**:
-  [gub.uy/ministerio-trabajo-seguridad-social](https://www.gub.uy/ministerio-trabajo-seguridad-social/comunicacion/noticias/ceti).
+  interinstitucional. Registro administrativo: mide situaciones
+  atendidas, nunca prevalencia.
+  <https://www.inau.gub.uy/sipiav>
+- **INAU — indicadores del Sistema de Protección Especial (SIPI)**,
+  nacionales y departamentales. Registro administrativo.
+  <https://inau.gub.uy/transparencia/indicadores-sistema-de-proteccion-especial-inau>
+- **CONAPEES — explotación sexual de niñas, niños y adolescentes**.
+  <https://www.inau.gub.uy/conapees>
+- **FLACSO Uruguay (2023) — *Explotación sexual hacia niñas, niños y
+  adolescentes***, capítulo 6: serie cuantitativa 2018-2021 de CONAPEES
+  y actuaciones de la Fiscalía General de la Nación (SIPPAU).
+  <https://flacso.edu.uy/wp-content/uploads/2023/12/EXPLOTACION-SEXUAL-HACIA-NINAS-NINOS-Y-ADOLESCENTES-COMPLETO.pdf>
+- **CETI — política nacional contra el trabajo infantil (MTSS)**.
+  <https://www.gub.uy/ministerio-trabajo-seguridad-social/comunicacion/noticias/ceti>
 
 **Encuestas y estadísticas oficiales (INE)**
 
-- **ENSANNA 2024** — Encuesta Nacional sobre las Actividades de Niñas,
-  Niños y Adolescentes (INE/MTSS), única fuente de prevalencia de
-  trabajo infantil:
-  [gub.uy/instituto-nacional-estadistica](https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna).
+- **ENSANNA 2024 — Encuesta Nacional sobre las Actividades de Niñas,
+  Niños y Adolescentes** (INE/MTSS). Única fuente de prevalencia del
+  informe.
+  <https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna>
 - **ECH — Encuesta Continua de Hogares (INE)**, microdatos ponderados
   (pobreza, hacinamiento, vivienda, brecha digital, empleo adolescente,
-  FIES, victimización):
-  [www4.ine.gub.uy/Anda5](https://www4.ine.gub.uy/Anda5/), procesados
-  con la infraestructura verificada de
-  [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares).
+  seguridad alimentaria y victimización). Catálogo ANDA:
+  <https://www4.ine.gub.uy/Anda5/>
 - **Proyecciones de población, revisión 2025 (INE, Censo 2023)** — el
-  denominador demográfico de todas las tasas:
-  [gub.uy/instituto-nacional-estadistica/proyeccionesrev2025](https://www.gub.uy/instituto-nacional-estadistica/proyeccionesrev2025).
+  denominador demográfico de todas las tasas.
+  <https://www.gub.uy/instituto-nacional-estadistica/proyeccionesrev2025>
 
 **Fuentes secundarias**
 
-- **UNICEF Uruguay — Infancia en Datos** (pobreza infantil, protección):
-  [unicef.org/uruguay/infancia-en-datos](https://www.unicef.org/uruguay/infancia-en-datos).
+- **UNICEF Uruguay — Infancia en Datos** (pobreza infantil, protección).
+  <https://www.unicef.org/uruguay/infancia-en-datos>
 
-Las citas completas, con la naturaleza de cada dato y sus advertencias
-de uso, están en `docs/BIBLIOGRAFIA.md` y `docs/FUENTES_DE_DATOS.md` del
-repositorio; el respaldo textual de cada valor de las series curadas, en
-`datos_curados/*_notas.md`.
+### Bibliografía que respalda las decisiones de gráfica
+
+- **Cleveland, W.S. & McGill, R. (1984).** "Graphical Perception: Theory,
+  Experimentation, and Application to the Development of Graphical
+  Methods". *Journal of the American Statistical Association*, 79(387),
+  531-554. Fundamento de la comparación de longitudes desde una base
+  común (barras) y de las series en escala real, frente a
+  codificaciones menos precisas como el área o el ángulo.
+- **Healy, K. (2018).** *Data Visualization: A Practical Introduction*.
+  Princeton University Press. Integridad visual del eje y la escala: no
+  truncar el eje vertical de un conteo ni comprimir la escala completa
+  de un porcentaje.
+- **Tufte, E.R. (1983).** *The Visual Display of Quantitative
+  Information*. Graphics Press. Principio de *data-ink ratio*: cada
+  elemento visual del informe existe para transportar un dato.
+
+### Bibliografía que respalda el método
+
+- **Hyndman, R.J. & Athanasopoulos, G.** *Forecasting: Principles and
+  Practice* (3ª ed.). OTexts. Fundamento del protocolo predictivo de
+  este informe: candidatos simples, horizonte acotado al largo de la
+  serie, rangos derivados de los residuos y validación fuera de muestra.
+  <https://otexts.com/fpp3/>
+- **Makridakis, S., Spiliotis, E. & Assimakopoulos, V. (2018).**
+  "Statistical and Machine Learning forecasting methods: Concerns and
+  ways forward". *PLOS ONE*, 13(3). Evidencia de que en series cortas
+  los métodos estadísticos simples superan a los de aprendizaje
+  automático — por eso las proyecciones no usan modelos complejos.
+  <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0194889>
+- **Shmueli, G. (2010).** "To Explain or to Predict?". *Statistical
+  Science*, 25(3), 289-310. Distinción entre modelar para explicar y
+  modelar para predecir: fundamento de que las proyecciones de este
+  informe describan trayectorias sin afirmar causas.
+  <https://projecteuclid.org/journals/statistical-science/volume-25/issue-3/To-Explain-or-to-Predict/10.1214/10-STS330.full>
+
+La bibliografía completa del proyecto —con la naturaleza de cada dato,
+sus advertencias de uso y el respaldo textual de cada valor de las
+series curadas— es pública y está en el repositorio:
+<https://github.com/testa10/agente-politicas-sociales>
 
 ---
 

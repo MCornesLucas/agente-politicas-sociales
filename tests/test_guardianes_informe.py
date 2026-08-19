@@ -134,6 +134,17 @@ def test_cifras_acepta_conteos_publicados_en_miles(tmp_path):
 
 
 @requiere_node
+def test_cifras_ignora_los_numeros_de_las_direcciones_web(tmp_path):
+    # Los DOI de la bibliografía impresa ("10.1371/journal.pone.0194889")
+    # no son cifras estadísticas: caso real de la sección de fuentes.
+    nb = _nb_con_resumen(
+        tmp_path,
+        "Referencia: <https://journals.plos.org/plosone/article?id=10.1371/"
+        "journal.pone.0194889> y <https://doi.org/10.1214/10-STS330>.")
+    assert correr_hook("gate-informe-cifras-sin-respaldo.cjs", comando_ejecutar(nb)) == ""
+
+
+@requiere_node
 def test_cifras_bloquea_una_cifra_inventada(tmp_path):
     nb = _nb_con_resumen(tmp_path, "La pobreza es 99,9% de los hogares.")
     salida = correr_hook("gate-informe-cifras-sin-respaldo.cjs", comando_ejecutar(nb))

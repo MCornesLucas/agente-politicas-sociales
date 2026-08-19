@@ -88,6 +88,38 @@ def test_edicion_parcial_incluye_lo_elegido_y_lo_fijo():
     assert "https://www.inau.gub.uy/sipiav" in texto
 
 
+def test_la_bibliografia_se_imprime_en_el_informe():
+    # Pedido del dueño (2026-08-19): quien recibe el PDF no tiene el
+    # repositorio, así que las referencias tienen que estar impresas —
+    # no basta con remitir a un archivo local. Modelo: el informe del
+    # proyecto hermano, que imprime cada fuente con su dirección completa.
+    celdas = construir_informe.celdas_del_informe(["tema_1"])
+    texto = "\n".join(c.source for c in celdas if c.cell_type == "markdown")
+    # Referencias completas de las citas que el informe usa en sus
+    # justificaciones de gráfica.
+    assert "Cleveland, W.S. & McGill, R. (1984)" in texto
+    assert "Journal of the American Statistical Association" in texto
+    assert "Healy, K. (2018)" in texto
+    # Y las que respaldan el método de las proyecciones.
+    assert "Hyndman, R.J. & Athanasopoulos, G." in texto
+    assert "Shmueli, G. (2010)" in texto
+    # Direcciones completas y visibles (en papel no hay clic).
+    assert "<https://www.inau.gub.uy/sipiav>" in texto
+    assert "<https://www4.ine.gub.uy/Anda5/>" in texto
+
+
+def test_las_fuentes_no_remiten_a_rutas_locales_del_repositorio():
+    # Decir "ver docs/BIBLIOGRAFIA.md" es inútil para quien solo tiene el
+    # PDF: la referencia al material completo va por URL pública.
+    celdas = construir_informe.celdas_del_informe(["tema_1"])
+    fuentes = [c.source for c in celdas if c.cell_type == "markdown"
+               and c.source.lstrip().startswith("## Fuentes de datos")]
+    assert len(fuentes) == 1
+    assert "docs/BIBLIOGRAFIA.md" not in fuentes[0]
+    assert "datos_curados/" not in fuentes[0]
+    assert "https://github.com/testa10/agente-politicas-sociales" in fuentes[0]
+
+
 def test_conclusiones_filtradas_por_bloque():
     # Edición solo de pobreza (tema_5): lleva la conclusión de pobreza y
     # las transversales, pero no las que se alimentan de otros temas.
