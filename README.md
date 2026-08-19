@@ -34,6 +34,92 @@ Derechos del Niño), sin fijar un rango más angosto a priori: cada
 organismo clasifica distinto y cada métrica usa el rango de su fuente —
 ver [`docs/CLASIFICACION_DE_EDADES.md`](docs/CLASIFICACION_DE_EDADES.md).
 
+## Cómo instalar
+
+Hay dos caminos para llegar al mismo resultado — elija el que le quede
+más cómodo:
+
+- **Instalación rápida**, más abajo en esta misma sección: descargar
+  este proyecto como un archivo comprimido (ZIP) desde la propia página
+  de GitHub y hacer doble clic en un archivo ya incluido. No hace falta
+  instalar Git ni abrir una terminal.
+- **Instalación manual (con conocimientos técnicos)**, al final de esta
+  sección: clonar el repositorio con Git y correr cada paso por su
+  cuenta. Pensada para quien va a modificar el código o prefiere tener
+  control de cada paso.
+
+En ambos casos hace falta el proyecto hermano
+[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares):
+este proyecto toma de él los lectores de los microdatos de la ECH, por
+lo que los dos proyectos deben quedar en carpetas vecinas (dentro del
+mismo directorio). El instalador lo verifica antes de continuar.
+
+### Instalación rápida (Windows)
+
+1. Instale primero el proyecto hermano
+   [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares),
+   siguiendo la sección "Instalación rápida" de su propia página — allí
+   se indica también cómo instalar Anaconda, el único programa que se
+   instala a mano. Un cuidado adicional: al descomprimir su ZIP, la
+   carpeta queda con el nombre `agente-encuesta-hogares-main`; cámbielo
+   (clic derecho → **"Cambiar nombre"**) a `agente-encuesta-hogares`,
+   sin el `-main`, **antes** de hacer doble clic en su `instalar.bat`.
+   Si ya tiene el proyecto hermano instalado con ese nombre, omita este
+   paso.
+2. Descargue este proyecto: en
+   https://github.com/testa10/agente-politicas-sociales, haga clic en
+   el botón verde **"Code"** y después en **"Download ZIP"**. Se
+   descarga un archivo `agente-politicas-sociales-main.zip`
+   (normalmente a la carpeta Descargas).
+3. Descomprímalo: haga clic derecho sobre el archivo ZIP descargado →
+   **"Extraer todo..."** (Windows lo hace sin necesidad de instalar
+   nada aparte) → elija como destino la misma carpeta donde quedó el
+   proyecto hermano y confirme. Las dos carpetas deben quedar una al
+   lado de la otra.
+4. Abra la carpeta descomprimida y haga doble clic en
+   **`instalar.bat`**. Se abre una ventana que verifica qué falta e
+   instala automáticamente lo necesario (puede tardar unos minutos la
+   primera vez). Si en el camino pide instalar Node.js, instálelo con
+   las opciones por defecto y vuelva a hacer doble clic en
+   `instalar.bat` para continuar donde quedó.
+5. Cuando termine, haga doble clic en **`abrir_agente.bat`**, dentro de
+   esa misma carpeta.
+
+### Instalación manual (con conocimientos técnicos)
+
+Requiere Python 3.10 o superior y el proyecto hermano
+[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
+como carpeta hermana (o su ruta en la variable de entorno
+`AGENTE_ECH_RUTA`): los loaders de la ECH se importan desde su copia de
+trabajo para heredar las correcciones al día.
+
+```bash
+git clone https://github.com/testa10/agente-politicas-sociales.git
+cd agente-politicas-sociales
+python -m pip install -e ".[dev]"
+```
+
+Los pipelines se ejecutan como módulos del paquete — por ejemplo
+`python -m politicas_sociales.metricas_ech` — y la suite con
+`python -m pytest`. `instalar.bat` automatiza además la parte no
+Python: verifica Node.js, instala Claude Code (versión fijada), prepara
+el generador de PDF y deja la ruta de Python detectada en
+`.claude/python_path.txt`, que `run_python.bat` usa para ejecutar
+cualquier comando sin depender del PATH de cada máquina:
+
+```bash
+run_python.bat -m politicas_sociales.metricas_ech
+```
+
+## Cómo usar
+
+**Uso guiado (sin conocimientos técnicos)**: doble clic en
+`abrir_agente.bat`. Todo pasa por formularios que se abren en el
+navegador — bienvenida, generación del informe y entrega del PDF/HTML —
+sin escribir ningún comando; al terminar, la ventana se cierra sola.
+Cada corrida queda registrada en una bitácora local
+(`logs/bitacora.jsonl`) que nunca sale de la computadora.
+
 ## La regla que define el proyecto
 
 > **Casos atendidos ≠ prevalencia.** Cuando SIPIAV informa 8.924
@@ -80,42 +166,6 @@ src/politicas_sociales/       Paquete Python: extracción, métricas, cruces,
                               proyecciones y construcción del informe
 tests/                        Suite de la lógica del paquete y sus guardianes
 ```
-
-## Instalación y ejecución
-
-Requiere Python 3.10 o superior y el proyecto hermano
-[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
-como carpeta hermana (o su ruta en la variable de entorno
-`AGENTE_ECH_RUTA`): los loaders de la ECH se importan desde su copia de
-trabajo para heredar las correcciones al día.
-
-**Instalación rápida (Windows)**: doble clic en `instalar.bat` — verifica
-Node.js, instala Claude Code (versión fijada), detecta Python (Anaconda),
-verifica el proyecto hermano, instala el paquete con sus dependencias y
-prepara el generador de PDF. Deja la ruta de Python en
-`.claude/python_path.txt`, que `run_python.bat` usa para ejecutar
-cualquier comando sin depender del PATH de cada máquina:
-
-```bash
-run_python.bat -m politicas_sociales.metricas_ech
-```
-
-**Instalación manual** (cualquier sistema):
-
-```bash
-python -m pip install -e ".[dev]"
-```
-
-Los pipelines se ejecutan como módulos del paquete — por ejemplo
-`python -m politicas_sociales.metricas_ech` — y la suite con
-`python -m pytest`.
-
-**Uso guiado (sin conocimientos técnicos)**: doble clic en
-`abrir_agente.bat`. Todo pasa por formularios que se abren en el
-navegador — bienvenida, generación del informe y entrega del PDF/HTML —
-sin escribir ningún comando; al terminar, la ventana se cierra sola.
-Cada corrida queda registrada en una bitácora local
-(`logs/bitacora.jsonl`) que nunca sale de la computadora.
 
 ## Estado
 
