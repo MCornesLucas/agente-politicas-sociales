@@ -1,6 +1,8 @@
 {
   "permissions": {
     "allow": [
+      "Write",
+      "Edit",
       "Bash(run_python.bat *)",
       "Bash(./run_python.bat *)",
       "Bash(.\\run_python.bat *)",
@@ -15,8 +17,14 @@
       {
         "matcher": "Bash",
         "hooks": [
-          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/gate-informe-metrica-incompleta.cjs\"" },
-          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/gate-informe-cifras-sin-respaldo.cjs\"" }
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/gate-informe-metrica-incompleta.cjs\""
+          },
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/gate-informe-cifras-sin-respaldo.cjs\""
+          }
         ]
       }
     ],
@@ -24,7 +32,10 @@
       {
         "matcher": "Bash",
         "hooks": [
-          { "type": "command", "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/gate-informe-graficas-faltantes.cjs\"" }
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/gate-informe-graficas-faltantes.cjs\""
+          }
         ]
       }
     ]
