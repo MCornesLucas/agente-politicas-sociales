@@ -63,6 +63,9 @@ def test_el_agente_existe_y_manda_usar_el_envoltorio():
     # genérico (corrección del dueño, 2026-08-20).
     assert "Fuente de «<título de la métrica>»" in agente
     assert "rotulada con el título" in agente
+    # Regla de formato (2026-08-20): los valores calculados se muestran
+    # como tabla formateada, nunca como print() de texto corrido.
+    assert "nunca un `print()` de texto corrido" in agente
 
 
 def test_las_ediciones_de_usuario_no_se_versionan():

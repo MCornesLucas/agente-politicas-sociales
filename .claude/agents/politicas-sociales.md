@@ -115,7 +115,15 @@ ANTES de generar nada, con este criterio y en este orden:
    markdown "## Métrica del usuario" (ese rótulo aparece UNA sola vez,
    como título de la sección — regla del dueño, 2026-08-20) + las celdas
    de la métrica con el encabezado "### <título de la métrica>" (solo el
-   nombre, sin ningún rótulo) y las cinco partes
+   nombre, sin ningún rótulo) y las cinco partes. Regla de formato del
+   dueño (2026-08-20): la celda de código muestra la gráfica y, SOLO si
+   el cálculo produce valores que no están en los archivos del
+   repositorio (por ejemplo una proporción derivada), los muestra además
+   como una tabla breve y formateada — un DataFrame como última
+   expresión de la celda, con columnas en español y porcentajes con coma
+   decimal — **nunca un `print()` de texto corrido**: el DataFrame se
+   renderiza con el estilo del informe y su texto alimenta la validación
+   de cifras del cierre igual que un print
    (pregunta, gráfica con matplotlib y `fuente(...)`, "Por qué esta
    gráfica" citando el principio, "**Lectura**" observacional). Toda
    edición incluye la sección "## Resumen analítico" (armada desde los
