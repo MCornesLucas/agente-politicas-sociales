@@ -81,6 +81,25 @@ def test_metrica_incompleta_bloquea_una_metrica_sin_lectura(tmp_path):
 
 
 @requiere_node
+def test_la_metrica_a_medida_tambien_es_vigilada(tmp_path):
+    # Decisión del dueño (2026-08-20): la métrica libre lleva la misma
+    # estructura que una preestablecida. Su encabezado es "### Métrica a
+    # medida. ..." — el guardián debe reconocerlo y exigirle las cinco
+    # partes; si el patrón no lo cubriera, entraría al informe sin
+    # control.
+    nb = escribir_nb(tmp_path / "nb.ipynb", _grupo_metrica(1) + [
+        celda_md("### Métrica a medida. Algo nuevo\n\n"
+                 "**¿Qué pregunta responde?** Algo.\n"),
+        celda_code("plt.plot(x)\nplt.show()"),  # sin justificación/lectura/fuente
+    ])
+    salida = correr_hook("gate-informe-metrica-incompleta.cjs", comando_ejecutar(nb))
+    decision = json.loads(salida)["hookSpecificOutput"]
+    assert decision["permissionDecision"] == "deny"
+    assert "Métrica a" in decision["permissionDecisionReason"]
+    assert "sin lectura" in decision["permissionDecisionReason"]
+
+
+@requiere_node
 def test_metrica_incompleta_bloquea_si_no_reconoce_ningun_encabezado(tmp_path):
     # El fallo silencioso del proyecto hermano: si el patrón de encabezados
     # cambia, el hook no debe quedar verde por no encontrar nada que mirar.
