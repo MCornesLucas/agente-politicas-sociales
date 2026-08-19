@@ -54,7 +54,7 @@ comparabilidad de recurrencia, cronicidad e inclusión familiar.
 | 11 | Cobertura territorial del sistema (nº de CRL) | Descriptiva | 2014-2025 (24 → 36; 2025 estable) + participación sectorial 2015-2024 reconstruible | ✅ |
 | P1 | Situaciones que atendería el sistema, 2025-2027 | Predictiva | Sobre la métrica 1 (12 puntos) — calculada y **validada**: real 2025 = 9.178, dentro del rango proyectado 8.500-10.300 | ✅ validada en su primer año |
 | P2 | Inclusión de la familia proyectada | Predictiva | Sobre la métrica 10 (11 puntos, 2014-2024) — calculada (2027: ~50%, 42-58); validación 2025 no concluyente por el cambio de base de la fuente | ✅ calculada; ⚠️ validación pendiente de base estable |
-| P5 | Cobertura CRL proyectada | Predictiva | Sobre la métrica 11; curva saturante, valor informativo menor | ⚠️ |
+| P5 | Cobertura CRL proyectada | Predictiva | Sobre la métrica 11 (13 puntos) — calculada (2026-08-20): curva asintótica elegida por backtest (MAPE 1,3%); 2028: ~39 CRL (37-41). Advertencia: la asíntota no está identificada por los datos (régimen casi lineal) — proyección robusta entre candidatos (~+1 CRL/año), ver `PREDICTIVO_JUSTIFICACION_TECNICA.md` | ✅ calculada; valor informativo menor |
 | — | Situaciones por departamento | — | **No existe en ningún año** — la ausencia principal de la fuente | ❌ |
 | — | Casos nuevos (nuevas situaciones por año) | Descriptiva | Serie oficial 2022-2025 publicada por el informe 2025 (1.643 → 2.536) | ✅ corta (4 puntos; insuficiente para proyectar) |
 

@@ -229,13 +229,46 @@ logit):
   denominadores (no con los de la revisión 2013, que la ECH todavía usa
   en sus ponderadores — ver `RELEVAMIENTO_DE_DATOS.md`, sección INE).
 
-## P5 — Cobertura CRL (pendiente, prioridad baja)
+## P5 — Cobertura de Comités de Recepción Local (calculado, 2026-08-20)
 
-- **Algoritmo previsto**: curva saturante (asintótica) — la serie 24→36
-  con desaceleración visible y un techo natural (cantidad de localidades
-  con masa crítica). Una recta proyectaría crecimiento indefinido sin
-  sentido sustantivo. Si el ajuste asintótico no es estable con 11
-  puntos, se degrada a lectura descriptiva.
+Serie: cantidad de CRL a fin de cada año, 2013-2025 (13 puntos, curados
+del texto de los informes de gestión; `datos_curados/sipiav_series.csv`,
+métrica `crl_cantidad`). Como anticipaba el algoritmo previsto, a los
+cuatro candidatos estándar para conteos se agregó la curva asintótica
+que admite el protocolo (punto 1): `y(t) = L − (L − y0)·exp(−k·t)`, con
+y0 fijo en el primer valor (2 parámetros libres). Ajuste con 2013-2023,
+holdout 2024-2025 (36, 36):
+
+| Modelo | MAE | MAPE | Veredicto |
+|---|---|---|---|
+| Ingenuo (último valor) | 1,00 | 2,78% | línea base |
+| Deriva | 0,65 | 1,81% | pasa ambos criterios |
+| Tendencia lineal MCO | 0,54 | 1,50% | pasa ambos criterios |
+| Tendencia log-lineal | 1,06 | 2,96% | no supera al ingenuo |
+| **Curva asintótica** | **0,46** | **1,28%** | **elegida** (menor error y estructura acorde al fenómeno) |
+
+- **Advertencia de identificabilidad, esencial para leer este
+  resultado**: la asíntota reajustada con la serie completa es L ≈ 91
+  con k ≈ 0,017 — el ajuste quedó en régimen casi lineal y los datos
+  **no identifican el techo real** de la cobertura (13 puntos que crecen
+  a ~+1 CRL/año no contienen información sobre dónde se detiene el
+  crecimiento). La elección asintótica vale por la estructura del
+  fenómeno (cobertura de un territorio finito), no porque el dato haya
+  revelado el valor de saturación.
+- **Lo que hace publicable la proyección es la robustez entre
+  candidatos** (mismo argumento que P1): asintótica, lineal y deriva —
+  tres estimadores distintos — proyectan prácticamente lo mismo
+  (~+0,9 CRL/año). En el horizonte corto la proyección no depende de la
+  forma elegida.
+- **Proyección publicable** (asintótica reajustada 2013-2025, residuos
+  s ≈ 1,0): 2026: ~37 (35-39) · 2027: ~38 (36-40) · 2028: ~39 (37-41).
+  Horizonte de 3 años ≤ 1/3 del largo de la serie (13 puntos).
+- **Valor informativo menor, como anticipó el catálogo**: la serie es
+  chica en niveles y crece a saltos administrativos (aperturas por
+  tandas: mesetas 32-32-32 y 35-36-36); la lectura útil es "de seguir el
+  ritmo, unos 3 comités más hacia 2028", no el decimal.
+- Resultado en `resultados/proyecciones/p5_cobertura_crl.csv`
+  (`politicas_sociales/proyeccion_p5_cobertura_crl.py`).
 
 ## P6 — Población 0-17 (sin algoritmo propio)
 
