@@ -66,17 +66,16 @@ mismo directorio). El instalador lo verifica antes de continuar.
    sin el `-main`, **antes** de hacer doble clic en su `instalar.bat`.
    Si ya tiene el proyecto hermano instalado con ese nombre, omita este
    paso.
-2. Descargue este proyecto: en
-   https://github.com/testa10/agente-politicas-sociales, haga clic en
-   el botón verde **"Code"** y después en **"Download ZIP"**. Se
-   descarga un archivo `agente-politicas-sociales-main.zip`
+2. Descargue este proyecto desde este enlace directo:
+   <https://github.com/testa10/agente-politicas-sociales/releases/latest/download/agente-politicas-sociales.zip>
+   — se descarga un archivo `agente-politicas-sociales.zip`
    (normalmente a la carpeta Descargas).
 3. Descomprímalo: haga clic derecho sobre el archivo ZIP descargado →
    **"Extraer todo..."** (Windows lo hace sin necesidad de instalar
    nada aparte) → elija como destino la misma carpeta donde quedó el
-   proyecto hermano y confirme. Las dos carpetas deben quedar una al
-   lado de la otra.
-4. Abra la carpeta descomprimida y haga doble clic en
+   proyecto hermano y confirme. Esto crea la carpeta
+   `agente-politicas-sociales` al lado de la del hermano.
+4. Abra la carpeta `agente-politicas-sociales` y haga doble clic en
    **`instalar.bat`**. Se abre una ventana que verifica qué falta e
    instala automáticamente lo necesario (puede tardar unos minutos la
    primera vez). Si en el camino pide instalar Node.js, instálelo con
