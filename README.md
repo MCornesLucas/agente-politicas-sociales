@@ -60,12 +60,10 @@ mismo directorio). El instalador lo verifica antes de continuar.
    [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares),
    siguiendo la sección "Instalación rápida" de su propia página — allí
    se indica también cómo instalar Anaconda, el único programa que se
-   instala a mano. Un cuidado adicional: al descomprimir su ZIP, la
-   carpeta queda con el nombre `agente-encuesta-hogares-main`; cámbielo
-   (clic derecho → **"Cambiar nombre"**) a `agente-encuesta-hogares`,
-   sin el `-main`, **antes** de hacer doble clic en su `instalar.bat`.
-   Si ya tiene el proyecto hermano instalado con ese nombre, omita este
-   paso.
+   instala a mano. Si ya lo tiene instalado, solo verifique que su
+   carpeta se llame exactamente `agente-encuesta-hogares` (sin sufijos
+   como `-main`): el instalador de este proyecto la busca por ese
+   nombre.
 2. Descargue este proyecto desde este enlace directo:
    <https://github.com/testa10/agente-politicas-sociales/releases/latest/download/agente-politicas-sociales.zip>
    — se descarga un archivo `agente-politicas-sociales.zip`
