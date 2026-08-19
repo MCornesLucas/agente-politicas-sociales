@@ -23,11 +23,13 @@ Reglas de una edición parcial:
   dueño (2026-08-19): las fuentes con sus enlaces validan los números y
   las elecciones de cualquier edición. La presentación de un tema va
   siempre que la edición incluya al menos una unidad del tema.
-- El **resumen analítico y las conclusiones van siempre**, filtrados por
-  bloque (decisión del dueño, 2026-08-19): cada párrafo del resumen y
-  cada conclusión declaran en RESUMEN_BLOQUES/CONCLUSIONES_BLOQUES de
-  qué bloques se alimentan, y una edición incluye los de sus bloques
-  (las conclusiones transversales, marcadas "siempre", van en todas).
+- El **resumen analítico y las conclusiones van siempre y se arman por
+  métrica** (idea del dueño, 2026-08-20): cada unidad es dueña de su
+  fragmento de resumen y — donde corresponde — de conclusión
+  (`informe_sintesis`), y las secciones finales se componen con los
+  fragmentos de las unidades elegidas: no pueden afirmar nada que la
+  edición no muestre, por construcción. Las limitaciones declaradas son
+  transversales y cierran las conclusiones de toda edición.
 - La introducción de una edición parcial describe lo que la edición
   realmente contiene — nunca promete contenido que no está.
 - Cada unidad es auto-contenida (sus celdas solo dependen de la
@@ -56,6 +58,7 @@ from politicas_sociales import config
 from politicas_sociales.informe_celdas_1 import CELDAS as CELDAS_1
 from politicas_sociales.informe_celdas_1 import celda_introduccion
 from politicas_sociales.informe_celdas_2 import CELDAS as CELDAS_2
+from politicas_sociales import informe_sintesis as sintesis
 
 DESTINO = config.NOTEBOOKS / "informe_infancia.ipynb"
 
@@ -79,6 +82,17 @@ _TEMAS = [clave for clave in SELECCIONABLES if clave.startswith("tema_")]
 # se declara acá y la selección se autocompleta — elegirla sin su
 # requerida no es posible.
 REQUIERE: dict[str, set[str]] = {}
+
+# Bloques fijos (nunca se eligen) y bloques que solo van en el completo.
+_FIJOS_INICIO = "inicio"          # introducción + preparación de datos
+_FIJOS_FIN = ("contexto", "nota")  # contexto demográfico + nota metodológica
+_ENCABEZADOS_FIJOS = {
+    "## Contexto transversal": "contexto",
+    "## Nota metodológica": "nota",
+    "## Resumen analítico": "resumen",
+    "## Conclusiones": "conclusiones",
+    "## Fuentes de datos": "fuentes",
+}
 
 # Bloques fijos (nunca se eligen) y bloques que solo van en el completo.
 _FIJOS_INICIO = "inicio"          # introducción + preparación de datos
@@ -335,23 +349,12 @@ def celdas_del_informe(bloques: list[str] | None = None,
             celdas += bloque["unidades"][unidad]
     for clave in _FIJOS_FIN:
         celdas += partes.get(clave, [])
-    # Resumen analítico y conclusiones: siempre, filtrados por los
-    # bloques presentes en la edición; las conclusiones transversales
-    # ("siempre") van en todas.
-    bloques_presentes = {mapa[u] for u in seleccion}
-    for seccion, mapa_bloques in (("resumen", RESUMEN_BLOQUES),
-                                  ("conclusiones", CONCLUSIONES_BLOQUES)):
-        celdas_seccion = partes.get(seccion, [])
-        if not celdas_seccion:
-            continue
-        filtradas = [
-            celda for indice, celda in enumerate(celdas_seccion[1:])
-            if (aplica := mapa_bloques.get(indice, "siempre")) == "siempre"
-            or aplica & bloques_presentes
-        ]
-        if filtradas:
-            celdas.append(celdas_seccion[0])  # encabezado de la sección
-            celdas += filtradas
+    # Resumen analítico y conclusiones: SIEMPRE, armados desde los
+    # fragmentos por unidad (informe_sintesis) con la selección — solo
+    # pueden decir lo que las unidades presentes muestran, por
+    # construcción; las limitaciones transversales van en todas.
+    celdas += sintesis.celdas_resumen(sorted(seleccion))
+    celdas += sintesis.celdas_conclusiones(sorted(seleccion))
     # Fuentes de datos y bibliografía: en toda edición, sin excepción.
     celdas += partes.get("fuentes", [])
     return celdas

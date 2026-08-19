@@ -606,8 +606,8 @@ con marcadores, eje desde cero.
 2025). La expansión no fue monótona — 33 en 2019, 32 entre 2020 y
 2022 — y muestra desaceleración: la cobertura parece acercarse a su
 techo territorial (los 36 CRL cubren las principales localidades del
-país), lo que vuelve menos informativa una proyección de esta serie
-(P5, evaluada y postergada por esa razón).
+país) — por eso su proyección (P5, al cierre de este tema) se lee como
+orden de magnitud, no como cronograma de aperturas.
 """),
     # ------------------------------------------------------------------
     md("""

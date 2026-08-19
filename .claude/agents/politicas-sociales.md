@@ -120,8 +120,12 @@ ANTES de generar nada, con este criterio y en este orden:
    bloque): insertar además una celda markdown al final de esa sección —
    inmediatamente antes de "## Conclusiones" — con un párrafo rotulado
    con el título real de la métrica ("**«<título de la métrica>».** ...")
-   de dos o tres frases con las cifras del cálculo real; el guardián de
-   cifras la valida contra los outputs,
+   de dos o tres frases con las cifras del cálculo real. Si la métrica
+   deja además una conclusión sustantiva, insertar el ítem en la lista de
+   Conclusiones — inmediatamente antes de la celda de limitaciones (la
+   que comienza con "**Limitaciones declaradas") — numerado con el número
+   siguiente al último de la lista y rotulado igual, con el título real.
+   El guardián de cifras valida ambos contra los outputs,
    igual que al resto del resumen. Insertar también, al final de la
    sección "## Fuentes de datos y bibliografía" — inmediatamente antes
    de la celda de la firma (la que comienza con "---") — una celda

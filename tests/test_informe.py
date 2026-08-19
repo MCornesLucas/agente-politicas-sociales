@@ -151,17 +151,38 @@ def test_conclusiones_filtradas_por_bloque():
     assert "La pobreza uruguaya está concentrada en la infancia" not in texto
 
 
-def test_los_mapas_de_resumen_y_conclusiones_estan_alineados_con_las_celdas():
-    # Si se agrega o quita un párrafo sin actualizar su mapa, una edición
-    # parcial incluiría (o perdería) contenido en silencio.
+def test_la_sintesis_esta_alineada_con_las_unidades_reales():
+    # Toda unidad del informe tiene su fragmento de resumen (obligatorio)
+    # y su bloque declarado; los fragmentos de conclusión solo pueden
+    # pertenecer a unidades existentes. Si se agrega una métrica sin su
+    # fragmento — o se elimina una con fragmento — este test lo nombra.
+    from politicas_sociales import informe_sintesis as sintesis
     partes = construir_informe._particionar(CELDAS_1 + CELDAS_2)
-    bloques_validos = set(construir_informe.SELECCIONABLES)
-    for seccion, mapa in (("resumen", construir_informe.RESUMEN_BLOQUES),
-                          ("conclusiones", construir_informe.CONCLUSIONES_BLOQUES)):
-        celdas_seccion = partes[seccion][1:]  # sin el encabezado
-        assert len(celdas_seccion) == len(mapa), seccion
-        for aplica in mapa.values():
-            assert aplica == "siempre" or (aplica and aplica <= bloques_validos)
+    mapa_real = construir_informe._todas_las_unidades(partes)
+    assert set(sintesis.RESUMEN) == set(mapa_real)
+    assert sintesis.BLOQUE_DE_UNIDAD == mapa_real
+    assert all(texto.strip() for texto in sintesis.RESUMEN.values())
+    claves_conclusion = [clave for clave, _ in sintesis.CONCLUSIONES]
+    assert set(claves_conclusion) <= set(mapa_real)
+    assert len(claves_conclusion) == len(set(claves_conclusion))
+
+
+def test_el_cierre_solo_dice_lo_que_la_edicion_muestra():
+    # La regla central de la idea del dueño (2026-08-20), a nivel de
+    # métrica individual: una edición con SOLO hacinamiento no puede
+    # citar la pobreza en su resumen ni llevar su conclusión.
+    celdas = construir_informe.celdas_del_informe(unidades=["metrica_32"])
+    texto = "\n".join(c.source for c in celdas if c.cell_type == "markdown")
+    assert "hacinamiento afecta" in texto                 # fragmento propio
+    assert "27,5% de los NNA en hogares pobres" not in texto
+    assert "La pobreza uruguaya está concentrada" not in texto
+    assert "Limitaciones declaradas de este informe" in texto  # transversal
+    # Y sin duplicación (regla del dueño): el fragmento exacto se
+    # materializa una sola vez — en el resumen —, nunca además dentro de
+    # la sección de la métrica (la Lectura de la métrica es otra parte,
+    # con su propia redacción).
+    from politicas_sociales import informe_sintesis as sintesis
+    assert texto.count(sintesis.RESUMEN["metrica_32"]) == 1
 
 
 def test_edicion_parcial_describe_su_alcance_real_en_la_introduccion():

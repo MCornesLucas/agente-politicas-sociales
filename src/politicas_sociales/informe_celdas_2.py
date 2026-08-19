@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from politicas_sociales.informe_base import code, md
+from politicas_sociales.informe_sintesis import celdas_conclusiones, celdas_resumen
 
 CELDAS = [
     # ==================================================================
@@ -1160,146 +1161,16 @@ las categorías de datos faltantes se muestran cuando la fuente las
 publica (métrica 26): la calidad del registro es parte del dato.
 """),
     # ==================================================================
-    # Resumen analítico: un párrafo por celda, a propósito — las
-    # ediciones parciales incluyen los párrafos de sus bloques (el mapa
-    # vive en construir_informe.RESUMEN_BLOQUES, con test de alineación).
-    md("""
-## Resumen analítico
-"""),
-    md("""
-**Violencia (SIPIAV).** La respuesta del sistema se multiplicó por 7 en
-doce años (1.319 → 9.178 situaciones) y la proyección publicada para
-2025 quedó validada por el dato real. La detección sigue siendo tardía
-(en la serie comparable, ~9 de cada 10 situaciones ya eran crónicas) y
-la inclusión de la familia en la intervención cayó de 82% a 58% en una
-década. Las violencias sexuales tienen patrón propio: 76% niñas y
-adolescentes mujeres, 51% concentrado en 13-17 años.
-"""),
-    md("""
-**Explotación sexual (CONAPEES/Fiscalía).** Entre 240 y 494 situaciones
-atendidas por año (2018-2021, 86% niñas y adolescentes mujeres) y más de
-2.000 actuaciones anuales de Fiscalía por delitos sexuales con víctima
-NNA. El vacío es el dato: no hay serie oficial desde 2022, y desde 2024
-la explotación sexual perdió su categoría propia en el registro del
-SIPIAV.
-"""),
-    md("""
-**Trabajo infantil (ENSANNA/ECH).** 6,8% de los NNA de 5 a 17 (40.200)
-en situación de trabajo infantil, con gradientes por edad, región y
-nivel socioeconómico. El trabajo no remunerado de servicios ya muestra
-división sexual (niñas 2,8% frente a varones 1,1%). El trabajo
-adolescente que existe es casi todo informal (82-93% de los ocupados de
-14-17).
-"""),
-    md("""
-**Protección especial (INAU).** El sistema creció hasta 2023 y se
-amesetó (~8.000 atendidos; ~7.000 de 0-17). La desinternación avanza
-(50,9% → 62,7% en contexto familiar) y llegaría a 66,4% en 2027 si el
-ritmo persiste. Las señales de alerta: 56,9% de los casos sin registro
-de contacto familiar, casi 4 de cada 10 sin controles médicos al día, y
-una tasa de NNA en protección (9,4 por mil) que sube por pura
-demografía.
-"""),
-    md("""
-**Pobreza y entorno (ECH).** 27,5% de los NNA en hogares pobres (2025,
-canasta 2017), con la primera infancia como el grupo más afectado. Más
-de un tercio de los hogares con NNA tiene humedades estructurales; la
-inseguridad alimentaria mejora pero alcanza al 15,3% de los hogares con
-menores; la brecha digital se cierra en acceso general pero retrocede en
-internet fija.
-"""),
-    md("""
-**Cruce territorial (INAU × ECH).** La tasa departamental de NNA en
-protección especial no está asociada a la pobreza infantil ni al
-hacinamiento del departamento (Spearman sin asociación estable en 2024 y
-2025): la distribución territorial de la atención parece responder a la
-localización de la oferta institucional y a las derivaciones más que al
-mapa de la necesidad — una pregunta abierta para la política
-territorial.
-"""),
-    md("""
-**Cruces entre fuentes (CONAPEES/Fiscalía, ENSANNA, SIPIAV × ECH).** La
-detección de la explotación sexual tampoco sigue el mapa de las
-carencias: la asociación con el hacinamiento es negativa y estable en
-las ocho combinaciones de fuente y año — se registra menos donde las
-carencias habitacionales son mayores, consistente con que el registro
-retrata la capacidad de detección y no el fenómeno. El trabajo infantil
-declarado atraviesa toda la estructura social, con un gradiente mucho
-más plano que el de la pobreza y la geografía invertida (más frecuente
-en el interior, con la pobreza infantil algo mayor en Montevideo). Y el
-perfil etario de la atención del SIPIAV no sigue al tramo más pobre: la
-primera infancia — la más pobre — fue históricamente la menos
-representada en la atención, aunque en 2025 se acercó a la paridad.
-"""),
-    # ==================================================================
-    # Conclusiones: una celda por conclusión, a propósito — las ediciones
-    # parciales incluyen las conclusiones de sus bloques (el mapa
-    # conclusión → bloques vive en construir_informe.CONCLUSIONES_BLOQUES
-    # y un test lo mantiene alineado con estas celdas).
-    md("""
-## Conclusiones
-"""),
-    md("""
-1. **La pobreza uruguaya está concentrada en la infancia, y dentro de la
-   infancia, en sus edades más tempranas.** 27,5% de los NNA en hogares
-   pobres (2025) frente a ~17% en la población general, con incidencia
-   máxima en la primera infancia. Es el dato más relevante del informe
-   para el diseño de políticas (fuente: elaboración propia sobre ECH,
-   INE).
-"""),
-    md("""
-2. **El país tiene sistemas de protección en expansión y una infancia en
-   contracción.** La respuesta del SIPIAV se multiplicó por 7; el SPE
-   del INAU creció hasta amesetarse en ~8.000 atendidos; y la población
-   de 0 a 17 cae 2,3% por año. La combinación produce tasas de
-   institucionalización crecientes aun sin crecimiento de los sistemas
-   (P4) — leer cualquier tasa de infancia sin su denominador demográfico
-   induce a error (fuentes: SIPIAV, INAU, INE).
-"""),
-    md("""
-3. **La detección de la violencia llega tarde y la intervención pierde a
-   la familia.** En la serie comparable, ~9 de cada 10 situaciones
-   detectadas ya eran crónicas, solo 4 de cada 10 NNA visualizan la
-   violencia que sufren, y la inclusión familiar en la intervención cayó
-   24 puntos en una década (82% → 58%), con escenario inercial en ~50%
-   hacia 2027 (fuente: SIPIAV).
-"""),
-    md("""
-4. **La violencia sexual hacia NNA es adolescente y de género, y perdió
-   visibilidad estadística.** 76% de las violencias sexuales afecta a
-   niñas y adolescentes mujeres y 51% se concentra en 13-17 años; la
-   explotación sexual no tiene serie oficial desde 2022 y desde 2024
-   quedó fusionada dentro de «violencias sexuales» (fuentes: SIPIAV,
-   CONAPEES/FLACSO).
-"""),
-    md("""
-5. **Uruguay no mide la prevalencia de la violencia hacia NNA.** Todo el
-   tema 1 es registro administrativo. La única aproximación existente —
-   una encuesta de 2026 de UNICEF con muestra no probabilística, que
-   sugiere que cerca de 3 de cada 10 jóvenes vivió violencia sexual
-   antes de los 18 — no sustituye una medición oficial con diseño
-   muestral: esa es la brecha de información más importante que este
-   proyecto identifica (fuentes: SIPIAV; UNICEF/Equipos 2026, con su
-   diseño declarado).
-"""),
-    md("""
-6. **Limitaciones declaradas de este informe**: (a) las cifras de
-   registros administrativos describen la respuesta de los sistemas, no
-   la prevalencia; (b) las proyecciones son escenarios inerciales con
-   supuesto explícito — y donde ningún modelo pasó la validación (P4) no
-   hay proyección; (c) los microdatos de la ENSANNA aún no son públicos
-   (el tema 3 usa el boletín oficial); (d) el SIPIAV no publica
-   desagregación departamental, lo que limita el análisis territorial de
-   la violencia; (e) los cuatro cruces entre fuentes comparten tres
-   límites estructurales — los numeradores administrativos registran
-   dónde se atiende o actúa (no dónde reside el NNA), las estimaciones
-   departamentales de la ECH tienen error muestral mayor en los
-   departamentos chicos, y toda asociación es observacional — además de
-   las limitaciones propias declaradas en la sección de cada cruce:
-   escalas socioeconómicas no comparables y sin errores estándar en la
-   ENSANNA, porcentajes redondeados y renormalizados en el SIPIAV, y
-   conteos chicos con condiciones fijadas en 2019 en CONAPEES/Fiscalía.
-"""),
+    # El Resumen analítico y las Conclusiones se ARMAN desde los
+    # fragmentos por unidad de informe_sintesis (idea del dueño,
+    # 2026-08-20): cada métrica es dueña de su fragmento y las secciones
+    # finales solo dicen lo que las unidades presentes muestran. Aquí se
+    # arman con todas las unidades (informe completo); las ediciones
+    # parciales las arman con su selección en construir_informe. Los
+    # fragmentos NO se imprimen en la sección de cada métrica: solo en
+    # este cierre (regla del dueño: sin duplicación).
+    *celdas_resumen(),
+    *celdas_conclusiones(),
     # ==================================================================
     # Fuentes: sección fija de TODA edición (total o parcial) — decisión
     # del dueño del proyecto (2026-08-19): las fuentes con sus enlaces
