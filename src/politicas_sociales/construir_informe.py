@@ -94,44 +94,6 @@ _ENCABEZADOS_FIJOS = {
     "## Fuentes de datos": "fuentes",
 }
 
-# Bloques fijos (nunca se eligen) y bloques que solo van en el completo.
-_FIJOS_INICIO = "inicio"          # introducción + preparación de datos
-_FIJOS_FIN = ("contexto", "nota")  # contexto demográfico + nota metodológica
-_ENCABEZADOS_FIJOS = {
-    "## Contexto transversal": "contexto",
-    "## Nota metodológica": "nota",
-    "## Resumen analítico": "resumen",
-    "## Conclusiones": "conclusiones",
-    "## Fuentes de datos": "fuentes",
-}
-
-# Cada párrafo del resumen analítico (celda i-ésima después del
-# encabezado "## Resumen analítico") declara de qué bloque se alimenta;
-# una edición parcial incluye los de sus bloques. Un test mantiene este
-# mapa alineado con la cantidad real de celdas.
-RESUMEN_BLOQUES: dict[int, set[str] | str] = {
-    0: {"tema_1"},                 # violencia (SIPIAV)
-    1: {"tema_2"},                 # explotación sexual (CONAPEES/Fiscalía)
-    2: {"tema_3"},                 # trabajo infantil (ENSANNA/ECH)
-    3: {"tema_4"},                 # protección especial (INAU)
-    4: {"tema_5"},                 # pobreza y entorno (ECH)
-    5: {"cruces"},                 # cruce territorial (INAU × ECH)
-    6: {"cruces"},                 # cruces entre fuentes
-}
-
-# Cada conclusión (celda i-ésima después del encabezado "## Conclusiones")
-# declara de qué bloques se alimenta; una edición parcial incluye las de
-# sus bloques y las transversales ("siempre"). Un test mantiene este mapa
-# alineado con la cantidad real de celdas de conclusión.
-CONCLUSIONES_BLOQUES: dict[int, set[str] | str] = {
-    0: {"tema_5"},                 # pobreza concentrada en la infancia
-    1: {"tema_1", "tema_4"},       # sistemas en expansión, infancia en contracción
-    2: {"tema_1"},                 # detección tardía, intervención pierde a la familia
-    3: {"tema_1", "tema_2"},       # violencia sexual adolescente y de género
-    4: {"tema_1"},                 # Uruguay no mide prevalencia
-    5: "siempre",                  # limitaciones declaradas del informe
-}
-
 # Una unidad seleccionable dentro de un bloque: métrica, proyección o cruce.
 _PATRON_UNIDAD = re.compile(r"^#{2,4}\s*(?:Métrica (\d+)\.|Proyección (P\d+)\.|Cruce (\d+)\.)")
 _PATRON_PREGUNTA = re.compile(r"\*\*¿Qué pregunta responde\?\*\*\s*(.+?)(?:\n\n|$)", re.S)

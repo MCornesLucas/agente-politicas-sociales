@@ -150,7 +150,7 @@ se usa como orden de magnitud, nunca como serie ni con decimales (ver
 
 ---
 
-## Cruces con la ECH (a desarrollar)
+## Cruces con la ECH (los cuatro desarrollados, 2026-08-18/19)
 
 Los cruces son análisis **descriptivo** (asociaciones observadas entre
 condiciones de la infancia y respuesta institucional — lenguaje

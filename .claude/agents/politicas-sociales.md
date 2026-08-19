@@ -116,8 +116,9 @@ ANTES de generar nada, con este criterio y en este orden:
    encabezado "### Métrica a medida. <título>" y las cinco partes
    (pregunta, gráfica con matplotlib y `fuente(...)`, "Por qué esta
    gráfica" citando el principio, "**Lectura**" observacional). Toda
-   edición incluye la sección "## Resumen analítico" (filtrada por
-   bloque): insertar además una celda markdown al final de esa sección —
+   edición incluye la sección "## Resumen analítico" (armada desde los
+   fragmentos por unidad de `informe_sintesis`): insertar además una
+   celda markdown al final de esa sección —
    inmediatamente antes de "## Conclusiones" — con un párrafo rotulado
    con el título real de la métrica ("**«<título de la métrica>».** ...")
    de dos o tres frases con las cifras del cálculo real. Si la métrica

@@ -58,7 +58,7 @@ lenguaje observacional, integridad visual) están en
 | [CONAPEES](https://www.inau.gub.uy/conapees) | Planes nacionales y datos de explotación sexual de NNA | Registro + documentos |
 | [CETI (MTSS)](https://www.gub.uy/ministerio-trabajo-seguridad-social/comunicacion/noticias/ceti) | Política nacional contra el trabajo infantil | Documentos de política |
 | [UNICEF Uruguay](https://www.unicef.org/uruguay/infancia-en-datos) | Portal Infancia en Datos, pobreza infantil, inversión | Fuente secundaria |
-| [ENSANNA 2024 (INE)](https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna) | Microdatos públicos de trabajo infantil | Encuesta (prevalencia) |
+| [ENSANNA 2024 (INE)](https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna) | Boletín oficial de trabajo infantil (microdatos aún no publicados) | Encuesta (prevalencia) |
 
 El detalle de qué publica cada uno, con sus advertencias de uso, está en
 [`docs/FUENTES_DE_DATOS.md`](docs/FUENTES_DE_DATOS.md).
@@ -119,16 +119,20 @@ Cada corrida queda registrada en una bitácora local
 
 ## Estado
 
-**Fase de análisis (v0.2)**: catálogo de 36 métricas descriptivas en 5
-temas, confirmado métrica por métrica contra los archivos reales
+**Operativo (v0.4)**: catálogo de 36 métricas descriptivas en 5 temas,
+confirmado métrica por métrica contra los archivos reales
 (`docs/CATALOGO_DE_METRICAS.md`); series SIPIAV 2013-2025 curadas con
 respaldo textual por valor (`datos_curados/`); bloque predictivo con
 protocolo de backtest aplicado: P1 calculada y validada con el dato real
-2025, P2 y P3 calculadas, P4 resuelta como lectura descriptiva (el
+2025, P2, P3 y P5 calculadas, P4 resuelta como lectura descriptiva (el
 numerador se amesetó y ningún modelo supera al ingenuo), P6 citada del
 INE (revisión 2025 descargada); los cuatro cruces entre fuentes del
 catálogo calculados, cada uno con sus limitaciones declaradas
-(`resultados/cruces/`). Informe en `notebooks/`.
+(`resultados/cruces/`). Informe oficial en `notebooks/`; flujo guiado
+por formularios con selección de bloques y de métricas, métricas a
+medida evaluadas con las reglas de rigor, y cierre del informe armado
+por métrica (el resumen y las conclusiones solo dicen lo que la edición
+muestra); guardianes automáticos con tests en ambas direcciones.
 
 Pendientes que dependen de terceros: microdatos ENSANNA (INE los lista
 "en análisis"), serie ESNNA 2022+ oficial (CONAPEES), estimaciones
