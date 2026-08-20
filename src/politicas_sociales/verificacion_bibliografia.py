@@ -27,8 +27,12 @@ _RESPALDOS = [
 ]
 
 # Enlaces del propio proyecto: no son fuentes de datos, son la firma del
-# informe — no corresponde pedirles entrada bibliográfica.
+# informe — no corresponde pedirles entrada bibliográfica. Se aceptan las
+# dos cuentas porque la cuenta de GitHub se renombró (testa10 →
+# MCornesLucas, 2026-08-20) y las ediciones generadas antes del cambio
+# conservan la dirección anterior, que sigue redirigiendo.
 _PREFIJOS_EXENTOS = (
+    "https://github.com/MCornesLucas/",
     "https://github.com/testa10/",
 )
 

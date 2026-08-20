@@ -29,7 +29,7 @@ def celda_introduccion(alcance: str = ALCANCE_COMPLETO):
 Este informe presenta {alcance}. Cada métrica se presenta con la pregunta que responde,
 su gráfica, la justificación del tipo de gráfica elegido y su lectura,
 con la fuente citada en cada caso
-([agente-politicas-sociales](https://github.com/testa10/agente-politicas-sociales)).
+([agente-politicas-sociales](https://github.com/MCornesLucas/agente-politicas-sociales)).
 
 El informe integra en cada tema sus métricas **descriptivas** (qué está
 pasando) y **predictivas** (qué sucedería si las condiciones actuales

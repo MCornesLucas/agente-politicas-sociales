@@ -117,7 +117,7 @@ def test_las_fuentes_no_remiten_a_rutas_locales_del_repositorio():
     assert len(fuentes) == 1
     assert "docs/BIBLIOGRAFIA.md" not in fuentes[0]
     assert "datos_curados/" not in fuentes[0]
-    assert "https://github.com/testa10/agente-politicas-sociales" in fuentes[0]
+    assert "https://github.com/MCornesLucas/agente-politicas-sociales" in fuentes[0]
 
 
 def test_la_firma_es_celda_propia_y_es_el_ancla_de_la_fuente_a_medida():

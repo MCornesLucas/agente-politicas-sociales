@@ -28,6 +28,9 @@ def test_extraccion_de_enlaces_limpia_puntuacion_final():
 
 def test_los_repositorios_propios_estan_exentos():
     # La firma del informe enlaza los repos del proyecto: no son fuentes
-    # de datos y no corresponde pedirles entrada bibliográfica.
+    # de datos y no corresponde pedirles entrada bibliográfica. Cubre la
+    # cuenta actual y la anterior (renombre de 2026-08-20): las ediciones
+    # generadas antes del cambio conservan la dirección vieja.
     faltantes = vb.enlaces_sin_respaldo()
+    assert not any("github.com/MCornesLucas" in enlace for enlace in faltantes)
     assert not any("github.com/testa10" in enlace for enlace in faltantes)

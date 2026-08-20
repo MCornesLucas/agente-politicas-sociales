@@ -1259,7 +1259,7 @@ decisiones de método y de gráfica.
 La bibliografía completa del proyecto —con la naturaleza de cada dato,
 sus advertencias de uso y el respaldo textual de cada valor de las
 series curadas— es pública y está en el repositorio:
-<https://github.com/testa10/agente-politicas-sociales>
+<https://github.com/MCornesLucas/agente-politicas-sociales>
 """),
     # La firma es una celda propia a propósito: cuando una edición lleva
     # métrica a medida, el agente inserta su nota de fuente inmediatamente
@@ -1269,6 +1269,6 @@ series curadas— es pública y está en el repositorio:
 ---
 
 *Informe generado por el proyecto*
-[agente-politicas-sociales](https://github.com/testa10/agente-politicas-sociales).
+[agente-politicas-sociales](https://github.com/MCornesLucas/agente-politicas-sociales).
 """),
 ]

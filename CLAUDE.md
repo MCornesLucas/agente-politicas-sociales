@@ -78,4 +78,4 @@ del área, más los microdatos de la ECH (INE) para el universo 0-17.
 - Una sola copia del proyecto (esta). Desarrollar, probar y commitear
   desde aquí; revisar el diff uno mismo antes de commitear, sin pedir
   confirmación en el chat.
-- Repositorio: https://github.com/testa10/agente-politicas-sociales
+- Repositorio: https://github.com/MCornesLucas/agente-politicas-sociales

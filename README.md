@@ -54,7 +54,7 @@ más cómodo:
    (trae el Python que usa el proyecto). Si ya lo tiene, salte este
    paso.
 2. Descargue este proyecto desde este enlace directo:
-   <https://github.com/testa10/agente-politicas-sociales/releases/latest/download/agente-politicas-sociales.zip>
+   <https://github.com/MCornesLucas/agente-politicas-sociales/releases/latest/download/agente-politicas-sociales.zip>
    — se descarga un archivo `agente-politicas-sociales.zip`
    (normalmente a la carpeta Descargas).
 3. Descomprímalo: haga clic derecho sobre el archivo ZIP descargado →
@@ -76,7 +76,7 @@ más cómodo:
 Requiere Python 3.10 o superior.
 
 ```bash
-git clone https://github.com/testa10/agente-politicas-sociales.git
+git clone https://github.com/MCornesLucas/agente-politicas-sociales.git
 cd agente-politicas-sociales
 python -m pip install -e ".[dev]"
 ```
