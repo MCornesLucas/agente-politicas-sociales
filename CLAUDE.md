@@ -41,7 +41,12 @@ del área, más los microdatos de la ECH (INE) para el universo 0-17.
   "situaciones atendidas"). No desagregar números de víctimas más que lo
   que publica el propio organismo.
 - `data/` no se versiona (ver `.gitignore`): los datos se descargan de
-  las fuentes citadas, no se redistribuyen.
+  las fuentes citadas, no se redistribuyen. La carga vive en el paso de
+  datos del flujo guiado: `politicas_sociales.descarga_fuentes` para las
+  fuentes documentales, carga manual guiada para los microdatos de la
+  ECH (los términos del INE los acepta el usuario personalmente — nunca
+  descargarlos de forma automática) y `data/usuario/` para fuentes
+  propias registradas con su origen (`carga_datos`).
 
 ## Código y tests
 

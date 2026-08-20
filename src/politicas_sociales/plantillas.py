@@ -121,6 +121,19 @@ textarea {
 }
 textarea:focus { outline: none; border-color: var(--verde); }
 .error { color: var(--rojo); font-size: 13px; margin-top: 8px; display: none; }
+.boton-accion:disabled { opacity: .5; cursor: not-allowed; }
+.flag-listo { color: var(--verde); font-weight: 600; font-size: 14px; margin-left: 8px; }
+.detalle-boton { font-size: 13px; color: var(--gris); margin: 2px 0 14px; }
+.carpeta {
+  background: #f6f8fa; border-radius: 8px; padding: 12px 16px;
+  font-family: Consolas, monospace; font-size: 14px; margin: 14px 0;
+  word-break: break-all;
+}
+input[type="text"] {
+  width: 100%; padding: 12px 14px; font-size: 15px;
+  border: 2px solid #d0d7de; border-radius: 8px; font-family: inherit;
+}
+input[type="text"]:focus { outline: none; border-color: var(--verde); }
 """
 
 _SCRIPT_LISTO = """
@@ -237,6 +250,210 @@ document.getElementById('form').addEventListener('submit', async (e) => {{
   e.preventDefault();
   await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
     body: JSON.stringify({{accion: 'continuar'}})}});
+  mostrarListo();
+}});
+</script></body></html>"""
+
+
+def plantilla_datos(estado: dict, aviso: str = "") -> str:
+    """Paso 1a del flujo: estado de los datos y tres acciones de carga.
+
+    `estado` es el dict de `carga_datos.estado_datos()`. Reglas del dueño
+    (2026-08-20): el formulario se muestra en TODAS las corridas; cada
+    botón se deshabilita con su marca de listo cuando su carga ya está,
+    salvo "Otras fuentes", que queda siempre disponible. El botón de
+    carga automática, con los datos ya cargados, se re-habilita cuando la
+    revisión de novedades (vigilancia de terceros) está vencida — y en
+    ese estado su acción es revisar, no descargar.
+
+    `aviso` permite al agente mostrar el resultado de la acción anterior
+    (descarga terminada, novedades encontradas, carpeta vacía, etc.).
+    """
+    aviso_html = f'<div class="advertencia">{aviso}</div>' if aviso else ""
+
+    if not estado["automaticas_listo"]:
+        boton_automatica = ('<button type="button" class="boton-accion boton-primario" '
+                            'onclick="accion(\'automatica\')">1 · Carga automática de fuentes '
+                            '(SIPIAV, INAU, ENSANNA, UNICEF…)</button>'
+                            '<div class="detalle-boton">Descarga los documentos oficiales '
+                            'desde las fuentes citadas. Puede tardar varios minutos.</div>')
+    elif estado["vigilancia_pendiente"]:
+        boton_automatica = ('<button type="button" class="boton-accion boton-primario" '
+                            'onclick="accion(\'vigilancia\')">1 · Revisar novedades de las fuentes</button>'
+                            '<div class="detalle-boton">Fuentes ya cargadas '
+                            '<span class="flag-listo">✓</span> — pasó el plazo de revisión: '
+                            'busca publicaciones nuevas de los organismos.</div>')
+    else:
+        boton_automatica = ('<button type="button" class="boton-accion boton-secundario" disabled>'
+                            '1 · Carga automática de fuentes'
+                            '<span class="flag-listo">✓ Listo</span></button>'
+                            '<div class="detalle-boton">Fuentes cargadas y novedades revisadas.</div>')
+
+    anios_cargados = ", ".join(str(a) for a in estado["ech_cargados"]) or "ninguno todavía"
+    if estado["ech_completo"]:
+        boton_ech = ('<button type="button" class="boton-accion boton-secundario" disabled>'
+                     '2 · Carga manual de la ECH<span class="flag-listo">✓ Listo</span></button>'
+                     f'<div class="detalle-boton">Años cargados: {anios_cargados}.</div>')
+    else:
+        boton_ech = ('<button type="button" class="boton-accion boton-primario" '
+                     'onclick="accion(\'ech\')">2 · Carga manual de la ECH</button>'
+                     f'<div class="detalle-boton">Años cargados: {anios_cargados}. '
+                     'Los microdatos se descargan del INE aceptando sus términos personalmente.</div>')
+
+    return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<title>Datos del proyecto</title>
+<style>{_ESTILO}</style></head><body>
+<div class="tarjeta" id="tarjeta">
+  <div class="emoji">🗂️</div>
+  <h1>Datos del proyecto</h1>
+  <p class="subtitulo">Puedes cargar o actualizar los datos, o continuar
+  directo al informe.</p>
+  {aviso_html}
+  {boton_automatica}
+  {boton_ech}
+  <button type="button" class="boton-accion boton-primario" onclick="accion('otras')">3 · Otras fuentes (para métricas a medida)</button>
+  <div class="detalle-boton">Agrega archivos propios para usarlos en una
+  métrica a medida, con su origen registrado.</div>
+  <form id="form">
+    <button type="submit">Continuar →</button>
+  </form>
+  {_BOTON_VOLVER}
+  {_BOTON_SALIR}
+</div>
+<script>
+{_SCRIPT_LISTO}
+{_SCRIPT_SALIR}
+{_SCRIPT_VOLVER}
+async function accion(cual) {{
+  await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{accion: cual}})}});
+  mostrarListo();
+}}
+document.getElementById('form').addEventListener('submit', async (e) => {{
+  e.preventDefault();
+  await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{accion: 'continuar'}})}});
+  mostrarListo();
+}});
+</script></body></html>"""
+
+
+def plantilla_datos_ech(carpeta: str, cargados: list[int], esperados: list[int]) -> str:
+    """Instrucciones de carga manual de los microdatos de la ECH, con la
+    carpeta de destino ya abierta en el Explorador y el botón de
+    confirmación en la misma pantalla.
+
+    `carpeta` es la ruta real y absoluta de `data/ech_microdatos/` — la
+    calcula `carga_datos.preparar_carpetas_ech()`, nunca quien llama.
+    """
+    faltantes = ", ".join(str(a) for a in esperados if a not in cargados) or "ninguno"
+    ya = ", ".join(str(a) for a in cargados) or "ninguno"
+    return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<title>Carga manual de la ECH</title>
+<style>{_ESTILO}</style></head><body>
+<div class="tarjeta" id="tarjeta">
+  <div class="emoji">📥</div>
+  <h1>Cargar los microdatos de la ECH</h1>
+  <p class="subtitulo">Ya te abrí la carpeta de destino en el Explorador
+  de Windows, con una subcarpeta por año.</p>
+  <p>Años con datos: <b>{ya}</b>. Años que puedes cargar: <b>{faltantes}</b>.</p>
+  <ol>
+    <li>Entra al <a href="https://www4.ine.gub.uy/Anda5/index.php/catalog" target="_blank">catálogo ANDA del INE</a> y busca "Encuesta Continua de Hogares, Año …" del año que quieras cargar.</li>
+    <li>Acepta los términos y condiciones del INE (eso lo haces tú personalmente).</li>
+    <li>Descarga los archivos de microdatos que ofrezca el catálogo — el formato varía según el año (.SAV dentro de un comprimido, uno o más .CSV, o una combinación). Ante la duda, descarga todo lo que aparezca en la sección de microdatos.</li>
+    <li>Si algo vino comprimido (.RAR/.ZIP), extráelo.</li>
+    <li>Copia <b>todos</b> los archivos a la subcarpeta del año correspondiente dentro de:</li>
+  </ol>
+  <div class="carpeta">{carpeta}</div>
+  <form id="form">
+    <button type="submit">Ya guardé los archivos ahí →</button>
+  </form>
+  {_BOTON_VOLVER}
+  {_BOTON_SALIR}
+</div>
+<script>
+{_SCRIPT_LISTO}
+{_SCRIPT_SALIR}
+{_SCRIPT_VOLVER}
+document.getElementById('form').addEventListener('submit', async (e) => {{
+  e.preventDefault();
+  await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{confirmado: true}})}});
+  mostrarListo();
+}});
+</script></body></html>"""
+
+
+def plantilla_datos_otras() -> str:
+    """Alta de una fuente propia del usuario: nombre y origen, ambos
+    obligatorios — sin origen registrado la métrica a medida no podría
+    citar su fuente (regla del proyecto: toda cifra con su fuente)."""
+    return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<title>Otras fuentes</title>
+<style>{_ESTILO}</style></head><body>
+<div class="tarjeta" id="tarjeta">
+  <div class="emoji">📎</div>
+  <h1>Agregar una fuente propia</h1>
+  <p class="subtitulo">Sirve para métricas a medida: describe la fuente y
+  después deja sus archivos en la carpeta que se abrirá.</p>
+  <form id="form">
+    <label for="nombre">Nombre de la fuente</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Por ejemplo: Registros del programa X, 2020-2024">
+    <div class="error" id="error-nombre">Escribe un nombre para la fuente.</div>
+    <label for="origen">Origen (de dónde salen los datos: dirección web, organismo, documento)</label>
+    <textarea id="origen" rows="3" placeholder="Por ejemplo: https://... o 'Informe anual del organismo Y, edición 2024'"></textarea>
+    <div class="error" id="error-origen">Indica el origen: sin él, el informe no puede citar la fuente.</div>
+    <button type="submit">Crear la carpeta de la fuente →</button>
+  </form>
+  {_BOTON_VOLVER}
+  {_BOTON_SALIR}
+</div>
+<script>
+{_SCRIPT_LISTO}
+{_SCRIPT_SALIR}
+{_SCRIPT_VOLVER}
+document.getElementById('form').addEventListener('submit', async (e) => {{
+  e.preventDefault();
+  const nombre = document.getElementById('nombre').value.trim();
+  const origen = document.getElementById('origen').value.trim();
+  document.getElementById('error-nombre').style.display = nombre ? 'none' : 'block';
+  document.getElementById('error-origen').style.display = origen ? 'none' : 'block';
+  if (!nombre || !origen) return;
+  await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{nombre: nombre, origen: origen}})}});
+  mostrarListo();
+}});
+</script></body></html>"""
+
+
+def plantilla_datos_otras_confirmacion(nombre: str, carpeta: str) -> str:
+    """Segunda pantalla de la fuente propia: la carpeta ya está abierta en
+    el Explorador; el usuario deja los archivos y confirma."""
+    return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<title>Otras fuentes — archivos</title>
+<style>{_ESTILO}</style></head><body>
+<div class="tarjeta" id="tarjeta">
+  <div class="emoji">📎</div>
+  <h1>Deja los archivos de "{nombre}"</h1>
+  <p class="subtitulo">Ya te abrí la carpeta de la fuente en el Explorador
+  de Windows.</p>
+  <p>Copia ahí los archivos de la fuente (planillas, PDF, CSV — lo que
+  tengas) y confirma:</p>
+  <div class="carpeta">{carpeta}</div>
+  <form id="form">
+    <button type="submit">Ya guardé los archivos ahí →</button>
+  </form>
+  {_BOTON_VOLVER}
+  {_BOTON_SALIR}
+</div>
+<script>
+{_SCRIPT_LISTO}
+{_SCRIPT_SALIR}
+{_SCRIPT_VOLVER}
+document.getElementById('form').addEventListener('submit', async (e) => {{
+  e.preventDefault();
+  await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{confirmado: true}})}});
   mostrarListo();
 }});
 </script></body></html>"""

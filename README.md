@@ -97,8 +97,13 @@ run_python.bat -m politicas_sociales.metricas_ech
 
 **Uso guiado (sin conocimientos técnicos)**: doble clic en
 `abrir_agente.bat`. Todo pasa por formularios que se abren en el
-navegador — bienvenida, generación del informe y entrega del PDF/HTML —
-sin escribir ningún comando; al terminar, la ventana se cierra sola.
+navegador — bienvenida, carga de datos (las fuentes documentales se
+descargan solas desde las fuentes citadas; los microdatos de la ECH los
+descarga usted del INE aceptando sus términos, con la carpeta de destino
+abierta y guiada; también puede sumar fuentes propias para métricas a
+medida), selección de temas y métricas, generación del informe y entrega
+del PDF/HTML — sin escribir ningún comando; al terminar, la ventana se
+cierra sola.
 Cada corrida queda registrada en una bitácora local
 (`logs/bitacora.jsonl`) que nunca sale de la computadora.
 

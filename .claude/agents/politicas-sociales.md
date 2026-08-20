@@ -66,6 +66,74 @@ respuesta = formularios.mostrar_formulario(formularios.plantilla_bienvenida())
 # respuesta es un dict; chequear salir_del_flujo antes de seguir
 ```
 
+**Paso 1a — Datos.** Se muestra en TODAS las corridas (regla del dueño):
+el estado de cada carga sale de `carga_datos.estado_datos()`, nunca se
+escribe a mano. El formulario se vuelve a mostrar después de cada acción
+(con el resultado en `aviso`) hasta que el usuario elige continuar:
+
+```python
+from politicas_sociales import carga_datos, formularios
+aviso = ""
+while True:
+    respuesta = formularios.mostrar_formulario(
+        formularios.plantilla_datos(carga_datos.estado_datos(), aviso)
+    )
+    # chequear salir_del_flujo; si respuesta.get("volver"): repetir el paso 1
+    if respuesta.get("accion") == "continuar":
+        break
+    # ... atender la acción elegida (ver abajo) y armar `aviso` ...
+```
+
+Cómo atender cada acción (siempre con `bitacora.medir_comando` para los
+comandos largos):
+
+- `"automatica"` — correr
+  `./run_python.bat -m politicas_sociales.descarga_fuentes` (tarda varios
+  minutos: descarga los documentos del manifiesto y recorre la
+  biblioteca UNICEF). Leer el resumen que imprime y pasarlo resumido en
+  `aviso` (cuántos descargados, cuántos ya estaban, errores si hubo).
+- `"vigilancia"` — correr
+  `./run_python.bat -m politicas_sociales.vigilancia` y resumir en
+  `aviso` el estado por fuente; si hay NOVEDAD, decir cuál en lenguaje
+  simple. Los códigos de salida 1 y 2 no son fallas del flujo: 2 = hay
+  novedades, 1 = alguna fuente no se pudo mirar.
+- `"ech"` — preparar y abrir la carpeta, mostrar las instrucciones y,
+  tras la confirmación, correr la extracción:
+
+  ```python
+  carpeta = carga_datos.preparar_carpetas_ech()   # ruta real y absoluta
+  # abrirla en el Explorador (nunca una ruta inventada ni relativa):
+  #   explorer.exe "<carpeta>"
+  respuesta = formularios.mostrar_formulario(
+      formularios.plantilla_datos_ech(
+          carpeta, carga_datos.anios_ech_cargados(), carga_datos.anios_ech_esperados())
+  )
+  # si confirmó: correr ./run_python.bat -m politicas_sociales.extraer_ech_infancia
+  # y armar `aviso` con los años que quedaron operativos (los imprime el comando).
+  ```
+
+  Reglas innegociables de este camino: los términos del INE los acepta
+  el usuario personalmente — NUNCA descargar microdatos de la ECH de
+  forma automática, ni buscar la manera de evitarle ese paso.
+- `"otras"` — pedir nombre y origen, abrir la carpeta y registrar solo
+  si de verdad dejó archivos:
+
+  ```python
+  respuesta = formularios.mostrar_formulario(formularios.plantilla_datos_otras())
+  carpeta = carga_datos.carpeta_fuente_usuario(respuesta["nombre"])
+  # abrir la carpeta en el Explorador y mostrar la confirmación:
+  respuesta2 = formularios.mostrar_formulario(
+      formularios.plantilla_datos_otras_confirmacion(respuesta["nombre"], carpeta))
+  archivos = carga_datos.registrar_fuente_usuario(respuesta["nombre"], respuesta["origen"])
+  # archivos == [] significa carpeta vacía: avisarlo en `aviso` y NO darla por cargada.
+  ```
+
+  Las fuentes registradas (`carga_datos.fuentes_usuario()`) están
+  disponibles para las métricas a medida del paso 1d: al evaluar una
+  métrica del usuario, considerar también sus archivos de
+  `data/usuario/<carpeta>/`, citando el `origen` registrado en la nota
+  de fuente del informe.
+
 **Paso 1b — Selección de bloques.** Mostrar el catálogo de bloques (los
 conteos salen de las celdas reales, nunca escribirlos a mano; ningún
 bloque viene preseleccionado — elegir es del usuario):
@@ -76,7 +144,7 @@ respuesta = formularios.mostrar_formulario(
     formularios.plantilla_catalogo(construir_informe.bloques_disponibles())
 )
 bloques = respuesta["bloques"]  # ej. ["tema_1", "cruces"]; chequear salir_del_flujo
-# si respuesta.get("volver"): repetir el paso 1 (bienvenida)
+# si respuesta.get("volver"): repetir el paso 1a (datos)
 ```
 
 **Paso 1c — Selección de métricas.** Mostrar las métricas de los bloques

@@ -230,10 +230,15 @@ misma definición" al cruzar con CETI/ENSANNA.
 
 ---
 
-**Cómo re-descargar todo**: cada archivo tiene su URL en esta página; la
-estructura de carpetas es `data/<entidad>/<año o rango>/`. Si un enlace
-de INAU muere, buscar el documento por título en el gestor documental
-(`/download/<id>/...`) — los ids están en la tabla de arriba.
+**Cómo re-descargar todo**: `python -m politicas_sociales.descarga_fuentes`
+— su manifiesto es la transcripción ejecutable de esta página (SIPIAV,
+INAU, ENSANNA, CETI, CONAPEES, INE) más el recorrido de la Biblioteca
+Digital de UNICEF; verifica cada archivo por firma de formato y es
+idempotente (lo ya presente no se vuelve a bajar). Los microdatos de la
+ECH quedan afuera a propósito: el INE exige aceptar sus términos
+personalmente, y esa carga es manual (paso de datos del flujo guiado).
+Si un enlace de INAU muere, buscar el documento por título en el gestor
+documental (`/download/<id>/...`) — los ids están en la tabla de arriba.
 
 ## Vigilancia de los pendientes de terceros
 

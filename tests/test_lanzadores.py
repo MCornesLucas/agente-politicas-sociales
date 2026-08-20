@@ -75,6 +75,13 @@ def test_las_ediciones_de_usuario_no_se_versionan():
     assert "notebooks/ediciones/" in gitignore
 
 
+_ESTADO_DATOS_DE_PRUEBA = {
+    "automaticas_listo": False, "vigilancia_pendiente": True,
+    "ech_esperados": [2019, 2023, 2024], "ech_cargados": [2019],
+    "ech_completo": False,
+}
+
+
 def _html_de_plantilla(nombre_plantilla):
     from politicas_sociales import construir_informe, plantillas
     funcion = getattr(plantillas, nombre_plantilla)
@@ -87,11 +94,20 @@ def _html_de_plantilla(nombre_plantilla):
     if nombre_plantilla == "plantilla_revision":
         return funcion(metrica_pedida="una métrica", problema="un problema",
                        alternativa="una alternativa")
+    if nombre_plantilla == "plantilla_datos":
+        return funcion(_ESTADO_DATOS_DE_PRUEBA, aviso="un aviso")
+    if nombre_plantilla == "plantilla_datos_ech":
+        return funcion(r"C:\una\ruta\data\ech_microdatos", [2019], [2019, 2023])
+    if nombre_plantilla == "plantilla_datos_otras_confirmacion":
+        return funcion("Una fuente", r"C:\una\ruta\data\usuario\una_fuente")
     return funcion()
 
 
 @pytest.mark.skipif(node is None, reason="requiere Node.js")
 @pytest.mark.parametrize("nombre_plantilla", ["plantilla_arranque", "plantilla_bienvenida",
+                                              "plantilla_datos", "plantilla_datos_ech",
+                                              "plantilla_datos_otras",
+                                              "plantilla_datos_otras_confirmacion",
                                               "plantilla_catalogo", "plantilla_metricas",
                                               "plantilla_revision", "plantilla_finalizacion"])
 def test_el_javascript_de_las_plantillas_es_valido(tmp_path, nombre_plantilla):
@@ -142,6 +158,8 @@ def test_revision_sin_alternativa_no_ofrece_el_boton():
 
 
 _TODAS_LAS_PLANTILLAS = ["plantilla_arranque", "plantilla_bienvenida",
+                         "plantilla_datos", "plantilla_datos_ech",
+                         "plantilla_datos_otras", "plantilla_datos_otras_confirmacion",
                          "plantilla_catalogo", "plantilla_metricas",
                          "plantilla_revision", "plantilla_finalizacion"]
 

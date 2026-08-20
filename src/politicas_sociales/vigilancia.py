@@ -37,6 +37,7 @@ comparación.
 
 from __future__ import annotations
 
+import datetime
 import json
 import re
 import ssl
@@ -46,6 +47,11 @@ import urllib.request
 from . import bitacora, config
 
 BASELINE = config.DATOS_CURADOS / "vigilancia_baseline.json"
+
+# Cuándo se corrió la vigilancia por última vez EN ESTA MÁQUINA (por eso
+# vive en logs/, ignorado por git, y no junto al baseline versionado): el
+# paso de datos del flujo guiado la ofrece de nuevo cuando pasó el plazo.
+ULTIMA_REVISION = config.PROJECT_ROOT / "logs" / "vigilancia_ultima_revision.json"
 
 # Sin User-Agent de navegador, el sitio nuevo de INAU responde 404 a
 # páginas que existen (verificado el 2026-08-20).
@@ -257,6 +263,31 @@ def codigo_de_salida(resultados: list[dict]) -> int:
     return 0
 
 
+def marcar_revision(resultados: list[dict]) -> None:
+    """Deja constancia local de la corrida (fecha + resumen), para que el
+    paso de datos del flujo sepa si la revisión está al día. Nunca deja
+    escapar una excepción: es un marcador de apoyo, no puede tirar abajo
+    una corrida real."""
+    try:
+        ULTIMA_REVISION.parent.mkdir(parents=True, exist_ok=True)
+        ULTIMA_REVISION.write_text(json.dumps({
+            "fecha": datetime.date.today().isoformat(),
+            "resumen": {r["clave"]: r["estado"] for r in resultados},
+        }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    except Exception:
+        pass
+
+
+def fecha_ultima_revision():
+    """La fecha de la última corrida en esta máquina, o None si nunca se
+    corrió (o el marcador es ilegible)."""
+    try:
+        dato = json.loads(ULTIMA_REVISION.read_text(encoding="utf-8"))
+        return datetime.date.fromisoformat(dato["fecha"])
+    except Exception:
+        return None
+
+
 _ETIQUETAS = {
     "sin_novedad": "SIN NOVEDAD",
     "novedad": "NOVEDAD",
@@ -275,6 +306,7 @@ def main() -> None:
         "vigilancia_fuentes",
         resumen={r["clave"]: r["estado"] for r in resultados},
     )
+    marcar_revision(resultados)
     if actualizar:
         completos = [r for r in resultados if "actual" in r]
         if len(completos) < len(FUENTES):
