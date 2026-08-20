@@ -234,3 +234,29 @@ misma definición" al cruzar con CETI/ENSANNA.
 estructura de carpetas es `data/<entidad>/<año o rango>/`. Si un enlace
 de INAU muere, buscar el documento por título en el gestor documental
 (`/download/<id>/...`) — los ids están en la tabla de arriba.
+
+## Vigilancia de los pendientes de terceros
+
+Los pendientes que no dependen del proyecto (microdatos ENSANNA en el
+catálogo ANDA, estimaciones retrospectivas de la revisión 2025 del INE,
+serie ESNNA oficial de CONAPEES, plan del CETI posterior a la ENSANNA y
+publicaciones nuevas de UNICEF Uruguay) se revisan con:
+
+    python -m politicas_sociales.vigilancia
+
+El módulo descarga cada fuente, extrae una señal concreta y la compara
+contra el estado conocido (`datos_curados/vigilancia_baseline.json`,
+versionado). Reporta SIN NOVEDAD / NOVEDAD / NO ACCESIBLE / ILEGIBLE por
+fuente — nunca queda verde sin haber mirado de verdad. Tras revisar una
+novedad e incorporarla, `--actualizar-baseline` deja el estado actual
+como nueva referencia.
+
+Calibrado contra el contenido real del 2026-08-20. Dos cambios de
+terceros detectados ese día, ya reflejados en el módulo:
+
+- El catálogo ANDA vive en `www4.ine.gub.uy/Anda5` (el host anterior
+  `anda.ine.gub.uy` dejó de resolver).
+- El sitio de INAU migró de plataforma: las páginas `/sipiav` y
+  `/conapees` responden 404 (los enlaces `/download/<id>/...` del gestor
+  documental siguen redirigiendo bien a `sites/default/files/`); las
+  noticias viven en `/sala-de-prensa/noticias`.

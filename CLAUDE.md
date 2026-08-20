@@ -70,6 +70,12 @@ del área, más los microdatos de la ECH (INE) para el universo 0-17.
 
 ## Mantenimiento
 
+- Los pendientes de terceros (microdatos ENSANNA, retrospectivas INE,
+  ESNNA/CONAPEES, plan CETI, publicaciones UNICEF) se revisan con
+  `python -m politicas_sociales.vigilancia` contra el estado conocido en
+  `datos_curados/vigilancia_baseline.json` (ver
+  `docs/RELEVAMIENTO_DE_DATOS.md`, sección "Vigilancia").
+
 - **Lenguaje formal y español neutro** en toda la documentación y en los
   informes: sin voseo ni regionalismos coloquiales ("acá", "arrancar",
   "ganarle"); se escribe "aquí", "comenzar", "superar". El modelo de
