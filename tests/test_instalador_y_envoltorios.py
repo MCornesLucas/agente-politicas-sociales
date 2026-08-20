@@ -73,6 +73,10 @@ def test_settings_permite_el_envoltorio():
     allow = settings["permissions"]["allow"]
     assert any("run_python.bat" in regla for regla in allow)
     assert any("instalar.bat" in regla for regla in allow)
+    # El paso de datos abre carpetas en el Explorador (ECH manual y
+    # fuentes propias): sin este permiso, el flujo guiado se interrumpe
+    # pidiendo aprobación. Agregado por el dueño (2026-08-20).
+    assert any("explorer.exe" in regla for regla in allow)
 
 
 def test_settings_registra_los_tres_guardianes_y_existen():

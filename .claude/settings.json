@@ -9,7 +9,9 @@
       "Bash(cmd //c run_python.bat *)",
       "Bash(cmd /c run_python.bat *)",
       "Bash(./instalar.bat *)",
+      "Bash(explorer.exe *)",
       "Bash(POLITICAS_SOCIALES_NONINTERACTIVE=1 ./instalar.bat *)"
+      
     ]
   },
   "hooks": {
