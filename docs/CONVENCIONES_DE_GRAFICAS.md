@@ -1,11 +1,8 @@
 # Convenciones de gráficas: justificar el tipo elegido, con fundamento
 
-Este proyecto adopta las convenciones de visualización del proyecto
-[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
-(`docs/CONVENCIONES_DE_GRAFICAS.md` de ese repositorio es la versión
-extendida, con la cita concreta de cada patrón). Las citas completas
+Las citas completas
 están en [`BIBLIOGRAFIA.md`](BIBLIOGRAFIA.md), sección "Visualización de
-datos". Acá se resume lo que aplica igual y se agrega lo específico de
+datos". Aquí se resume la regla general y se agrega lo específico de
 este proyecto.
 
 **Cada gráfica va acompañada de una justificación con fundamento, no solo

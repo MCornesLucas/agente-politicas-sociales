@@ -1,9 +1,9 @@
 """Extrae de la ECH todo lo referido a infancia y adolescencia (0-17 años).
 
-Recorre cada año de microdatos disponible en el proyecto hermano
-agente-encuesta-hogares y exporta, a `data/ech/<año>/` de este proyecto,
-los bloques filtrados al universo del proyecto (0-17 años, definición de
-la CDN — ver docs/CLASIFICACION_DE_EDADES.md):
+Recorre cada año de microdatos disponible en `data/ech_microdatos/` y
+exporta, a `data/ech/<año>/`, los bloques filtrados al universo del
+proyecto (0-17 años, definición de la CDN — ver
+docs/CLASIFICACION_DE_EDADES.md):
 
 - personas_0a17.csv          personas de 0 a 17, con las clasificaciones
                              de edad de cada organismo como columnas
@@ -24,10 +24,10 @@ la CDN — ver docs/CLASIFICACION_DE_EDADES.md):
                              hogares FIES con menores de 18 (la base ya
                              trae el marcador oficial del INE).
 
-Se reutilizan los loaders de agente-encuesta-hogares tal cual (sin
-copiarlos): heredan las correcciones de encoding y las decisiones
-metodológicas ya verificadas contra los datos reales (canasta 2017 vs.
-2006, columnas discontinuadas, nombres de archivo cambiantes del INE).
+Los loaders (politicas_sociales.ech) traen las correcciones de encoding
+y las decisiones metodológicas verificadas contra los datos reales
+(canasta 2017 vs. 2006, columnas discontinuadas, nombres de archivo
+cambiantes del INE).
 
 Regla de rigor aplicable a todo lo exportado: los CSV conservan los
 ponderadores — cualquier estadística que se calcule después se pondera,
@@ -39,9 +39,7 @@ from __future__ import annotations
 import pandas as pd
 
 from politicas_sociales import config as config_infancia
-
-config_infancia.preparar_import_ech()
-from encuesta_hogares import config, data_loader  # noqa: E402
+from politicas_sociales.ech import config, data_loader
 
 DESTINO = config_infancia.DATA_DIR / "ech"
 
@@ -173,7 +171,7 @@ def main() -> None:
         int(p.name) for p in config.DATA_DIR.iterdir()
         if p.is_dir() and p.name.isdigit()
     )
-    print(f"Años con carpeta de datos en el proyecto ECH: {anios}\n")
+    print(f"Años con carpeta de microdatos de la ECH: {anios}\n")
     for anio in anios:
         lineas = extraer_anio(anio)
         if not lineas:

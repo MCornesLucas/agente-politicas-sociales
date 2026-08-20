@@ -1,6 +1,6 @@
 """Cierre de la consola de Claude Code cuando el flujo termina de verdad.
 
-Heredado del proyecto hermano, donde nació de un problema real: ni
+Nació de un problema real observado en corridas del flujo guiado: ni
 terminar el informe ni salir del flujo cerraban la ventana de consola que
 abre `abrir_agente.bat` — quedaba viva de fondo indefinidamente, una
 ventana negra que alguien sin conocimientos técnicos no sabe si puede

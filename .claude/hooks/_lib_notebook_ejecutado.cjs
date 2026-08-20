@@ -1,7 +1,7 @@
 // Modulo compartido por los hooks que necesitan saber sobre que notebook
 // corre un `jupyter nbconvert --execute` disparado por la herramienta Bash.
 //
-// Heredado de agente-encuesta-hogares con su bug real documentado: alli
+// Nacio de un bug real documentado: en una primera version,
 // nbconvert nunca se invocaba suelto, siempre envuelto en un archivo .py
 // corrido con run_python.bat, asi que los hooks que buscaban "nbconvert"
 // solo en el texto crudo del comando no se disparaban nunca. Por eso, si

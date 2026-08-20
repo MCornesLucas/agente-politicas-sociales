@@ -1,7 +1,6 @@
 """Genera el HTML sin código del informe, a partir del notebook ejecutado.
 
-Pasos 6-8 del flujo heredado de agente-encuesta-hogares
-(`docs/FLUJO_DE_TRABAJO.md` de ese repositorio): verificar que ninguna
+Pasos finales del flujo de generación: verificar que ninguna
 celda quedó con error, copiar el notebook filtrando los stderr de
 matplotlib (warnings inofensivos, no errores), convertir a HTML con
 `--no-input` (para público no técnico) y corregir el `<title>` (por

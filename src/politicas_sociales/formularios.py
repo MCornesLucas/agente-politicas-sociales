@@ -7,8 +7,8 @@ de por medio, no sale a internet, no depende de servicios de terceros.
 navegador con el HTML del paso que corresponda, y bloquea hasta que el
 usuario lo completa — devuelve la respuesta como un diccionario.
 
-Motor heredado de agente-encuesta-hogares con sus decisiones de
-seguridad ya aprendidas (validación de Origin, tope de tamaño del
+Motor con decisiones de seguridad aprendidas en
+corridas reales (validación de Origin, tope de tamaño del
 cuerpo, POST malformado que no mata el hilo). El HTML de cada paso vive
 en `plantillas.py` y se reexporta desde acá: `formularios.plantilla_*`
 es la cara pública.
@@ -155,7 +155,7 @@ def _servir_y_esperar(handler_cls, evento: threading.Event, timeout: float | Non
     try:
         # ThreadingHTTPServer: el navegador puede abrir más de una conexión
         # a la vez; un servidor de una sola conexión se traba en ese caso
-        # (visto en la práctica en el proyecto hermano).
+        # (visto en la práctica).
         with http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler_cls) as httpd:
             puerto = httpd.server_address[1]
             hilo = threading.Thread(target=httpd.serve_forever, daemon=True)

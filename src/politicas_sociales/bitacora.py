@@ -2,7 +2,7 @@
 cada paso pesado, y si algo falló — todo en la propia computadora del
 usuario, sin salir a internet.
 
-Heredada de agente-encuesta-hogares, donde nació de un punto ciego real:
+Nació de un punto ciego real:
 cuando algo sale mal para alguien sin conocimientos técnicos, la única
 forma de enterarse era que esa persona lo describiera de memoria. Con la
 bitácora, el dueño del proyecto pide un solo archivo
@@ -17,7 +17,7 @@ registro pasa a guardar solo los campos inocuos, elegidos a mano.
 La variable de entorno POLITICAS_SOCIALES_BITACORA redirige el archivo:
 es la misma que usan los hooks de .claude/hooks y la usa la suite de
 tests para no escribir jamás en la bitácora real (lección aprendida dos
-veces en el proyecto hermano). Se consulta en cada escritura, no al
+veces en corridas reales). Se consulta en cada escritura, no al
 importar, para que la redirección de un test llegue siempre a tiempo.
 """
 
@@ -102,8 +102,8 @@ def sugerir_catalogo(metrica: str, motivo: str) -> None:
     para valer la pena incorporarla al catálogo permanente — para que el
     dueño del proyecto la vea después revisando la bitácora.
 
-    A propósito NO es una pregunta interactiva al usuario (heredado del
-    hermano): la consola corre en segundo plano para quien usa el flujo
+    A propósito NO es una pregunta interactiva al
+    usuario: la consola corre en segundo plano para quien usa el flujo
     guiado, y el proceso puede cerrarse apenas la persona termina. Quedar
     en un archivo que sobrevive al cierre es la única forma confiable de
     que no se pierda.

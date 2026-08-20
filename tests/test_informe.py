@@ -91,8 +91,8 @@ def test_edicion_parcial_incluye_lo_elegido_y_lo_fijo():
 def test_la_bibliografia_se_imprime_en_el_informe():
     # Pedido del dueño (2026-08-19): quien recibe el PDF no tiene el
     # repositorio, así que las referencias tienen que estar impresas —
-    # no basta con remitir a un archivo local. Modelo: el informe del
-    # proyecto hermano, que imprime cada fuente con su dirección completa.
+    # no basta con remitir a un archivo local: cada fuente se imprime
+    # con su dirección completa.
     celdas = construir_informe.celdas_del_informe(["tema_1"])
     texto = "\n".join(c.source for c in celdas if c.cell_type == "markdown")
     # Referencias completas de las citas que el informe usa en sus

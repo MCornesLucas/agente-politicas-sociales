@@ -3,7 +3,7 @@
 // existir en un output ejecutado del notebook o en un CSV versionado del
 // proyecto (datos_curados/ o resultados/).
 //
-// Heredado del proyecto hermano con una adaptacion medida contra el
+// Calibrado con una adaptacion medida contra el
 // informe real de este proyecto (2026-08-19): aqui casi todas las cifras
 // viven dentro de las graficas (imagenes) y en los CSV curados, no en
 // outputs de texto — solo 135 numeros en outputs contra ~1,4 millones en

@@ -3,8 +3,7 @@
 // Eso pasa si la celda se comio una excepcion en silencio o si la figura
 // nunca se llego a renderizar — un informe con una grafica "invisible" es
 // un fallo real que hasta ahora solo se detectaba a ojo entre ~150
-// celdas. Heredado del proyecto hermano (alli el patron era viz.plot_;
-// aqui las celdas grafican con matplotlib y cierran con plt.show()).
+// celdas (las celdas grafican con matplotlib y cierran con plt.show()).
 const path = require("path");
 const { resolverNotebookEjecutado, fuenteDe } = require("./_lib_notebook_ejecutado.cjs");
 const { registrar } = require("./_lib_bitacora.cjs");

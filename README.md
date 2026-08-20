@@ -24,9 +24,9 @@ El proyecto avanza en dos etapas:
    documentada.
 2. **Cruzar** esos hallazgos con los indicadores de infancia y
    adolescencia calculables desde los microdatos de la ECH (pobreza,
-   hacinamiento, condiciones de vivienda, brecha digital) con la
-   infraestructura ya probada de agente-encuesta-hogares — la ECH se
-   adapta al rango de edad de cada fuente, no al revés.
+   hacinamiento, condiciones de vivienda, brecha digital), con lectores
+   propios verificados contra los archivos y diccionarios oficiales del
+   INE — la ECH se adapta al rango de edad de cada fuente, no al revés.
 
 El universo es **0 a 17 años** (la definición de la Convención sobre los
 Derechos del Niño), sin fijar un rango más angosto a priori: cada
@@ -47,31 +47,21 @@ más cómodo:
   cuenta. Pensada para quien va a modificar el código o prefiere tener
   control de cada paso.
 
-En ambos casos hace falta el proyecto hermano
-[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares):
-este proyecto toma de él los lectores de los microdatos de la ECH, por
-lo que los dos proyectos deben quedar en carpetas vecinas (dentro del
-mismo directorio). El instalador lo verifica antes de continuar.
-
 ### Instalación rápida (Windows)
 
-1. Instale primero el proyecto hermano
-   [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares),
-   siguiendo la sección "Instalación rápida" de su propia página — allí
-   se indica también cómo instalar Anaconda, el único programa que se
-   instala a mano. Si ya lo tiene instalado, solo verifique que su
-   carpeta se llame exactamente `agente-encuesta-hogares` (sin sufijos
-   como `-main`): el instalador de este proyecto la busca por ese
-   nombre.
+1. Instale [Anaconda](https://www.anaconda.com/download) con las
+   opciones por defecto — es el único programa que se instala a mano
+   (trae el Python que usa el proyecto). Si ya lo tiene, salte este
+   paso.
 2. Descargue este proyecto desde este enlace directo:
    <https://github.com/testa10/agente-politicas-sociales/releases/latest/download/agente-politicas-sociales.zip>
    — se descarga un archivo `agente-politicas-sociales.zip`
    (normalmente a la carpeta Descargas).
 3. Descomprímalo: haga clic derecho sobre el archivo ZIP descargado →
    **"Extraer todo..."** (Windows lo hace sin necesidad de instalar
-   nada aparte) → elija como destino la misma carpeta donde quedó el
-   proyecto hermano y confirme. Esto crea la carpeta
-   `agente-politicas-sociales` al lado de la del hermano.
+   nada aparte) → elija como destino la carpeta donde quiera dejar el
+   proyecto y confirme. Esto crea la carpeta
+   `agente-politicas-sociales`.
 4. Abra la carpeta `agente-politicas-sociales` y haga doble clic en
    **`instalar.bat`**. Se abre una ventana que verifica qué falta e
    instala automáticamente lo necesario (puede tardar unos minutos la
@@ -83,11 +73,7 @@ mismo directorio). El instalador lo verifica antes de continuar.
 
 ### Instalación manual (con conocimientos técnicos)
 
-Requiere Python 3.10 o superior y el proyecto hermano
-[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
-como carpeta hermana (o su ruta en la variable de entorno
-`AGENTE_ECH_RUTA`): los loaders de la ECH se importan desde su copia de
-trabajo para heredar las correcciones al día.
+Requiere Python 3.10 o superior.
 
 ```bash
 git clone https://github.com/testa10/agente-politicas-sociales.git
@@ -165,7 +151,7 @@ tests/                        Suite de la lógica del paquete y sus guardianes
 
 ## Estado
 
-**Operativo (v0.4)**: catálogo de 36 métricas descriptivas en 5 temas,
+**Operativo (v0.5)**: catálogo de 36 métricas descriptivas en 5 temas,
 confirmado métrica por métrica contra los archivos reales
 (`docs/CATALOGO_DE_METRICAS.md`); series SIPIAV 2013-2025 curadas con
 respaldo textual por valor (`datos_curados/`); bloque predictivo con

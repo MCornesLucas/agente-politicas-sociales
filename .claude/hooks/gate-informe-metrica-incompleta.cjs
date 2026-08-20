@@ -3,10 +3,10 @@
 // lectura y fuente citada en la figura — antes de CUALQUIER ejecucion de
 // `jupyter nbconvert --execute` sobre el notebook real.
 //
-// Es la regla estructural de docs/METODOLOGIA.md (seccion 1, heredada) y
-// docs/CONVENCIONES_DE_GRAFICAS.md, la misma que en el proyecto hermano
-// no se cumplio en el 100% de las celdas de un informe real hasta que un
-// hook la verifico contra el notebook generado. Calibrado contra el
+// Es la regla estructural de docs/METODOLOGIA.md (seccion 1) y
+// docs/CONVENCIONES_DE_GRAFICAS.md — una regla asi no se cumple en el
+// 100% de las celdas de un informe real hasta que un
+// hook la verifica contra el notebook generado. Calibrado contra el
 // informe real de este proyecto (2026-08-19): 40 grupos (36 metricas + 4
 // cruces), los cinco componentes presentes en todos — un cambio en las
 // celdas que rompa cualquiera de ellos bloquea aca.
@@ -79,7 +79,7 @@ process.stdin.on("end", () => {
 
   // Un notebook sin ningun grupo reconocible es senal de que el patron de
   // encabezados cambio: mejor bloquear que quedar verde por no mirar nada
-  // (fallo real documentado en el hook equivalente del proyecto hermano).
+  // (fallo real documentado en un hook anterior del mismo estilo).
   if (grupos.length === 0) {
     process.stdout.write(
       denegar(

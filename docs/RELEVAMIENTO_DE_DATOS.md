@@ -184,13 +184,13 @@ Advertencias documentadas:
   en el servidor). Cuando se publiquen, completar los denominadores
   2020-2023 de P4.
 
-## 8. ECH — extracción de infancia y adolescencia (proyecto hermano)
+## 8. ECH — extracción de infancia y adolescencia
 
-`data/ech/<año>/` — generado por `politicas_sociales/extraer_ech_infancia.py`, que
-reutiliza los loaders de
-[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
-(hereda sus correcciones de encoding y decisiones metodológicas
-verificadas). Universo: **0-17 años** (CDN), con las clasificaciones de
+`data/ech/<año>/` — generado por `politicas_sociales/extraer_ech_infancia.py`
+a partir de los microdatos oficiales del INE en `data/ech_microdatos/<año>/`,
+con los loaders propios del paquete (`politicas_sociales/ech/`, correcciones
+de encoding y decisiones metodológicas verificadas contra los archivos y
+diccionarios oficiales). Universo: **0-17 años** (CDN), con las clasificaciones de
 cada organismo como columnas derivadas (`tramo_sipiav` 0-5/6-12/13-17,
 `clasificacion_ley_17823` niño/adolescente con corte a los 13,
 `es_adolescente_oms` 10+, `en_universo_ensanna` 5-17) — cada análisis

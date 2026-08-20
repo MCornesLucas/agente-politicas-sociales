@@ -1,6 +1,6 @@
 // Deja constancia en la bitacora cuando un hook BLOQUEA una herramienta.
 //
-// Heredado de agente-encuesta-hogares, donde nacio de un hueco de
+// Nacio de un hueco de
 // observabilidad real: un notebook ejecutado tres veces en una corrida y
 // ningun rastro de si fueron bloqueos de hooks (calidad bien invertida) o
 // retrabajo evitable. Sin registro no se puede decidir.
@@ -8,15 +8,15 @@
 // POLITICAS_SOCIALES_BITACORA permite redirigir el log a otro archivo.
 // Existe para los tests: sin esto, cualquier test que corra un hook de
 // verdad escribe en la bitacora REAL de quien tenga el proyecto en esa
-// carpeta (leccion aprendida dos veces en el proyecto hermano). En una
+// carpeta (leccion aprendida dos veces en corridas reales). En una
 // corrida normal la variable no existe y se usa logs/bitacora.jsonl.
 const fs = require("fs");
 const path = require("path");
 
 // El .cjs vive en <proyecto>/.claude/hooks/, asi que la raiz esta dos
 // niveles arriba. No se usa CLAUDE_PROJECT_DIR como unica fuente a
-// proposito: en el proyecto hermano esa variable llego vacia en produccion
-// y dejo los hooks sin correr durante dias.
+// proposito: se ha visto esa variable llegar vacia en produccion
+// y dejar los hooks sin correr durante dias.
 const RAIZ = path.resolve(__dirname, "..", "..");
 
 const LOG = process.env.POLITICAS_SOCIALES_BITACORA || path.join(RAIZ, "logs", "bitacora.jsonl");

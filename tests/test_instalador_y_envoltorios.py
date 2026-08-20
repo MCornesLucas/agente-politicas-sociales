@@ -1,10 +1,10 @@
 """Tests del instalador y del envoltorio run_python.bat.
 
-Lección heredada del proyecto hermano: los guardianes y envoltorios sin
+Lección aprendida: los guardianes y envoltorios sin
 test contra la salida real fallan en silencio. run_python.bat se ejecuta
 de verdad (con un python_path.txt sintético) y de instalar.bat se fijan
 los contratos que el resto del proyecto asume: que escribe
-.claude/python_path.txt, que verifica el proyecto hermano y que ninguna
+.claude/python_path.txt, que es autocontenido y que ninguna
 pausa bloquea una corrida no interactiva.
 """
 
@@ -49,14 +49,17 @@ def test_run_python_sin_instalar_da_mensaje_claro(tmp_path):
     assert "instalar.bat" in resultado.stdout
 
 
-def test_instalar_escribe_python_path_y_verifica_al_hermano():
+def test_instalar_escribe_python_path_y_es_autocontenido():
     contenido = (RAIZ / "instalar.bat").read_text(encoding="ascii")
     # Contratos que asume el resto del proyecto:
     assert ".claude\\python_path.txt" in contenido       # run_python.bat lo lee
-    assert "agente-encuesta-hogares" in contenido        # dependencia no declarable en pip
-    assert "AGENTE_ECH_RUTA" in contenido                # misma alternativa que config.py
     assert 'pip install -e ".[dev]"' in contenido
     assert "playwright install chromium" in contenido
+    # El proyecto es autocontenido: la instalacion no verifica ni
+    # menciona ningun otro repositorio (las unicas URL permitidas son
+    # las de descarga de programas).
+    assert "github.com" not in contenido
+    assert "_RUTA" not in contenido
 
 
 def test_settings_permite_el_envoltorio():
@@ -73,8 +76,8 @@ def test_settings_permite_el_envoltorio():
 
 
 def test_settings_registra_los_tres_guardianes_y_existen():
-    # Un hook des-registrado deja de correr sin ningún error (en el
-    # proyecto hermano, una variable vacía dejó seis hooks apagados
+    # Un hook des-registrado deja de correr sin ningún error (visto en
+    # una instalación real: una variable vacía dejó seis hooks apagados
     # durante días): el registro y la existencia del archivo se fijan
     # juntos.
     import json

@@ -149,8 +149,8 @@ _TODAS_LAS_PLANTILLAS = ["plantilla_arranque", "plantilla_bienvenida",
 @pytest.mark.parametrize("nombre_plantilla", _TODAS_LAS_PLANTILLAS)
 def test_las_plantillas_no_vosean_ni_usan_regionalismos(nombre_plantilla):
     # Regla del proyecto (2026-08-19): lenguaje neutro y profesional en
-    # todo lo que ve el usuario — el hermano vosea y al portar sus
-    # plantillas el voseo se coló una vez; este guardián evita la
+    # todo lo que ve el usuario — el voseo ya se coló una vez en las
+    # plantillas; este guardián evita la
     # reincidencia.
     voseo = re.compile(
         r"\b(vos|elegí|marcá|hacé|mirá|podés|querés|tenés|sabés|destildá|"

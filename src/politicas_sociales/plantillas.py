@@ -1,10 +1,10 @@
 """Plantillas HTML de los formularios — solo texto, sin servidor.
 
-Heredadas del proyecto hermano (mismo estilo y las mismas decisiones de
-usabilidad: botón de salida en cada paso, pantalla de espera tras cada
-envío), con dos diferencias decididas por el dueño de este proyecto
+Decisiones de usabilidad aprendidas en corridas reales: botón de salida
+en cada paso, pantalla de espera tras cada envío. Dos reglas fijadas por
+el dueño de este proyecto
 (2026-08-19): el lenguaje es **español neutro y profesional** (tuteo
-estándar, sin voseo ni regionalismos — el hermano vosea; la regla de
+estándar, sin voseo ni regionalismos — la regla de
 este proyecto es la de sus docs e informes) y los pasos intermedios
 ofrecen **volver al paso anterior** (POST `{"volver": true}`) para
 corregir una elección sin salir del flujo.
@@ -313,8 +313,7 @@ def plantilla_metricas(estructura: list[dict]) -> str:
     las propias celdas del informe por
     `construir_informe.unidades_disponibles(bloques)`). Vienen todas
     marcadas — son lo que el informe imprimirá salvo que el usuario
-    desmarque — con botones de marcar todas/ninguna por bloque (estilo
-    heredado del proyecto hermano).
+    desmarque — con botones de marcar todas/ninguna por bloque.
 
     Si una unidad declara dependencias (`requiere`), el envío las
     autocompleta y lo avisa: elegir una métrica sin lo que necesita no es
@@ -424,8 +423,8 @@ document.getElementById('form').addEventListener('submit', async (e) => {{
 def plantilla_revision(metrica_pedida: str, problema: str,
                        alternativa: str = "") -> str:
     """Revisión de una métrica pedida que no puede calcularse: explica el
-    porqué con los datos y reglas del proyecto y ofrece una opción
-    (estilo heredado del proyecto hermano). El usuario decide: usar la
+    porqué con los datos y reglas del proyecto y ofrece una
+    opción. El usuario decide: usar la
     alternativa propuesta (si existe) o continuar solo con las métricas
     del catálogo que eligió.
     """

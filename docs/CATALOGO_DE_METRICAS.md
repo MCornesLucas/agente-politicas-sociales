@@ -8,8 +8,7 @@ existen, en qué años y con qué desagregaciones. Reglas de rigor:
 [`FUENTES_DE_DATOS.md`](FUENTES_DE_DATOS.md); relevamiento:
 [`RELEVAMIENTO_DE_DATOS.md`](RELEVAMIENTO_DE_DATOS.md).
 
-**Cómo se organiza** (igual que en
-[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)):
+**Cómo se organiza**:
 los bloques del catálogo — y de todo informe — son **temáticos**. Dentro
 de cada tema conviven sus métricas descriptivas y predictivas.
 

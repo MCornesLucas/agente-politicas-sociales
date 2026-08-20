@@ -5,7 +5,6 @@ arranque (que puede tardar) no haya una terminal a la vista compitiendo
 con el formulario del navegador. Si no encuentra la ventana (por ejemplo,
 Windows Terminal no siempre expone el mismo titulo que "title" del batch),
 no hace nada - es un detalle cosmetico, nunca debe romper el arranque.
-Heredado de agente-encuesta-hogares.
 #>
 param(
     [Parameter(Mandatory=$true)][string]$Titulo,

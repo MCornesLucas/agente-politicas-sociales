@@ -1,8 +1,7 @@
 """Verifica que todo enlace citado en el informe esté respaldado por la
 bibliografía del proyecto.
 
-Mecanismo heredado de `verificacion_bibliografia` del proyecto hermano
-(allí: autores citados sin conectar a ningún patrón real), adaptado a la
+Responde a la
 regla de este proyecto que el dueño marcó como la más importante
 (2026-08-19): las fuentes con sus enlaces validan los números y las
 elecciones de cualquier edición del informe — y toda fuente nueva entra
@@ -28,8 +27,7 @@ _RESPALDOS = [
 ]
 
 # Enlaces del propio proyecto: no son fuentes de datos, son la firma del
-# informe y la referencia a la infraestructura hermana — no corresponde
-# pedirles entrada bibliográfica.
+# informe — no corresponde pedirles entrada bibliográfica.
 _PREFIJOS_EXENTOS = (
     "https://github.com/testa10/",
 )

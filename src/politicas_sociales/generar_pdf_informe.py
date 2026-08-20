@@ -1,9 +1,8 @@
 """Genera el PDF del informe a partir del HTML sin código.
 
-Replica el pipeline de agente-encuesta-hogares
-(`docs/FLUJO_DE_TRABAJO.md`, sección 2, de ese repositorio): se toma el
+Pipeline del PDF: se toma el
 HTML sin código, se le antepone una portada, se inyecta la hoja de
-estilos de impresión (`docs/informe_estilo.css`, heredada — cada regla
+estilos de impresión (`docs/informe_estilo.css` — cada regla
 resuelve un problema real de paginación: gráficas que no se cortan entre
 páginas, tamaño A4, márgenes) y se imprime con Chromium sin interfaz vía
 Playwright. No se usa `nbconvert --to pdf` porque depende de LaTeX

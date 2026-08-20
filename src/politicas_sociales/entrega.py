@@ -1,7 +1,7 @@
 """Utilidades para la entrega final del informe: no perder en silencio un
 informe generado antes cuando se vuelve a correr el flujo.
 
-Heredado del proyecto hermano. Aquí los artefactos del repositorio los
+Los artefactos del repositorio los
 versiona git, pero la copia de Descargas no: volver a generar el informe
 la pisaba sin aviso ni forma de recuperarla.
 """

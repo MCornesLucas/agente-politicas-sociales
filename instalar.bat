@@ -10,7 +10,7 @@ echo.
 REM --- 1. Verificar Node.js (lo necesita Claude Code) ---
 where node >nul 2>nul
 if errorlevel 1 (
-    echo [1/6] No se encontro Node.js en esta computadora.
+    echo [1/5] No se encontro Node.js en esta computadora.
     echo        Se va a abrir la pagina de descarga en tu navegador.
     echo        Instala Node.js con las opciones por defecto y despues
     echo        vuelve a hacer doble clic en este archivo, instalar.bat,
@@ -20,7 +20,7 @@ if errorlevel 1 (
     if not defined POLITICAS_SOCIALES_NONINTERACTIVE pause
     exit /b 1
 )
-echo [1/6] Node.js encontrado: OK
+echo [1/5] Node.js encontrado: OK
 
 REM --- 2. Verificar/instalar Claude Code ---
 REM Version FIJADA a proposito, no "lo ultimo que haya hoy": el flujo se
@@ -29,10 +29,10 @@ REM version distinta segun el dia convierte cualquier cambio de
 REM comportamiento en un "no me funciona" indiagnosticable a distancia.
 REM Para actualizarla: probar el flujo completo con la version nueva y
 REM recien entonces cambiar este numero (misma logica que fijar el modelo
-REM en abrir_agente.bat). Mismo numero que el proyecto hermano.
+REM en abrir_agente.bat).
 where claude >nul 2>nul
 if errorlevel 1 (
-    echo [2/6] Instalando Claude Code, puede tardar un minuto...
+    echo [2/5] Instalando Claude Code, puede tardar un minuto...
     call npm install -g @anthropic-ai/claude-code@2.1.233
     if errorlevel 1 (
         echo.
@@ -42,7 +42,7 @@ if errorlevel 1 (
         exit /b 1
     )
 ) else (
-    echo [2/6] Claude Code ya estaba instalado: OK
+    echo [2/5] Claude Code ya estaba instalado: OK
 )
 
 REM --- 3. Detectar Python (Anaconda) ---
@@ -65,33 +65,10 @@ if not exist "!PYEXE!" (
         exit /b 1
     )
 )
-echo [3/6] Python encontrado: OK
+echo [3/5] Python encontrado: OK
 
-REM --- 4. Verificar el proyecto hermano agente-encuesta-hogares ---
-REM Este proyecto importa los loaders de la ECH desde la copia de trabajo
-REM del proyecto hermano (ver src/politicas_sociales/config.py): sin el,
-REM la extraccion de la ECH y varias metricas no pueden correr. Se acepta
-REM la carpeta hermana o la ruta indicada en AGENTE_ECH_RUTA.
-set "ECH_RUTA=%~dp0..\agente-encuesta-hogares"
-if defined AGENTE_ECH_RUTA set "ECH_RUTA=%AGENTE_ECH_RUTA%"
-
-if not exist "!ECH_RUTA!\src\encuesta_hogares\" (
-    echo.
-    echo No se encontro el proyecto hermano agente-encuesta-hogares en:
-    echo   !ECH_RUTA!
-    echo.
-    echo Para continuar: descargar el proyecto desde
-    echo https://github.com/testa10/agente-encuesta-hogares y dejarlo
-    echo como carpeta hermana de esta ^(mismo directorio^), o definir la
-    echo variable de entorno AGENTE_ECH_RUTA con su ruta, y volver a
-    echo correr este instalador.
-    if not defined POLITICAS_SOCIALES_NONINTERACTIVE pause
-    exit /b 1
-)
-echo [4/6] Proyecto hermano agente-encuesta-hogares: OK
-
-REM --- 5. Instalar las dependencias del proyecto ---
-echo [5/6] Instalando las dependencias de Python del proyecto...
+REM --- 4. Instalar las dependencias del proyecto ---
+echo [4/5] Instalando las dependencias de Python del proyecto...
 "!PYEXE!" -m pip install -e ".[dev]" --quiet
 if errorlevel 1 (
     echo.
@@ -113,13 +90,13 @@ REM real). El consentimiento es correr este instalador; si falla, no es
 REM grave: el chequeo aparece una unica vez.
 "!PYEXE!" -m politicas_sociales.preaprobar_confianza
 
-REM --- 6. Preparar el generador de PDF (descarga Chromium una sola vez) ---
-echo [6/6] Preparando el generador de informes PDF, puede tardar unos minutos la primera vez...
+REM --- 5. Preparar el generador de PDF (descarga Chromium una sola vez) ---
+echo [5/5] Preparando el generador de informes PDF, puede tardar unos minutos la primera vez...
 "!PYEXE!" -m playwright install chromium
 REM Sin este chequeo, si la descarga de Chromium falla (red, proxy,
 REM antivirus) el instalador igual diria "Listo" y el problema apareceria
 REM mucho despues, al generar el PDF en medio de una corrida real
-REM (leccion heredada del instalador del proyecto hermano).
+REM (leccion de una corrida real del instalador).
 if errorlevel 1 (
     echo.
     echo No se pudo preparar el generador de informes PDF. Revisa tu

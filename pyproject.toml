@@ -1,20 +1,19 @@
 [build-system]
 # >=77.0.3: versión mínima con soporte real para "license" como expresión
-# SPDX y "license-files" (PEP 639) — misma decisión (y misma verificación)
-# que en agente-encuesta-hogares: 68.0 falla al instalar con este
-# pyproject.toml si alguna vez se instala sin aislamiento de build.
+# SPDX y "license-files" (PEP 639) — verificado: 68.0 falla al instalar con
+# este pyproject.toml si alguna vez se instala sin aislamiento de build.
 requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "politicas-sociales-agente"
-version = "0.4.0"
+version = "0.5.0"
 description = "Agente y paquete para analizar las políticas sociales de infancia en Uruguay — violencia, explotación sexual, trabajo infantil, protección especial y pobreza — a partir de registros administrativos (SIPIAV, INAU, CONAPEES), encuestas (ENSANNA, ECH) e informes institucionales."
 readme = "README.md"
 license = "PolyForm-Noncommercial-1.0.0"
 license-files = ["LICENSE"]
 # >=3.10: el código usa uniones `X | Y` y genéricos incorporados en firmas
-# evaluadas al importar (misma razón que el proyecto hermano).
+# evaluadas al importar.
 requires-python = ">=3.10"
 dependencies = [
     "pandas>=2.0",
@@ -23,17 +22,13 @@ dependencies = [
     "openpyxl>=3.1",      # proyecciones de población del INE (revisión 2025, .xlsx)
     "nbformat>=5.0",      # construcción del informe
     "matplotlib>=3.7",    # las celdas del informe grafican con matplotlib
-    # El informe se ejecuta con `jupyter nbconvert --execute` (misma lección
-    # que en el proyecto hermano: no es dependencia de desarrollo — sin
+    "pyreadstat>=1.2",    # microdatos ECH 2019 en formato .sav (politicas_sociales.ech)
+    # El informe se ejecuta con `jupyter nbconvert --execute` (lección
+    # aprendida: no es dependencia de desarrollo — sin
     # jupyter no se puede generar un informe).
     "jupyter",
     "playwright>=1.40",   # PDF vía Chromium sin interfaz (nbconvert a PDF exige LaTeX)
 ]
-# Dependencia no declarable aquí: el paquete encuesta_hogares del proyecto
-# hermano agente-encuesta-hogares se importa desde su copia de trabajo
-# (carpeta hermana), no desde PyPI ni desde site-packages — ver
-# src/politicas_sociales/config.py para la razón y la forma de sobrescribir
-# la ruta.
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0", "pytest-cov>=5.0", "ruff>=0.6"]
@@ -49,7 +44,6 @@ target-version = "py310"
 # sin usar) — sin reglas de estilo adicionales, para no generar un diff
 # grande sobre código que ya funciona. E501 (línea larga) queda afuera a
 # propósito: el proyecto usa líneas largas e informativas por diseño
-# (docstrings con citas, textos del informe). Misma configuración que
-# agente-encuesta-hogares.
+# (docstrings con citas, textos del informe).
 select = ["E", "F", "W"]
 ignore = ["E501"]

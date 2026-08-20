@@ -1,9 +1,7 @@
 # Metodología: reglas de rigor para analizar políticas sociales de infancia
 
-Este proyecto hereda el marco metodológico de
-[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
-(reglas de rigor estadístico, terminología y visualización probadas sobre
-la ECH) y lo adapta a un problema distinto: aquí la mayoría de las fuentes
+Reglas de rigor estadístico, terminología y visualización para un
+problema con una particularidad: aquí la mayoría de las fuentes
 **no son encuestas con microdatos, son registros administrativos e
 informes institucionales** (SIPIAV, INAU, CONAPEES), con una sola encuesta
 con microdatos públicos (ENSANNA 2024). Esa diferencia cambia qué
@@ -128,9 +126,8 @@ para explicar y modelar para predecir de Shmueli (2010) — citas en
 `BIBLIOGRAFIA.md`. Esta clasificación define qué reglas aplican a cada
 métrica, **no la estructura de los informes**: los bloques de todo
 informe son los temáticos (sección 1), y dentro de cada tema conviven
-sus métricas descriptivas y predictivas — igual que en
-agente-encuesta-hogares el bloque Empleo reúne todas las métricas de
-empleo. Toda métrica predictiva se rige por estas reglas:
+sus métricas descriptivas y predictivas.
+Toda métrica predictiva se rige por estas reglas:
 
 - **Solo escenarios inerciales, nunca pronósticos causales.** Lo que se
   proyecta es la continuación de una tendencia observada bajo el

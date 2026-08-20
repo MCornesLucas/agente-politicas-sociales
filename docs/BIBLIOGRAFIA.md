@@ -144,7 +144,7 @@ que rastrearla.
   predictivo de este proyecto proyecta tendencias sin afirmar causas:
   https://projecteuclid.org/journals/statistical-science/volume-25/issue-3/To-Explain-or-to-Predict/10.1214/10-STS330.full
 
-## Visualización de datos (heredada del proyecto agente-encuesta-hogares, ver `CONVENCIONES_DE_GRAFICAS.md`)
+## Visualización de datos (ver `CONVENCIONES_DE_GRAFICAS.md`)
 
 - Cleveland, W.S. & McGill, R. (1984). "Graphical Perception: Theory,
   Experimentation, and Application to the Development of Graphical

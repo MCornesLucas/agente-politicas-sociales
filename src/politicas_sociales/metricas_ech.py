@@ -4,19 +4,17 @@ Calcula, para cada año disponible en `data/ech/`, las métricas 19 y
 31-36 de `docs/CATALOGO_DE_METRICAS.md` y exporta tablas ordenadas a
 `resultados/ech/` (versionadas: son agregados ponderados, no microdatos).
 
-Definiciones reutilizadas del proyecto agente-encuesta-hogares, sin
-modificar (misma métrica, misma definición):
+Definiciones estándar aplicadas (misma métrica, misma definición que en
+la literatura de referencia):
 
-- Hacinamiento: más de 2 personas por cuarto (umbral clásico INE/CEPAL;
-  `preprocessing.compute_hacinamiento` del proyecto original).
+- Hacinamiento: más de 2 personas por cuarto (umbral clásico INE/CEPAL).
 - Victimización: víctima de un delito si la variable del tipo vale 1;
-  prevalencia a nivel de persona ponderada por `W_SEM`
-  (`preprocessing.prepare_victimizacion` del original).
+  prevalencia a nivel de persona ponderada por `W_SEM`.
 - FIES: inseguridad alimentaria si la probabilidad del modelo Rasch
-  supera 0,5 (umbral estándar FAO; `config.UMBRAL_FIES` del original).
+  supera 0,5 (umbral estándar FAO).
 - Empleo: panel rotativo mensual — cada métrica se calcula mes a mes
   ponderada por `W` y luego se promedian los 12 meses, nunca juntando
-  los meses en un solo pool (regla del original).
+  los meses en un solo pool (docs/METODOLOGIA.md).
 
 Toda estimación se acompaña de su n muestral sin ponderar, para aplicar
 la regla de celdas chicas (n < 30) al momento de graficar.
@@ -30,15 +28,13 @@ import numpy as np
 import pandas as pd
 
 from politicas_sociales import config
+from politicas_sociales.ech import preprocessing  # normalizar_departamento
 
 DATOS = config.DATA_DIR / "ech"
 SALIDA = config.RESULTADOS / "ech"
 
-config.preparar_import_ech()
-from encuesta_hogares import preprocessing  # noqa: E402  (normalizar_departamento)
-
-UMBRAL_HACINAMIENTO = 2.0   # personas por cuarto (INE/CEPAL, heredado)
-UMBRAL_FIES = 0.5           # probabilidad Rasch (FAO, heredado)
+UMBRAL_HACINAMIENTO = 2.0   # personas por cuarto (INE/CEPAL)
+UMBRAL_FIES = 0.5           # probabilidad Rasch (FAO)
 
 CONDICIONES_VIVIENDA = [
     "humedad_techos", "goteras", "muros_agrietados",

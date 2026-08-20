@@ -37,8 +37,7 @@ REM
 REM El PID de esta ventana se averigua con REDIRECCION a archivo y no con
 REM `for /f ('...')`: `for /f` corre el comando dentro de un cmd.exe
 REM intermedio, asi que el padre de powershell seria ese proceso efimero
-REM en vez de esta consola (verificado en el proyecto hermano contra un
-REM arbol de procesos real).
+REM en vez de esta consola (verificado contra un arbol de procesos real).
 set "POLITICAS_SOCIALES_CONSOLA=1"
 set "ARCHIVO_PID=%TEMP%\politicas-sociales-pid-%RANDOM%.txt"
 powershell -NoProfile -Command "$f = 'ProcessId=' + $PID; $p = Get-CimInstance Win32_Process -Filter $f; $p.ParentProcessId" > "%ARCHIVO_PID%"
@@ -50,8 +49,8 @@ if exist "%MARCA_CIERRE%" del "%MARCA_CIERRE%" >nul 2>nul
 
 REM --model se fija a proposito: sin el, la sesion toma el modelo por
 REM defecto de la cuenta, que puede cambiar sin que nadie toque el
-REM proyecto (mismo criterio que el proyecto hermano; si se actualiza
-REM aca, actualizar tambien el frontmatter del agente).
+REM proyecto (si se actualiza aca, actualizar tambien el frontmatter
+REM del agente).
 claude --model claude-opus-5 "Quiero el informe de politicas sociales de infancia"
 
 REM Terminar el proceso de Claude Code hace que `claude` salga con codigo

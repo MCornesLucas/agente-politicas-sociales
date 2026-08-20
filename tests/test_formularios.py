@@ -85,7 +85,7 @@ def test_timeout_devuelve_salir_del_flujo(monkeypatch):
     _navegador_falso(monkeypatch, lambda url: None)  # nadie responde
     respuesta = formularios.mostrar_formulario("<h1>Prueba</h1>", timeout=0.3)
     # El chequeo estándar tras cualquier formulario cubre así también el
-    # timeout, sin KeyError crudo (decisión heredada del hermano).
+    # timeout, sin KeyError crudo.
     assert respuesta["salir_del_flujo"] is True
     assert respuesta["motivo"] == "timeout"
     assert "formulario_timeout" in [e["tipo"] for e in bitacora.leer_eventos()]

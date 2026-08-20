@@ -5,8 +5,8 @@ temas), las proyecciones calculadas (P1 con validación 2025, P2, P3, P4, P5)
 y el contexto demográfico (P6). El nombre no lleva "piloto" ni el texto
 anuncia el catálogo completo: el informe es el producto del proyecto, y
 qué métricas incluye cada versión es una decisión de quien lo pide, no
-una promesa del título. Estructura estándar heredada de
-agente-encuesta-hogares (docs/METODOLOGIA.md, sección 1): introducción,
+una promesa del título. Estructura estándar del
+proyecto (docs/METODOLOGIA.md, sección 1): introducción,
 preparación de datos, un tramo por tema con las cinco partes por
 métrica, nota metodológica, resumen analítico y conclusiones. Español
 neutro y formal; toda cifra con su fuente.

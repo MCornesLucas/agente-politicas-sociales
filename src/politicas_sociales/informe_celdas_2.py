@@ -517,9 +517,8 @@ para todas las tasas de infancia del país.
 ## Tema 5 — Pobreza, vivienda y entorno del hogar (ECH)
 
 Cálculo propio sobre los **microdatos de la ECH** (INE), universo 0-17
-años, siempre ponderado (2019, 2023, 2024 y 2025; la extracción
-reutiliza los procedimientos verificados del proyecto
-[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)).
+años, siempre ponderado (2019, 2023, 2024 y 2025), con procedimientos
+de carga verificados contra los diccionarios oficiales del INE.
 A diferencia de los temas 1, 2 y 4, estas métricas sí describen a la
 infancia uruguaya en general.
 """),

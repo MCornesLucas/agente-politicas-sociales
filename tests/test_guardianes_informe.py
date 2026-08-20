@@ -2,8 +2,8 @@
 
 Regla del proyecto: todo guardián se prueba contra la salida real — un
 hook que nunca se disparó contra un notebook de verdad puede quedar
-verde por no mirar nada (fallo documentado dos veces en el proyecto
-hermano). Por eso cada guardián se prueba en las dos direcciones: deja
+verde por no mirar nada (fallo real documentado dos
+veces). Por eso cada guardián se prueba en las dos direcciones: deja
 pasar el informe real del repositorio, y bloquea una copia saboteada.
 """
 
@@ -102,7 +102,7 @@ def test_la_metrica_del_usuario_tambien_es_vigilada(tmp_path):
 
 @requiere_node
 def test_metrica_incompleta_bloquea_si_no_reconoce_ningun_encabezado(tmp_path):
-    # El fallo silencioso del proyecto hermano: si el patrón de encabezados
+    # El fallo silencioso ya documentado: si el patrón de encabezados
     # cambia, el hook no debe quedar verde por no encontrar nada que mirar.
     nb = escribir_nb(tmp_path / "nb.ipynb", [celda_md("# Otro documento")])
     salida = correr_hook("gate-informe-metrica-incompleta.cjs", comando_ejecutar(nb))

@@ -1,9 +1,8 @@
 # Instrucciones para Claude Code en este proyecto
 
-Proyecto de análisis de políticas sociales de infancia en Uruguay, hermano
-de [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
-(misma exigencia de rigor, fuentes distintas: registros administrativos e
-informes institucionales además de una encuesta).
+Proyecto de análisis de políticas sociales de infancia en Uruguay:
+registros administrativos e informes institucionales de los organismos
+del área, más los microdatos de la ECH (INE) para el universo 0-17.
 
 ## Antes de escribir cualquier análisis o gráfica
 
@@ -22,8 +21,8 @@ informes institucionales además de una encuesta).
 - **Ninguna métrica se da por existente sin ver el dato real.** El
   catálogo (`docs/CATALOGO_DE_METRICAS.md`) es un borrador de diseño:
   cada métrica se confirma descargando el informe o microdato y
-  verificando que la definición esperada existe. Lección heredada del
-  proyecto original: los guardianes/supuestos sin verificar contra la
+  verificando que la definición esperada existe. Lección aprendida:
+  los guardianes/supuestos sin verificar contra la
   salida real fallan en silencio.
 - **Microdatos (ENSANNA, ECH): siempre ponderados.** Nunca `.mean()` /
   `.value_counts()` simple sobre una muestra.
@@ -52,8 +51,9 @@ informes institucionales además de una encuesta).
 - En una máquina instalada con `instalar.bat`, invocar Python siempre a
   través de `run_python.bat` (lee la ruta real de `.claude/python_path.txt`),
   nunca por una ruta de Python escrita a mano.
-- Las rutas del proyecto y el acceso al proyecto hermano se centralizan en
-  `politicas_sociales/config.py` — ningún módulo escribe rutas absolutas.
+- Las rutas del proyecto se centralizan en `politicas_sociales/config.py`
+  (las de los microdatos ECH, en `politicas_sociales/ech/config.py`) —
+  ningún módulo escribe rutas absolutas.
 - La suite (`python -m pytest`) cubre la lógica pura y los guardianes de
   datos; todo guardián nuevo lleva su test que verifique que realmente
   detiene la corrida con datos que no cumplen (lección heredada:
@@ -66,16 +66,14 @@ informes institucionales además de una encuesta).
   formularios en el navegador → informe → cierre automático de la
   consola) lo conduce el agente `.claude/agents/politicas-sociales.md`;
   la maquinaria (formularios, bitácora, cierre, entrega) vive en el
-  paquete, heredada del proyecto hermano con sus lecciones documentadas.
+  paquete, con sus lecciones documentadas en cada módulo.
 
 ## Mantenimiento
 
 - **Lenguaje formal y español neutro** en toda la documentación y en los
   informes: sin voseo ni regionalismos coloquiales ("acá", "arrancar",
   "ganarle"); se escribe "aquí", "comenzar", "superar". El modelo de
-  estilo son los documentos e informes de
-  [agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares)
-  (`docs/METODOLOGIA.md` y los informes generados). Los términos
+  estilo son `docs/METODOLOGIA.md` y los informes generados. Los términos
   técnicos de los organismos se conservan tal cual.
 - Una sola copia del proyecto (esta). Desarrollar, probar y commitear
   desde aquí; revisar el diff uno mismo antes de commitear, sin pedir

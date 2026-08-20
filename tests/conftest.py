@@ -2,7 +2,7 @@
 
 El autouse redirige la bitácora de los hooks a un archivo temporal en
 TODOS los tests, sin que ninguno tenga que acordarse de pedirlo. La
-lección viene del proyecto hermano, donde el problema apareció dos
+lección viene de un problema real aparecido dos
 veces: tests escribiendo en la bitácora real de quien tenga el proyecto
 en esa carpeta, con entradas indistinguibles de una corrida suya, justo
 en el archivo que existe para reconstruir qué pasó.

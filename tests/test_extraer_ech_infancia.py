@@ -8,12 +8,8 @@ bordes exactos, no valores intermedios.
 """
 
 import pandas as pd
-import pytest
 
-# El módulo importa los loaders del proyecto hermano al cargarse; si el
-# hermano no está instalado como carpeta hermana, la extracción
-# genuinamente no puede correr y estos tests se omiten con la razón.
-extraer = pytest.importorskip("politicas_sociales.extraer_ech_infancia")
+from politicas_sociales import extraer_ech_infancia as extraer
 
 
 def _edades(*edades):

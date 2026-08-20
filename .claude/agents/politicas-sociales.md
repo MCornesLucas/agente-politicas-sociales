@@ -6,8 +6,8 @@ model: claude-opus-5
 ---
 
 <!--
-El modelo se fija a propósito, con el id completo y no con un alias — el
-mismo criterio (y el mismo id) que el proyecto hermano: sin este campo,
+El modelo se fija a propósito, con el id completo y no con un alias:
+sin este campo,
 el modelo con el que se genera un informe podría cambiar sin que nadie
 toque el proyecto. Al actualizarlo, cambiar también abrir_agente.bat,
 que fija el mismo modelo para la sesión principal.
@@ -36,7 +36,7 @@ ejemplo: `./run_python.bat -m pytest -q`. Nunca `python` a secas, nunca
 **Invocarlo siempre con el prefijo `./` (`./run_python.bat`)**, nunca por
 su nombre simple ni con la ruta completa entre comillas: la terminal que
 se usa (Git Bash) no busca en el directorio actual salvo con `./`
-(encontrado en una corrida real del proyecto hermano), y esa forma ya
+(encontrado en una corrida real), y esa forma ya
 está permitida en `.claude/settings.json` sin pedir aprobación a cada
 paso.
 

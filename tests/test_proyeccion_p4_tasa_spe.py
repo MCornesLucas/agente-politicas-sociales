@@ -1,7 +1,7 @@
 """Tests de P4: guardianes de datos y protocolo de backtest.
 
-Los dos guardianes de este módulo nacieron de la lección del proyecto
-hermano (los supuestos sin verificar contra la salida real fallan en
+Los dos guardianes de este módulo nacieron de una lección
+aprendida (los supuestos sin verificar contra la salida real fallan en
 silencio): la suma de tramos debe reproducir el total del indicador 1.1,
 y la estructura del archivo B.1.1 del INE debe ser exactamente la
 esperada antes de leer una sola celda. Aquí se prueba que ambos
