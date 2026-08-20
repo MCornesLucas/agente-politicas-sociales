@@ -166,15 +166,19 @@ numerador se amesetó y ningún modelo supera al ingenuo), P6 citada del
 INE (revisión 2025 descargada); los cuatro cruces entre fuentes del
 catálogo calculados, cada uno con sus limitaciones declaradas
 (`resultados/cruces/`). Informe oficial en `notebooks/`; flujo guiado
-por formularios con selección de bloques y de métricas, métricas a
-medida evaluadas con las reglas de rigor, y cierre del informe armado
-por métrica (el resumen y las conclusiones solo dicen lo que la edición
-muestra); guardianes automáticos con tests en ambas direcciones.
+por formularios con carga de datos (fuentes documentales automáticas,
+microdatos ECH guiados a mano, fuentes propias del usuario con su origen
+registrado), selección de bloques y de métricas, métricas a
+medida evaluadas con las reglas de rigor — incluso sobre las fuentes
+propias del usuario, verificado en corrida real —, y cierre del informe
+armado por métrica (el resumen y las conclusiones solo dicen lo que la
+edición muestra); guardianes automáticos con tests en ambas direcciones.
 
 Pendientes que dependen de terceros: microdatos ENSANNA (INE los lista
 "en análisis"), serie ESNNA 2022+ oficial (CONAPEES), estimaciones
 retrospectivas de la revisión 2025 del INE, plan estratégico del CETI
-basado en la ENSANNA. El detalle vive en
+basado en la ENSANNA. Se revisan una vez al mes desde el propio flujo
+(`politicas_sociales.vigilancia`); el detalle vive en
 `docs/RELEVAMIENTO_DE_DATOS.md`.
 
 ## Licencia
