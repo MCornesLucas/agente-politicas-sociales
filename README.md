@@ -6,9 +6,8 @@ protección: **SIPIAV, INAU, CONAPEES, CETI, UNICEF Uruguay** y la
 **ENSANNA 2024** (Encuesta Nacional sobre las Actividades de Niñas, Niños
 y Adolescentes, INE/MTSS).
 
-Es el proyecto hermano de
-[agente-encuesta-hogares](https://github.com/testa10/agente-encuesta-hogares):
-hereda su marco metodológico (reglas de rigor no negociables,
+El proyecto presenta
+un marco metodológico (reglas de rigor no negociables,
 bibliografía auditada, justificación con fundamento de cada gráfica) y lo
 aplica a un problema nuevo — y más difícil: aquí la mayoría de las fuentes
 no son encuestas, son **registros administrativos**, donde la pregunta
