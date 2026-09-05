@@ -884,6 +884,17 @@ calculadas sobre la ECH. Reglas comunes a todos: ambos lados de cada
 cruce al **mismo nivel de agregación**, lectura observacional
 (asociación, nunca causa) y las limitaciones de cada cruce declaradas en
 su propia sección — ninguna conclusión describe individuos.
+
+**Cómo leer rho.** Todos los cruces usan la misma medida de asociación:
+**rho**, el coeficiente de correlación de rangos de Spearman. Ordena dos
+veces las mismas unidades —por ejemplo, los departamentos por tasa de
+protección especial y por pobreza infantil— y resume cuánto coinciden
+los dos ordenamientos con un número entre −1 y +1: cerca de +1, quien
+está arriba en un ordenamiento está arriba en el otro; cerca de −1,
+ocurre lo contrario; cerca de 0, no hay relación. Trabaja con las
+posiciones y no con los valores, de modo que una unidad con cifras muy
+superiores al resto (Montevideo, en los cruces departamentales) no
+domina el resultado, y no supone una relación en línea recta.
 """),
     md("""
 ### Cruce 1. ¿La intensidad territorial de la protección especial sigue el mapa de la pobreza infantil?

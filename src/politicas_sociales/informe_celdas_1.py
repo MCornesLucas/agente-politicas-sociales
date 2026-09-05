@@ -835,7 +835,7 @@ plt.show()
     md("""
 **Por qué esta gráfica.** Serie corta de 4 mediciones reales: línea con
 marcadores; no se proyecta (menos de 6 puntos, regla del bloque
-predictivo — P7 descartada por esa razón).
+predictivo).
 
 **Lectura**: entre 240 y 494 situaciones anuales atendidas (2018-2021),
 con caída en 2019 y crecimiento posterior. La fuente incluye la apertura

@@ -314,3 +314,21 @@ def test_el_texto_del_informe_no_remite_a_un_proyecto_que_el_lector_no_conoce():
             else:
                 for literal in re.findall(r'"[^"\n]*"', celda.source):
                     assert patron.search(literal) is None, literal
+
+
+def test_rho_se_define_en_la_introduccion_de_los_cruces_antes_de_usarse():
+    """Pedido del dueño (2026-09-05): un lector no técnico llegó a
+    "rho = −0,10" en el primer cruce sin ninguna explicación. La
+    definición vive en la introducción de los cruces, que forma parte del
+    bloque y por eso va en toda edición que los incluya; ninguna celda
+    anterior puede usar la palabra, y la primera que la usa la define."""
+    import re
+    usa_rho = re.compile(r"(?<![A-Za-z_])rho(?![A-Za-z_])")
+    for seleccion in ({}, {"bloques": ["tema_4", "cruces"]}, {"unidades": ["metrica_20", "cruce_1"]}):
+        celdas = [c for c in construir_informe.celdas_del_informe(**seleccion)
+                  if c.cell_type == "markdown" and usa_rho.search(c.source)]
+        assert celdas, seleccion
+        primera = celdas[0].source
+        assert primera.lstrip().startswith("## Cruces entre fuentes"), primera[:80]
+        assert "Cómo leer rho" in primera and "Spearman" in primera
+        assert "entre −1 y +1" in primera
