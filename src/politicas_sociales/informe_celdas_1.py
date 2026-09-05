@@ -13,7 +13,7 @@ from politicas_sociales.informe_base import code, md
 # temas por el usuario) reemplazan este texto por uno que describe lo que
 # la edición realmente contiene — la introducción nunca promete contenido
 # que no está (misma decisión que sacar "el catálogo completo" del texto).
-ALCANCE_COMPLETO = """las métricas del catálogo del proyecto en **cinco
+ALCANCE_COMPLETO = """métricas agrupadas en **cinco
 temas** (violencia hacia niñas, niños y adolescentes; explotación
 sexual; trabajo infantil; protección especial; pobreza, vivienda y
 entorno del hogar), junto con las proyecciones calculadas y validadas
