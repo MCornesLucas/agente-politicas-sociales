@@ -31,6 +31,9 @@ MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
          "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
 
 
+# La portada es texto visible del informe y no pasa por las celdas ni por
+# los guardianes: se le aplican las mismas reglas del dueño (nada de
+# "catálogo", "proyecto" ni temas numerados) y un test la vigila.
 def portada() -> str:
     hoy = datetime.date.today()
     fecha = f"{hoy.day} de {MESES[hoy.month - 1]} de {hoy.year}"
@@ -38,9 +41,8 @@ def portada() -> str:
 <div class="portada">
   <h1>Pol&iacute;ticas sociales de infancia en Uruguay &mdash; Informe</h1>
   <div class="subtitulo">M&eacute;tricas descriptivas, proyecciones validadas y cruces entre
-  fuentes del cat&aacute;logo del proyecto, con cada cifra respaldada por su fuente</div>
-  <div class="meta">Generado el {fecha} &middot;
-  Proyecto agente-politicas-sociales</div>
+  fuentes, con cada cifra respaldada por su fuente</div>
+  <div class="meta">Generado el {fecha} con agente-politicas-sociales</div>
 </div>
 """
 
