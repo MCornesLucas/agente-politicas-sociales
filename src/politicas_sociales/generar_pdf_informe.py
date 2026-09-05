@@ -42,7 +42,7 @@ def portada() -> str:
   <h1>Pol&iacute;ticas sociales de infancia en Uruguay &mdash; Informe</h1>
   <div class="subtitulo">M&eacute;tricas descriptivas, proyecciones validadas y cruces entre
   fuentes, con cada cifra respaldada por su fuente</div>
-  <div class="meta">Generado el {fecha} con agente-politicas-sociales</div>
+  <div class="meta">Generado el {fecha}</div>
 </div>
 """
 

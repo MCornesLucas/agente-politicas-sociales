@@ -26,4 +26,7 @@ def test_la_portada_lleva_titulo_subtitulo_y_fecha():
     texto = _texto_portada()
     assert "Políticas sociales de infancia en Uruguay — Informe" in texto
     assert "cruces entre fuentes, con cada cifra respaldada por su fuente" in texto
-    assert re.search(r"Generado el \d{1,2} de [a-z]+ de \d{4} con agente-politicas-sociales", texto)
+    assert re.search(r"Generado el \d{1,2} de [a-z]+ de \d{4}", texto)
+    # Regla del dueño (2026-09-05): el pie es solo la fecha, sin nombre alguno.
+    assert "agente-politicas-sociales" not in texto
+    assert "Proyecto" not in texto
