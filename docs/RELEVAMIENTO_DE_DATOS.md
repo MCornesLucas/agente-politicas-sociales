@@ -240,6 +240,21 @@ personalmente, y esa carga es manual (paso de datos del flujo guiado).
 Si un enlace de INAU muere, buscar el documento por título en el gestor
 documental (`/download/<id>/...`) — los ids están en la tabla de arriba.
 
+## 9. ENDIS 2023 — microdatos para terceros (catálogo ANDA, entrada 765)
+
+Siete bases (`base_asq`, `base_cbcl`, `base_ecdi`, `base_hogar`,
+`base_informante`, `base_ninoselecc`, `base_personas`, cada una en .sav
+y .csv) descargadas por el usuario aceptando los términos del INE el
+2026-08-20 y registradas primero como fuente propia (`data/usuario/`);
+desde el 2026-09-05 la base de niño seleccionado se lee de
+`data/endis_microdatos/2023/` (con respaldo en la fuente propia si esa
+carpeta no existe). Verificado contra el archivo: 2.521 niñas y niños,
+`PEREDADMESES` de 0 a 59 sin faltantes, `W` de 24 a 213, `E239_recod`
+con cuatro categorías escritas y el código `0` (867 casos: 813 sin dato
+de asistencia en `E238` y 54 que declaran no asistir). Las bases para
+terceros no traen etiquetas de variable ni de valor (verificado con
+pyreadstat sobre el .sav).
+
 ## Vigilancia de los pendientes de terceros
 
 Los pendientes que no dependen del proyecto (microdatos ENSANNA en el

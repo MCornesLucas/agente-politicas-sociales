@@ -118,6 +118,24 @@ clasificaciones de edad de cada organismo como columnas):
 | 36 | Victimización de hogares donde viven NNA | Descriptiva | 2024-2025 (5 tipos de delito, denuncia, violencia) | ✅ |
 | P8 | Pobreza infantil proyectada | Predictiva | Solo 2 puntos comparables (2024-2025, canasta 2017; 2023 quedó con la canasta 2006 — verificado contra el archivo del INE) | ❌ serie insuficiente |
 
+## Tema 6 — Primera infancia y cuidados (ENDIS 2023, encuesta con microdatos para terceros — data/endis_microdatos/)
+
+Incorporado el 2026-09-05 por decisión del dueño: la métrica nació como
+pedido de un usuario del flujo guiado sobre su propia carga de la ENDIS
+(corrida real del 2026-08-20) y cubre el tramo de 0 a 4 años, que
+ningún otro tema describe. Base de niño seleccionado, cohorte 2023,
+catálogo ANDA del INE (entrada 765); la base para terceros no trae
+etiquetas de variable ni de valor — las categorías de prestador vienen
+escritas en el propio dato (`E239_recod`) y el código `0` reúne a
+quienes declaran no asistir con los casos sin dato de asistencia, por lo
+que se informa como «sin centro registrado». Pipeline:
+`python -m politicas_sociales.metricas_endis` →
+`resultados/endis/cobertura_primera_infancia_2023.csv` (versionado).
+
+| # | Métrica | Tipo | Detalle | Estado |
+|---|---|---|---|---|
+| 37 | Cobertura de centros de primera infancia por edad y tipo de prestador | Descriptiva | 2023, tramos de 12 meses (0-59), prestador INAU / ANEP / privados / otro público / sin centro registrado; ponderada por `W`, con n muestral por celda (ANEP < 36 meses y «otro público» tienen n < 30) | ✅ |
+
 ## Contexto transversal — demografía de la infancia
 
 | # | Métrica | Tipo | Detalle | Estado |

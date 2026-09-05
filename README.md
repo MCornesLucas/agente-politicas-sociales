@@ -126,12 +126,13 @@ lenguaje observacional, integridad visual) están en
 
 | Organismo | Qué aporta | Naturaleza |
 |---|---|---|
-| [SIPIAV](https://www.inau.gub.uy/sipiav) | Informes anuales de violencia hacia NNA (serie desde 2013) | Registro administrativo |
+| [SIPIAV](https://www.inau.gub.uy/noticias/2026/sipiav-presento-informe-2025) | Informes anuales de violencia hacia NNA (serie desde 2013) | Registro administrativo |
 | [INAU — SIPI](https://inau.gub.uy/transparencia/indicadores-sistema-de-proteccion-especial-inau) | Indicadores del Sistema de Protección Especial | Registro administrativo |
-| [CONAPEES](https://www.inau.gub.uy/conapees) | Planes nacionales y datos de explotación sexual de NNA | Registro + documentos |
+| [CONAPEES](https://www.inau.gub.uy/noticias/2023/conapees-registro-169-nuevos-casos-de-explotacion-sexual-en-2023) | Planes nacionales y datos de explotación sexual de NNA | Registro + documentos |
 | [CETI (MTSS)](https://www.gub.uy/ministerio-trabajo-seguridad-social/comunicacion/noticias/ceti) | Política nacional contra el trabajo infantil | Documentos de política |
 | [UNICEF Uruguay](https://www.unicef.org/uruguay/infancia-en-datos) | Portal Infancia en Datos, pobreza infantil, inversión | Fuente secundaria |
 | [ENSANNA 2024 (INE)](https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna) | Boletín oficial de trabajo infantil (microdatos aún no publicados) | Encuesta (prevalencia) |
+| [ENDIS 2023 (INE)](https://www4.ine.gub.uy/Anda5/index.php/catalog/765) | Cobertura de centros de primera infancia, 0 a 4 años (microdatos para terceros) | Encuesta (prevalencia) |
 
 El detalle de qué publica cada uno, con sus advertencias de uso, está en
 [`docs/FUENTES_DE_DATOS.md`](docs/FUENTES_DE_DATOS.md).
@@ -156,7 +157,7 @@ tests/                        Suite de la lógica del paquete y sus guardianes
 
 ## Estado
 
-**Operativo (v0.5)**: catálogo de 36 métricas descriptivas en 5 temas,
+**Operativo (v0.5)**: catálogo de 37 métricas descriptivas en 6 temas,
 confirmado métrica por métrica contra los archivos reales
 (`docs/CATALOGO_DE_METRICAS.md`); series SIPIAV 2013-2025 curadas con
 respaldo textual por valor (`datos_curados/`); bloque predictivo con
@@ -181,23 +182,10 @@ basado en la ENSANNA. Se revisan una vez al mes desde el propio flujo
 (`politicas_sociales.vigilancia`); el detalle vive en
 `docs/RELEVAMIENTO_DE_DATOS.md`.
 
-Decisiones pendientes del responsable del proyecto:
-
-1. **Métrica ENDIS de cobertura de primera infancia.** En una corrida
-   real del flujo se calculó, como métrica a medida sobre una fuente
-   propia, la cobertura de centros de primera infancia por edad y tipo
-   de prestador (ENDIS 2023, INE). Cubre el tramo de 0 a 4 años, que
-   ningún tema del informe describe. Incorporarla al catálogo permanente
-   exigiría registrar la ENDIS en `docs/FUENTES_DE_DATOS.md` y curar su
-   serie. Queda a la espera de la evaluación con técnicos del área.
-2. **Enlaces de SIPIAV y CONAPEES en la tabla de fuentes.** Apuntan a
-   páginas del sitio anterior del INAU, que tras la migración responden
-   404. El sitio nuevo no ofrece páginas institucionales para ninguno de
-   los dos organismos: solo indexa noticias y los documentos migrados
-   (`sites/default/files/migrado-docs/`). Las opciones de reemplazo son
-   la búsqueda del sitio (`www.inau.gub.uy/search/node?keys=SIPIAV`) o la
-   noticia de presentación del último informe; la decisión es del
-   responsable porque son fuentes curadas por él.
+Los microdatos de la ENDIS 2023 (tema 6) se cargan a mano en
+`data/endis_microdatos/2023/` aceptando los términos del INE; el
+resultado agregado que lee el informe está versionado en
+`resultados/endis/`, así que el informe se regenera sin ellos.
 
 ## Licencia
 

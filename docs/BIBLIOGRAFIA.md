@@ -28,7 +28,8 @@ que rastrearla.
 
 - INAU — SIPIAV, Sistema Integral de Protección a la Infancia y a la
   Adolescencia contra la Violencia — informes anuales (serie desde
-  2013): https://www.inau.gub.uy/sipiav
+  2013); noticia de presentación del informe 2025 (el sitio migrado del
+  INAU no conserva la página institucional): https://www.inau.gub.uy/noticias/2026/sipiav-presento-informe-2025
 - Presidencia de la República — "Informe de Sipiav registró 24
   situaciones diarias de violencia hacia niñas, niños y adolescentes en
   2024": https://www.gub.uy/presidencia/comunicacion/noticias/informe-sipiav-registro-24-situaciones-diarias-violencia-hacia-ninas-ninos
@@ -53,8 +54,9 @@ que rastrearla.
 
 - INAU — CONAPEES, Comité Nacional para la Erradicación de la
   Explotación Sexual Comercial y No Comercial de la Niñez y la
-  Adolescencia (III Plan Nacional aprobado en julio de 2023):
-  https://www.inau.gub.uy/conapees
+  Adolescencia (III Plan Nacional aprobado en julio de 2023); noticia
+  con las últimas cifras publicadas (el sitio migrado del INAU no
+  conserva la página institucional): https://www.inau.gub.uy/noticias/2023/conapees-registro-169-nuevos-casos-de-explotacion-sexual-en-2023
 - CONAPEES/UNFPA — "Explotación sexual comercial de niños, niñas y
   adolescentes y entornos digitales: aportes de la investigación
   internacional para construir un estado de situación nacional":
@@ -116,6 +118,13 @@ que rastrearla.
 - UNICEF Uruguay — "¿Qué nos dice el Índice de Pobreza Multidimensional
   sobre las privaciones de la infancia?":
   https://www.unicef.org/uruguay/infancia-en-datos/pobreza-infantil/que-dice-el-IPM-sobre-las-privaciones-de-la-infancia
+
+## Primera infancia y cuidados (ENDIS)
+
+- INE — Encuesta de Nutrición, Desarrollo Infantil y Salud (ENDIS),
+  Cohorte 2023, Año 2023 — microdatos para terceros con factor de
+  expansión (catálogo ANDA, entrada 765):
+  https://www4.ine.gub.uy/Anda5/index.php/catalog/765
 
 ## Marcos de análisis de datos: descriptivo vs. predictivo (ver `METODOLOGIA.md`, sección 3)
 
@@ -180,7 +189,7 @@ que rastrearla.
 ## Fuente de microdatos
 
 Instituto Nacional de Estadística (INE) — catálogo ANDA (microdatos de
-encuestas, incluida la ENSANNA): https://www4.ine.gub.uy/Anda5/
+encuestas, incluidas la ENSANNA y la ENDIS): https://www4.ine.gub.uy/Anda5/
 
 ---
 

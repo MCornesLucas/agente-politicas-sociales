@@ -762,12 +762,124 @@ vivienda y la estafa encabezan los tipos. Serie nueva (el módulo se
 releva desde 2024): su valor analítico crecerá con los años.
 """),
     # ==================================================================
+    # Tema 6 (incorporado el 2026-09-05 por decisión del dueño): nació
+    # como métrica a medida de un usuario del flujo guiado sobre su propia
+    # carga de la ENDIS y cubre el tramo 0-4, que ningún otro tema describe.
+    md("""
+## Primera infancia y cuidados (ENDIS 2023)
+
+La Encuesta de Nutrición, Desarrollo Infantil y Salud (ENDIS), cohorte
+2023, del INE, releva a niñas y niños de 0 a 59 meses con diseño
+muestral y microdatos publicados para terceros en el catálogo ANDA. Es
+la segunda fuente de prevalencia de este informe, junto con la ENSANNA,
+y la única que describe el tramo de 0 a 4 años, que los registros
+administrativos solo muestran como situaciones atendidas. Toda
+estimación se calcula con el factor de expansión de la encuesta, nunca
+como proporción simple de la muestra.
+"""),
+    md("""
+### Métrica 37. Cobertura de centros de primera infancia por edad y tipo de prestador
+
+**¿Qué pregunta responde?** Entre las niñas y los niños de 0 a 4 años,
+¿qué proporción asiste a un centro de primera infancia y qué tipo de
+prestador la atiende —INAU, ANEP o privados— en cada tramo de edad?
+
+**Términos propios de esta fuente.** La base de niño seleccionado
+publicada para terceros clasifica el centro al que asiste cada niña o
+niño en cuatro categorías —"Centros de primera infancia INAU", "Centros
+dependientes de ANEP", "Centros privados (colegio, jardín, etc)" y
+"Otro público"— y reúne bajo un único código a quienes no tienen centro
+registrado. Ese código junta a quienes declaran no asistir con los casos
+sin dato de asistencia, concentrados en los menores de un año, y la base
+no permite separarlos con seguridad: por eso se informa como "Sin
+centro registrado", nunca como "no asiste".
+
+**Precisión de alcance**: esta métrica describe la cobertura de la
+oferta de primera infancia entre los 0 y los 4 años. No se compara con
+las cifras de violencia, explotación sexual o trabajo infantil: esas
+fuentes cubren otros rangos de edad y, en el caso de los registros
+administrativos, miden situaciones atendidas y no población.
+"""),
+    code("""
+ENDIS = pd.read_csv(RESULTADOS / "endis" / "cobertura_primera_infancia_2023.csv")
+TRAMOS_ENDIS = ["0-11 meses", "12-23 meses", "24-35 meses", "36-47 meses", "48-59 meses"]
+ORDEN_ENDIS = ["Centros de primera infancia INAU", "Centros dependientes de ANEP",
+               "Centros privados (colegio, jardín, etc)", "Otro público", "Sin centro registrado"]
+CORTO_ENDIS = ["INAU", "ANEP", "Privados", "Otro público", "Sin centro registrado"]
+share = (ENDIS.pivot(index="tramo", columns="prestador", values="porcentaje")
+         .reindex(index=TRAMOS_ENDIS + ["Total 0-59 meses"], columns=ORDEN_ENDIS))
+casos_tramo = ENDIS.groupby("tramo")["casos_muestra_tramo"].first()
+
+fig, ax = plt.subplots(figsize=(9, 4.6))
+colores = [PALETA[0], PALETA[2], PALETA[3], PALETA[4], "#c9c9c9"]
+y_pos = np.arange(len(TRAMOS_ENDIS))
+izquierda = np.zeros(len(TRAMOS_ENDIS))
+for columna, etiqueta, color in zip(ORDEN_ENDIS, CORTO_ENDIS, colores):
+    valores = share.loc[TRAMOS_ENDIS, columna].to_numpy(dtype=float)
+    ax.barh(y_pos, valores, left=izquierda, height=0.62, color=color, label=etiqueta)
+    for i, (v, base) in enumerate(zip(valores, izquierda)):
+        if v >= 7:
+            ax.text(base + v / 2, i, pct(v), ha="center", va="center", fontsize=8,
+                    color="#444444" if color == "#c9c9c9" else "white")
+    izquierda = izquierda + valores
+ax.set_yticks(y_pos, TRAMOS_ENDIS)
+ax.invert_yaxis()
+ax.set_xlim(0, 100)
+ax.set_xlabel("% de las niñas y los niños del tramo (estimación ponderada)")
+ax.set_title("Asistencia a centros de primera infancia por edad y tipo de prestador (%)\\n"
+             "(0 a 4 años, estimación ponderada de una encuesta — ENDIS 2023)")
+ax.legend(frameon=False, fontsize=9, loc="upper center", bbox_to_anchor=(0.5, -0.13), ncol=5)
+fuente(fig, "Fuente: elaboración propia sobre los microdatos de la Encuesta de Nutrición, Desarrollo "
+            "Infantil y Salud (ENDIS), cohorte 2023 (INE, catálogo ANDA), base de niño seleccionado, "
+            "ponderada por el factor de expansión de la encuesta.", y=-0.13)
+plt.show()
+
+# Tabla de respaldo de la lectura: la cobertura total de cada tramo
+# (100 menos "sin centro registrado") no está en el archivo de resultados
+# y se muestra aquí, con coma decimal, junto con los casos de la muestra.
+filas = []
+for tramo in TRAMOS_ENDIS + ["Total 0-59 meses"]:
+    fila = [tramo, pct(100 - share.loc[tramo, "Sin centro registrado"])]
+    fila += [pct(share.loc[tramo, c]) for c in ORDEN_ENDIS]
+    fila.append(int(casos_tramo[tramo]))
+    filas.append(fila)
+pd.DataFrame(filas, columns=(["Tramo de edad", "Asiste a algún centro"]
+                             + CORTO_ENDIS + ["Casos en la muestra"])).set_index("Tramo de edad")
+"""),
+    md("""
+**Por qué esta gráfica.** Barras apiladas al 100% por tramo de edad: la
+pregunta es de composición —qué parte de cada tramo cubre cada prestador
+y qué parte queda sin centro registrado— y las partes suman exactamente
+el total del tramo, que es la condición para poder apilarlas (Healy,
+2018 — integridad de la escala; nunca se apilan proporciones que no
+suman 100% entre sí). El eje horizontal va de 0 a 100 sin truncar y los
+tramos se ordenan de menor a mayor edad, de modo que el gradiente se lea
+comparando longitudes desde una base común (Cleveland y McGill, 1984).
+
+**Lectura**: la cobertura crece de forma pronunciada con la edad. Entre
+los menores de 1 año, 20,9% asiste a algún centro; la proporción llega a
+54,6% entre los 12 y los 23 meses, a 72,6% entre los 24 y los 35, y a
+97,0% en el tramo de 48 a 59 meses. El tipo de prestador cambia junto
+con la edad: los centros de primera infancia de INAU son el principal
+prestador entre los 12 y los 47 meses (37,8%, 46,4% y 40,2% de cada
+tramo), mientras que los centros dependientes de ANEP concentran la
+cobertura recién desde los 36 meses (29,6% y 59,5%). Los centros
+privados sostienen una participación más pareja a lo largo de los
+tramos, entre 5,0% y 28,2%. En el conjunto de 0 a 4 años, 33,1% no tiene
+centro registrado. Dos advertencias: las celdas de "ANEP" en los tramos
+menores de 36 meses y las de "Otro público" en todos los tramos se
+apoyan en menos de treinta casos de la muestra, de modo que no sostienen
+comparaciones entre tramos; y la lectura es observacional —la encuesta
+describe qué proporción asiste a cada tipo de centro, no por qué lo hace
+ni si quienes no tienen centro registrado buscaron un cupo.
+"""),
+    # ==================================================================
     md("""
 ## Cruces entre fuentes — ¿La respuesta institucional sigue el mapa de la necesidad?
 
 Los cuatro cruces entre fuentes contrastan la respuesta de los sistemas
-de protección (INAU, CONAPEES/Fiscalía, SIPIAV) y la única prevalencia
-disponible (ENSANNA) con las condiciones socioeconómicas de la infancia
+de protección (INAU, CONAPEES/Fiscalía, SIPIAV) y la prevalencia
+disponible para el tramo de 5 a 17 años (ENSANNA) con las condiciones socioeconómicas de la infancia
 calculadas sobre la ECH. Reglas comunes a todos: ambos lados de cada
 cruce al **mismo nivel de agregación**, lectura observacional
 (asociación, nunca causa) y las limitaciones de cada cruce declaradas en
@@ -943,7 +1055,7 @@ víctima.
 ### Cruce 3. ¿El trabajo infantil sigue el gradiente socioeconómico de la pobreza?
 
 **¿Qué pregunta responde?** ¿El trabajo infantil declarado (la única
-prevalencia real de este informe) se concentra en los niveles
+prevalencia disponible para el tramo de 5 a 17 años) se concentra en los niveles
 socioeconómicos bajos tanto como la pobreza infantil?
 
 **Construcción**: este cruce compara **formas de gradiente, no
@@ -1190,12 +1302,12 @@ decisiones de método y de gráfica.
 - **SIPIAV — informes de gestión (serie desde 2013)**, INAU y sistema
   interinstitucional. Registro administrativo: mide situaciones
   atendidas, nunca prevalencia.
-  <https://www.inau.gub.uy/sipiav>
+  <https://www.inau.gub.uy/noticias/2026/sipiav-presento-informe-2025>
 - **INAU — indicadores del Sistema de Protección Especial (SIPI)**,
   nacionales y departamentales. Registro administrativo.
   <https://inau.gub.uy/transparencia/indicadores-sistema-de-proteccion-especial-inau>
 - **CONAPEES — explotación sexual de niñas, niños y adolescentes**.
-  <https://www.inau.gub.uy/conapees>
+  <https://www.inau.gub.uy/noticias/2023/conapees-registro-169-nuevos-casos-de-explotacion-sexual-en-2023>
 - **FLACSO Uruguay (2023) — *Explotación sexual hacia niñas, niños y
   adolescentes***, capítulo 6: serie cuantitativa 2018-2021 de CONAPEES
   y actuaciones de la Fiscalía General de la Nación (SIPPAU).
@@ -1206,9 +1318,14 @@ decisiones de método y de gráfica.
 **Encuestas y estadísticas oficiales (INE)**
 
 - **ENSANNA 2024 — Encuesta Nacional sobre las Actividades de Niñas,
-  Niños y Adolescentes** (INE/MTSS). Única fuente de prevalencia del
-  informe.
+  Niños y Adolescentes** (INE/MTSS). Fuente de prevalencia del informe
+  para el tramo de 5 a 17 años.
   <https://www.gub.uy/instituto-nacional-estadistica/datos-y-estadisticas/encuestas/encuesta-nacional-sobre-actividades-ninas-ninos-adolescentes-ensanna>
+- **ENDIS 2023 — Encuesta de Nutrición, Desarrollo Infantil y Salud,
+  cohorte 2023** (INE), base de niño seleccionado publicada para terceros
+  con su factor de expansión. Fuente de prevalencia del informe para el
+  tramo de 0 a 4 años. Catálogo ANDA, entrada 765:
+  <https://www4.ine.gub.uy/Anda5/index.php/catalog/765>
 - **ECH — Encuesta Continua de Hogares (INE)**, microdatos ponderados
   (pobreza, hacinamiento, vivienda, brecha digital, empleo adolescente,
   seguridad alimentaria y victimización). Catálogo ANDA:

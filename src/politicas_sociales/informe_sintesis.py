@@ -34,6 +34,7 @@ ETIQUETAS_BLOQUE = {
     "tema_3": "Trabajo infantil (ENSANNA/ECH)",
     "tema_4": "Protección especial (INAU)",
     "tema_5": "Pobreza y entorno (ECH)",
+    "tema_6": "Primera infancia (ENDIS)",
     "cruces": "Cruces entre fuentes (contra la ECH)",
 }
 
@@ -47,6 +48,7 @@ BLOQUE_DE_UNIDAD = {
     **{f"metrica_{n}": "tema_4" for n in range(20, 31)},
     "proyeccion_p3": "tema_4", "proyeccion_p4": "tema_4",
     **{f"metrica_{n}": "tema_5" for n in range(31, 37)},
+    "metrica_37": "tema_6",
     **{f"cruce_{n}": "cruces" for n in range(1, 5)},
 }
 
@@ -94,6 +96,7 @@ RESUMEN = {
     "metrica_34": "La brecha digital se cierra en acceso general pero retrocede en internet fija.",
     "metrica_35": "La inseguridad alimentaria mejora pero alcanza al 15,3% de los hogares con menores.",
     "metrica_36": "2,5% de los hogares con NNA declaró haber sufrido al menos un delito en 2024 — serie nueva, relevada desde ese año.",
+    "metrica_37": "En el tramo de 0 a 4 años, 66,9% asiste a algún centro de primera infancia y 33,1% no tiene centro registrado (ENDIS 2023, estimaciones ponderadas); la cobertura pasa de 20,9% entre los menores de 1 año a 97,0% entre los 48 y los 59 meses.",
     "cruce_1": "La tasa departamental de protección especial no está asociada a la pobreza infantil ni al hacinamiento: la distribución territorial de la atención parece responder a la oferta institucional más que al mapa de la necesidad.",
     "cruce_2": "La detección de la explotación sexual tampoco sigue el mapa de las carencias: se registra menos donde el hacinamiento es mayor, en las ocho combinaciones de fuente y año.",
     "cruce_3": "El trabajo infantil declarado atraviesa toda la estructura social, con un gradiente mucho más plano que el de la pobreza y la geografía invertida.",
@@ -110,6 +113,14 @@ CONCLUSIONES = [
    máxima en la primera infancia. Es el dato más relevante del informe
    para el diseño de políticas (fuente: elaboración propia sobre ECH,
    INE)."""),
+    ("metrica_37", """**La oferta de primera infancia cubre casi por completo el año previo a
+   la escolarización obligatoria y es minoritaria en el primer año de
+   vida.** 97,0% de las niñas y los niños de 48 a 59 meses asiste a algún
+   centro frente a 20,9% de los menores de 1 año, con INAU como principal
+   prestador en el tramo intermedio y ANEP desde los 36 meses. La cifra
+   describe cobertura observada, no demanda insatisfecha: la encuesta no
+   releva si las familias sin centro registrado buscaron un cupo (fuente:
+   ENDIS 2023, estimaciones ponderadas)."""),
     ("proyeccion_p4", """**El país tiene sistemas de protección en expansión y una infancia en
    contracción.** La respuesta del SIPIAV se multiplicó por 7; el SPE
    del INAU creció hasta amesetarse en ~8.000 atendidos; y la población

@@ -19,6 +19,7 @@ que se está cruzando.
 | ENSANNA 2024 / OIT (estadísticas de trabajo infantil) | NNA | **5 a 17 años** | Universo de la encuesta; el tramo 15-17 se reporta aparte (10,6% de trabajo infantil vs. 6,8% general) |
 | OIT — Convenio 138 | Edad mínima de admisión al empleo | **15 años** (14 en países en desarrollo) | Define qué trabajo es "infantil" según edad y tipo |
 | OIT — Convenio 182 | Niño (peores formas) | **Menor de 18** | Trabajo peligroso prohibido hasta los 18 |
+| ENDIS 2023 (INE) | Niñas y niños | **0 a 59 meses** (0-4 años), en tramos de 12 meses | Cohorte de la encuesta; es la fuente de primera infancia — no se compara con los rangos de las otras fuentes |
 | ECH (INE) | — | **Flexible: cualquier rango** | Al tener microdatos, la ECH puede replicar el rango de cualquier fuente — es la ventaja del cruce |
 
 ## Implicaciones para el proyecto

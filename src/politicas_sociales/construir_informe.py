@@ -1,6 +1,6 @@
 """Construye el informe (notebooks/informe_infancia.ipynb).
 
-Versión actual: las métricas confirmadas del catálogo (hoy 36, en 5
+Versión actual: las métricas confirmadas del catálogo (hoy 37, en 6
 temas), las proyecciones calculadas (P1 con validación 2025, P2, P3, P4, P5)
 y el contexto demográfico (P6). El nombre no lleva "piloto" ni el texto
 anuncia el catálogo completo: el informe es el producto del proyecto, y
@@ -41,7 +41,7 @@ Reglas de una edición parcial:
   sin lo que necesita (regla del dueño del proyecto).
 
 Las celdas viven en informe_celdas_1.py (introducción y temas 1-3) y
-informe_celdas_2.py (temas 4-5, cruces, contexto y cierre); los textos
+informe_celdas_2.py (temas 4-6, cruces, contexto y cierre); los textos
 citan únicamente valores verificados en datos_curados/, resultados/ y
 los documentos de data/ (ver docs/RELEVAMIENTO_DE_DATOS.md).
 """
@@ -74,6 +74,7 @@ SELECCIONABLES = {
     "tema_3": ("## Trabajo infantil", "trabajo infantil (ENSANNA, ENTI, ECH)"),
     "tema_4": ("## Protección especial", "protección especial (INAU)"),
     "tema_5": ("## Pobreza, vivienda y entorno del hogar", "pobreza, vivienda y entorno del hogar (ECH)"),
+    "tema_6": ("## Primera infancia y cuidados", "primera infancia y cuidados (ENDIS 2023)"),
     "cruces": ("## Cruces entre fuentes", "los cruces entre fuentes contra la ECH"),
 }
 _TEMAS = [clave for clave in SELECCIONABLES if clave.startswith("tema_")]
@@ -260,7 +261,7 @@ def _alcance_parcial(partes, seleccion: set[str]) -> str:
                        if len(contenido) > 1 else contenido[0])
     alcance = (f"una selección de {contenido_texto} "
                f"{'en los temas' if len(bloques_presentes) > 1 else 'en el tema'}: {nombres}")
-    alcance += (". La edición completa comprende cinco temas y cuatro cruces "
+    alcance += (". La edición completa comprende seis temas y cuatro cruces "
                 "entre fuentes; esta edición contiene lo elegido al generarla")
     return alcance
 

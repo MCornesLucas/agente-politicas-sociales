@@ -20,6 +20,7 @@ Las citas completas para referenciar en informes están en
 | CETI (MTSS) | Comité interinstitucional: planes y documentos | Documentos de política | Irregular |
 | Encuesta violencia sexual NNA 2026 (UNICEF/Equipos) | Encuesta retrospectiva, muestra no probabilística | Personas de 18 a 24 años | Puntual (2026) |
 | INE — proyecciones de población (rev. 2025) | Proyección demográfica oficial | Población por sexo y edad | Revisión tras cada censo |
+| ENDIS 2023 (INE) | Encuesta con microdatos para terceros | Niñas y niños de 0 a 59 meses | Cohorte 2023 |
 
 ## 1. ENSANNA 2024 — Encuesta Nacional sobre las Actividades de Niñas, Niños y Adolescentes (INE/MTSS, con OIT y UNICEF)
 
@@ -67,7 +68,10 @@ Las citas completas para referenciar en informes están en
   información" (17%) que rompe la comparabilidad de recurrencia,
   cronicidad e inclusión familiar con la serie histórica — quiebres 7 y
   8 de `datos_curados/sipiav_notas.md`.
-- **Dónde**: https://www.inau.gub.uy/sipiav (informes descargables).
+- **Dónde**: https://www.inau.gub.uy/noticias/2026/sipiav-presento-informe-2025
+  (noticia de presentación del último informe; el sitio migrado del INAU
+  ya no tiene página institucional del SIPIAV y los informes viven en su
+  gestor documental, ver `RELEVAMIENTO_DE_DATOS.md`).
 - **Naturaleza del dato**: **registro administrativo de casos detectados
   y atendidos por el sistema — NO es prevalencia**. Un aumento
   interanual puede reflejar mayor capacidad de detección, no
@@ -102,7 +106,9 @@ Las citas completas para referenciar en informes están en
   comparables entre sí sin verificar año y definición exacta** — caso de
   la regla de "misma métrica, misma definición" de `METODOLOGIA.md`.
 - **Dónde**:
-  - https://www.inau.gub.uy/conapees
+  - https://www.inau.gub.uy/noticias/2023/conapees-registro-169-nuevos-casos-de-explotacion-sexual-en-2023
+    (noticia con las últimas cifras publicadas; el sitio migrado del
+    INAU ya no tiene página institucional del CONAPEES).
   - Estudio entornos digitales (UNFPA): https://uruguay.unfpa.org/es/informe-conapees-explotacion-sexual-nna-entornos-digitales
 - **Naturaleza del dato**: registro administrativo de casos detectados —
   mismas precauciones que SIPIAV, agravadas porque la explotación sexual
@@ -177,6 +183,30 @@ Las citas completas para referenciar en informes están en
   vs. 22,0% en la revisión 2025) — no mezclar bases sin anotarlo; (b)
   el archivo departamental es quinquenal: 0-17 exacto solo existe a
   nivel país (ver `RELEVAMIENTO_DE_DATOS.md`, sección 7).
+
+## 9. ENDIS 2023 — Encuesta de Nutrición, Desarrollo Infantil y Salud (INE)
+
+- **Qué es**: encuesta del INE a niñas y niños de 0 a 59 meses y sus
+  hogares (nutrición, desarrollo infantil, salud, cuidados y asistencia
+  a centros de primera infancia). La cohorte 2023 publica para terceros
+  siete bases con su factor de expansión (`W`) en el catálogo ANDA
+  (entrada 765). Incorporada el 2026-09-05 a partir de una métrica a
+  medida pedida en el flujo guiado.
+- **Universo**: niñas y niños de **0 a 59 meses** (ver
+  [`CLASIFICACION_DE_EDADES.md`](CLASIFICACION_DE_EDADES.md)).
+- **Resultado usado**: cobertura de centros de primera infancia por
+  tramo de edad y tipo de prestador (métrica 37): 66,9% asiste a algún
+  centro en el conjunto 0-59 meses; 20,9% entre los menores de un año y
+  97,0% entre los 48 y los 59 meses.
+- **Dónde**: catálogo ANDA del INE,
+  https://www4.ine.gub.uy/Anda5/index.php/catalog/765 (los microdatos
+  se descargan aceptando los términos del INE personalmente — nunca de
+  forma automática — y se colocan en `data/endis_microdatos/2023/`).
+- **Naturaleza del dato**: estimación con diseño muestral → sí permite
+  afirmaciones del tipo «X% de las niñas y los niños de 0 a 4 años...»,
+  siempre ponderadas y con su n muestral. La base para terceros no
+  distingue con seguridad «no asiste» de «sin dato de asistencia»: se
+  informa «sin centro registrado».
 
 ---
 

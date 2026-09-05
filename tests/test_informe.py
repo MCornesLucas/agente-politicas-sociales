@@ -1,6 +1,6 @@
 """Tests de la construcción del informe.
 
-La versión actual del informe contiene las 36 métricas confirmadas del
+La versión actual del informe contiene las 37 métricas confirmadas del
 catálogo (docs/CATALOGO_DE_METRICAS.md) y las 5 proyecciones calculadas.
 Los tests atan ese contenido al catálogo: si una celda de métrica se
 borra o se renumera por accidente, la suite lo detecta. Cuando el
@@ -25,13 +25,13 @@ def test_md_y_code_crean_celdas_del_tipo_correcto_sin_bordes_en_blanco():
     assert celda_code.source == "x = 1"
 
 
-def test_el_informe_contiene_las_36_metricas_confirmadas_y_4_proyecciones():
+def test_el_informe_contiene_las_37_metricas_confirmadas_y_5_proyecciones():
     celdas = CELDAS_1 + CELDAS_2
     metricas = [c for c in celdas
                 if c.cell_type == "markdown" and c.source.startswith("### Métrica")]
     proyecciones = [c for c in celdas
                     if c.cell_type == "markdown" and c.source.startswith("### Proyección")]
-    assert len(metricas) == 36
+    assert len(metricas) == 37
     assert len(proyecciones) == 5
 
 
@@ -85,7 +85,7 @@ def test_edicion_parcial_incluye_lo_elegido_y_lo_fijo():
     assert "**Pobreza y entorno (ECH).**" not in texto  # párrafo de otro tema
     assert "## Conclusiones" in texto
     assert "## Fuentes de datos y bibliografía" in texto
-    assert "https://www.inau.gub.uy/sipiav" in texto
+    assert "https://www.inau.gub.uy/noticias/2026/sipiav-presento-informe-2025" in texto
 
 
 def test_la_bibliografia_se_imprime_en_el_informe():
@@ -104,7 +104,7 @@ def test_la_bibliografia_se_imprime_en_el_informe():
     assert "Hyndman, R.J. & Athanasopoulos, G." in texto
     assert "Shmueli, G. (2010)" in texto
     # Direcciones completas y visibles (en papel no hay clic).
-    assert "<https://www.inau.gub.uy/sipiav>" in texto
+    assert "<https://www.inau.gub.uy/noticias/2026/sipiav-presento-informe-2025>" in texto
     assert "<https://www4.ine.gub.uy/Anda5/>" in texto
 
 
@@ -226,17 +226,17 @@ def test_seleccion_invalida_se_rechaza():
 
 def test_bloques_disponibles_cuentan_el_contenido_real():
     bloques = {b["clave"]: b for b in construir_informe.bloques_disponibles()}
-    assert sum(b["metricas"] for b in bloques.values()) == 36
+    assert sum(b["metricas"] for b in bloques.values()) == 37
     assert sum(b["proyecciones"] for b in bloques.values()) == 5
     assert bloques["cruces"]["cruces"] == 4
     assert all(bloques[t]["metricas"] > 0 for t in
-               ("tema_1", "tema_2", "tema_3", "tema_4", "tema_5"))
+               ("tema_1", "tema_2", "tema_3", "tema_4", "tema_5", "tema_6"))
 
 
 def test_unidades_disponibles_con_explicacion_real():
     unidades = [u for b in construir_informe.unidades_disponibles()
                 for u in b["unidades"]]
-    assert len(unidades) == 45  # 36 métricas + 5 proyecciones + 4 cruces
+    assert len(unidades) == 46  # 37 métricas + 5 proyecciones + 4 cruces
     # Cada unidad lleva su explicación extraída de las celdas ("¿Qué
     # pregunta responde?"): si una celda pierde la pregunta, esto lo ve.
     sin_explicacion = [u["clave"] for u in unidades if not u["explicacion"]]

@@ -13,10 +13,10 @@ from politicas_sociales.informe_base import code, md
 # temas por el usuario) reemplazan este texto por uno que describe lo que
 # la edición realmente contiene — la introducción nunca promete contenido
 # que no está (misma decisión que sacar "el catálogo completo" del texto).
-ALCANCE_COMPLETO = """métricas agrupadas en **cinco
+ALCANCE_COMPLETO = """métricas agrupadas en **seis
 temas** (violencia hacia niñas, niños y adolescentes; explotación
 sexual; trabajo infantil; protección especial; pobreza, vivienda y
-entorno del hogar), junto con las proyecciones calculadas y validadas
+entorno del hogar; primera infancia y cuidados), junto con las proyecciones calculadas y validadas
 hasta la fecha y los **cuatro cruces entre fuentes** (INAU,
 CONAPEES/Fiscalía, ENSANNA y SIPIAV contra la ECH), cada uno con sus
 limitaciones declaradas"""
@@ -64,6 +64,9 @@ en sus notas de curaduría):
 - **INAU**: indicadores del Sistema de Protección Especial 2020-2025
   (SIPI) y reportes estadísticos de abril de 2025.
 - **ECH**: métricas propias ponderadas 2019-2025, universo 0-17 años.
+- **ENDIS 2023**: cobertura de centros de primera infancia, estimación
+  ponderada sobre los microdatos publicados para terceros (INE), niñas y
+  niños de 0 a 59 meses.
 - **INE**: proyecciones de población, revisión 2025 (Censo 2023).
 """),
     code("""

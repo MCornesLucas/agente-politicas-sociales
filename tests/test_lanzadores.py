@@ -138,8 +138,8 @@ def test_metricas_preseleccionadas_con_explicacion_y_campo_libre():
     html = _html_de_plantilla("plantilla_metricas")
     # Las 44 unidades vienen marcadas (son lo que el informe imprimirá
     # salvo que el usuario destilde) y cada una muestra su explicación.
-    assert html.count('name="unidad"') == 45
-    assert html.count(" checked>") == 45
+    assert html.count('name="unidad"') == 46
+    assert html.count(" checked>") == 46
     assert "¿Qué querés agregar" not in html  # el campo libre tiene su propio texto
     assert 'name="otra_metrica"' in html
     assert "Marcar todas" in html
