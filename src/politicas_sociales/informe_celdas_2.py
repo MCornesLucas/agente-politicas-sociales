@@ -946,7 +946,7 @@ ax.set_title(
 ax.set_xlabel("Pobreza monetaria 0-17 (% ponderado, ECH)")
 ax.set_ylabel("NNA en el SPE cada 1.000 NNA residentes")
 fuente(fig, "Fuente: elaboración propia sobre INAU (SIPI, indicador departamental 1, 2025-S2) y microdatos "
-            "de la ECH 2025 (INE). Detalle y n muestrales en los datos públicos que acompañan este informe.",
+            "de la ECH 2025 (INE). Detalle por departamento y cantidad de casos encuestados en los datos públicos que acompañan este informe.",
        y=-0.02)
 plt.show()
 """),
@@ -974,8 +974,10 @@ y proyectos) y a derivaciones entre departamentos, más que a la
 distribución territorial de la necesidad socioeconómica. Dos advertencias
 acotan esta lectura: el numerador registra el departamento de atención
 (no el de origen del NNA), y las estimaciones departamentales de la ECH
-tienen error muestral mayor en los departamentos chicos (n muestrales en
-el CSV del cruce). Aun con esas salvedades, la ausencia de correlación
+son menos precisas en los departamentos chicos, porque la encuesta
+entrevista allí a menos hogares (la cantidad de hogares encuestados por
+departamento está en los datos públicos que acompañan este informe).
+Aun con esas salvedades, la ausencia de correlación
 es un hallazgo para la discusión de política territorial — y la pregunta
 que abre (¿la oferta está donde está la necesidad?) excede lo que estas
 fuentes pueden responder solas.
@@ -1035,7 +1037,7 @@ ax.set_title("Asociación departamental de la detección de explotación sexual 
              "(cada punto es un año de una fuente; a la izquierda de 0: más detección donde hay menos carencia)")
 ax.legend(frameon=False, loc="lower right")
 fuente(fig, "Fuente: elaboración propia sobre FLACSO Uruguay 2023 (tablas 2 y 8; CONAPEES y FGN/SIPPAU 2018-2021) y "
-            "microdatos de la ECH 2019 (INE). Detalle y n muestrales en los datos públicos que acompañan este informe.")
+            "microdatos de la ECH 2019 (INE). Detalle por departamento y cantidad de casos encuestados en los datos públicos que acompañan este informe.")
 plt.show()
 """),
     md("""
@@ -1043,8 +1045,9 @@ plt.show()
 mostrar el plano de un solo año sería una selección arbitraria: se
 muestra el coeficiente de cada combinación (16 puntos) para exhibir lo
 único que este cruce puede afirmar con honestidad — la estabilidad del
-signo a través de años y fuentes. El detalle departamental, con sus n
-muestrales, queda en el CSV del cruce.
+signo a través de años y fuentes. El detalle por departamento, con la
+cantidad de casos encuestados que respalda cada cifra, está en los
+datos públicos que acompañan este informe.
 
 **Lectura**: con la pobreza no hay asociación (rho entre −0,27 y +0,09
 según año y fuente, siempre compatible con el azar). Con el hacinamiento
@@ -1106,7 +1109,7 @@ for ax, serie, titulo, color in [
 fig.suptitle("Dos gradientes socioeconómicos — comparación de formas, no de niveles (escalas distintas)",
              y=1.04, fontsize=12)
 fuente(fig, "Fuente: ENSANNA 2024, Cuadro 4 (INE/MTSS; INSE de CINVE) y elaboración propia sobre microdatos de la "
-            "ECH 2024 (INE), solo Montevideo. Detalle y n muestrales en los datos públicos que acompañan este informe.")
+            "ECH 2024 (INE), solo Montevideo. Detalle y cantidad de casos encuestados en los datos públicos que acompañan este informe.")
 plt.show()
 """),
     md("""

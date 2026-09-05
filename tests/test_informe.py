@@ -304,9 +304,15 @@ def test_el_texto_del_informe_no_remite_a_un_proyecto_que_el_lector_no_conoce():
     "Catálogo ANDA" (nombre propio del catálogo público del INE) y
     "proyectos" (los proyectos de atención del INAU son otra cosa).
     Tampoco se numeran los temas ("Tema 1", "temas 1 y 2"): cada grupo
-    lleva solo su nombre (regla del dueño, 2026-09-05)."""
+    lleva solo su nombre (regla del dueño, 2026-09-05). Y nada de jerga
+    ni de archivos que el lector no tiene: ni "n muestral" ni "CSV"
+    (regla del dueño, 2026-09-05) — se dice "cantidad de casos
+    encuestados" y "datos públicos que acompañan este informe"."""
     import re
-    patron = re.compile(r"catálogo(?!\s+ANDA)|\bproyecto\b|\btemas?\s+\d", re.IGNORECASE)
+    # "CSV" solo en mayúsculas: los nombres de archivo del código
+    # ("sipiav_series.csv") no son texto visible.
+    patron = re.compile(r"catálogo(?!\s+ANDA)|\bproyecto\b|\btemas?\s+\d|\bn muestral|(?-i:\bCSV\b)",
+                        re.IGNORECASE)
     for seleccion in (None, ["tema_1", "cruces"]):
         for celda in construir_informe.celdas_del_informe(seleccion):
             if celda.cell_type == "markdown":
