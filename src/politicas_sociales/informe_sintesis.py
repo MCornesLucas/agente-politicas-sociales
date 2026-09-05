@@ -135,7 +135,7 @@ CONCLUSIONES = [
    sugiere que cerca de 3 de cada 10 jóvenes vivió violencia sexual
    antes de los 18 — no sustituye una medición oficial con diseño
    muestral: esa es la brecha de información más importante que este
-   proyecto identifica (fuentes: SIPIAV; UNICEF/Equipos 2026, con su
+   informe identifica (fuentes: SIPIAV; UNICEF/Equipos 2026, con su
    diseño declarado)."""),
 ]
 

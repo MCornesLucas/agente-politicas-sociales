@@ -301,11 +301,11 @@ def plantilla_datos(estado: dict, aviso: str = "") -> str:
                      'Los microdatos se descargan del INE aceptando sus términos personalmente.</div>')
 
     return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
-<title>Datos del proyecto</title>
+<title>Datos para el informe</title>
 <style>{_ESTILO}</style></head><body>
 <div class="tarjeta" id="tarjeta">
   <div class="emoji">🗂️</div>
-  <h1>Datos del proyecto</h1>
+  <h1>Datos para el informe</h1>
   <p class="subtitulo">Puedes cargar o actualizar los datos, o continuar
   directo al informe.</p>
   {aviso_html}
@@ -579,8 +579,8 @@ def plantilla_metricas(estructura: list[dict]) -> str:
       <label for="otra_metrica">¿Quieres agregar una métrica que no está en la lista?</label>
       <p class="subtitulo" style="margin-bottom:8px;">Descríbela con tus
       palabras (qué quieres saber, de qué fuente, para qué años). El agente
-      analizará si puede calcularse con los datos ya verificados del
-      proyecto y con sus reglas de rigor; si no puede, te explicará por
+      analizará si puede calcularse con los datos ya verificados de este
+      informe y con sus reglas de rigor; si no puede, te explicará por
       qué y te ofrecerá una opción.</p>
       <textarea id="otra_metrica" name="otra_metrica" rows="3"
         placeholder="Ej.: cómo evolucionó la proporción de situaciones con violencia reiterada respecto del total, 2019-2025"></textarea>

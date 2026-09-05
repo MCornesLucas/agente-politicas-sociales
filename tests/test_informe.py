@@ -131,9 +131,9 @@ def test_la_firma_es_celda_propia_y_es_el_ancla_de_la_fuente_a_medida():
         firma = celdas[-1]
         assert firma.cell_type == "markdown"
         assert firma.source.startswith("---"), seleccion
-        assert "Informe generado por el proyecto" in firma.source
+        assert "Informe generado con" in firma.source
         # La celda anterior es el cierre de la sección de fuentes.
-        assert "bibliografía completa del proyecto" in celdas[-2].source
+        assert "bibliografía completa que respalda este informe" in celdas[-2].source
 
 
 def test_conclusiones_filtradas_por_bloque():
@@ -296,16 +296,19 @@ def test_las_dependencias_declaradas_se_autocompletan(monkeypatch):
     assert "### Métrica 3." in texto
 
 
-def test_el_texto_del_informe_no_remite_a_un_catalogo_que_el_lector_no_conoce():
+def test_el_texto_del_informe_no_remite_a_un_proyecto_que_el_lector_no_conoce():
     """Regla del dueño (2026-09-05): el informe describe lo que contiene;
-    nunca remite a un "catálogo del proyecto" que el lector no conoce.
-    Se revisan las celdas de texto de la edición completa y de una parcial.
-    Única excepción: "Catálogo ANDA", nombre propio del catálogo público del
-    INE citado como fuente."""
+    nunca remite a "el proyecto" ni a su "catálogo", que el lector no
+    conoce. Se revisan las celdas de texto y los pies de figura (literales
+    de fuente(...)) de la edición completa y de una parcial. Excepciones:
+    "Catálogo ANDA" (nombre propio del catálogo público del INE) y
+    "proyectos" (los proyectos de atención del INAU son otra cosa)."""
     import re
-    patron = re.compile(r"catálogo(?!\s+ANDA)", re.IGNORECASE)
+    patron = re.compile(r"catálogo(?!\s+ANDA)|\bproyecto\b", re.IGNORECASE)
     for seleccion in (None, ["tema_1", "cruces"]):
-        celdas = construir_informe.celdas_del_informe(seleccion)
-        for celda in celdas:
+        for celda in construir_informe.celdas_del_informe(seleccion):
             if celda.cell_type == "markdown":
                 assert patron.search(celda.source) is None, celda.source[:120]
+            else:
+                for literal in re.findall(r'"[^"\n]*"', celda.source):
+                    assert patron.search(literal) is None, literal
