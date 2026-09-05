@@ -115,6 +115,21 @@ comandos largos):
   Reglas innegociables de este camino: los términos del INE los acepta
   el usuario personalmente — NUNCA descargar microdatos de la ECH de
   forma automática, ni buscar la manera de evitarle ese paso.
+- `"endis"` — preparar y abrir la carpeta, mostrar las instrucciones y,
+  tras la confirmación, recalcular la métrica de primera infancia:
+
+  ```python
+  carpeta = carga_datos.preparar_carpeta_endis()   # ruta real y absoluta
+  # abrirla en el Explorador (nunca una ruta inventada ni relativa):
+  #   explorer.exe "<carpeta>"
+  respuesta = formularios.mostrar_formulario(formularios.plantilla_datos_endis(carpeta))
+  # si confirmó: correr ./run_python.bat -m politicas_sociales.metricas_endis
+  # (termina con un mensaje claro si el archivo no está) y armar `aviso`
+  # con su resultado (casos leídos y tabla escrita).
+  ```
+
+  Mismas reglas que la ECH: los términos del INE los acepta el usuario
+  personalmente — NUNCA descargar los microdatos de forma automática.
 - `"otras"` — pedir nombre y origen, abrir la carpeta y registrar solo
   si de verdad dejó archivos:
 

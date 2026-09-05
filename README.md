@@ -168,7 +168,7 @@ INE (revisión 2025 descargada); los cuatro cruces entre fuentes del
 catálogo calculados, cada uno con sus limitaciones declaradas
 (`resultados/cruces/`). Informe oficial en `notebooks/`; flujo guiado
 por formularios con carga de datos (fuentes documentales automáticas,
-microdatos ECH guiados a mano, fuentes propias del usuario con su origen
+microdatos ECH y ENDIS guiados a mano, fuentes propias del usuario con su origen
 registrado), selección de bloques y de métricas, métricas a
 medida evaluadas con las reglas de rigor — incluso sobre las fuentes
 propias del usuario, verificado en corrida real —, y cierre del informe
@@ -182,8 +182,9 @@ basado en la ENSANNA. Se revisan una vez al mes desde el propio flujo
 (`politicas_sociales.vigilancia`); el detalle vive en
 `docs/RELEVAMIENTO_DE_DATOS.md`.
 
-Los microdatos de la ENDIS 2023 (tema 6) se cargan a mano en
-`data/endis_microdatos/2023/` aceptando los términos del INE; el
+Los microdatos de la ENDIS 2023 (tema 6) se cargan desde el paso de
+datos del flujo guiado (botón «Carga manual de la ENDIS», que abre
+`data/endis_microdatos/2023/`) aceptando los términos del INE; el
 resultado agregado que lee el informe está versionado en
 `resultados/endis/`, así que el informe se regenera sin ellos.
 

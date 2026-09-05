@@ -78,7 +78,7 @@ def test_las_ediciones_de_usuario_no_se_versionan():
 _ESTADO_DATOS_DE_PRUEBA = {
     "automaticas_listo": False, "vigilancia_pendiente": True,
     "ech_esperados": [2019, 2023, 2024], "ech_cargados": [2019],
-    "ech_completo": False,
+    "ech_completo": False, "endis_listo": False,
 }
 
 
@@ -98,6 +98,8 @@ def _html_de_plantilla(nombre_plantilla):
         return funcion(_ESTADO_DATOS_DE_PRUEBA, aviso="un aviso")
     if nombre_plantilla == "plantilla_datos_ech":
         return funcion(r"C:\una\ruta\data\ech_microdatos", [2019], [2019, 2023])
+    if nombre_plantilla == "plantilla_datos_endis":
+        return funcion(r"C:\una\ruta\data\endis_microdatos\2023")
     if nombre_plantilla == "plantilla_datos_otras_confirmacion":
         return funcion("Una fuente", r"C:\una\ruta\data\usuario\una_fuente")
     return funcion()
@@ -106,6 +108,7 @@ def _html_de_plantilla(nombre_plantilla):
 @pytest.mark.skipif(node is None, reason="requiere Node.js")
 @pytest.mark.parametrize("nombre_plantilla", ["plantilla_arranque", "plantilla_bienvenida",
                                               "plantilla_datos", "plantilla_datos_ech",
+                                              "plantilla_datos_endis",
                                               "plantilla_datos_otras",
                                               "plantilla_datos_otras_confirmacion",
                                               "plantilla_catalogo", "plantilla_metricas",
@@ -158,7 +161,7 @@ def test_revision_sin_alternativa_no_ofrece_el_boton():
 
 
 _TODAS_LAS_PLANTILLAS = ["plantilla_arranque", "plantilla_bienvenida",
-                         "plantilla_datos", "plantilla_datos_ech",
+                         "plantilla_datos", "plantilla_datos_ech", "plantilla_datos_endis",
                          "plantilla_datos_otras", "plantilla_datos_otras_confirmacion",
                          "plantilla_catalogo", "plantilla_metricas",
                          "plantilla_revision", "plantilla_finalizacion"]

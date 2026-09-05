@@ -21,7 +21,15 @@ ya exista en `data/` (decisión del dueño, 2026-08-20):
    (relevamiento telefónico de pandemia) nunca se verificó aquí y no se
    ofrece. El botón queda deshabilitado cuando todos los esperados
    tienen datos de Hogares.
-3. **Otras fuentes** — siempre habilitada: el usuario deja archivos
+3. **Carga manual de la ENDIS** — igual que la ECH: el agente crea
+   `data/endis_microdatos/2023/`, abre el Explorador y el usuario copia
+   los microdatos de la ENDIS 2023 (catálogo ANDA, entrada 765) que
+   descargó aceptando los términos del INE; al confirmar se recalcula
+   la métrica de primera infancia (`metricas_endis`). El botón queda
+   deshabilitado cuando la base de niño seleccionado ya está (en esa
+   carpeta o como fuente propia registrada). Incorporado el 2026-09-05
+   junto con el tema 6.
+4. **Otras fuentes** — siempre habilitada: el usuario deja archivos
    propios en `data/usuario/<carpeta>/` para usarlos en métricas a
    medida. Cada fuente se registra con nombre y origen en
    `data/usuario/fuentes.json` para que el informe pueda citarla (regla
@@ -35,7 +43,7 @@ import json
 import re
 import unicodedata
 
-from . import config, descarga_fuentes, vigilancia
+from . import config, descarga_fuentes, metricas_endis, vigilancia
 from .ech import config as ech_config
 
 CARPETA_USUARIO = config.DATA_DIR / "usuario"
@@ -75,6 +83,26 @@ def preparar_carpetas_ech(hoy: datetime.date | None = None) -> str:
     return str(ech_config.DATA_DIR)
 
 
+def endis_cargada() -> bool:
+    """La base de niño seleccionado de la ENDIS 2023 está disponible: en
+    `data/endis_microdatos/2023/` o como fuente propia registrada (que es
+    donde la dejó la carga original del 2026-08-20). Una carpeta vacía no
+    cuenta."""
+    try:
+        metricas_endis.localizar_microdatos()
+    except FileNotFoundError:
+        return False
+    return True
+
+
+def preparar_carpeta_endis() -> str:
+    """Crea `data/endis_microdatos/2023/` (vacía si no existía) y devuelve
+    su ruta real y absoluta para abrirla en el Explorador — misma regla
+    que la ECH: nunca una ruta relativa ni inventada."""
+    metricas_endis.DATOS.mkdir(parents=True, exist_ok=True)
+    return str(metricas_endis.DATOS)
+
+
 # Con los datos cargados, el botón de carga automática pasa a ofrecer la
 # revisión de novedades cuando la última corrida de la vigilancia en esta
 # máquina tiene más de este plazo (o nunca se corrió). Una vez al mes,
@@ -106,6 +134,7 @@ def estado_datos(hoy: datetime.date | None = None) -> dict:
         "ech_esperados": esperados,
         "ech_cargados": cargados,
         "ech_completo": bool(cargados) and set(esperados) <= set(cargados),
+        "endis_listo": endis_cargada(),
     }
 
 

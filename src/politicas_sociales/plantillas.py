@@ -256,7 +256,8 @@ document.getElementById('form').addEventListener('submit', async (e) => {{
 
 
 def plantilla_datos(estado: dict, aviso: str = "") -> str:
-    """Paso 1a del flujo: estado de los datos y tres acciones de carga.
+    """Paso 1a del flujo: estado de los datos y cuatro acciones de carga
+    (fuentes automáticas, ECH manual, ENDIS manual y otras fuentes).
 
     `estado` es el dict de `carga_datos.estado_datos()`. Reglas del dueño
     (2026-08-20): el formulario se muestra en TODAS las corridas; cada
@@ -300,6 +301,17 @@ def plantilla_datos(estado: dict, aviso: str = "") -> str:
                      f'<div class="detalle-boton">Años cargados: {anios_cargados}. '
                      'Los microdatos se descargan del INE aceptando sus términos personalmente.</div>')
 
+    if estado["endis_listo"]:
+        boton_endis = ('<button type="button" class="boton-accion boton-secundario" disabled>'
+                       '3 · Carga manual de la ENDIS<span class="flag-listo">✓ Listo</span></button>'
+                       '<div class="detalle-boton">Microdatos de la ENDIS 2023 (primera infancia, '
+                       '0 a 4 años) disponibles.</div>')
+    else:
+        boton_endis = ('<button type="button" class="boton-accion boton-primario" '
+                       'onclick="accion(\'endis\')">3 · Carga manual de la ENDIS</button>'
+                       '<div class="detalle-boton">Encuesta de primera infancia (0 a 4 años) del INE. '
+                       'Los microdatos se descargan aceptando sus términos personalmente.</div>')
+
     return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
 <title>Datos para el informe</title>
 <style>{_ESTILO}</style></head><body>
@@ -311,7 +323,8 @@ def plantilla_datos(estado: dict, aviso: str = "") -> str:
   {aviso_html}
   {boton_automatica}
   {boton_ech}
-  <button type="button" class="boton-accion boton-primario" onclick="accion('otras')">3 · Otras fuentes (para métricas a medida)</button>
+  {boton_endis}
+  <button type="button" class="boton-accion boton-primario" onclick="accion('otras')">4 · Otras fuentes (para métricas a medida)</button>
   <div class="detalle-boton">Agrega archivos propios para usarlos en una
   métrica a medida, con su origen registrado.</div>
   <form id="form">
@@ -363,6 +376,49 @@ def plantilla_datos_ech(carpeta: str, cargados: list[int], esperados: list[int])
     <li>Descarga los archivos de microdatos que ofrezca el catálogo — el formato varía según el año (.SAV dentro de un comprimido, uno o más .CSV, o una combinación). Ante la duda, descarga todo lo que aparezca en la sección de microdatos.</li>
     <li>Si algo vino comprimido (.RAR/.ZIP), extráelo.</li>
     <li>Copia <b>todos</b> los archivos a la subcarpeta del año correspondiente dentro de:</li>
+  </ol>
+  <div class="carpeta">{carpeta}</div>
+  <form id="form">
+    <button type="submit">Ya guardé los archivos ahí →</button>
+  </form>
+  {_BOTON_VOLVER}
+  {_BOTON_SALIR}
+</div>
+<script>
+{_SCRIPT_LISTO}
+{_SCRIPT_SALIR}
+{_SCRIPT_VOLVER}
+document.getElementById('form').addEventListener('submit', async (e) => {{
+  e.preventDefault();
+  await fetch('/', {{method: 'POST', headers: {{'Content-Type': 'application/json'}},
+    body: JSON.stringify({{confirmado: true}})}});
+  mostrarListo();
+}});
+</script></body></html>"""
+
+
+def plantilla_datos_endis(carpeta: str) -> str:
+    """Instrucciones de carga manual de los microdatos de la ENDIS 2023
+    (primera infancia, tema 6), con la carpeta de destino ya abierta en el
+    Explorador y la confirmación en la misma pantalla.
+
+    `carpeta` es la ruta real y absoluta de `data/endis_microdatos/2023/`
+    — la calcula `carga_datos.preparar_carpeta_endis()`, nunca quien llama.
+    """
+    return f"""<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
+<title>Carga manual de la ENDIS</title>
+<style>{_ESTILO}</style></head><body>
+<div class="tarjeta" id="tarjeta">
+  <div class="emoji">📥</div>
+  <h1>Cargar los microdatos de la ENDIS 2023</h1>
+  <p class="subtitulo">Ya te abrí la carpeta de destino en el Explorador
+  de Windows.</p>
+  <ol>
+    <li>Entra a la <a href="https://www4.ine.gub.uy/Anda5/index.php/catalog/765" target="_blank">entrada 765 del catálogo ANDA del INE</a>: "Encuesta de Nutrición, Desarrollo Infantil y Salud. Cohorte 2023, Año 2023".</li>
+    <li>Acepta los términos y condiciones del INE (eso lo haces tú personalmente).</li>
+    <li>Descarga los microdatos publicados para terceros. El informe usa la base de niño seleccionado (<b>base_ninoselecc_endis2023_terceros.csv</b>); ante la duda, descarga todas las bases.</li>
+    <li>Si algo vino comprimido (.RAR/.ZIP), extráelo.</li>
+    <li>Copia los archivos a esta carpeta:</li>
   </ol>
   <div class="carpeta">{carpeta}</div>
   <form id="form">

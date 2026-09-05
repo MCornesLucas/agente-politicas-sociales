@@ -31,6 +31,7 @@ from .plantillas import (  # noqa: F401 — reexports: la cara pública es formu
     plantilla_catalogo,
     plantilla_datos,
     plantilla_datos_ech,
+    plantilla_datos_endis,
     plantilla_datos_otras,
     plantilla_datos_otras_confirmacion,
     plantilla_finalizacion,

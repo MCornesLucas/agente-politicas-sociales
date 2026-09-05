@@ -1,4 +1,4 @@
-"""Tests del paso de datos del flujo guiado (estado, ECH manual, fuentes
+"""Tests del paso de datos del flujo guiado (estado, ECH manual, ENDIS manual, fuentes
 del usuario) y de los estados del formulario de datos.
 
 Reglas del dueño fijadas aquí (2026-08-20): el formulario se muestra
@@ -69,12 +69,14 @@ def test_vigilancia_pendiente_por_plazo_o_por_no_haber_corrido(tmp_path, monkeyp
 def test_estado_datos_en_maquina_vacia(tmp_path, monkeypatch):
     monkeypatch.setattr(carga_datos.config, "DATA_DIR", tmp_path)
     monkeypatch.setattr(carga_datos.ech_config, "DATA_DIR", tmp_path / "ech_microdatos")
+    monkeypatch.setattr(carga_datos.metricas_endis, "DATOS", tmp_path / "endis_microdatos" / "2023")
     _con_vigilancia(monkeypatch, tmp_path, None, datetime.date(2026, 8, 20))
     estado = carga_datos.estado_datos(datetime.date(2026, 8, 20))
     assert estado["automaticas_listo"] is False
     assert estado["ech_cargados"] == []
     assert estado["ech_completo"] is False
     assert estado["vigilancia_pendiente"] is True
+    assert estado["endis_listo"] is False
 
 
 # --- Estados del formulario de datos ------------------------------------------
@@ -82,7 +84,8 @@ def test_estado_datos_en_maquina_vacia(tmp_path, monkeypatch):
 
 def _estado(**cambios):
     base = {"automaticas_listo": False, "vigilancia_pendiente": False,
-            "ech_esperados": [2019, 2023], "ech_cargados": [], "ech_completo": False}
+            "ech_esperados": [2019, 2023], "ech_cargados": [], "ech_completo": False,
+            "endis_listo": False}
     return {**base, **cambios}
 
 
@@ -128,6 +131,52 @@ def test_boton_otras_fuentes_siempre_habilitado_y_continuar_presente():
 def test_el_aviso_se_muestra_solo_si_existe():
     assert "un resultado" in plantillas.plantilla_datos(_estado(), aviso="un resultado")
     assert 'class="advertencia"' not in plantillas.plantilla_datos(_estado())
+
+
+# --- ENDIS manual -------------------------------------------------------------
+
+
+def _sin_endis(monkeypatch, tmp_path):
+    monkeypatch.setattr(carga_datos.config, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(carga_datos.metricas_endis, "DATOS", tmp_path / "endis_microdatos" / "2023")
+
+
+def test_endis_cargada_y_preparar_carpeta(tmp_path, monkeypatch):
+    _sin_endis(monkeypatch, tmp_path)
+    assert carga_datos.endis_cargada() is False
+    carpeta = carga_datos.preparar_carpeta_endis()
+    assert carpeta == str(tmp_path / "endis_microdatos" / "2023")
+    assert (tmp_path / "endis_microdatos" / "2023").is_dir()
+    assert carga_datos.endis_cargada() is False          # carpeta vacía no cuenta
+    (tmp_path / "endis_microdatos" / "2023" / carga_datos.metricas_endis.ARCHIVO).write_text("")
+    assert carga_datos.endis_cargada() is True
+
+
+def test_endis_cargada_reconoce_la_fuente_propia(tmp_path, monkeypatch):
+    _sin_endis(monkeypatch, tmp_path)
+    propia = tmp_path / "usuario" / "endis_2023"
+    propia.mkdir(parents=True)
+    (propia / carga_datos.metricas_endis.ARCHIVO).write_text("")
+    assert carga_datos.endis_cargada() is True
+
+
+def test_boton_endis_se_deshabilita_cuando_hay_microdatos():
+    html = plantillas.plantilla_datos(_estado())
+    assert "accion('endis')" in html
+    assert "3 · Carga manual de la ENDIS" in html
+    assert "4 · Otras fuentes" in html
+    listo = plantillas.plantilla_datos(_estado(endis_listo=True))
+    assert "accion('endis')" not in listo
+    assert 'Carga manual de la ENDIS<span class="flag-listo">✓ Listo' in listo
+
+
+def test_plantilla_datos_endis_muestra_carpeta_catalogo_y_confirmacion():
+    html = plantillas.plantilla_datos_endis(r"C:\una\ruta\data\endis_microdatos\2023")
+    assert r"C:\una\ruta\data\endis_microdatos\2023" in html
+    assert "catalog/765" in html
+    assert "base_ninoselecc_endis2023_terceros.csv" in html
+    assert "confirmado" in html
+    assert "salir_del_flujo" in html
 
 
 # --- Fuentes del usuario ------------------------------------------------------
