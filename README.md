@@ -181,6 +181,24 @@ basado en la ENSANNA. Se revisan una vez al mes desde el propio flujo
 (`politicas_sociales.vigilancia`); el detalle vive en
 `docs/RELEVAMIENTO_DE_DATOS.md`.
 
+Decisiones pendientes del responsable del proyecto:
+
+1. **Métrica ENDIS de cobertura de primera infancia.** En una corrida
+   real del flujo se calculó, como métrica a medida sobre una fuente
+   propia, la cobertura de centros de primera infancia por edad y tipo
+   de prestador (ENDIS 2023, INE). Cubre el tramo de 0 a 4 años, que
+   ningún tema del informe describe. Incorporarla al catálogo permanente
+   exigiría registrar la ENDIS en `docs/FUENTES_DE_DATOS.md` y curar su
+   serie. Queda a la espera de la evaluación con técnicos del área.
+2. **Enlaces de SIPIAV y CONAPEES en la tabla de fuentes.** Apuntan a
+   páginas del sitio anterior del INAU, que tras la migración responden
+   404. El sitio nuevo no ofrece páginas institucionales para ninguno de
+   los dos organismos: solo indexa noticias y los documentos migrados
+   (`sites/default/files/migrado-docs/`). Las opciones de reemplazo son
+   la búsqueda del sitio (`www.inau.gub.uy/search/node?keys=SIPIAV`) o la
+   noticia de presentación del último informe; la decisión es del
+   responsable porque son fuentes curadas por él.
+
 ## Licencia
 
 [PolyForm Noncommercial 1.0.0](LICENSE) — uso no comercial.
