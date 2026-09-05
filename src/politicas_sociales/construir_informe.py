@@ -246,14 +246,19 @@ def _alcance_parcial(partes, seleccion: set[str]) -> str:
     if n_metricas:
         contenido.append(f"{n_metricas} métrica{'s' if n_metricas != 1 else ''}")
     if n_proy:
-        contenido.append(f"{n_proy} proyección{'es' if n_proy != 1 else ''}")
+        contenido.append(f"{n_proy} {'proyecciones' if n_proy != 1 else 'proyección'}")
     if n_cruces:
         contenido.append(f"{n_cruces} cruce{'s' if n_cruces != 1 else ''} entre fuentes")
     nombres = "; ".join(SELECCIONABLES[c][1] for c in bloques_presentes)
-    alcance = (f"una selección del catálogo del proyecto — {', '.join(contenido)} — "
+    # Enumeración en prosa ("12 métricas, 2 proyecciones y 1 cruce entre
+    # fuentes"): la introducción describe lo que la edición contiene sin
+    # remitir a un "catálogo del proyecto" que el lector no conoce.
+    contenido_texto = (" y ".join([", ".join(contenido[:-1]), contenido[-1]])
+                       if len(contenido) > 1 else contenido[0])
+    alcance = (f"una selección de {contenido_texto} "
                f"{'en los temas' if len(bloques_presentes) > 1 else 'en el tema'}: {nombres}")
-    alcance += (". El catálogo completo comprende cinco temas y cuatro "
-                "cruces; esta edición contiene lo elegido al generarla")
+    alcance += (". La edición completa comprende cinco temas y cuatro cruces "
+                "entre fuentes; esta edición contiene lo elegido al generarla")
     return alcance
 
 

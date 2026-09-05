@@ -230,7 +230,7 @@ def plantilla_bienvenida() -> str:
   claro y riguroso.</p>
   <div class="valor">
     Eliges los temas y las métricas; el informe se genera con las
-    métricas confirmadas del catálogo, las proyecciones validadas y los
+    métricas confirmadas, las proyecciones validadas y los
     cruces entre fuentes, cada cifra con su fuente citada.
   </div>
   <div class="advertencia">
@@ -576,7 +576,7 @@ def plantilla_metricas(estructura: list[dict]) -> str:
   <form id="form">
     {secciones_html}
     <div class="otra">
-      <label for="otra_metrica">¿Quieres agregar una métrica que no está en el catálogo?</label>
+      <label for="otra_metrica">¿Quieres agregar una métrica que no está en la lista?</label>
       <p class="subtitulo" style="margin-bottom:8px;">Descríbela con tus
       palabras (qué quieres saber, de qué fuente, para qué años). El agente
       analizará si puede calcularse con los datos ya verificados del

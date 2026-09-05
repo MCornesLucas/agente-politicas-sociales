@@ -208,7 +208,8 @@ def test_el_informe_no_referencia_carpetas_del_repositorio():
 def test_edicion_parcial_describe_su_alcance_real_en_la_introduccion():
     celdas = construir_informe.celdas_del_informe(["tema_1", "cruces"])
     intro = celdas[0].source
-    assert "selección del catálogo" in intro
+    assert "una selección de" in intro
+    assert "catálogo" not in intro.lower()
     assert "violencia hacia niñas, niños y adolescentes" in intro
     assert "cruces entre fuentes" in intro
     # La promesa del informe completo no puede quedar en una edición parcial.
@@ -255,7 +256,7 @@ def test_seleccion_por_unidades_arma_solo_lo_elegido():
     assert "## Tema 1" in texto               # presentación del tema presente
     assert "## Tema 4" not in texto
     # La introducción parcial cuenta lo elegido de verdad.
-    assert "1 métrica, 1 proyección, 1 cruce entre fuentes" in celdas[0].source
+    assert "1 métrica, 1 proyección y 1 cruce entre fuentes" in celdas[0].source
 
 
 def test_todas_las_unidades_equivalen_al_informe_completo():
@@ -293,3 +294,14 @@ def test_las_dependencias_declaradas_se_autocompletan(monkeypatch):
     assert "### Métrica 1." in texto
     assert "### Métrica 2." in texto
     assert "### Métrica 3." in texto
+
+
+def test_el_texto_del_informe_no_remite_a_un_catalogo_que_el_lector_no_conoce():
+    """Regla del dueño (2026-09-05): el informe describe lo que contiene;
+    nunca remite a un "catálogo del proyecto" que el lector no conoce.
+    Se revisan las celdas de texto de la edición completa y de una parcial."""
+    for seleccion in (None, ["tema_1", "cruces"]):
+        celdas = construir_informe.celdas_del_informe(seleccion)
+        for celda in celdas:
+            if celda.cell_type == "markdown":
+                assert "catálogo" not in celda.source.lower(), celda.source[:120]

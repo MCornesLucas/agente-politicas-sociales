@@ -17,7 +17,7 @@ ALCANCE_COMPLETO = """métricas agrupadas en **cinco
 temas** (violencia hacia niñas, niños y adolescentes; explotación
 sexual; trabajo infantil; protección especial; pobreza, vivienda y
 entorno del hogar), junto con las proyecciones calculadas y validadas
-hasta la fecha y los **cuatro cruces entre fuentes** del catálogo (INAU,
+hasta la fecha y los **cuatro cruces entre fuentes** (INAU,
 CONAPEES/Fiscalía, ENSANNA y SIPIAV contra la ECH), cada uno con sus
 limitaciones declaradas"""
 

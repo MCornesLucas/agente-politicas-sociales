@@ -764,7 +764,7 @@ releva desde 2024): su valor analítico crecerá con los años.
     md("""
 ## Cruces entre fuentes — ¿La respuesta institucional sigue el mapa de la necesidad?
 
-Los cuatro cruces del catálogo contrastan la respuesta de los sistemas
+Los cuatro cruces entre fuentes contrastan la respuesta de los sistemas
 de protección (INAU, CONAPEES/Fiscalía, SIPIAV) y la única prevalencia
 disponible (ENSANNA) con las condiciones socioeconómicas de la infancia
 calculadas sobre la ECH. Reglas comunes a todos: ambos lados de cada
@@ -1025,7 +1025,7 @@ ponderada del mismo año). 1 = el tramo pesa en la atención lo mismo que
 en la población. Años comparables: 2019 y 2025, los únicos con la
 distribución etaria completa y microdatos ECH extraídos. El SIPIAV no
 publica apertura departamental, así que este cruce es solo nacional
-(limitación estructural del catálogo).
+(limitación estructural de la fuente).
 """),
     code("""
 CSE = pd.read_csv(RESULTADOS / "cruces" / "cruce_sipiav_ech_tramos.csv")
