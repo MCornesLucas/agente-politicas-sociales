@@ -299,9 +299,13 @@ def test_las_dependencias_declaradas_se_autocompletan(monkeypatch):
 def test_el_texto_del_informe_no_remite_a_un_catalogo_que_el_lector_no_conoce():
     """Regla del dueño (2026-09-05): el informe describe lo que contiene;
     nunca remite a un "catálogo del proyecto" que el lector no conoce.
-    Se revisan las celdas de texto de la edición completa y de una parcial."""
+    Se revisan las celdas de texto de la edición completa y de una parcial.
+    Única excepción: "Catálogo ANDA", nombre propio del catálogo público del
+    INE citado como fuente."""
+    import re
+    patron = re.compile(r"catálogo(?!\s+ANDA)", re.IGNORECASE)
     for seleccion in (None, ["tema_1", "cruces"]):
         celdas = construir_informe.celdas_del_informe(seleccion)
         for celda in celdas:
             if celda.cell_type == "markdown":
-                assert "catálogo" not in celda.source.lower(), celda.source[:120]
+                assert patron.search(celda.source) is None, celda.source[:120]
