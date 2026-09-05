@@ -8,7 +8,7 @@ from politicas_sociales.informe_sintesis import celdas_conclusiones, celdas_resu
 CELDAS = [
     # ==================================================================
     md("""
-## Tema 4 — Protección especial (INAU)
+## Protección especial (INAU)
 
 Indicadores del Sistema de Protección Especial (SPE) del INAU, con
 fuente en el SIPI (Sistema de Información Para la Infancia). Describen a
@@ -514,12 +514,13 @@ para todas las tasas de infancia del país.
 """),
     # ==================================================================
     md("""
-## Tema 5 — Pobreza, vivienda y entorno del hogar (ECH)
+## Pobreza, vivienda y entorno del hogar (ECH)
 
 Cálculo propio sobre los **microdatos de la ECH** (INE), universo 0-17
 años, siempre ponderado (2019, 2023, 2024 y 2025), con procedimientos
 de carga verificados contra los diccionarios oficiales del INE.
-A diferencia de los temas 1, 2 y 4, estas métricas sí describen a la
+A diferencia de la violencia, la explotación sexual y la protección
+especial (registros administrativos), estas métricas sí describen a la
 infancia uruguaya en general.
 """),
     md("""

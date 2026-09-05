@@ -152,7 +152,7 @@ def linea_con_huecos(ax, anios_todos, df_pivot, colores=None):
 """),
     # ==================================================================
     md("""
-## Tema 1 — Violencia hacia niñas, niños y adolescentes (SIPIAV)
+## Violencia hacia niñas, niños y adolescentes (SIPIAV)
 
 Este tema mide la **respuesta del sistema de protección**, con datos del
 SIPIAV (Sistema Integral de Protección a la Infancia y a la Adolescencia
@@ -792,7 +792,7 @@ cada apertura.
 """),
     # ==================================================================
     md("""
-## Tema 2 — Explotación sexual de NNA (CONAPEES, Fiscalía)
+## Explotación sexual de NNA (CONAPEES, Fiscalía)
 
 Registros administrativos con una advertencia adicional: la explotación
 sexual tiene un **subregistro reconocido por el propio comité** — las
@@ -944,7 +944,7 @@ para el análisis territorial.
 """),
     # ==================================================================
     md("""
-## Tema 3 — Trabajo infantil (ENSANNA 2024, ENTI 2010, ECH)
+## Trabajo infantil (ENSANNA 2024, ENTI 2010, ECH)
 
 Este tema combina la única fuente de **prevalencia** disponible — la
 ENSANNA 2024 (encuesta con diseño muestral del INE/MTSS, con apoyo de
@@ -992,8 +992,9 @@ total (Cleveland y McGill, 1984; Few; Tufte).
 de trabajo infantil, con tasa creciente con la edad (10,6% entre 15 y
 17). El gradiente se repite en las demás aperturas del boletín: interior
 7,7% frente a Montevideo 5,2%, y nivel socioeconómico bajo 7,9% frente a
-alto 4,8%. A diferencia de los temas 1 y 2, estas cifras sí son
-prevalencia: describen a la población.
+alto 4,8%. A diferencia de la violencia y la explotación sexual
+(registros administrativos), estas cifras sí son prevalencia: describen
+a la población.
 """),
     # ------------------------------------------------------------------
     md("""

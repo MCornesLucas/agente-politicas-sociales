@@ -129,8 +129,8 @@ CONCLUSIONES = [
    explotación sexual no tiene serie oficial desde 2022 y desde 2024
    quedó fusionada dentro de «violencias sexuales» (fuentes: SIPIAV,
    CONAPEES/FLACSO)."""),
-    ("metrica_1", """**Uruguay no mide la prevalencia de la violencia hacia NNA.** Todo el
-   tema 1 es registro administrativo. La única aproximación existente —
+    ("metrica_1", """**Uruguay no mide la prevalencia de la violencia hacia NNA.** Toda la
+   sección de violencia es registro administrativo. La única aproximación existente —
    una encuesta de 2026 de UNICEF con muestra no probabilística, que
    sugiere que cerca de 3 de cada 10 jóvenes vivió violencia sexual
    antes de los 18 — no sustituye una medición oficial con diseño
@@ -146,7 +146,7 @@ registros administrativos describen la respuesta de los sistemas, no
 la prevalencia; (b) las proyecciones son escenarios inerciales con
 supuesto explícito — y donde ningún modelo pasó la validación (P4) no
 hay proyección; (c) los microdatos de la ENSANNA aún no son públicos
-(el tema 3 usa el boletín oficial); (d) el SIPIAV no publica
+(la sección de trabajo infantil usa el boletín oficial); (d) el SIPIAV no publica
 desagregación departamental, lo que limita el análisis territorial de
 la violencia; (e) los cuatro cruces entre fuentes comparten tres
 límites estructurales — los numeradores administrativos registran

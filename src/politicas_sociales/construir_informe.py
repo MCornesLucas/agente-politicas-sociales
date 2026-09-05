@@ -66,11 +66,14 @@ DESTINO = config.NOTEBOOKS / "informe_infancia.ipynb"
 # abre cada uno en las celdas y el nombre con el que se describe en la
 # introducción de una edición parcial.
 SELECCIONABLES = {
-    "tema_1": ("## Tema 1", "violencia hacia niñas, niños y adolescentes (SIPIAV)"),
-    "tema_2": ("## Tema 2", "explotación sexual (CONAPEES, Fiscalía)"),
-    "tema_3": ("## Tema 3", "trabajo infantil (ENSANNA, ENTI, ECH)"),
-    "tema_4": ("## Tema 4", "protección especial (INAU)"),
-    "tema_5": ("## Tema 5", "pobreza, vivienda y entorno del hogar (ECH)"),
+    # El encabezado de cada tema es su nombre (regla del dueño, 2026-09-05:
+    # sin "Tema N" en el informe); el prefijo aquí debe coincidir con el
+    # inicio exacto de la línea "## " que abre el bloque en las celdas.
+    "tema_1": ("## Violencia hacia niñas, niños y adolescentes", "violencia hacia niñas, niños y adolescentes (SIPIAV)"),
+    "tema_2": ("## Explotación sexual", "explotación sexual (CONAPEES, Fiscalía)"),
+    "tema_3": ("## Trabajo infantil", "trabajo infantil (ENSANNA, ENTI, ECH)"),
+    "tema_4": ("## Protección especial", "protección especial (INAU)"),
+    "tema_5": ("## Pobreza, vivienda y entorno del hogar", "pobreza, vivienda y entorno del hogar (ECH)"),
     "cruces": ("## Cruces entre fuentes", "los cruces entre fuentes contra la ECH"),
 }
 _TEMAS = [clave for clave in SELECCIONABLES if clave.startswith("tema_")]

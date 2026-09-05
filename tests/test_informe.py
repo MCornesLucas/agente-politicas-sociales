@@ -72,11 +72,11 @@ def test_seleccion_completa_es_identica_al_informe_de_siempre():
 def test_edicion_parcial_incluye_lo_elegido_y_lo_fijo():
     celdas = construir_informe.celdas_del_informe(["tema_1"])
     texto = "\n".join(c.source for c in celdas if c.cell_type == "markdown")
-    assert "## Tema 1" in texto
+    assert "## Violencia hacia niñas" in texto
     assert "## Preparación de datos" in texto      # infraestructura fija
     assert "## Contexto transversal" in texto      # transversal, siempre
     assert "## Nota metodológica" in texto         # siempre
-    assert "## Tema 4" not in texto
+    assert "## Protección especial" not in texto
     assert "## Cruces entre fuentes" not in texto
     # Resumen, conclusiones y fuentes van SIEMPRE (decisión del dueño,
     # 2026-08-19), con resumen y conclusiones filtrados por bloque.
@@ -253,8 +253,8 @@ def test_seleccion_por_unidades_arma_solo_lo_elegido():
     assert "### Cruce 4." in texto
     assert "### Métrica 2." not in texto      # misma sección, no elegida
     assert "### Cruce 1." not in texto
-    assert "## Tema 1" in texto               # presentación del tema presente
-    assert "## Tema 4" not in texto
+    assert "## Violencia hacia niñas" in texto  # presentación del tema presente
+    assert "## Protección especial" not in texto
     # La introducción parcial cuenta lo elegido de verdad.
     assert "1 métrica, 1 proyección y 1 cruce entre fuentes" in celdas[0].source
 
@@ -302,9 +302,11 @@ def test_el_texto_del_informe_no_remite_a_un_proyecto_que_el_lector_no_conoce():
     conoce. Se revisan las celdas de texto y los pies de figura (literales
     de fuente(...)) de la edición completa y de una parcial. Excepciones:
     "Catálogo ANDA" (nombre propio del catálogo público del INE) y
-    "proyectos" (los proyectos de atención del INAU son otra cosa)."""
+    "proyectos" (los proyectos de atención del INAU son otra cosa).
+    Tampoco se numeran los temas ("Tema 1", "temas 1 y 2"): cada grupo
+    lleva solo su nombre (regla del dueño, 2026-09-05)."""
     import re
-    patron = re.compile(r"catálogo(?!\s+ANDA)|\bproyecto\b", re.IGNORECASE)
+    patron = re.compile(r"catálogo(?!\s+ANDA)|\bproyecto\b|\btemas?\s+\d", re.IGNORECASE)
     for seleccion in (None, ["tema_1", "cruces"]):
         for celda in construir_informe.celdas_del_informe(seleccion):
             if celda.cell_type == "markdown":
