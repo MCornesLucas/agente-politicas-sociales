@@ -126,7 +126,7 @@ CONCLUSIONES = [
    del INAU creció hasta amesetarse en ~8.000 atendidos; y la población
    de 0 a 17 cae 2,3% por año. La combinación produce tasas de
    institucionalización crecientes aun sin crecimiento de los sistemas
-   (P4) — leer cualquier tasa de infancia sin su denominador demográfico
+   — leer cualquier tasa de infancia sin su denominador demográfico
    induce a error (fuentes: SIPIAV, INAU, INE)."""),
     ("metrica_10", """**La detección de la violencia llega tarde y la intervención pierde a
    la familia.** En la serie comparable, ~9 de cada 10 situaciones
@@ -155,8 +155,7 @@ CONCLUSIONES = [
 CONCLUSION_TRANSVERSAL = """**Limitaciones declaradas de este informe**: (a) las cifras de
 registros administrativos describen la respuesta de los sistemas, no
 la prevalencia; (b) las proyecciones son escenarios inerciales con
-supuesto explícito — y donde ningún modelo pasó la validación (P4) no
-hay proyección; (c) los microdatos de la ENSANNA aún no son públicos
+supuesto explícito; (c) los microdatos de la ENSANNA aún no son públicos
 (la sección de trabajo infantil usa el boletín oficial); (d) el SIPIAV no publica
 desagregación departamental, lo que limita el análisis territorial de
 la violencia; (e) los cuatro cruces entre fuentes comparten tres

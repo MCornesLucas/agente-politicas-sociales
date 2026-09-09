@@ -9,6 +9,7 @@ conteos se ajustan a esa selección.
 """
 
 import nbformat as nbf
+import pytest
 
 from politicas_sociales import construir_informe
 from politicas_sociales.informe_base import code, md
@@ -244,12 +245,30 @@ def test_unidades_disponibles_con_explicacion_real():
     assert all(isinstance(u["requiere"], list) for u in unidades)
 
 
+def test_las_proyecciones_no_llevan_codigo_y_conservan_su_clave_interna():
+    """Regla del dueño (2026-09-09): los encabezados de proyección son
+    "### Proyección. <título>", sin "P1", "P2"... La clave interna
+    (proyeccion_p1..p5), que usan la síntesis, el formulario y las
+    ediciones guardadas, se resuelve por el comienzo del título; un
+    título nuevo sin clave registrada rompe aquí, no en silencio."""
+    import re
+    encabezados = [construir_informe._primera_linea(c) for c in CELDAS_1 + CELDAS_2
+                   if c.cell_type == "markdown" and c.source.startswith("### Proyección")]
+    assert len(encabezados) == 5
+    assert all(re.match(r"^### Proyección\. [A-ZÁÉÍÓÚÑ]", e) for e in encabezados), encabezados
+    claves = [construir_informe._clave_de_unidad(e) for e in encabezados]
+    assert claves == ["proyeccion_p1", "proyeccion_p2", "proyeccion_p5",
+                      "proyeccion_p3", "proyeccion_p4"]
+    with pytest.raises(KeyError):
+        construir_informe._clave_de_unidad("### Proyección. Algo sin clave, 2030")
+
+
 def test_seleccion_por_unidades_arma_solo_lo_elegido():
     celdas = construir_informe.celdas_del_informe(
         unidades=["metrica_1", "proyeccion_p1", "cruce_4"])
     texto = "\n".join(c.source for c in celdas if c.cell_type == "markdown")
     assert "### Métrica 1." in texto
-    assert "### Proyección P1." in texto
+    assert "### Proyección. Situaciones que atendería" in texto
     assert "### Cruce 4." in texto
     assert "### Métrica 2." not in texto      # misma sección, no elegida
     assert "### Cruce 1." not in texto
@@ -307,11 +326,13 @@ def test_el_texto_del_informe_no_remite_a_un_proyecto_que_el_lector_no_conoce():
     lleva solo su nombre (regla del dueño, 2026-09-05). Y nada de jerga
     ni de archivos que el lector no tiene: ni "n muestral" ni "CSV"
     (regla del dueño, 2026-09-05) — se dice "cantidad de casos
-    encuestados" y "datos públicos que acompañan este informe"."""
+    encuestados" y "datos públicos que acompañan este informe". Las
+    proyecciones tampoco llevan código ("P1"... "P7"): ni en los títulos
+    ni en el cuerpo (regla del dueño, 2026-09-09)."""
     import re
     # "CSV" solo en mayúsculas: los nombres de archivo del código
     # ("sipiav_series.csv") no son texto visible.
-    patron = re.compile(r"catálogo(?!\s+ANDA)|\bproyecto\b|\btemas?\s+\d|\bn muestral|(?-i:\bCSV\b)",
+    patron = re.compile(r"catálogo(?!\s+ANDA)|\bproyecto\b|\btemas?\s+\d|\bn muestral|(?-i:\bCSV\b)|(?-i:\bP[1-7]\b)",
                         re.IGNORECASE)
     for seleccion in (None, ["tema_1", "cruces"]):
         for celda in construir_informe.celdas_del_informe(seleccion):

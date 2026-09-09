@@ -18,7 +18,7 @@ def _texto_portada() -> str:
 
 def test_la_portada_no_remite_a_catalogo_proyecto_ni_temas_numerados():
     texto = _texto_portada()
-    patron = re.compile(r"catálogo(?!\s+ANDA)|\bproyecto\b|\btemas?\s+\d", re.IGNORECASE)
+    patron = re.compile(r"catálogo(?!\s+ANDA)|\bproyecto\b|\btemas?\s+\d|(?-i:\bP[1-7]\b)", re.IGNORECASE)
     assert patron.search(texto) is None, texto
 
 

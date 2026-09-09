@@ -1,8 +1,8 @@
 """Construye el informe (notebooks/informe_infancia.ipynb).
 
 Versión actual: las métricas confirmadas del catálogo (hoy 37, en 6
-temas), las proyecciones calculadas (P1 con validación 2025, P2, P3, P4, P5)
-y el contexto demográfico (P6). El nombre no lleva "piloto" ni el texto
+temas), las cinco proyecciones calculadas y el contexto demográfico (la
+proyección oficial de población del INE). El nombre no lleva "piloto" ni el texto
 anuncia el catálogo completo: el informe es el producto del proyecto, y
 qué métricas incluye cada versión es una decisión de quien lo pide, no
 una promesa del título. Estructura estándar del
@@ -99,7 +99,27 @@ _ENCABEZADOS_FIJOS = {
 }
 
 # Una unidad seleccionable dentro de un bloque: métrica, proyección o cruce.
-_PATRON_UNIDAD = re.compile(r"^#{2,4}\s*(?:Métrica (\d+)\.|Proyección (P\d+)\.|Cruce (\d+)\.)")
+_PATRON_UNIDAD = re.compile(r"^#{2,4}\s*(?:Métrica (\d+)\.|Proyección\. *(.+)|Cruce (\d+)\.)")
+
+# Las proyecciones no llevan número ni código en el encabezado (regla del
+# dueño, 2026-09-09: nada de "P1", "P2"... en el informe). Su clave interna
+# —la que usan el formulario de selección, la síntesis y las ediciones
+# guardadas— se resuelve por el comienzo del título. Un test exige que
+# todo encabezado "### Proyección." tenga su clave aquí.
+_CLAVES_PROYECCION = {
+    "Situaciones que atendería el sistema": "proyeccion_p1",
+    "Inclusión de la familia proyectada": "proyeccion_p2",
+    "Desinternación proyectada por departamento": "proyeccion_p3",
+    "NNA en protección especial cada 1.000 NNA": "proyeccion_p4",
+    "Cobertura territorial proyectada": "proyeccion_p5",
+}
+
+
+def _clave_de_proyeccion(titulo: str) -> str:
+    for comienzo, clave in _CLAVES_PROYECCION.items():
+        if titulo.strip().startswith(comienzo):
+            return clave
+    raise KeyError(f"Proyección sin clave interna registrada: {titulo!r}")
 _PATRON_PREGUNTA = re.compile(r"\*\*¿Qué pregunta responde\?\*\*\s*(.+?)(?:\n\n|$)", re.S)
 
 
@@ -120,7 +140,7 @@ def _clave_de_unidad(primera_linea: str) -> str | None:
     if m.group(1):
         return f"metrica_{m.group(1)}"
     if m.group(2):
-        return f"proyeccion_{m.group(2).lower()}"
+        return _clave_de_proyeccion(m.group(2))
     return f"cruce_{m.group(3)}"
 
 

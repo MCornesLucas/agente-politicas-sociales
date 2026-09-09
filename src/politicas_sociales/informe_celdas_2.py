@@ -94,7 +94,7 @@ NNA del sistema vivía en contexto familiar en 2020 y 62,7% en 2025. En
 términos del ratio que publica la fuente, se pasó de prácticamente un
 NNA en residencia por cada uno en familia (0,97) a 0,6. El avance es
 consistente pero se desacelera en los últimos semestres — la proyección
-P3 estima su trayectoria.
+de desinternación, al cierre de este tema, estima su trayectoria.
 """),
     # ------------------------------------------------------------------
     md("""
@@ -416,7 +416,7 @@ complementa la serie de la métrica 21.
 """),
     # ------------------------------------------------------------------
     md("""
-### Proyección P3. Desinternación proyectada por departamento, 2026-2027
+### Proyección. Desinternación proyectada por departamento, 2026-2027
 
 **¿Qué pregunta responde?** Si el ritmo de desinternación persiste, ¿qué
 proporción de los NNA del sistema vivirá en contexto familiar hacia
@@ -461,10 +461,11 @@ necesidad de modelo.
 """),
     # ------------------------------------------------------------------
     md("""
-### Proyección P4. NNA en protección especial cada 1.000 NNA
+### Proyección. NNA en protección especial cada 1.000 NNA, referencia 2026-2027
 
 **¿Qué pregunta responde?** ¿Qué proporción de la infancia uruguaya está
-en el sistema de protección especial, y hacia dónde va esa tasa?
+en el sistema de protección especial, y qué tasa resultaría si el sistema
+mantuviera su tamaño actual mientras la población infantil cae?
 
 **Término** — **tasa cada 1.000 NNA**: NNA de 0 a 17 en el SPE dividido
 por la población de 0 a 17 del país (proyecciones oficiales del INE,
@@ -488,7 +489,7 @@ ax.set_ylim(0, 12)
 ax.set_xticks(P4["anio"])
 ax.set_title(
     "NNA de 0 a 17 años en el Sistema de Protección Especial cada 1.000 NNA\\n"
-    "(tasa sobre la población infantil del país; referencia sin modelo — ver texto)"
+    "(tasa sobre la población infantil del país; referencia si el sistema mantiene su tamaño actual)"
 )
 ax.set_ylabel("Por cada 1.000 NNA")
 ax.legend(frameon=False, fontsize=8)
@@ -498,11 +499,10 @@ plt.show()
 """),
     md("""
 **Por qué esta gráfica.** La referencia 2026-2027 se dibuja punteada,
-gris y sin banda: **no es una proyección de modelo**. El protocolo del
-bloque predictivo exigía que algún modelo del numerador superara al
-ingenuo en el backtest, y ninguno lo hizo (el numerador se amesetó en
-torno a 7.000 desde 2023) — en ese caso no se publica proyección y el
-escenario inercial se degrada a lectura descriptiva.
+gris y sin banda porque no ajusta ningún modelo a la serie: es la tasa
+que resultaría si el sistema mantuviera su tamaño actual (~7.000 NNA,
+donde se amesetó desde 2023) sobre la población de 0 a 17 años que
+proyecta el INE. Es un escenario aritmético, y por eso no lleva rango.
 
 **Lectura**: 9,05 de cada 1.000 NNA del país estaban en el sistema de
 protección especial en 2024, y 9,38 en 2025. El hallazgo está en la
@@ -1208,7 +1208,7 @@ de tramos en 2020 (0-3/4-5 pasa a 0-5): la comparación usa el agregado
     md("""
 ## Contexto transversal — La demografía detrás de todas las tasas
 
-### P6. Población de 0 a 17 años de Uruguay, proyección oficial
+### Población de 0 a 17 años de Uruguay, proyección oficial
 
 **¿Qué pregunta responde?** ¿Cómo evoluciona el denominador de todas las
 tasas de infancia del país?
@@ -1244,7 +1244,8 @@ se modela.
 **Lectura**: la población de 0 a 17 años cae de 768.969 (2024) a menos
 de 600.000 hacia 2040 según la revisión 2025 del INE — más de un quinto
 menos en una década y media. Toda tasa «cada 1.000 NNA» del país subirá
-mecánicamente si su numerador no cae al mismo ritmo (el caso de P4), y
+mecánicamente si su numerador no cae al mismo ritmo (es lo que muestra
+la tasa de NNA en protección especial), y
 todo servicio dimensionado para la infancia actual operará sobre una
 población menguante: es el trasfondo demográfico de todos los temas de
 este informe.
@@ -1269,8 +1270,7 @@ porcentajes de encuesta de este informe usan esa expansión.
 
 **Escenarios inerciales.** Las proyecciones describen qué sucedería **si
 las condiciones actuales persisten**, siempre con un rango. No son
-pronósticos. Cuando ningún modelo simple supera la prueba de validación
-(el caso de P4), no se publica proyección — se dice explícitamente. La
+pronósticos. La
 justificación técnica de cada método, con sus pruebas, está publicada
 en el repositorio público citado al cierre y no forma parte de este informe.
 

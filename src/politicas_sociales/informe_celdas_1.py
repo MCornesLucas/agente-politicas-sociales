@@ -616,12 +616,13 @@ con marcadores, eje desde cero.
 2025). La expansión no fue monótona — 33 en 2019, 32 entre 2020 y
 2022 — y muestra desaceleración: la cobertura parece acercarse a su
 techo territorial (los 36 CRL cubren las principales localidades del
-país) — por eso su proyección (P5, al cierre de este tema) se lee como
+país) — por eso su proyección (la de cobertura territorial, al cierre
+de este tema) se lee como
 orden de magnitud, no como cronograma de aperturas.
 """),
     # ------------------------------------------------------------------
     md("""
-### Proyección P1. Situaciones que atendería el sistema, 2026-2027 — con validación 2025
+### Proyección. Situaciones que atendería el sistema, 2026-2027 — con validación 2025
 
 **¿Qué pregunta responde?** Si la tendencia observada continúa, ¿cuántas
 situaciones atendería el sistema en los próximos años? ¿Y qué pasó
@@ -685,7 +686,7 @@ esta proyección deberá recalcularse sobre la base nueva.
 """),
     # ------------------------------------------------------------------
     md("""
-### Proyección P2. Inclusión de la familia proyectada, 2025-2027
+### Proyección. Inclusión de la familia proyectada, 2025-2027
 
 **¿Qué pregunta responde?** Si el deterioro observado en la métrica 10
 continúa, ¿a qué proporción llegaría la inclusión familiar?
@@ -730,7 +731,8 @@ fuente(fig, "Fuente: elaboración propia sobre informes de gestión SIPIAV (INAU
 plt.show()
 """),
     md("""
-**Por qué esta gráfica.** Misma convención que P1. El modelo se ajusta
+**Por qué esta gráfica.** Misma convención que la proyección anterior.
+El modelo se ajusta
 sobre la transformación logit para que la proyección de una proporción
 nunca salga del rango 0-100 (Hyndman y Athanasopoulos, FPP3 —
 justificación técnica en el repositorio).
@@ -745,7 +747,7 @@ re-estima hasta que la base se estabilice.
 """),
     # ------------------------------------------------------------------
     md("""
-### Proyección P5. Cobertura territorial proyectada, 2026-2028
+### Proyección. Cobertura territorial proyectada, 2026-2028
 
 **¿Qué pregunta responde?** Si el ritmo de aperturas de la métrica 11
 continúa, ¿cuántos Comités de Recepción Local tendría el sistema en los
@@ -780,7 +782,8 @@ fuente(fig, "Fuente: elaboración propia sobre informes de gestión SIPIAV (INAU
 plt.show()
 """),
     md("""
-**Por qué esta gráfica.** Misma convención que P1 y P2: serie observada
+**Por qué esta gráfica.** Misma convención que las dos proyecciones
+anteriores: serie observada
 en línea continua, escenario inercial punteado con su rango sombreado y
 eje desde cero (Healy, 2018). La proyección crece de forma amortiguada —
 la cobertura de un territorio finito no crece indefinidamente
