@@ -7,6 +7,7 @@ novedad) y además en su camino de estructura rota (ILEGIBLE) y de fuente
 caída (NO ACCESIBLE) — verde solo cuando se miró de verdad.
 """
 
+import datetime
 import json
 
 import pytest
@@ -189,6 +190,27 @@ def test_actualizar_baseline_se_niega_si_falta_una_fuente(tmp_path, monkeypatch)
         vigilancia.main()
     assert salida.value.code == 1
     assert copia.read_text(encoding="utf-8") == antes
+
+
+def test_main_deja_el_marcador_en_la_ruta_configurada_y_no_en_logs(monkeypatch):
+    # Guardián de aislamiento: main() escribe el marcador de la última
+    # corrida en vigilancia.ULTIMA_REVISION, que el conftest redirige a
+    # una carpeta temporal en toda la suite. Si alguien quitara esa
+    # redirección, el marcador real de logs/ quedaría pisado por una
+    # corrida simulada (pasó dos veces) y este test lo delata.
+    marcador_real = vigilancia.config.PROJECT_ROOT / "logs" / "vigilancia_ultima_revision.json"
+    assert vigilancia.ULTIMA_REVISION != marcador_real
+    antes = marcador_real.read_bytes() if marcador_real.exists() else None
+    monkeypatch.setattr(vigilancia, "descargar", lambda url: (_ for _ in ()).throw(OSError("caída")))
+    monkeypatch.setattr("sys.argv", ["vigilancia"])
+    with pytest.raises(SystemExit) as salida:
+        vigilancia.main()
+    assert salida.value.code == 1
+    escrito = json.loads(vigilancia.ULTIMA_REVISION.read_text(encoding="utf-8"))
+    assert escrito["fecha"] == datetime.date.today().isoformat()
+    assert set(escrito["resumen"].values()) == {"no_accesible"}
+    despues = marcador_real.read_bytes() if marcador_real.exists() else None
+    assert despues == antes
 
 
 def test_codigo_de_salida():
