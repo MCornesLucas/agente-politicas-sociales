@@ -17,7 +17,7 @@ administrativo vs. encuesta) está en
 | CETI (MTSS) | ✅ Documentos de política | Plan Nacional de Erradicación del Trabajo Infantil (PDF, OIT/MTSS) |
 | CONAPEES | ✅ Planes y estudios | 2 estudios 2023 (UNFPA y FLACSO) + III Plan Nacional 2023-2028 (PDF, gestor documental de INAU) |
 | UNICEF Uruguay | ✅ 75 publicaciones | Biblioteca Digital (bibliotecaunicef.uy); incluye la Encuesta sobre violencia sexual contra NNA 2026 (única fuente de prevalencia de violencia) |
-| INE — proyecciones de población | ✅ Revisión 2025 | B.1.1 (total país, edad simple, 2024-2070) y B.1.2 (departamentos, quinquenal, 2024-2045) — denominadores de P4/P6 |
+| INE — proyecciones de población | ✅ Revisión 2025 | B.1.1 (total país, edad simple, 2024-2070) y B.1.2 (departamentos, quinquenal, 2024-2045) — denominadores de la tasa de NNA en protección especial y proyección de población del contexto demográfico |
 
 ## 1. SIPIAV — 13 informes de gestión, 2013-2025 (serie completa)
 
@@ -154,7 +154,7 @@ sexuales", y la discrepancia 285 vs. 456 de prensa sigue sin resolver.
   explotación. Única fuente de *prevalencia* de violencia del proyecto,
   con la advertencia de diseño registrada en `FUENTES_DE_DATOS.md`.
 
-## 7. INE — Proyecciones de población, revisión 2025 (denominadores de P4/P6)
+## 7. INE — Proyecciones de población, revisión 2025 (denominadores de las tasas y contexto demográfico)
 
 `data/ine/proyecciones_rev2025/` — descargadas 2026-08-18 de la página
 oficial (https://www.gub.uy/instituto-nacional-estadistica/proyeccionesrev2025),
@@ -182,7 +182,7 @@ Advertencias documentadas:
   no estaban publicadas al 2026-08-18 (solo los archivos B de
   proyección; se verificó además que los archivos "A.\*" no existen aún
   en el servidor). Cuando se publiquen, completar los denominadores
-  2020-2023 de P4.
+  2020-2023 de la tasa de NNA en protección especial.
 
 ## 8. ECH — extracción de infancia y adolescencia
 

@@ -81,7 +81,7 @@ ningún volumen de datos en este dominio que lo justifique.
    del primer año proyectado, se contrasta contra el rango publicado
    antes de re-estimar nada.
 
-## P1 — Situaciones atendidas por SIPIAV (calculado, 2026-08-17)
+## Situaciones atendidas por SIPIAV (calculado, 2026-08-17)
 
 Serie: 2013-2022 en texto de los informes (1.319 → 7.473); 2023 (8.157)
 y 2024 (8.924) de notas oficiales (Presidencia/INAU — ver
@@ -120,7 +120,7 @@ y 2024 (8.924) de notas oficiales (Presidencia/INAU — ver
   como señal (y para el lenguaje de "respuesta del sistema", nunca
   "violencia futura").
 
-## P2 — Inclusión de la familia en la intervención (calculado, 2026-08-17)
+## Inclusión de la familia en la intervención (calculado, 2026-08-17)
 
 Serie: 2014-2024, 11 puntos, completa (curada de los informes SIPIAV —
 `datos_curados/sipiav_series.csv`, con respaldo textual por valor; 2015
@@ -156,7 +156,7 @@ y 2021 provienen de prosa fraccionaria y están marcados). Ajuste con
   SIPIAV estabilice la base de cálculo (quiebre 7 de
   `datos_curados/sipiav_notas.md`).
 
-## P3 — Proporción del SPE en contexto familiar, por departamento (calculado, 2026-08-17)
+## Proporción del SPE en contexto familiar, por departamento (calculado, 2026-08-17)
 
 Serie: proporción de NNA del Sistema de Protección Especial que viven en
 contexto familiar (indicadores departamentales 6 y 5 de INAU), 12 puntos
@@ -182,7 +182,7 @@ departamento en `resultados/proyecciones/p3_desinternacion.csv`.
   anualizar antes de proyectar (verificado sobre el total país y los
   departamentos proyectables).
 
-## P4 — NNA en protección especial cada 1.000 NNA (calculado, 2026-08-18)
+## NNA en protección especial cada 1.000 NNA (calculado, 2026-08-18)
 
 Numerador: NNA de **0 a 17 años** atendidos en el SPE (indicador
 nacional 1.1 de INAU, suma de los tramos 0-2 a 16-17 — la suma de todos
@@ -210,8 +210,8 @@ logit):
   2023 y se amesetó (2023-2025: 7.027 → 6.960 → 7.043); proyectar la
   pendiente 2020-2023 hacia adelante sobreestimaría de forma notoria —
   el backtest lo muestra con claridad. Mismo desenlace que las series
-  estables de P3: el escenario inercial se reporta como lectura
-  descriptiva, sin modelo.
+  estables de la desinternación por departamento: el escenario inercial
+  se reporta como referencia aritmética, sin modelo.
 - **Lectura publicable (descriptiva)**: tasa observada de NNA de 0 a 17
   años en el SPE cada 1.000 NNA: **9,05 (2024) y 9,38 (2025)**. Si la
   cantidad de NNA atendidos se mantuviera en torno al último valor
@@ -229,7 +229,7 @@ logit):
   denominadores (no con los de la revisión 2013, que la ECH todavía usa
   en sus ponderadores — ver `RELEVAMIENTO_DE_DATOS.md`, sección INE).
 
-## P5 — Cobertura de Comités de Recepción Local (calculado, 2026-08-20)
+## Cobertura de Comités de Recepción Local (calculado, 2026-08-20)
 
 Serie: cantidad de CRL a fin de cada año, 2013-2025 (13 puntos, curados
 del texto de los informes de gestión; `datos_curados/sipiav_series.csv`,
@@ -256,7 +256,8 @@ holdout 2024-2025 (36, 36):
   fenómeno (cobertura de un territorio finito), no porque el dato haya
   revelado el valor de saturación.
 - **Lo que hace publicable la proyección es la robustez entre
-  candidatos** (mismo argumento que P1): asintótica, lineal y deriva —
+  candidatos** (mismo argumento que en las situaciones atendidas por
+  SIPIAV): asintótica, lineal y deriva —
   tres estimadores distintos — proyectan prácticamente lo mismo
   (~+0,9 CRL/año). En el horizonte corto la proyección no depende de la
   forma elegida.
@@ -270,11 +271,12 @@ holdout 2024-2025 (36, 36):
 - Resultado en `resultados/proyecciones/p5_cobertura_crl.csv`
   (`politicas_sociales/proyeccion_p5_cobertura_crl.py`).
 
-## P6 — Población 0-17 (sin algoritmo propio)
+## Población 0-17 (proyección oficial, sin algoritmo propio)
 
 - No se modela nada: se citan las proyecciones oficiales del INE
   (organismo productor, con metodología demográfica propia publicada).
-  Rol en el proyecto: contexto y denominadores de P4.
+  Rol en el proyecto: contexto y denominadores de la tasa de NNA en
+  protección especial.
 
 ---
 

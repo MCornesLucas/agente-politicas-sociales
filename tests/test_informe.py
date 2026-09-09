@@ -263,6 +263,25 @@ def test_las_proyecciones_no_llevan_codigo_y_conservan_su_clave_interna():
         construir_informe._clave_de_unidad("### Proyección. Algo sin clave, 2030")
 
 
+def test_la_documentacion_tampoco_usa_codigos_de_proyeccion():
+    """Regla del dueño (2026-09-09): los códigos P1..P7 salieron del
+    informe y también del README, los docs y las notas curadas — cada
+    proyección se nombra por lo que proyecta. Los nombres de módulos y
+    archivos (proyeccion_p4_tasa_spe.py, p4_tasa_spe.csv) van en
+    minúscula y no cuentan."""
+    import re
+    from politicas_sociales import config
+    patron = re.compile(r"\bP[1-7]\b")
+    archivos = [config.PROJECT_ROOT / "README.md",
+                *sorted((config.PROJECT_ROOT / "docs").glob("*.md")),
+                *sorted((config.PROJECT_ROOT / "datos_curados").glob("*.md"))]
+    assert len(archivos) > 5
+    con_codigo = {str(a.relative_to(config.PROJECT_ROOT)): [l.strip()[:90] for l in
+                  a.read_text(encoding="utf-8").splitlines() if patron.search(l)]
+                  for a in archivos}
+    assert {k: v for k, v in con_codigo.items() if v} == {}
+
+
 def test_seleccion_por_unidades_arma_solo_lo_elegido():
     celdas = construir_informe.celdas_del_informe(
         unidades=["metrica_1", "proyeccion_p1", "cruce_4"])

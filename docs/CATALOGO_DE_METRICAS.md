@@ -51,9 +51,9 @@ comparabilidad de recurrencia, cronicidad e inclusión familiar.
 | 9 | NNA que visualizan la violencia | Descriptiva | 2017-2024 solamente | ✅ serie corta |
 | 10 | Inclusión de la familia en la intervención | Descriptiva | 2014-2024 (82% → 58%: serie con lectura sustantiva); 2025 (45%) no comparable por cambio de base | ⚠️ serie comparable termina en 2024 |
 | 11 | Cobertura territorial del sistema (nº de CRL) | Descriptiva | 2014-2025 (24 → 36; 2025 estable) + participación sectorial 2015-2024 reconstruible | ✅ |
-| P1 | Situaciones que atendería el sistema, 2025-2027 | Predictiva | Sobre la métrica 1 (12 puntos) — calculada y **validada**: real 2025 = 9.178, dentro del rango proyectado 8.500-10.300 | ✅ validada en su primer año |
-| P2 | Inclusión de la familia proyectada | Predictiva | Sobre la métrica 10 (11 puntos, 2014-2024) — calculada (2027: ~50%, 42-58); validación 2025 no concluyente por el cambio de base de la fuente | ✅ calculada; ⚠️ validación pendiente de base estable |
-| P5 | Cobertura CRL proyectada | Predictiva | Sobre la métrica 11 (13 puntos) — calculada (2026-08-20): curva asintótica elegida por backtest (MAPE 1,3%); 2028: ~39 CRL (37-41). Advertencia: la asíntota no está identificada por los datos (régimen casi lineal) — proyección robusta entre candidatos (~+1 CRL/año), ver `PREDICTIVO_JUSTIFICACION_TECNICA.md` | ✅ calculada; valor informativo menor |
+| Proyección | Situaciones que atendería el sistema, 2025-2027 | Predictiva | Sobre la métrica 1 (12 puntos) — calculada y **validada**: real 2025 = 9.178, dentro del rango proyectado 8.500-10.300 | ✅ validada en su primer año |
+| Proyección | Inclusión de la familia proyectada | Predictiva | Sobre la métrica 10 (11 puntos, 2014-2024) — calculada (2027: ~50%, 42-58); validación 2025 no concluyente por el cambio de base de la fuente | ✅ calculada; ⚠️ validación pendiente de base estable |
+| Proyección | Cobertura CRL proyectada | Predictiva | Sobre la métrica 11 (13 puntos) — calculada (2026-08-20): curva asintótica elegida por backtest (MAPE 1,3%); 2028: ~39 CRL (37-41). Advertencia: la asíntota no está identificada por los datos (régimen casi lineal) — proyección robusta entre candidatos (~+1 CRL/año), ver `PREDICTIVO_JUSTIFICACION_TECNICA.md` | ✅ calculada; valor informativo menor |
 | — | Situaciones por departamento | — | **No existe en ningún año** — la ausencia principal de la fuente | ❌ |
 | — | Casos nuevos (nuevas situaciones por año) | Descriptiva | Serie oficial 2022-2025 publicada por el informe 2025 (1.643 → 2.536) | ✅ corta (4 puntos; insuficiente para proyectar) |
 
@@ -65,7 +65,7 @@ comparabilidad de recurrencia, cronicidad e inclusión familiar.
 | 13 | Sexo de las víctimas ESNNA | Descriptiva | 2020-2021 (86% niñas/adolescentes mujeres) | ✅ corta |
 | 14 | ES dentro de SIPIAV | Descriptiva | 2020 (98 casos) y 2021 (140); desde 2024 fusionada en "violencias sexuales" | ⚠️ ventana 2020-2023 |
 | 15 | Actuaciones de Fiscalía por delitos sexuales con víctima NNA | Descriptiva | 2018-2021, por departamento y en tasa cada 10.000 NNA | ✅ (delitos sexuales en general, no solo explotación — así se rotula) |
-| P7 | Situaciones ESNNA proyectadas | Predictiva | Solo 4 puntos (2018-2021) | ❌ serie insuficiente (< 6 puntos); se reevalúa si aparecen 2022-2024 oficiales |
+| Proyección | Situaciones ESNNA proyectadas | Predictiva | Solo 4 puntos (2018-2021) | ❌ serie insuficiente (< 6 puntos); se reevalúa si aparecen 2022-2024 oficiales |
 
 ## Tema 3 — Trabajo infantil (ENSANNA 2024, prevalencia; ENTI 2010; ECH 14-17)
 
@@ -95,8 +95,8 @@ el INE publique los microdatos, esto es todo lo construible:
 | 28 | Salud: controles y vacunas al día | Descriptiva | 2020-2025 | ✅ |
 | 29 | Acogimiento familiar: tipo de familia, altas/bajas de familias acogedoras por departamento | Descriptiva | Corte transversal a abril de 2025 (RAF) | ✅ corte |
 | 30 | Dónde viven los NNA acompañados (familia origen / acogimiento / residencial / adoptiva) | Descriptiva | Corte transversal a abril de 2025 (RDVF, ~8.777 NNA) | ✅ corte |
-| P3 | Desinternación proyectada, por departamento | Predictiva | **Calculada**: total país 62,7% → 66,4% (63,9-68,8) en contexto familiar hacia 2027-S2; 9/20 unidades proyectables, el resto estable o errático (documentado) — ver `resultados/proyecciones/p3_desinternacion.csv` | ✅ |
-| P4 | NNA en protección especial cada 1.000 NNA | Predictiva → descriptiva | Numerador 0-17 estricto (tramos del indicador 1.1) amesetado desde 2023: ningún candidato supera al ingenuo en el backtest → sin proyección de modelo (protocolo, regla 3a). Tasa observada: 9,05 (2024) y 9,38 (2025) por mil; referencia inercial ~9,8 hacia 2027 solo por caída del denominador INE — ver `resultados/proyecciones/p4_tasa_spe.csv` | ✅ resuelta como lectura descriptiva |
+| Proyección | Desinternación proyectada, por departamento | Predictiva | **Calculada**: total país 62,7% → 66,4% (63,9-68,8) en contexto familiar hacia 2027-S2; 9/20 unidades proyectables, el resto estable o errático (documentado) — ver `resultados/proyecciones/p3_desinternacion.csv` | ✅ |
+| Proyección | NNA en protección especial cada 1.000 NNA, referencia 2026-2027 | Predictiva | Numerador 0-17 estricto (tramos del indicador 1.1) amesetado desde 2023: ningún candidato supera al ingenuo en el backtest → sin modelo del numerador (protocolo, regla 3a); se publica la referencia aritmética con el sistema de tamaño constante sobre la población proyectada del INE. Tasa observada: 9,05 (2024) y 9,38 (2025) por mil; referencia ~9,8 hacia 2027 solo por caída del denominador — ver `resultados/proyecciones/p4_tasa_spe.csv` | ✅ referencia aritmética publicada |
 
 Advertencias documentadas por la exploración: los % del nacional vienen en
 decimal (0,068) y los departamentales en escala 10,1 — normalizar antes
@@ -140,7 +140,7 @@ que se informa como «sin centro registrado». Pipeline:
 
 | # | Métrica | Tipo | Detalle | Estado |
 |---|---|---|---|---|
-| P6 | Población 0-17 de Uruguay | Predictiva | Proyecciones oficiales del INE, revisión 2025 (Censo 2023), **descargadas y verificadas** (`data/ine/proyecciones_rev2025/`): 0-17 = 768.969 (2024) → 715.901 (2027), −2,3% anual — la caída achica el denominador de todas las tasas del proyecto | ✅ — la proyección más firme del catálogo porque es del organismo oficial |
+| Proyección oficial | Población 0-17 de Uruguay | Predictiva | Proyecciones oficiales del INE, revisión 2025 (Censo 2023), **descargadas y verificadas** (`data/ine/proyecciones_rev2025/`): 0-17 = 768.969 (2024) → 715.901 (2027), −2,3% anual — la caída achica el denominador de todas las tasas del proyecto | ✅ — la proyección más firme del catálogo porque es del organismo oficial |
 
 Lo que la parte predictiva **nunca** va a contener, por diseño:
 pronósticos de prevalencia de violencia o explotación (no hay serie de

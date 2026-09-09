@@ -161,10 +161,12 @@ tests/                        Suite de la lógica del paquete y sus guardianes
 confirmado métrica por métrica contra los archivos reales
 (`docs/CATALOGO_DE_METRICAS.md`); series SIPIAV 2013-2025 curadas con
 respaldo textual por valor (`datos_curados/`); bloque predictivo con
-protocolo de backtest aplicado: P1 calculada y validada con el dato real
-2025, P2, P3 y P5 calculadas, P4 resuelta como lectura descriptiva (el
-numerador se amesetó y ningún modelo supera al ingenuo), P6 citada del
-INE (revisión 2025 descargada); los cuatro cruces entre fuentes del
+protocolo de backtest aplicado: la proyección de situaciones atendidas
+calculada y validada con el dato real 2025; las de inclusión de la
+familia, desinternación y cobertura territorial calculadas; la tasa de
+NNA en protección especial publicada como referencia aritmética sin
+modelo (el numerador se amesetó y ningún candidato supera al ingenuo);
+la proyección de población citada del INE (revisión 2025 descargada); los cuatro cruces entre fuentes del
 catálogo calculados, cada uno con sus limitaciones declaradas
 (`resultados/cruces/`). Informe oficial en `notebooks/`; flujo guiado
 por formularios con carga de datos (fuentes documentales automáticas,

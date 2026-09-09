@@ -11,7 +11,7 @@ Fuente: textos completos extraídos de los 13 informes de gestión SIPIAV (2013-
 | situaciones_atendidas | 2013-2025 | 2013-2022 extraídas del texto de cada informe; 2023 (8157) y 2024 (8924) provenían de nota oficial Presidencia/INAU y quedaron confirmadas por el gráfico retrospectivo con valores en texto del informe 2025; 2025 (9178, metodología tradicional) del texto del informe 2025. Ver quiebre 7 (nueva metodología 2025 en paralelo: 7381). |
 | nuevas_situaciones | 2022-2025 | Serie oficial publicada por primera vez como gráfico con valores en texto en el informe 2025 (1643, 1971, 2501, 2536). Hasta 2024 estos valores solo circulaban por prensa. |
 | distribucion_sexo | 2013-2025 | Femenino/Masculino, sin huecos. |
-| inclusion_familia | 2014-2025 | Serie prioritaria (proyección P2). Dos valores provienen de prosa fraccionaria y están marcados: 2015 = 80 % («en 4 de 5 situaciones») y 2021 = 67 % («2 de cada 3», declarado estable respecto a 2020 = 67 %). El valor 2025 (45 %) no es comparable con la serie: la base incluye un 17 % «sin información» explícito (ver quiebre 7). |
+| inclusion_familia | 2014-2025 | Serie prioritaria (proyección de inclusión de la familia). Dos valores provienen de prosa fraccionaria y están marcados: 2015 = 80 % («en 4 de 5 situaciones») y 2021 = 67 % («2 de cada 3», declarado estable respecto a 2020 = 67 %). El valor 2025 (45 %) no es comparable con la serie: la base incluye un 17 % «sin información» explícito (ver quiebre 7). |
 | crl_cantidad | 2013-2025 | Se agregó 2013 (24 CRL) por mención retrospectiva del informe 2014. La serie no es monótona: 33 CRL en 2019 y 32 en 2020-2022, tal como publican los informes. 2025: 36 (estable respecto a 2024). |
 
 ### Con huecos

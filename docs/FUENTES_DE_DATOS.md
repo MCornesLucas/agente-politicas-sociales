@@ -170,7 +170,8 @@ Las citas completas para referenciar en informes están en
 - **Qué es**: proyecciones oficiales de población de Uruguay por sexo y
   edad, revisadas tras el Censo 2023 (período 2012-2070; archivos de
   proyección publicados desde 2024). Publicadas el 17/07/2025. Es la
-  fuente de los denominadores poblacionales del proyecto (P4, P6):
+  fuente de los denominadores poblacionales del proyecto (tasa de NNA
+  en protección especial y contexto demográfico):
   `data/ine/proyecciones_rev2025/`.
 - **Cifras centrales para el proyecto**: población 0-17 = 768.969 en
   2024 (22,0% del total) y cayendo ~2,3% anual (715.901 en 2027) — el
