@@ -40,7 +40,7 @@ def portada() -> str:
     return f"""
 <div class="portada">
   <h1>Pol&iacute;ticas sociales de infancia en Uruguay &mdash; Informe</h1>
-  <div class="subtitulo">M&eacute;tricas descriptivas, proyecciones validadas y cruces entre
+  <div class="subtitulo">M&eacute;tricas descriptivas, proyecciones y cruces entre
   fuentes, con cada cifra respaldada por su fuente</div>
   <div class="meta">Generado el {fecha}</div>
 </div>
