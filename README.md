@@ -2,17 +2,16 @@
 
 Análisis con rigor estadístico de las políticas sociales de infancia en
 Uruguay, a partir de datos oficiales de los organismos del sistema de
-protección: **SIPIAV, INAU, CONAPEES, CETI, UNICEF Uruguay** y la
+protección: **SIPIAV, INAU, CONAPEES, CETI, UNICEF Uruguay**, la
 **ENSANNA 2024** (Encuesta Nacional sobre las Actividades de Niñas, Niños
-y Adolescentes, INE/MTSS).
+y Adolescentes, INE/MTSS) y la **ENDIS 2023** (Encuesta de Nutrición,
+Desarrollo Infantil y Salud, INE).
 
-El proyecto presenta
-un marco metodológico (reglas de rigor no negociables,
+El proyecto define un marco metodológico (reglas de rigor no negociables,
 bibliografía auditada, justificación con fundamento de cada gráfica) y lo
-aplica a un problema nuevo — y más difícil: aquí la mayoría de las fuentes
-no son encuestas, son **registros administrativos**, donde la pregunta
-"¿qué mide realmente este número?" es la diferencia entre un análisis
-serio y uno equivocado.
+aplica a un problema difícil: la mayoría de las fuentes no son encuestas,
+son **registros administrativos**, donde la pregunta "¿qué mide realmente
+este número?" es la diferencia entre un análisis serio y uno equivocado.
 
 ## Idea base
 
@@ -144,8 +143,11 @@ docs/
   METODOLOGIA.md              Reglas de rigor estadístico y terminología (no negociables)
   FUENTES_DE_DATOS.md         Qué publica cada organismo y qué es (y qué no es) cada dato
   BIBLIOGRAFIA.md             Índice único de fuentes, por tema
-  CATALOGO_DE_METRICAS.md     Métricas candidatas por tema, con su advertencia de rigor
+  CATALOGO_DE_METRICAS.md     Métricas por tema, confirmadas contra los archivos reales
   CONVENCIONES_DE_GRAFICAS.md Justificación con fundamento del tipo de gráfica
+  CLASIFICACION_DE_EDADES.md  Rango de edad de cada fuente dentro del universo 0-17
+  RELEVAMIENTO_DE_DATOS.md    Qué se encontró en cada fuente y qué falta publicar
+  PREDICTIVO_JUSTIFICACION_TECNICA.md  Algoritmo y validación de cada proyección
 data/                         Datos descargados de las fuentes (no versionados)
 datos_curados/                Series curadas con respaldo textual por valor
 notebooks/                    Informes generados
@@ -184,7 +186,7 @@ basado en la ENSANNA. Se revisan una vez al mes desde el propio flujo
 (`politicas_sociales.vigilancia`); el detalle vive en
 `docs/RELEVAMIENTO_DE_DATOS.md`.
 
-Los microdatos de la ENDIS 2023 (tema 6) se cargan desde el paso de
+Los microdatos de la ENDIS 2023 (Primera infancia y cuidados) se cargan desde el paso de
 datos del flujo guiado (botón «Carga manual de la ENDIS», que abre
 `data/endis_microdatos/2023/`) aceptando los términos del INE; el
 resultado agregado que lee el informe está versionado en
