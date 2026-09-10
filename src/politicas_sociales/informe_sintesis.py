@@ -66,7 +66,7 @@ RESUMEN = {
     "metrica_9": "Solo alrededor de 4 de cada 10 NNA atendidos visualiza la violencia que sufre.",
     "metrica_10": "La inclusión de la familia en la intervención cayó de 82% a 58% en una década.",
     "metrica_11": "La cobertura territorial llegó a 36 Comités de Recepción Local, con señales de acercarse a su techo.",
-    "proyeccion_p1": "La proyección de situaciones publicada para 2025 quedó validada por el dato real.",
+    "proyeccion_p1": "La proyección de situaciones publicada para 2025 preveía entre 8.500 y 10.300; el dato real fue 9.178, dentro del rango.",
     "proyeccion_p2": "De continuar la tendencia, hacia 2027 la familia se incluiría en aproximadamente la mitad de las intervenciones.",
     "proyeccion_p5": "De seguir el ritmo de aperturas, el sistema sumaría unos tres comités hacia 2028.",
     "metrica_12": "Entre 240 y 494 situaciones atendidas por año (2018-2021), sin serie oficial desde 2022.",

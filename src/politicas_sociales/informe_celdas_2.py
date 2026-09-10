@@ -437,7 +437,7 @@ for i, (obs, proy) in enumerate(zip(p3["ultimo_observado_2025S2"], p3["proy_2027
 ax.set_xlim(0, 100)
 ax.set_title(
     "NNA del sistema en contexto familiar: observado y escenario inercial (%)\\n"
-    "(solo las 9 de 20 unidades donde la proyección superó los criterios de validación)"
+    "(solo las 9 de 20 unidades cuya serie permite proyectar)"
 )
 ax.set_xlabel("% en contexto familiar")
 ax.legend(frameon=False, fontsize=9, loc="upper center", bbox_to_anchor=(0.5, -0.10), ncol=2)
@@ -1374,7 +1374,8 @@ decisiones de método y de gráfica.
 - **Hyndman, R.J. & Athanasopoulos, G.** *Forecasting: Principles and
   Practice* (3ª ed.). OTexts. Fundamento del protocolo predictivo de
   este informe: candidatos simples, horizonte acotado al largo de la
-  serie, rangos derivados de los residuos y validación fuera de muestra.
+  serie, rangos derivados de los residuos y prueba del método con datos
+  que no se usaron en el ajuste.
   <https://otexts.com/fpp3/>
 - **Makridakis, S., Spiliotis, E. & Assimakopoulos, V. (2018).**
   "Statistical and Machine Learning forecasting methods: Concerns and

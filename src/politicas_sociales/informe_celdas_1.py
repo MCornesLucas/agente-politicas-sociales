@@ -16,7 +16,7 @@ from politicas_sociales.informe_base import code, md
 ALCANCE_COMPLETO = """métricas agrupadas en **seis
 temas** (violencia hacia niñas, niños y adolescentes; explotación
 sexual; trabajo infantil; protección especial; pobreza, vivienda y
-entorno del hogar; primera infancia y cuidados), junto con las proyecciones calculadas y validadas
+entorno del hogar; primera infancia y cuidados), junto con las proyecciones calculadas
 hasta la fecha y los **cuatro cruces entre fuentes** (INAU,
 CONAPEES/Fiscalía, ENSANNA y SIPIAV contra la ECH), cada uno con sus
 limitaciones declaradas"""
@@ -622,7 +622,7 @@ orden de magnitud, no como cronograma de aperturas.
 """),
     # ------------------------------------------------------------------
     md("""
-### Proyección. Situaciones que atendería el sistema, 2026-2027 — con validación 2025
+### Proyección. Situaciones que atendería el sistema, 2026-2027
 
 **¿Qué pregunta responde?** Si la tendencia observada continúa, ¿cuántas
 situaciones atendería el sistema en los próximos años? ¿Y qué pasó
@@ -674,12 +674,12 @@ plt.show()
     md("""
 **Por qué esta gráfica.** Proyección como continuación punteada con
 banda de rango (nunca un número único), y el dato real 2025 superpuesto
-con marcador propio: la validación fuera de muestra se muestra, no solo
-se declara (regla metodológica de este informe).
+con marcador propio, para que se vea a simple vista si quedó dentro del
+rango previsto.
 
 **Lectura**: la proyección publicada antes de conocerse el dato 2025
-(entre 8.500 y 10.300 situaciones) quedó **validada**: el real fue
-9.178. Si la tendencia continúa, el sistema atendería entre 9.200 y
+preveía entre 8.500 y 10.300 situaciones; el dato real fue 9.178, dentro
+de ese rango. Si la tendencia continúa, el sistema atendería entre 9.200 y
 11.100 situaciones en 2026, y entre 10.000 y 11.800 en 2027. Advertencia
 para el próximo ciclo: si SIPIAV migra su serie a la nueva metodología,
 esta proyección deberá recalcularse sobre la base nueva.
@@ -739,11 +739,11 @@ justificación técnica en el repositorio).
 
 **Lectura**: si la tendencia 2014-2024 continúa, hacia 2027 la familia
 se incluiría en aproximadamente la mitad de las intervenciones (50%,
-rango 42-58) — cuando en 2014 se lograba en más de 8 de cada 10. La
-validación con el dato 2025 quedó **no concluyente** por el cambio de
-base de la fuente (el 45% publicado no es comparable; sobre los casos
-con dato, 54%, dentro del rango proyectado 48-64): el modelo no se
-re-estima hasta que la base se estabilice.
+rango 42-58) — cuando en 2014 se lograba en más de 8 de cada 10. El
+dato 2025 no permite contrastar esta proyección por el cambio de base de
+la fuente (el 45% publicado no es comparable; sobre los casos con dato,
+54%, dentro del rango proyectado 48-64): el modelo no se re-estima hasta
+que la base se estabilice.
 """),
     # ------------------------------------------------------------------
     md("""

@@ -147,7 +147,7 @@ docs/
   CONVENCIONES_DE_GRAFICAS.md Justificación con fundamento del tipo de gráfica
   CLASIFICACION_DE_EDADES.md  Rango de edad de cada fuente dentro del universo 0-17
   RELEVAMIENTO_DE_DATOS.md    Qué se encontró en cada fuente y qué falta publicar
-  PREDICTIVO_JUSTIFICACION_TECNICA.md  Algoritmo y validación de cada proyección
+  PREDICTIVO_JUSTIFICACION_TECNICA.md  Algoritmo elegido para cada proyección y sus pruebas
 data/                         Datos descargados de las fuentes (no versionados)
 datos_curados/                Series curadas con respaldo textual por valor
 notebooks/                    Informes generados
@@ -163,11 +163,11 @@ tests/                        Suite de la lógica del paquete y sus guardianes
 confirmado métrica por métrica contra los archivos reales
 (`docs/CATALOGO_DE_METRICAS.md`); series SIPIAV 2013-2025 curadas con
 respaldo textual por valor (`datos_curados/`); bloque predictivo con
-protocolo de backtest aplicado: la proyección de situaciones atendidas
-calculada y validada con el dato real 2025; las de inclusión de la
-familia, desinternación y cobertura territorial calculadas; la tasa de
-NNA en protección especial publicada como referencia aritmética sin
-modelo (el numerador se amesetó y ningún candidato supera al ingenuo);
+protocolo de backtest aplicado: cuatro proyecciones calculadas
+(situaciones atendidas, inclusión de la familia, desinternación y
+cobertura territorial); la tasa de NNA en protección especial publicada
+como referencia aritmética sin modelo (el numerador se amesetó y ningún
+candidato supera al ingenuo);
 la proyección de población citada del INE (revisión 2025 descargada); los cuatro cruces entre fuentes del
 catálogo calculados, cada uno con sus limitaciones declaradas
 (`resultados/cruces/`). Informe oficial en `notebooks/`; flujo guiado
